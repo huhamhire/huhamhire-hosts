@@ -6,8 +6,22 @@ import time
 import os
 import socket
 import shutil
+import getpass
 
-startTime = time.time()
+SF_mirror_list = {'superb-dca2': ('Superb Internet', 'United States'), 'aarnet': ('AARNet', 'Melbourne Australia'), 'cdnetworks-kr-1': ('CDNetworks', 'Seoul, Korea, Republic of'),
+                  'cdnetworks-kr-2': ('CDNetworks', 'Seoul, Korea, Republic of'), 'cdnetworks-us-2': ('CDNetworks', 'Cumming, GA'), 'dfn': ('German Research Network', 'Germany'),
+                  'freefr': ('Free France', 'Paris, France'), 'garr': ('garr.it', 'Ancona, Italy'), 'heanet': ('HEAnet', 'Ireland'), 'hivelocity': ('HiVelocity', 'Tampa, FL'),
+                  'internode': ('Internode', 'Adelaide, Australia'), 'iweb': ('iWeb', 'Montreal, QC'), 'jaist': ('JAIST', 'Nomi, Japan'),
+                  'nchc': ('NCHC', 'Taipei, Taiwan'), 'netcologne': ('NetCologne', 'Koln, Germany'), 'softlayer': ('Softlayer', 'Dallas, TX'),
+                  'switch': ('SWITCH', 'Zurich, Switzerland'), 'tenet': ('TENET', 'Wynberg, South Africa'), 'ufpr': ('C3SL', 'Curitiba, Brazil'),
+                  'voxel': ('Voxel Hosting', 'New York, NY'), 'waix': ('Waix', 'Perth, Australia')}
+                  #Sourceforge 镜像站点信息：{'Short Name': ('Provider', 'Location')}
+
+update_url = [('http://huhamhire-hosts.googlecode.com/git/pyHosts_OL/hosts_setup_OnL.py', 'Google Code'),
+              ('http://github.com/huhamhire/huhamhire-hosts/raw/master/pyHosts_OL/hosts_setup_OnL.py', 'GitHub'),
+              ('http://superb-dca2.dl.sourceforge.net/project/huhamhirehosts/latest%20PyHosts/hosts_setup_OnL.py', 'SourceForge' ),
+              ('http://www.mirrorservice.org/sites/download.sourceforge.net/pub/sourceforge/h/project/hu/huhamhirehosts/latest%20PyHosts/hosts_setup_OnL.py', ' SFMirror')]
+
 url = ''
 etc = ''
 tmp = ''
@@ -37,7 +51,8 @@ def choice():
     print ('        |      2.安装 IPv6 版 hosts 文件                             |').decode('utf-8').encode(type)
     print ('        |      3.恢复备份的 hosts 文件                               |').decode('utf-8').encode(type)
     print ('        |      4.设定使用移动简化版 hosts 文件                       |').decode('utf-8').encode(type)
-    print ('        |      5.退出                                                |').decode('utf-8').encode(type)
+    print ('        |      5.在线更新 PyHosts 程序至最新版                       |').decode('utf-8').encode(type)
+    print ('        |      6.退出                                                |').decode('utf-8').encode(type)
     print ('         ------------------------------------------------------------ ').decode('utf-8').encode(type)
     print
 
@@ -48,6 +63,8 @@ def cbk(a, b, c):
     @c: 远程文件的大小
     '''
     type = sys.getfilesystemencoding()
+    if c == 0:
+        raise IOError
     per = 100.0 * a * b / c
     if per > 100:
         per = 100
@@ -56,8 +73,11 @@ def cbk(a, b, c):
     size = float(c) / 1024
     if size >= 1024:
         size = "%.1fMB" % (size / 1024)
-    else:
+    elif int(size) > 0:
         size = '%dKB' % (size)
+    else:
+        size = "未知"
+        raise IOError
     if rate < 1:
         rate = '%3dB/s' % (rate * 1024)
     else:
@@ -71,6 +91,8 @@ def set_os():
     system = os.name
     if system == 'nt':
         tmp = 'C:\\temp\\hosts'
+        if not os.path.exists(r'C:/temp/'):
+            os.makedirs(r'C:/temp/')
         etc = os.getenv('WINDIR') + '\System32\drivers\etc\hosts'
         fname = 'win_ansi'
         hostname = os.getenv('computername')
@@ -78,17 +100,27 @@ def set_os():
     elif system == 'posix':
         if sys.platform == 'darwin':
             tmp = '/private/tmp/hosts'
+            if not os.path.exists(r'/private/tmp/'):
+                os.makedirs(r'/private/tmp/')
             etc = '/private/etc/hosts'
-            fname = 'mac_utf8'
+            fname = 'unix_utf8'
             hostname = socket.gethostname()[0:-6]
             return hostname , etc, tmp, fname
         else:
             tmp = '/tmp/hosts'
+            if not os.path.exists(r'/tmp/'):
+                os.makedirs(r'/tmp/')
             etc = '/etc/hosts'
             fname = 'unix_utf8'
+            try:
+                hostname = socket.gethostname()
+            except:
+                hostname = 'unknown'
+            ''' #Only works on Debian Linux
             with open(etc[0:-1] + 'name','r') as hosts:
                 hostname = hosts.readline()[0:-1]
                 hosts.close()
+            '''
             return hostname, etc, tmp, fname
     else:
         return 'Unknown System!'
@@ -96,16 +128,48 @@ def set_os():
 def choose(etc, fname, site):
     #选择hosts文件版本(IPv4/IPv6)
     type = sys.getfilesystemencoding()
-    print('请选择[1,2,3,4,5]：').decode('utf-8').encode(type),
-    cmd = raw_input()
+    print('请选择[1,2,3,4,5,6]：').decode('utf-8').encode(type),
+    try:
+        cmd = raw_input()
+    except:
+        print ('\n                                                                  安装已取消.').decode('utf-8').encode(type)
+        dash()
+        print ('安装未完成，请按Enter键退出.').decode('utf-8').encode(type)
+        try:
+            raw_input()
+        except KeyboardInterrupt:
+            raise
+        except:
+            pass
+        exit()
     dash()
-    if cmd == '5':
+    if cmd == '6':
+        exit()
+    elif cmd == '5':
+        print ('更新 PyHosts 在线安装程序:').decode('utf-8').encode(type)
+        print ('  下载更新文件：').decode('utf-8').encode(type)
+        dest = os.getcwd() + '/hosts_setup_OnL.py.new'
+        update(update_url, 0, dest)
         exit()
     elif cmd == '4':
         fname = 'mobile_utf8'
         print ('当前使用移动设备简化版 hosts 文件。如需安装完整版，请退出后重新开始安装。').decode('utf-8').encode(type)
         print ('请按Enter键继续安装.').decode('utf-8').encode(type)
-        raw_input()
+        try:
+            raw_input()
+        except KeyboardInterrupt:
+            print ('                                                                  安装已取消.').decode('utf-8').encode(type)
+            dash()
+            print ('安装未完成，请按Enter键退出.').decode('utf-8').encode(type)
+            try:
+                raw_input()
+            except KeyboardInterrupt:
+                raise
+            except:
+                pass
+            exit()
+        except:
+            pass
         print ('         ------------------------------------------------------------ ').decode('utf-8').encode(type)
         choice()
         return choose(etc, fname, site)
@@ -145,7 +209,23 @@ def download(etc, tmp, fname):
         print ('                                          下载失败，请检查操作权限与网络连接.').decode('utf-8').encode(type)
         dash()
         print ('安装失败，请按Enter键退出.').decode('utf-8').encode(type)
-        raw_input()
+        try:
+            raw_input()
+        except KeyboardInterrupt:
+            raise
+        except:
+            pass
+        exit()
+    except KeyboardInterrupt:
+        print ('                                                                  下载已取消.').decode('utf-8').encode(type)
+        dash()
+        print ('安装未完成，请按Enter键退出.').decode('utf-8').encode(type)
+        try:
+            raw_input()
+        except KeyboardInterrupt:
+            raise
+        except:
+            pass
         exit()
 
 def move(etc, tmp):
@@ -186,13 +266,134 @@ def roll_back(etc, site):
     try:
         shutil.copyfile(etc[0:-5] + 'hosts.bak', etc)
         print ('备份文件已恢复. 请按Enter键继续.').decode('utf-8').encode(type)
-        raw_input()
+        try:
+            raw_input()
+        except KeyboardInterrupt:
+            print ('                                                                  安装已取消.').decode('utf-8').encode(type)
+            dash()
+            print ('安装未完成，请按Enter键退出.').decode('utf-8').encode(type)
+            try:
+                raw_input()
+            except KeyboardInterrupt:
+                raise
+            except:
+                pass
+            exit()
     except IOError:
         print ('备份文件不存在，请直接进行安装. 按Enter键继续.').decode('utf-8').encode(type)
-        raw_input()
+        try:
+            raw_input()
+        except KeyboardInterrupt:
+            print ('                                                                  安装已取消.').decode('utf-8').encode(type)
+            dash()
+            print ('安装未完成，请按Enter键退出.').decode('utf-8').encode(type)
+            try:
+                raw_input()
+            except KeyboardInterrupt:
+                raise
+            except:
+                pass
+            exit()
     print
     print ('         ------------------------------------------------------------ ').decode('utf-8').encode(type)
     main(site)
+
+def argv_err():
+    type = sys.getfilesystemencoding()
+    print ('参数设定有误. 请使用"-h"获取帮助信息.').decode('utf-8').encode(type)
+    exit()
+
+def help():
+    type = sys.getfilesystemencoding()
+    print ('\n用法: python hosts_setup_OnL.py [-SFM] [-SF [server]] [-?] \n').decode('utf-8').encode(type)
+    print ('选项: \n').decode('utf-8').encode(type)
+    print ('    -SFM           设定使用 http://www.mirrorservice.org/ 上的 hosts 文件').decode('utf-8').encode(type)
+    print ('    -SF [server]   设定使用 SourceForge 镜像服务器上的 hosts 文件').decode('utf-8').encode(type)
+    print ('    server         -SF 命令可选参数, 选择 SoureForge 镜像服务器').decode('utf-8').encode(type)
+    print ('                   请使用 SF 服务器短地址, 留空默认为 superb-dca2').decode('utf-8').encode(type)
+    print ('                   可使用 -ListSF 查询 SF 镜像服务器').decode('utf-8').encode(type)
+    print ('    -ListSF        查询 SF 镜像服务器').decode('utf-8').encode(type)
+    print ('    -Git           设定使用 GitHub 服务器上的 hosts 文件').decode('utf-8').encode(type)
+    print ('    -?             显示帮助信息').decode('utf-8').encode(type)
+    print ('').decode('utf-8').encode(type)
+    print ('不使用参数则默认使用 Google Code 服务器作为下载源.').decode('utf-8').encode(type)
+    print ('').decode('utf-8').encode(type)
+    print ('运行过程中可使用 Ctrl/Control(Mac)+C 取消操作并退出程序.').decode('utf-8').encode(type)
+    print ('').decode('utf-8').encode(type)
+    print ('注意: 一次只能使用一条参数, 并在使用时注意检查参数大小写.').decode('utf-8').encode(type)
+    exit()
+
+def list_sf():
+    type = sys.getfilesystemencoding()
+    keys = SF_mirror_list.keys()
+    i = 0
+    keys.sort()
+    print ('\nSourceForge 镜像服务器信息( Enter键继续, P+Enter翻页, Ctrl/Control(Mac)+C退出)：').decode('utf-8').encode(type)
+    dash()
+    print ('    %s  %s                  %s' % ('镜像服务器短地址', '服务器提供者', '服务器所在国家地区')).decode('utf-8').encode(type)
+    print ('    %s  %s                  %s' % ('----------------', '------------', '------------------')).decode('utf-8').encode(type)
+    print ('    ').decode('utf-8').encode(type),
+    for mirror in keys:
+        print ('%-18s%-30s%-16s' % (mirror, SF_mirror_list[mirror][0], SF_mirror_list[mirror][1])).decode('utf-8').encode(type),
+        i += 1
+        if i < 20:
+            print
+            print ('    ').decode('utf-8').encode(type),
+        else:
+            try:
+                page = getpass.getpass('')
+                print '   ',
+                if (page.startswith('p')) or (page.startswith('P')):
+                    i = 0
+            except KeyboardInterrupt:
+                raise
+            except:
+                pass
+    exit()
+
+def update(update_url, i, dest):
+    #更新pyHosts
+    type = sys.getfilesystemencoding()
+    up_url = update_url[i][0]
+    i += 1
+    print ('    ' + up_url).decode('utf-8').encode(type)
+    socket.setdefaulttimeout(20)
+    try:
+        urllib.urlretrieve(up_url, dest)
+        print ('                                                            更新文件下载成功!').decode('utf-8').encode(type)
+    except IOError:
+        if i > 3:
+            print ('                                          更新失败，请检查操作权限与网络连接.').decode('utf-8').encode(type)
+            dash()
+            print ('安装失败，请按Enter键退出.').decode('utf-8').encode(type)
+            try:
+                raw_input()
+            except KeyboardInterrupt:
+                raise
+            except:
+                pass
+            exit()
+        print ('    未能正确获取文件, 尝试使用 %s 资源.' % update_url[i][1]).decode('utf-8').encode(type)
+        dash()
+        update(update_url, i)
+    except KeyboardInterrupt:
+        print ('                                                                  下载已取消.').decode('utf-8').encode(type)
+        dash()
+        print ('更新未完成，请按Enter键退出.').decode('utf-8').encode(type)
+        try:
+            raw_input()
+        except KeyboardInterrupt:
+            raise
+        except:
+            pass
+        exit()
+    targ = os.getcwd() + '/hosts_setup_OnL.py'
+    old = os.getcwd() + '/hosts_setup_OnL.py.old'
+    shutil.copyfile(targ, old)
+    os.remove(targ)
+    shutil.copyfile(dest, targ)
+    os.remove(dest)
+    print ('                                                 更新已完成。请重新运行本脚本').decode('utf-8').encode(type)
 
 def main(site):
     type = sys.getfilesystemencoding()
@@ -204,15 +405,44 @@ def main(site):
     config(hostname, etc)
     dash()
     print ('安装成功！请按Enter键退出.').decode('utf-8').encode(type)
-    raw_input()
+    try:
+        raw_input()
+    except KeyboardInterrupt:
+        raise
+    except:
+        pass
     exit()
 
 if __name__ == '__main__':
-    site = ('http://huhamhire-hosts.googlecode.com/svn/trunk/core/', '')
+    site = ('http://huhamhire-hosts.googlecode.com/git/core/', '')
     if len(sys.argv) > 1:
-        if sys.argv[1].startswith('-SF'):
-            url_front = 'http://downloads.sourceforge.net/project/huhamhirehosts/latest%20hosts%20file%28only%29/'
-            url_tail = ''   #尾标记
+        if (sys.argv[1] == '-SFM') and (len(sys.argv) == 2):
+            url_front = 'http://www.mirrorservice.org/sites/download.sourceforge.net/pub/sourceforge/h/project/hu/huhamhirehosts/latest%20hosts%20file%28only%29/'
+            url_tail = ''   #尾标记，SF镜像留空
             site = (url_front, url_tail)
+        elif sys.argv[1] == '-SF':
+            url_front = 'http://superb-dca2.dl.sourceforge.net/project/huhamhirehosts/latest%20hosts%20file%28only%29/'
+            if len(sys.argv) > 2:
+                if sys.argv[2] in SF_mirror_list.keys():
+                    url_front = 'http://' + sys.argv[2] + '.dl.sourceforge.net/project/huhamhirehosts/latest%20hosts%20file%28only%29/'
+                else:
+                    argv_err()
+            url_tail = ''   #尾标记，SF留空
+            site = (url_front, url_tail)
+        elif sys.argv[1] == '-ListSF':
+            list_sf()
+        elif sys.argv[1] == '-Git':
+            url_front = 'http://github.com/huhamhire/huhamhire-hosts/raw/master/core/'
+            url_tail = ''   #尾标记，GitHub留空
+            site = (url_front, url_tail)
+        elif sys.argv[1] == '-?':
+            help()
+        else:
+            argv_err()
     initial()
-    main(site)
+    try:
+        main(site)
+    except SystemExit:
+        raise
+    except:
+        pass
