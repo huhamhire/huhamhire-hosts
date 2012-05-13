@@ -17,11 +17,12 @@ SF_mirror_list = {'superb-dca2': ('Superb Internet', 'United States'), 'aarnet':
                   'voxel': ('Voxel Hosting', 'New York, NY'), 'waix': ('Waix', 'Perth, Australia')}
                   #Sourceforge 镜像站点信息：{'Short Name': ('Provider', 'Location')}
 
-update_url = [('http://huhamhire-hosts.googlecode.com/git/pyHosts_OL/hosts_setup_OnL.py', 'Google Code'),
+update_url = [('http://huhamhire-hosts.googlecode.com/files/hosts_setup_OnL.py', 'Google Code'), 
               ('http://github.com/huhamhire/huhamhire-hosts/raw/master/pyHosts_OL/hosts_setup_OnL.py', 'GitHub'),
               ('http://superb-dca2.dl.sourceforge.net/project/huhamhirehosts/latest%20PyHosts/hosts_setup_OnL.py', 'SourceForge' ),
               ('http://www.mirrorservice.org/sites/download.sourceforge.net/pub/sourceforge/h/project/hu/huhamhirehosts/latest%20PyHosts/hosts_setup_OnL.py', ' SFMirror')]
 
+startTime = time.time()
 url = ''
 etc = ''
 tmp = ''
@@ -68,6 +69,9 @@ def cbk(a, b, c):
     per = 100.0 * a * b / c
     if per > 100:
         per = 100
+    elif per < 0:
+        per = 0
+    per_show = '%05.2f%%' % (per)
     etime = (time.time() - startTime)
     rate = a * b / float(etime) / 1024
     size = float(c) / 1024
@@ -77,14 +81,16 @@ def cbk(a, b, c):
         size = '%dKB' % (size)
     else:
         size = "未知"
-        raise IOError
+        e_size = float(a * b) / 1024
+        if e_size >= 1024:
+            per_show = "%.1fMB" % (e_size / 1024)
+        elif int(e_size) > 0:
+            per_show = '%dKB' % (e_size)
     if rate < 1:
         rate = '%3dB/s' % (rate * 1024)
     else:
         rate = '%.1fKB/s' % (rate)
-    print ('\r    文件大小：%s.........................已下载：%05.2f%%(速度：%s)' % (size, per, rate)).decode('utf-8').encode(type),
-    if per == 100:
-        print
+    print ('\r    文件大小：%s.........................已下载：%s(速度：%s)' % (size, per_show, rate)).decode('utf-8').encode(type),
 
 def set_os():       
     #获取操作系统信息，返回本机机器名, etc, tmp, fname
@@ -197,6 +203,7 @@ def choose(etc, fname, site):
 def download(etc, tmp, fname):
     #下载hosts文件
     url = choose(etc, fname, site)
+    startTime = time.time()
     type = sys.getfilesystemencoding()
     print ('第 1 阶段，共 3 阶段:(1/3)').decode('utf-8').encode(type)
     print ('  下载hosts文件：').decode('utf-8').encode(type)
@@ -204,6 +211,7 @@ def download(etc, tmp, fname):
     socket.setdefaulttimeout(20)
     try:
         urllib.urlretrieve(url, tmp, cbk)
+        print
         print ('                                                                    下载成功!').decode('utf-8').encode(type)
     except IOError:
         print ('                                          下载失败，请检查操作权限与网络连接.').decode('utf-8').encode(type)
@@ -357,10 +365,11 @@ def update(update_url, i, dest):
     up_url = update_url[i][0]
     i += 1
     print ('    ' + up_url).decode('utf-8').encode(type)
+    startTime = time.time()
     socket.setdefaulttimeout(20)
     try:
-        urllib.urlretrieve(up_url, dest)
-        print ('                                                            更新文件下载成功!').decode('utf-8').encode(type)
+        urllib.urlretrieve(up_url, dest, cbk)
+        print ('\n                                                            更新文件下载成功!').decode('utf-8').encode(type)
     except IOError:
         if i > 3:
             print ('                                          更新失败，请检查操作权限与网络连接.').decode('utf-8').encode(type)
@@ -373,9 +382,8 @@ def update(update_url, i, dest):
             except:
                 pass
             exit()
-        print ('    未能正确获取文件, 尝试使用 %s 资源.' % update_url[i][1]).decode('utf-8').encode(type)
-        dash()
-        update(update_url, i)
+        print ('\n    未能正确获取文件, 尝试使用 %s 资源: ' % update_url[i][1]).decode('utf-8').encode(type)
+        update(update_url, i, dest)
     except KeyboardInterrupt:
         print ('                                                                  下载已取消.').decode('utf-8').encode(type)
         dash()
