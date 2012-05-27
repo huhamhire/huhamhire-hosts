@@ -139,14 +139,7 @@ def choose(etc, fname, site):
         cmd = raw_input()
     except:
         print ('\n                                                                  安装已取消.').decode('utf-8').encode(type)
-        dash()
-        print ('安装未完成，请按Enter键退出.').decode('utf-8').encode(type)
-        try:
-            raw_input()
-        except KeyboardInterrupt:
-            raise
-        except:
-            pass
+        any_key('安装未完成，请按Enter键退出.')
         exit()
     dash()
     if cmd == '6':
@@ -165,14 +158,7 @@ def choose(etc, fname, site):
             raw_input()
         except KeyboardInterrupt:
             print ('                                                                  安装已取消.').decode('utf-8').encode(type)
-            dash()
-            print ('安装未完成，请按Enter键退出.').decode('utf-8').encode(type)
-            try:
-                raw_input()
-            except KeyboardInterrupt:
-                raise
-            except:
-                pass
+            any_key('安装未完成，请按Enter键退出.')
             exit()
         except:
             pass
@@ -215,25 +201,11 @@ def download(etc, tmp, fname):
         print ('                                                                    下载成功!').decode('utf-8').encode(type)
     except IOError:
         print ('                                          下载失败，请检查操作权限与网络连接.').decode('utf-8').encode(type)
-        dash()
-        print ('安装失败，请按Enter键退出.').decode('utf-8').encode(type)
-        try:
-            raw_input()
-        except KeyboardInterrupt:
-            raise
-        except:
-            pass
+        any_key('安装失败，请按Enter键退出.')
         exit()
     except KeyboardInterrupt:
         print ('                                                                  下载已取消.').decode('utf-8').encode(type)
-        dash()
-        print ('安装未完成，请按Enter键退出.').decode('utf-8').encode(type)
-        try:
-            raw_input()
-        except KeyboardInterrupt:
-            raise
-        except:
-            pass
+        any_key('安装未完成，请按Enter键退出.')
         exit()
 
 def move(etc, tmp):
@@ -278,14 +250,7 @@ def roll_back(etc, site):
             raw_input()
         except KeyboardInterrupt:
             print ('                                                                  安装已取消.').decode('utf-8').encode(type)
-            dash()
-            print ('安装未完成，请按Enter键退出.').decode('utf-8').encode(type)
-            try:
-                raw_input()
-            except KeyboardInterrupt:
-                raise
-            except:
-                pass
+            any_key('安装未完成，请按Enter键退出.')
             exit()
     except IOError:
         print ('备份文件不存在，请直接进行安装. 按Enter键继续.').decode('utf-8').encode(type)
@@ -293,14 +258,7 @@ def roll_back(etc, site):
             raw_input()
         except KeyboardInterrupt:
             print ('                                                                  安装已取消.').decode('utf-8').encode(type)
-            dash()
-            print ('安装未完成，请按Enter键退出.').decode('utf-8').encode(type)
-            try:
-                raw_input()
-            except KeyboardInterrupt:
-                raise
-            except:
-                pass
+            any_key('安装未完成，请按Enter键退出.')
             exit()
     print
     print ('         ------------------------------------------------------------ ').decode('utf-8').encode(type)
@@ -313,7 +271,7 @@ def argv_err():
 
 def help():
     type = sys.getfilesystemencoding()
-    print ('\n用法: python hosts_setup_OnL.py [-SFM] [-SF [server]] [-?] \n').decode('utf-8').encode(type)
+    print ('\n用法: python hosts_setup_OnL.py [-SFM] [-SF [server]] [-Git] [-?] \n').decode('utf-8').encode(type)
     print ('选项: \n').decode('utf-8').encode(type)
     print ('    -SFM           设定使用 http://www.mirrorservice.org/ 上的 hosts 文件').decode('utf-8').encode(type)
     print ('    -SF [server]   设定使用 SourceForge 镜像服务器上的 hosts 文件').decode('utf-8').encode(type)
@@ -373,27 +331,13 @@ def update(update_url, i, dest):
     except IOError:
         if i > 3:
             print ('                                          更新失败，请检查操作权限与网络连接.').decode('utf-8').encode(type)
-            dash()
-            print ('安装失败，请按Enter键退出.').decode('utf-8').encode(type)
-            try:
-                raw_input()
-            except KeyboardInterrupt:
-                raise
-            except:
-                pass
+            any_key('安装失败，请按Enter键退出.')
             exit()
         print ('\n    未能正确获取文件, 尝试使用 %s 资源: ' % update_url[i][1]).decode('utf-8').encode(type)
         update(update_url, i, dest)
     except KeyboardInterrupt:
         print ('                                                                  下载已取消.').decode('utf-8').encode(type)
-        dash()
-        print ('更新未完成，请按Enter键退出.').decode('utf-8').encode(type)
-        try:
-            raw_input()
-        except KeyboardInterrupt:
-            raise
-        except:
-            pass
+        any_key('更新未完成，请按Enter键退出.')
         exit()
     targ = os.getcwd() + '/hosts_setup_OnL.py'
     old = os.getcwd() + '/hosts_setup_OnL.py.old'
@@ -402,6 +346,19 @@ def update(update_url, i, dest):
     shutil.copyfile(dest, targ)
     os.remove(dest)
     print ('                                                 更新已完成。请重新运行本脚本').decode('utf-8').encode(type)
+    any_key('按Enter键退出.')
+    exit()
+
+def any_key(message):
+    type = sys.getfilesystemencoding()
+    dash()
+    print (message).decode('utf-8').encode(type)
+    try:
+        raw_input()
+    except KeyboardInterrupt:
+        raise
+    except:
+        pass
 
 def main(site):
     type = sys.getfilesystemencoding()
@@ -411,14 +368,7 @@ def main(site):
     shutil.copyfile(etc, etc[0:-5] + 'hosts.bak')
     move(etc, tmp)
     config(hostname, etc)
-    dash()
-    print ('安装成功！请按Enter键退出.').decode('utf-8').encode(type)
-    try:
-        raw_input()
-    except KeyboardInterrupt:
-        raise
-    except:
-        pass
+    any_key('安装成功！请按Enter键退出.')
     exit()
 
 if __name__ == '__main__':
