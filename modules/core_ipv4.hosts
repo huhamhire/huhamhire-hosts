@@ -15,6 +15,20 @@
 0.0.0.0 activate-sea.adobe.com
 0.0.0.0 wwis-dubc1-vip60.adobe.com
 0.0.0.0 activate-sjc0.adobe.com
+# Adobe CS6
+127.0.0.1 lmlicenses.wip4.adobe.com
+127.0.0.1 lm.licenses.adobe.com
+
+# ÆÁ±ÎParallels Desktop 7¼¤»î·þÎñÆ÷£º
+127.0.0.1 pd6.blist.parallels.com
+127.0.0.1 pd7.blist.parallels.com
+127.0.0.1 pdfm7.blist.parallels.com 
+127.0.0.1 registration.parallels.com
+127.0.0.1 parallels.com
+127.0.0.1 update.parallels.com
+
+######## Huhamhire HOSTS ########
+216.34.181.97 hosts.huhamhire.com
 
 ######Google Services from U.S.######
 #Google Plus (Servers in U.S.,Slower,Use these when google+ is jamed)
@@ -1089,6 +1103,7 @@
 97.65.135.163 b.static.ak.fbcdn.net 
 97.65.135.163 static.ak.fbcdn.net 
 69.63.180.51 upload.facebook.com 
+31.13.79.7 developers.facebook.com
 
 #Twitter
 199.59.149.243 oauth.twitter.com 

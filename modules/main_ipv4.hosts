@@ -1,4 +1,4 @@
-ï»¿# Copyright (c) 2011-2012 Huhamhire Hosts Group.
+# Copyright (c) 2011-2012 Huhamhire Hosts Group.
 #
 # This is a HOSTS file packed by Huhamhire Hosts Group for Windows, Linux,
 # Mac OS, iOS, etc.
@@ -50,7 +50,7 @@ fe80::1%lo0	localhost
 
 ######## IPv4 HOSTS ########
 
-# å±è”½Adobeæ¿€æ´»æœåŠ¡å™¨ï¼š
+# ÆÁ±ÎAdobe¼¤»î·şÎñÆ÷£º
 0.0.0.0 activate.adobe.com
 0.0.0.0 practivate.adobe.com
 0.0.0.0 ereg.adobe.com
@@ -69,7 +69,7 @@ fe80::1%lo0	localhost
 127.0.0.1 lmlicenses.wip4.adobe.com
 127.0.0.1 lm.licenses.adobe.com
 
-# å±è”½Parallels Desktop 7æ¿€æ´»æœåŠ¡å™¨ï¼š
+# ÆÁ±ÎParallels Desktop 7¼¤»î·şÎñÆ÷£º
 127.0.0.1 pd6.blist.parallels.com
 127.0.0.1 pd7.blist.parallels.com
 127.0.0.1 pdfm7.blist.parallels.com 

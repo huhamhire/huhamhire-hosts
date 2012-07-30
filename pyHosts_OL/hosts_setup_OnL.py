@@ -280,6 +280,7 @@ def help():
     print ('                   可使用 -ListSF 查询 SF 镜像服务器').decode('utf-8').encode(type)
     print ('    -ListSF        查询 SF 镜像服务器').decode('utf-8').encode(type)
     print ('    -Git           设定使用 GitHub 服务器上的 hosts 文件').decode('utf-8').encode(type)
+    print ('    -HH            设定使用 Huhamhire hosts 服务器上的 hosts 文件').decode('utf-8').encode(type)
     print ('    -?             显示帮助信息').decode('utf-8').encode(type)
     print ('').decode('utf-8').encode(type)
     print ('不使用参数则默认使用 Google Code 服务器作为下载源.').decode('utf-8').encode(type)
@@ -391,6 +392,10 @@ if __name__ == '__main__':
             list_sf()
         elif sys.argv[1] == '-Git':
             url_front = 'http://github.com/huhamhire/huhamhire-hosts/raw/master/core/'
+            url_tail = ''   #尾标记，GitHub留空
+            site = (url_front, url_tail)
+        elif sys.argv[1] == '-HH':
+            url_front = 'http://hosts.huhamhire.com/downfile/raw/'
             url_tail = ''   #尾标记，GitHub留空
             site = (url_front, url_tail)
         elif sys.argv[1] == '-?':

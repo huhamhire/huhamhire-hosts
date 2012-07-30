@@ -9,6 +9,8 @@
 # The IP address and the host name should be separated by at least one
 # space.
 #
+# Creating Timestamp : 1343606400
+#
 # comments (such as these) may be inserted on individual
 # lines or following the machine name denoted by a '#' symbol.
 #
@@ -63,6 +65,20 @@ fe80::1%lo0	localhost
 0.0.0.0 activate-sea.adobe.com
 0.0.0.0 wwis-dubc1-vip60.adobe.com
 0.0.0.0 activate-sjc0.adobe.com
+# Adobe CS6
+127.0.0.1 lmlicenses.wip4.adobe.com
+127.0.0.1 lm.licenses.adobe.com
+
+# 屏蔽Parallels Desktop 7激活服务器：
+127.0.0.1 pd6.blist.parallels.com
+127.0.0.1 pd7.blist.parallels.com
+127.0.0.1 pdfm7.blist.parallels.com 
+127.0.0.1 registration.parallels.com
+127.0.0.1 parallels.com
+127.0.0.1 update.parallels.com
+
+######## Huhamhire HOSTS ########
+216.34.181.97 hosts.huhamhire.com
 
 ######Google Services from U.S.######
 #Google Plus (Servers in U.S.,Slower,Use these when google+ is jamed)
@@ -1137,6 +1153,7 @@ fe80::1%lo0	localhost
 97.65.135.163 b.static.ak.fbcdn.net 
 97.65.135.163 static.ak.fbcdn.net 
 69.63.180.51 upload.facebook.com 
+31.13.79.7 developers.facebook.com
 
 #Twitter
 199.59.149.243 oauth.twitter.com 
@@ -6457,7 +6474,6 @@ fe80::1%lo0	localhost
 127.0.0.1 ereg.adobe.com
 127.0.0.1 ereg.wip3.adobe.com
 127.0.0.1 hl2rcv.adobe.com
-127.0.0.1 lm.licenses.adobe.com
 127.0.0.1 practivate.adobe.com
 127.0.0.1 wip.adobe.com
 127.0.0.1 wip3.adobe.com
@@ -49732,7 +49748,6 @@ All Rights Reserved 2007-2011
 115.47.219.95 www.x2xsoft.com
 115.47.219.95 www.ynqcsm.cn
 115.47.219.95 www.ynkcw.net.cn
-115.47.219.95 checkip.dyndns.org
 115.47.219.95 www.98ys.net
 115.47.219.95 ns02.us
 115.47.219.95 241746787.3322.org
