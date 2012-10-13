@@ -453,12 +453,12 @@
 2404:6800:8005::12 gmail.com
 2404:6800:8005::12 m.gmail.com #googlemail.l.google.com
 2404:6800:8005::13 m.googlemail.com #googlemail.l.google.com
-2a00:1450:4010:c00::6d pop.gmail.com #gmail-pop.l.google.com #Foxmail 等客户端不支持 ipv6 连接，参阅 Issue 33
-2a00:1450:4010:c00::6c gmail-pop.l.google.com
-2a00:1450:4010:c00::10 pop.googlemail.com #googlemail-pop.l.google.com
-2a00:1450:4010:c00::10 googlemail-pop.l.google.com
-2a00:1450:4010:c00::6d smtp.gmail.com #gmail-smtp-msa.l.google.com #Foxmail 暂不支持
-2a00:1450:4010:c00::6d gmail-smtp-msa.l.google.com
+2607:f8b0:400e:c00::6d pop.gmail.com #gmail-pop.l.google.com #Foxmail 等客户端不支持 ipv6 连接，参阅 Issue 33
+2607:f8b0:400e:c00::6d gmail-pop.l.google.com
+2607:f8b0:400e:c00::10 pop.googlemail.com #googlemail-pop.l.google.com
+2607:f8b0:400e:c00::10 googlemail-pop.l.google.com
+2607:f8b0:400e:c00::6d smtp.gmail.com #gmail-smtp-msa.l.google.com #Foxmail 暂不支持
+2607:f8b0:400e:c00::6d gmail-smtp-msa.l.google.com
 2404:6800:8005::62 smtp1.google.com
 ###2404:6800:8005::62 smtp2.google.com
 2404:6800:8005::62 smtp3.google.com
@@ -467,13 +467,12 @@
 2001:4860:8002::6d gmail-smtp.l.google.com
 2001:4860:8002::62 gmail-smtp-in.l.google.com
 2404:6800:8005::62 gmr-smtp-in.l.google.com
-2a00:1450:4010:c00::10 smtp.googlemail.com #googlemail-smtp.l.google.com
-2a00:1450:4010:c00::10 googlemail-smtp.l.google.com
-2a00:1450:4010:c00::6c imap.gmail.com #gmail-imap.l.google.com #Foxmail 暂不支持
-###2001:4860:8005::6c imap.google.com
-2a00:1450:4010:c00::6d gmail-imap.l.google.com
-2a00:1450:4010:c00::10 imap.googlemail.com #googlemail-imap.l.google.com
-2a00:1450:4010:c00::10 googlemail-imap.l.google.com
+2607:f8b0:400e:c00::10 smtp.googlemail.com #googlemail-smtp.l.google.com
+2607:f8b0:400e:c00::10 googlemail-smtp.l.google.com
+2607:f8b0:400e:c03::6d imap.gmail.com #gmail-imap.l.google.com #Foxmail 暂不支持
+2607:f8b0:400e:c03::6d gmail-imap.l.google.com
+2607:f8b0:400e:c01::10 imap.googlemail.com #googlemail-imap.l.google.com
+2607:f8b0:400e:c01::10 googlemail-imap.l.google.com
 
 #Group 论坛
 2404:6800:8005::71 groups.google.com #groups.l.google.com
@@ -2434,6 +2433,7 @@
 2404:6800:8005::84 www.googleusercontent.com #googlehosted.l.googleusercontent.com
 2404:6800:8005::84 androidmarket.googleusercontent.com
 2404:6800:8005::84 blogger.googleusercontent.com
+2404:6800:8005::84 www-blogger-opensocial.googleusercontent.com
 2404:6800:8005::84 clients1.googleusercontent.com
 2404:6800:8005::84 clients2.googleusercontent.com
 2404:6800:8005::84 doc-00-1k-docs.googleusercontent.com
@@ -4103,6 +4103,7 @@
 2404:6800:8005::9b pubads.g.doubleclick.net #partnerad.l.doubleclick.net
 2404:6800:8005::9b www.googletagservices.com #partnerad.l.doubleclick.net
 2404:6800:8005::9b partnerad.l.doubleclick.net
+2404:6800:8005::9d static.googleadsserving.cn #pagead46.l.doubleclick.net
 2404:6800:8005::95 s0.2mdn.net #s0-2mdn-net.l.google.com
 2404:6800:8005::95 s1.2mdn.net #s0-2mdn-net.l.google.com
 2404:6800:8005::95 fls.uk.doubleclick.net #dart.l.doubleclick.net
@@ -4622,22 +4623,20 @@
 #2001:418:e801::15:7 api.bitly.com
 
 #Facebook 脸谱网
-2a03:2880:2110:3f01:face:b00c:: facebook.com
-2a03:2880:10:1f02:face:b00c:0:25 facebook.com
-2a03:2880:10:8f01:face:b00c:0:25 facebook.com
-2a03:2880:10:1f02:face:b00c:0:25 www.facebook.com
-2a03:2880:10:1f03:face:b00c:0:26 api-read.facebook.com
-2a03:2880:10:1f02:face:b00c:0:25 connect.facebook.com #www.facebook.com
-2a03:2880:10:8f01:face:b00c:0:26 graph.facebook.com
-2a03:2880:10:1f03:face:b00c:0:27 zh-cn.facebook.com #star.facebook.com
-2a03:2880:10:1f03:face:b00c:0:27 zh-tw.facebook.com #star.facebook.com
-2a03:2880:10:8f02:face:b00c:0:27 check6.facebook.com
-2a03:2880:10:8f01:face:b00c:0:28 m.facebook.com
-2a03:2880:2110:3f01:face:b00c:0:2 apps.facebook.com
-2a03:2880:2110:3f01:face:b00c:0:2 login.facebook.com #star.facebook.com
-2a03:2880:2110:3f02:face:b00c:0:2 pixel.facebook.com #star.facebook.com
-2a03:2880:2110:3f01:face:b00c:0:2 star.facebook.com
-2a03:2880:2110:3f02:face:b00c:0:4 upload.facebook.com
+2a03:2880:10:cf01:face:b00c::: facebook.com
+2a03:2880:10:8f02:face:b00c:0:25 www.facebook.com
+2a03:2880:10:8f02:face:b00c:0:26 api-read.facebook.com
+2a03:2880:10:cf02:face:b00c:: connect.facebook.com #www.facebook.com
+2a03:2880:10:8f02:face:b00c:0:26 graph.facebook.com
+2a03:2880:10:6f01:face:b00c:0:2 zh-cn.facebook.com #star.facebook.com
+2a03:2880:10:6f01:face:b00c:0:2 zh-tw.facebook.com #star.facebook.com
+2a03:2880:10:6f01:face:b00c:0:2 check6.facebook.com
+2a03:2880:10:6f01:face:b00c:0:3 m.facebook.com
+2a03:2880:10:8f02:face:b00c:0:27 apps.facebook.com
+2a03:2880:10:6f01:face:b00c:0:2 login.facebook.com #star.facebook.com
+2a03:2880:10:8f01:face:b00c:0:27 pixel.facebook.com #star.facebook.com
+2a03:2880:10:8f01:face:b00c:0:27 star.facebook.com
+2a03:2880:10:8f02:face:b00c:0:29 upload.facebook.com
 2620:0:1cfe:face:b00c::3 www.v6.facebook.com
 2620:0:1cfe:face:b00c::3 attachments.facebook.com #?
 #2620:0:1cfe:face:b00c::4 login.v6.facebook.com
@@ -4645,7 +4644,7 @@
 2620:0:1cfe:face:b00c::3 333.channel.facebook.com #?
 #2620:0:1cfe:face:b00c::3 333.ctest.facebook.com
 #如需正常使用页面底部聊天功能，请通过 pac 代理 *.channel.facebook.com
-2620:0:1c18:0:face:b00c:0:6 developers.facebook.com
+2a03:2880:10:cf01:face:b00c:0:4 developers.facebook.com
 #2620:0:1cfe:face:b00c::3 developers.v6.facebook.com
 #2620:0:1cfe:face:b00c::3 external.ak.fbcdn.net
 2620:0:1cfe:face:b00c::3 error.12.channel.facebook.com #?
@@ -4659,79 +4658,53 @@
 
 #Akamai
 2600:140e:3:1:8600::236 s-static.ak.facebook.com #s-static.ak.facebook.com.edgekey.net
-2600:140e:3:1:8d00::236 s-static.ak.facebook.com
 2600:140e:3:1:8000::38a s-external.ak.fbcdn.net #s-external.ak.fbcdn.net.edgekey.net
-2600:140e:3:1:8400::38a s-external.ak.fbcdn.net
 2600:140e:3:1:8100::d19 s-static.ak.fbcdn.net #s-static.ak.fbcdn.net.edgekey.net
-2600:140e:3:1:8500::d19 s-static.ak.fbcdn.net
-2600:140e:3:1:8500::eed connect.facebook.net
 2600:140e:3:1:8c00::eed connect.facebook.net #connect.facebook.net.edgekey.net
-2600:140e:1::3cfe:83d1 creative.ak.fbcdn.net #ads.ak.facebook.com.edgesuite.net
-2600:140e:1::3cfe:83cb creative.ak.fbcdn.net
-2600:140e:1::3cfe:83d1 external.ak.fbcdn.net #external.ak.fbcdn.net.edgesuite.net
-2600:140e:1::3cfe:83d0 external.ak.fbcdn.net
-2600:140e:1::3cfe:83d0 static.ak.fbcdn.net #static.ak.facebook.com.edgesuite.net
-2600:140e:1::3cfe:83ca static.ak.fbcdn.net
-2600:140e:1::3cfe:83cb platform.ak.fbcdn.net #platform.ak.facebook.com.edgesuite.net
-2600:140e:1::3cfe:83ca platform.ak.fbcdn.net
-2600:140e:1::3cfe:834f profile.ak.fbcdn.net #profile.ak.facebook.com.edgesuite.net
-2600:140e:1::3cfe:8348 profile.ak.fbcdn.net
-2600:140e:1::3cfe:8336 profile.ak.fbcdn.net
-2600:140e:1::3cfe:8345 fbcdn-profile-a.akamaihd.net
-2600:140e:1::3cfe:8350 fbcdn-profile-a.akamaihd.net#fbcdn-profile-a.akamaihd.net.edgesuite.net
-2600:140e:1::3cfe:83ca static.ak.facebook.com
-2600:140e:1::3cfe:83d0 static.ak.facebook.com #static.ak.facebook.com.edgesuite.net
-2600:140e:3::3cfe:af08 photos-a.ak.fbcdn.net
-2600:140e:3::3cfe:af09 photos-e.ak.fbcdn.net
-2600:140e:3::3cfe:af11 photos-i.ak.fbcdn.net
-2600:140e:3::3cfe:af13 photos-m.ak.fbcdn.net
-2600:140e:3::3cfe:af1a photos-q.ak.fbcdn.net
-2600:140e:3::3cfe:af1b photos-u.ak.fbcdn.net
-2600:140e:3::3cfe:af21 photos-y.ak.fbcdn.net#photos-a.ak.facebook.com.edgesuite.net
-2600:140e:3::3cfe:af09 photos-b.ak.fbcdn.net
-2600:140e:3::3cfe:af0a photos-f.ak.fbcdn.net
-2600:140e:3::3cfe:af0b photos-j.ak.fbcdn.net
-2600:140e:3::3cfe:af13 photos-n.ak.fbcdn.net
-2600:140e:3::3cfe:af18 photos-r.ak.fbcdn.net
-2600:140e:3::3cfe:af1b photos-v.ak.fbcdn.net
-2600:140e:3::3cfe:af1b photos-z.ak.fbcdn.net#photos-b.ak.facebook.com.edgesuite.net
-2600:140e:3::3cfe:af12 photos-c.ak.fbcdn.net
-2600:140e:3::3cfe:af13 photos-g.ak.fbcdn.net
-2600:140e:3::3cfe:af18 photos-k.ak.fbcdn.net
-2600:140e:3::3cfe:af1a photos-o.ak.fbcdn.net
-2600:140e:3::3cfe:af1a photos-s.ak.fbcdn.net
-2600:140e:3::3cfe:af1a photos-w.ak.fbcdn.net#photos-c.ak.facebook.com.edgesuite.net
-2600:140e:3::3cfe:af08 photos-d.ak.fbcdn.net
-2600:140e:3::3cfe:af0a photos-h.ak.fbcdn.net
-2600:140e:3::3cfe:af11 photos-l.ak.fbcdn.net
-2600:140e:3::3cfe:af19 photos-p.ak.fbcdn.net
-2600:140e:3::3cfe:af1b photos-t.ak.fbcdn.net
-2600:140e:3::3cfe:af1b photos-x.ak.fbcdn.net#photos-d.ak.facebook.com.edgesuite.net
-2600:140e:3::3cfe:af09 fbcdn-photos-a.akamaihd.net
-2600:140e:3::3cfe:af18 fbcdn-photos-a.akamaihd.net
-2600:140e:3::3cfe:af19 fbcdn-photos-a.akamaihd.net#fbcdn-photos-a.akamaihd.net.edgesuite.net
-2001:590:1:602::3f8d:c05a a1.sphotos.ak.fbcdn.net
-2001:590:1:602::3f8d:c06b a1.sphotos.ak.fbcdn.net#a1.sphotos.ak.fbcdn.net.edgesuite.net
-2001:590:1:602::3f8d:c071 a2.sphotos.ak.fbcdn.net
-2001:590:1:602::3f8d:c07b a2.sphotos.ak.fbcdn.net#a2.sphotos.ak.fbcdn.net.edgesuite.net
-2001:428:4c02:1fd::d02e:a342 a3.sphotos.ak.fbcdn.net
+2600:140e:1::3cfe:833e creative.ak.fbcdn.net #ads.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8336 external.ak.fbcdn.net #external.ak.fbcdn.net.edgesuite.net
+2600:140e:1::3cfe:8335 static.ak.fbcdn.net #static.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8338 platform.ak.fbcdn.net #platform.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:833d profile.ak.fbcdn.net #profile.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8348 fbcdn-profile-a.akamaihd.net#fbcdn-profile-a.akamaihd.net.edgesuite.net
+2600:140e:1::3cfe:8337 static.ak.facebook.com #static.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:833f photos-a.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-e.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-i.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-m.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-q.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-u.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-y.ak.fbcdn.net#photos-a.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8338 photos-b.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-f.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-j.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-n.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-r.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-v.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-z.ak.fbcdn.net#photos-b.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8336 photos-c.ak.fbcdn.net
+2600:140e:1::3cfe:8336 photos-g.ak.fbcdn.net
+2600:140e:1::3cfe:8336 photos-k.ak.fbcdn.net
+2600:140e:1::3cfe:8336 photos-o.ak.fbcdn.net
+2600:140e:1::3cfe:8336 photos-s.ak.fbcdn.net
+2600:140e:1::3cfe:8336 photos-w.ak.fbcdn.net#photos-c.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8338 photos-d.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-h.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-l.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-p.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-t.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-x.ak.fbcdn.net#photos-d.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8336 fbcdn-photos-a.akamaihd.net#fbcdn-photos-a.akamaihd.net.edgesuite.net
+2001:590:1:602::3f8d:c05a a1.sphotos.ak.fbcdn.net#a1.sphotos.ak.fbcdn.net.edgesuite.net
+2001:590:1:602::3f8d:c071 a2.sphotos.ak.fbcdn.net#a2.sphotos.ak.fbcdn.net.edgesuite.net
 2001:428:4c02:1fd::d02e:a312 a3.sphotos.ak.fbcdn.net#a3.sphotos.ak.fbcdn.net.edgesuite.net
-2001:428:4c02:1fd::d02e:a339 a4.sphotos.ak.fbcdn.net
-2001:428:4c02:1fd::d02e:a332 a4.sphotos.ak.fbcdn.net#a4.sphotos.ak.fbcdn.net.edgesuite.net
-2001:590:1:601::4516:9680 a5.sphotos.ak.fbcdn.net
-2001:590:1:601::4516:965b a5.sphotos.ak.fbcdn.net#a5.sphotos.ak.fbcdn.net.edgesuite.net
-2001:590:1:601::4516:9668 a6.sphotos.ak.fbcdn.net
-2001:590:1:601::4516:969a a6.sphotos.ak.fbcdn.net#a6.sphotos.ak.fbcdn.net.edgesuite.net
-2001:418:8404:11::c7ef:b6eb a7.sphotos.ak.fbcdn.net
-2001:418:8404:11::c7ef:b701 a7.sphotos.ak.fbcdn.net#a7.sphotos.ak.fbcdn.net.edgesuite.net
-2001:418:8404:11::c7ef:b709 a8.sphotos.ak.fbcdn.net
+2001:428:4c02:1fd::d02e:a339 a4.sphotos.ak.fbcdn.net#a4.sphotos.ak.fbcdn.net.edgesuite.net
+2001:2030:0:c::d9d4:fcb3 a5.sphotos.ak.fbcdn.net#a5.sphotos.ak.fbcdn.net.edgesuite.net
+2001:2030:0:c::d9d4:fc92 a6.sphotos.ak.fbcdn.net#a6.sphotos.ak.fbcdn.net.edgesuite.net
+2001:418:8404:11::c7ef:b6eb a7.sphotos.ak.fbcdn.net#a7.sphotos.ak.fbcdn.net.edgesuite.net
 2001:418:8404:11::c7ef:b6ea a8.sphotos.ak.fbcdn.net#a8.sphotos.ak.fbcdn.net.edgesuite.net
-2001:428:4c02::cda8:ed09 vthumb.ak.fbcdn.net
-2001:428:4c02::cda8:ecdb vthumb.ak.fbcdn.net#vthumb.facebook.com.edgesuite.net
-2001:428:7000:2::3feb:1ca0 fbcdn-sphotos-a.akamaihd.net
-2001:428:7000:2::3feb:1cc9 fbcdn-sphotos-a.akamaihd.net
-2001:428:7000:2::3feb:1ccb fbcdn-sphotos-a.akamaihd.net#fbcdn-sphotos-a.akamaihd.net.edgesuite.net
-2001:428:4c02::cda8:ed09 fbcdn-vthumb-a.akamaihd.net
+2001:428:4c02::cda8:ed09 vthumb.ak.fbcdn.net#vthumb.facebook.com.edgesuite.net
+2001:428:7000:2::3feb:1ca0 fbcdn-sphotos-a.akamaihd.net#fbcdn-sphotos-a.akamaihd.net.edgesuite.net
 2001:428:4c02::cda8:eccb fbcdn-vthumb-a.akamaihd.net#fbcdn-vthumb-a.akamaihd.net.edgesuite.net
 
 #Plurk
@@ -4754,9 +4727,10 @@
 2001:470:18:5f5::2 m.kenengba.com
 
 #Shooter 射手网
-2001:da8:205::6 shooter.cn
-2001:da8:205::6 edu.shooter.cn
-2001:da8:205::6 edufile0.shooter.cn
+2607:f740:90::ea8 shooter.cn
+2607:f740:90::ea8 www.shooter.cn
+2607:f740:90::ea8 edu.shooter.cn
+#2607:f740:90::ea8 file.shooter.cn #有证书警告，但可以正常下载
 
 #Yegle 一阁
 2001:470:0:19b::b869:805d yegle.net
@@ -5601,6 +5575,287 @@
 2620:0:861:ed1a::2 zh.wiktionary.org
 2620:0:861:ed1a::2 zh-min-nan.wiktionary.org
 2620:0:861:ed1a::2 zu.wiktionary.org
+
+#ARIN
+2001:500:4:13::81 www.arin.net
+2001:500:13::48 whois.arin.net
+
+#Yahoo!
+2001:4998:f011:1fe::3000 www.yahoo.com
+2001:4998:f011:1fe::3000 news.yahoo.com
+2001:4998:f011:1fe::3000 hk.news.yahoo.com
+2001:4998:f011:1fe::3000 dstest.yahoo.com
+2001:4998:f011:1fe::3000 dstest2.yahoo.com
+2001:4998:f011:1fe::3000 dstest3.yahoo.com
+2406:2000:ac:8::c:9101 tw.news.yahoo.com
+2406:2000:ac:8::c:9102 tw.news.yahoo.com
+2001:4998:f011:1fb::c:1101 l.yimg.com
+2001:4998:f011:1fb::c:1101 l1.yimg.com
+2001:4998:f011:1fb::c:1101 l2.yimg.com
+2001:4998:f011:1fb::c:1101 l3.yimg.com
+2001:4998:f011:1fe::3000 ad.yieldmanager.com
+
+#Uncyclopedia
+2001:470:1d:28::6 uncyclopedia.hk
+2001:470:1d:28::6 uncyclopedia.info
+2001:470:1d:28::6 www.uncyclopedia.info
+2001:470:1d:28::6 uncyclopedia.tw
+2001:470:1d:28::6 uncyclomedia.org
+2001:470:1d:28::6 meta.uncyclomedia.org
+2001:470:1d:28::6 images.uncyc.org
+2001:470:1d:28::6 static.uncyc.org
+2001:470:1d:28::6 ansaikuropedia.org
+
+#华盟
+2001:470:a:4d::2 camoe.org
+2001:470:a:4d::2 g.camoe.org
+2001:470:a:4d::2 g.camoe.net
+
+##AT 奥地利
+#Tor Project
+2001:858:10f:f::1001 torproject.org
+2001:858:10f:f::1001 www.torproject.org
+2001:4dd0:1234:1::deb deb.torproject.org
+2620:0:6b0:b:1a1a:0:26e5:4808 trac.torproject.org
+2620:0:6b0:b:1a1a:0:26e5:480e cloud.torproject.org
+2620:0:6b0:b:1a1a:0:26e5:480e atlas.torproject.org
+2620:0:6b0:b:1a1a:0:26e5:480b svn.torproject.org
+
+##AU 澳大利亚
+#APNIC
+2001:dc0:2001:11::211 www.apnic.net
+2001:dc0:2001::14 wq.apnic.net
+2001:dc0:2001:11::205 submit.apnic.net #nori.apnic.net
+
+#DE 德国
+2002:c247:6b96::1 thepiratebay.se
+2002:c247:6b96::1 www.thepiratebay.se
+2002:c247:6b97::1 static.thepiratebay.se
+2002:c247:6b96::1 thepiratebay.org
+2002:c247:6b96::1 www.thepiratebay.org
+2002:c247:6b97::1 static.thepiratebay.org
+
+##FR 法国
+2a01:e0d:1:3:58bf:fa02:0:1 videolan.org
+2a01:e0d:1:3:58bf:fa02:0:1 www.videolan.org #ganesh.videolan.org
+
+##JP 日本
+#JAIST 北陸先端科学技術大学院大学
+2001:200:141:feed::feed ftp.jaist.ac.jp
+2001:200:141:feed::feed jaist.dl.sourceforge.net
+
+##NL 荷兰
+#Ubuntu Archive
+2001:7b8:3:37::21:2 ipv6.torrent.ubuntu.com #IPv6 Tracker
+2001:7b8:60b:2:213:154:234:36 nl.archive.ubuntu.com #ubuntuarchive.bit.nl #Archive Mirror NL
+
+#PA 巴拿马
+2a02:29b8:1925::2 bitsnoop.com
+
+#SE 瑞典
+2a00:1a28:1151:0:20c:29ff:feeb:294 torrage.com
+2a00:1a28:1151:4::117:443 zoink.it
+
+#其他托管在 Google 的服务
+#BlogSpot 上的其他常用博客 #blogspot.l.google.com
+2404:6800:8005::84 googlesystem.blogspot.com #Google Operating System
+2404:6800:8005::84 ipv6-or-no-ipv6.blogspot.com #IPv6 Related Stuff
+2404:6800:8005::84 gfwrev.blogspot.com #GFW 技术评论
+2404:6800:8005::84 kamonka.blogspot.com #NHK 纪录片精选
+
+#Google Code 上的其他常用项目 #googlecode.l.google.com
+2404:6800:8005::52 ipv6-hosts.googlecode.com
+2404:6800:8005::52 kibbles.googlecode.com
+
+# GAE 上的常用应用 #appspot.l.google.com
+2404:6800:8005::8d gsdview.appspot.com
+2404:6800:8005::8d wave-api.appspot.com #Google Wave API
+2404:6800:8005::8d wave-skynet.appspot.com #SkyNet
+2404:6800:8005::8d mytracks.appspot.com #My Tracks for Android
+2404:6800:8005::8d autoproxy2pac.appspot.com #自动代理配置脚本生成器
+2404:6800:8005::8d fakegdict.appspot.com #Fake Google Dictionary
+
+# 托管在 Google 上的其他常用域名 #ghs.l.google.com
+2404:6800:8005::79 www.akb48plus.com
+2404:6800:8005::79 wdyl.com
+2404:6800:8005::79 www.wdyl.com
+2404:6800:8005::79 advertising.twitter.com
+2404:6800:8005::79 blog.twitter.com
+2404:6800:8005::79 blog.opensocial.org
+2404:6800:8005::79 blog.xmarks.com
+2404:6800:8005::79 www.miraisearch.jp
+
+### IPv6/IPv4 转换代理
+# 以下地址均非各网站官方地址，属于 LITNET-NAT64 网段提供转换代理服务（技术细节）。
+# DNS64 服务器：
+2001:778::37 dns64.litnet.lt
+
+#Amazon S3
+2001:778:0:ffff:64:0:cdfb:f2a4 s3.amazonaws.com
+2001:778:0:ffff:64:0:4815:c210 twitter-any.s3.amazonaws.com
+2001:778:0:ffff:64:0:4815:c210 twitter-blog.s3.amazonaws.com
+2001:778:0:ffff:64:0:4815:c210 twitter-badges.s3.amazonaws.com
+2001:778:0:ffff:64:0:4815:c210 twitter_production.s3.amazonaws.com
+2001:778:0:ffff:64:0:4815:c210 twitter-widgets.s3.amazonaws.com
+2001:778:0:ffff:64:0:cdfb:f2c5 xinyusi.s3.amazonaws.com
+
+#bit.ly / j.mp
+2001:778:0:ffff:64:0:a88f:ac35 bit.ly
+2001:778:0:ffff:64:0:a88f:ac35 j.mp
+2001:778:0:ffff:64:0:a88f:ac36 api.bit.ly
+2001:778:0:ffff:64:0:a88f:ac36 api.bitly.com
+2001:778:0:ffff:64:0:a88f:ac39 bitly.com
+
+#Facebook CDN
+2001:778:0:ffff:64:0:45ab:e329 0-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 1-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 2-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 3-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 4-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 5-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 6-333.channel.facebook.com
+#2001:778:0:ffff:64:0:42dc:9a1d hphotos-iad1.fbcdn.net
+2001:778:0:ffff:64:0:45ab:f00c hphotos-ash1.fbcdn.net #hphotos-ak-ash4.facebook.com
+2001:778:0:ffff:64:0:45ab:f00c hphotos-ash2.fbcdn.net #hphotos-ak-ash4.facebook.com
+2001:778:0:ffff:64:0:45ab:f608 hphotos-ash3.fbcdn.net #hphotos-1-01-05-ash3.fbcdn.net
+2001:778:0:ffff:64:0:45ab:f30c hphotos-ash4.fbcdn.net #hphotos-ak-ash4.facebook.com
+#2001:778:0:ffff:64:0:453f:b723 hphotos-sjc1.fbcdn.net
+2001:778:0:ffff:64:0:42dc:9720 hphotos-snc1.fbcdn.net #minull-01-01-snc6.fbcdn.net
+2001:778:0:ffff:64:0:42dc:9720 hphotos-snc3.fbcdn.net #minull-01-01-snc6.fbcdn.net
+2001:778:0:ffff:64:0:45ab:e319 hphotos-snc4.fbcdn.net #hphotos-snc7.fbcdn.net
+2001:778:0:ffff:64:0:42dc:9716 hphotos-snc6.fbcdn.net
+2001:778:0:ffff:64:0:45ab:e319 hphotos-snc7.fbcdn.net #hphotos-04-snc7.fbcdn.net
+
+#facebook
+118.215.189.177 s-static.ak.facebook.net
+184.85.66.110 s-static.ak.facebook.com 
+192.80.13.32 profile.ak.facebook.com 
+202.157.186.28 static.ak.facebook.com 
+173.223.52.210 b.static.ak.facebook.com
+66.220.149.99 graph.facebook.com 
+69.171.234.23 ssl.facebook.com 
+69.171.237.34 api.facebook.com 
+66.220.151.32 secure-profile.facebook.com 
+69.63.179.70 secure.facebook.com 
+66.220.149.96 zh-CN.facebook.com 
+66.220.149.96 login.facebook.com 
+66.220.147.91 m.facebook.com 
+66.220.147.90 touch.facebook.com 
+66.220.149.88 facebook.com 
+66.220.147.88 www.facebook.com 
+66.220.149.90 apps.facebook.com 
+173.223.52.184 profile.ak.fbcdn.net 
+63.238.2.161 vthumb.ak.fbcdn.net 
+63.110.246.25 photos-a.ak.fbcdn.net 
+63.110.246.16 photos-b.ak.fbcdn.net 
+63.110.246.17 photos-c.ak.fbcdn.net 
+63.110.246.34 photos-d.ak.fbcdn.net 
+63.110.246.40 photos-e.ak.fbcdn.net 
+63.110.246.18 photos-f.ak.fbcdn.net 
+63.110.246.9 photos-g.ak.fbcdn.net 
+63.110.246.9 photos-h.ak.fbcdn.net 
+69.22.148.193 creative.ak.fbcdn.net 
+66.220.152.16 fbcdn.net 
+67.148.47.35 external.ak.fbcdn.net 
+67.148.47.26 b.static.ak.fbcdn.net 
+207.108.220.144 static.ak.fbcdn.net 
+66.220.149.98 upload.facebook.com 
+66.220.147.90 developers.facebook.com
+
+#Google Plus
+2001:778:0:ffff:64:0:1faa:a606 plus.url.google.com.hk #非官方，有错误请汇报
+
+#Twitter
+2001:778:0:ffff:64:0:c73b:940a twitter.com
+2001:778:0:ffff:64:0:c73b:940b ads.twitter.com
+2001:778:0:ffff:64:0:c73b:940b assets0.twitter.com #s.twitter.com
+2001:778:0:ffff:64:0:c73b:940b assets1.twitter.com #s.twitter.com
+2001:778:0:ffff:64:0:c73b:962a assets2.twitter.com #s.twitter.com
+2001:778:0:ffff:64:0:c73b:9454 assets3.twitter.com #s.twitter.com
+2001:778:0:ffff:64:0:c73b:960a assets4.twitter.com #s.twitter.com
+2001:778:0:ffff:64:0:c73b:9609 api.twitter.com
+2001:778:0:ffff:64:0:5f64:4f90 cdn.api.twitter.com #e3826.g.akamaiedge.net
+2001:778:0:ffff:64:0:214:b613 urls.api.twitter.com #a1697.g.akamai.net
+2001:778:0:ffff:64:0:c73b:94d4 business.twitter.com
+2001:778:0:ffff:64:0:c73b:9589 dev.twitter.com
+2001:778:0:ffff:64:0:c73b:94d4 fly.twitter.com
+2001:778:0:ffff:64:0:c73b:94d4 help.twitter.com #static-site.twitter.com
+2001:778:0:ffff:64:0:c73b:94d4 m.twitter.com #static-site.twitter.com
+2001:778:0:ffff:64:0:c73b:94d4 media.twitter.com #static-site.twitter.com
+2001:778:0:ffff:64:0:c73b:9460 mobile.twitter.com
+2001:778:0:ffff:64:0:c73b:960a oauth.twitter.com #s.twitter.com
+2001:778:0:ffff:64:0:c73b:94d4 pic.twitter.com #static-site.twitter.com
+2001:778:0:ffff:64:0:215:6f90 platform.twitter.com #e3826.g.akamaiedge.net
+2001:778:0:ffff:64:0:214:b609 anywhere.platform.twitter.com #a948.g.akamai.net
+2001:778:0:ffff:64:0:214:b61a platform0.twitter.com #a1017.g.akamai.net
+2001:778:0:ffff:64:0:214:b61a platform1.twitter.com #a1093.g.akamai.net
+2001:778:0:ffff:64:0:214:b629 platform2.twitter.com #a1095.g.akamai.net
+2001:778:0:ffff:64:0:214:b61a platform3.twitter.com #a1213.g.akamai.net
+2001:778:0:ffff:64:0:c73b:960a scribe.twitter.com #s.twitter.com
+2001:778:0:ffff:64:0:c73b:962a search.twitter.com #s.twitter.com
+2001:778:0:ffff:64:0:c73b:95f3 static.twitter.com #s.twitter.com
+2001:778:0:ffff:64:0:c73b:94d4 static-site.twitter.com
+2001:778:0:ffff:64:0:4820:e708 status.twitter.com
+2001:778:0:ffff:64:0:c73b:948a stream.twitter.com
+2001:778:0:ffff:64:0:c73b:94ce support.twitter.com
+2001:778:0:ffff:64:0:c73b:948b userstream.twitter.com
+2001:778:0:ffff:64:0:c73b:94d5 upload.twitter.com
+2001:778:0:ffff:64:0:c73b:9607 www.twitter.com #twitter.com
+2001:778:0:ffff:64:0:c73b:940c t.co
+2001:778:0:ffff:64:0:c73b:940a twttr.com
+2001:778:0:ffff:64:0:c73b:9607 www.twttr.com #twitter.com
+2001:778:0:ffff:64:0:c73b:9607 translate.twttr.com #twitter.com
+2001:778:0:ffff:64:0:214:b639 twimg0-a.akamaihd.net #a756.l.akamai.net
+2001:778:0:ffff:64:0:b8a9:4f21 a0.twimg.com #orig-10004.twitter.cotcdn.net
+2001:778:0:ffff:64:0:b8a9:4f21 a1.twimg.com #orig-10004.twitter.cotcdn.net
+2001:778:0:ffff:64:0:b8a9:4f21 a2.twimg.com #orig-10004.twitter.cotcdn.net
+2001:778:0:ffff:64:0:b8a9:4f21 a3.twimg.com #orig-10004.twitter.cotcdn.net
+2001:778:0:ffff:64:0:b8a9:4f21 a4.twimg.com #orig-10004.twitter.cotcdn.net
+2001:778:0:ffff:64:0:214:b60a a5.twimg.com #a1441.l.akamai.net
+2001:778:0:ffff:64:0:215:6f90 p.twimg.com #e3826.g.akamaiedge.net
+2001:778:0:ffff:64:0:b8a9:4f21 pbs.twimg.com #orig-10014.twitter.cotcdn.net
+2001:778:0:ffff:64:0:c73b:95eb r.twimg.com
+2001:778:0:ffff:64:0:36f0:a850 s.twimg.com #d2rdfnizen5apl.cloudfront.net
+2001:778:0:ffff:64:0:b8a9:4f21 si0.twimg.com #orig-10004.twitter.cotcdn.net
+2001:778:0:ffff:64:0:b8a9:4f21 si1.twimg.com #orig-10004.twitter.cotcdn.net
+2001:778:0:ffff:64:0:b8a9:4f21 si2.twimg.com #orig-10004.twitter.cotcdn.net
+2001:778:0:ffff:64:0:b8a9:4f21 si3.twimg.com #orig-10004.twitter.cotcdn.net
+2001:778:0:ffff:64:0:b8a9:4f21 si4.twimg.com #orig-10004.twitter.cotcdn.net
+2001:778:0:ffff:64:0:5f64:4f90 si5.twimg.com #e3826.g.akamaiedge.net
+2001:778:0:ffff:64:0:b8a9:4f21 widgets.twimg.com #orig-10012.twitter.cotcdn.net
+
+#WikiMedia 维基媒体
+2620:0:861:ed1a::a bits-geo.wikimedia.org #bits-lb.eqiad.wikimedia.org
+2001:778:0:ffff:64:0:d050:98b9 dataset2.wikimedia.org
+2001:778:0:ffff:64:0:d050:98b9 download.wikimedia.org #dumps.wikimedia.org
+2001:778:0:ffff:64:0:d050:98b9 dumps.wikimedia.org #dataset2.wikimedia.org
+2001:778:0:ffff:64:0:d050:98a2 en.planet.wikimedia.org #singer.wikimedia.org
+2001:778:0:ffff:64:0:d050:9893 formey.wikimedia.org
+2001:778:0:ffff:64:0:d050:9a96 ganglia.wikimedia.org #nickel.wikimedia.org
+2001:778:0:ffff:64:0:d050:9894 hooper.wikimedia.org
+2001:778:0:ffff:64:0:d050:9a04 lists.wikimedia.org
+2001:778:0:ffff:64:0:d050:9885 mail.wikimedia.org
+2001:778:0:ffff:64:0:d050:9886 secure.wikimedia.org
+2001:778:0:ffff:64:0:d050:98a1 spence.wikimedia.org
+2001:778:0:ffff:64:0:d050:98a2 singer.wikimedia.org
+2001:778:0:ffff:64:0:d050:9893 svn.wikimedia.org #formey.wikimedia.org
+2001:778:0:ffff:64:0:d050:9896 blog.wikimedia.org #marmontel.wikimedia.org
+2001:778:0:ffff:64:0:5bc6:aee9 geoiplookup.wikimedia.org #geoiplookup-lb.esams.wikimedia.org
+#WikiPedia 维基百科
+2001:778:0:ffff:64:0:d050:98b9 download.wikipedia.org
+2001:778:0:ffff:64:0:d050:9885 mail.wikipedia.org
+
+#Wikia
+2001:778:0:ffff:64:0:4a78:bc05 images1.wikia.nocookie.net
+2001:778:0:ffff:64:0:4a78:bc05 images2.wikia.nocookie.net
+2001:778:0:ffff:64:0:4a78:bc05 images3.wikia.nocookie.net
+2001:778:0:ffff:64:0:4a78:bc7d doraemon.wikia.com
+2001:778:0:ffff:64:0:4a78:bc7d ja.doraemon.wikia.com
+2001:778:0:ffff:64:0:4a78:bc7d zh-cn.doraemon.wikia.com
+2001:778:0:ffff:64:0:4a78:bc7d zh-tw.doraemon.wikia.com
+2001:778:0:ffff:64:0:4a78:bc7d evchk.wikia.com #香港網絡大典
+2001:778:0:ffff:64:0:4a78:bc7d uncyclopedia.wikia.com
+2001:778:0:ffff:64:0:4a78:bc7d cn.uncyclopedia.wikia.com
 
 #ARIN
 2001:500:4:13::81 www.arin.net

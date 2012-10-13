@@ -9,8 +9,6 @@
 # The IP address and the host name should be separated by at least one
 # space.
 #
-# Creating Timestamp : 1343606400
-#
 # comments (such as these) may be inserted on individual
 # lines or following the machine name denoted by a '#' symbol.
 #
@@ -24,7 +22,9 @@
 #
 # Special thanks to: smarthosts, hostsx, ipv6-hosts, mwsl, yoyo, 
 #                    mvps, ATGFW and hpHosts
-
+#
+# Creating Timestamp : 1350057600
+#
 ######## Localhost ########
 127.0.0.1   localhost
 ::1         localhost
@@ -1118,42 +1118,40 @@ fe80::1%lo0	localhost
 203.208.46.147 v24.lscache8.c.youtube.com
 
 #facebook
-118.214.114.110 s-static.ak.facebook.com 
-118.214.190.105 profile.ak.facebook.com 
+118.215.189.177 s-static.ak.facebook.net
+184.85.66.110 s-static.ak.facebook.com 
+192.80.13.32 profile.ak.facebook.com 
 202.157.186.28 static.ak.facebook.com 
-202.157.186.34 b.static.ak.facebook.com 
-66.220.146.18 apps.facebook.com 
-66.220.146.50 graph.facebook.com 
-66.220.147.62 ssl.facebook.com 
-66.220.149.36 api.facebook.com 
-69.63.178.57 secure-media-sf2p.facebook.com 
-69.63.178.57 secure-profile.facebook.com 
+173.223.52.210 b.static.ak.facebook.com
+66.220.149.99 graph.facebook.com 
+69.171.234.23 ssl.facebook.com 
+69.171.237.34 api.facebook.com 
+66.220.151.32 secure-profile.facebook.com 
 69.63.179.70 secure.facebook.com 
-69.63.181.16 zh-CN.facebook.com 
-69.63.181.20 login.facebook.com 
-69.63.181.31 m.facebook.com 
-69.63.181.31 touch.facebook.com 
-69.63.189.16 facebook.com 
-69.171.228.14 www.facebook.com 
-69.63.190.18 apps.facebook.com 
-118.214.190.128 profile.ak.fbcdn.net 
-124.155.222.50 vthumb.ak.fbcdn.net 
-125.56.199.9 photos-a.ak.fbcdn.net 
-125.56.199.9 photos-b.ak.fbcdn.net 
-125.56.199.9 photos-c.ak.fbcdn.net 
-125.56.199.9 photos-d.ak.fbcdn.net 
-125.56.199.9 photos-e.ak.fbcdn.net 
-125.56.199.9 photos-f.ak.fbcdn.net 
-125.56.199.9 photos-g.ak.fbcdn.net 
-125.56.199.9 photos-h.ak.fbcdn.net 
-202.157.186.34 creative.ak.fbcdn.net 
-69.63.176.21 s-hprofile-sf2p.fbcdn.net 
-69.63.187.17 fbcdn.net 
-97.65.135.139 external.ak.fbcdn.net 
-97.65.135.163 b.static.ak.fbcdn.net 
-97.65.135.163 static.ak.fbcdn.net 
-69.63.180.51 upload.facebook.com 
-31.13.79.7 developers.facebook.com
+66.220.149.96 zh-CN.facebook.com 
+66.220.149.96 login.facebook.com 
+66.220.147.91 m.facebook.com 
+66.220.147.90 touch.facebook.com 
+66.220.149.88 facebook.com 
+66.220.147.88 www.facebook.com 
+66.220.149.90 apps.facebook.com 
+173.223.52.184 profile.ak.fbcdn.net 
+63.238.2.161 vthumb.ak.fbcdn.net 
+63.110.246.25 photos-a.ak.fbcdn.net 
+63.110.246.16 photos-b.ak.fbcdn.net 
+63.110.246.17 photos-c.ak.fbcdn.net 
+63.110.246.34 photos-d.ak.fbcdn.net 
+63.110.246.40 photos-e.ak.fbcdn.net 
+63.110.246.18 photos-f.ak.fbcdn.net 
+63.110.246.9 photos-g.ak.fbcdn.net 
+63.110.246.9 photos-h.ak.fbcdn.net 
+69.22.148.193 creative.ak.fbcdn.net 
+66.220.152.16 fbcdn.net 
+67.148.47.35 external.ak.fbcdn.net 
+67.148.47.26 b.static.ak.fbcdn.net 
+207.108.220.144 static.ak.fbcdn.net 
+66.220.149.98 upload.facebook.com 
+66.220.147.90 developers.facebook.com
 
 #Twitter
 199.59.149.243 oauth.twitter.com 
