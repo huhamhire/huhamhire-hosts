@@ -1,3 +1,15 @@
+#        __        __
+#       /  \      /  \
+#       \__/      |  |
+#        __       |  |                              __
+#       /  \______|  |   ________    ________    __|  |__    ________
+#       |   ______   |  /   __   \  /   _____|  |__    __|  /   _____|
+#       |  |      \__/  |  /  \  |  |  |_____      |  |     |  |_____ 
+#       |  |       __   |  |  |  |  \_____   \     |  |     \_____   \
+#       |  |      /  \  |  \__/  |   _____|  |     |  |__    _____|  |
+#       \__/      \__/  \________/  |________/     \_____|  |________/
+#       
+#   
 # Copyright (c) 2011-2012 Huhamhire Hosts Group.
 #
 # This is a HOSTS file packed by Huhamhire Hosts Group for Windows, Linux,
@@ -23,7 +35,7 @@
 # Special thanks to: smarthosts, hostsx, ipv6-hosts, mwsl, yoyo, 
 #                    mvps, ATGFW and hpHosts
 #
-# Creating Timestamp : 1350057600
+# Creating Timestamp : 1351353600
 #
 ######## Localhost ########
 127.0.0.1   localhost
@@ -4776,12 +4788,6 @@ fe80::1%lo0	localhost
 2001:470:18:5f5::2 www.kenengba.com
 2001:470:18:5f5::2 m.kenengba.com
 
-#Shooter 射手网
-2607:f740:90::ea8 shooter.cn
-2607:f740:90::ea8 www.shooter.cn
-2607:f740:90::ea8 edu.shooter.cn
-#2607:f740:90::ea8 file.shooter.cn #有证书警告，但可以正常下载
-
 #Yegle 一阁
 2001:470:0:19b::b869:805d yegle.net
 
@@ -6513,113 +6519,6 @@ fe80::1%lo0	localhost
 127.0.0.1 x.admob.com
 127.0.0.1 y.admob.com
 127.0.0.1 z.admob.com
-127.0.0.1 ad-apac.doubleclick.net
-127.0.0.1 ad-emea.doubleclick.net
-127.0.0.1 ad-g.doubleclick.net
-127.0.0.1 ad-yt-bfp.doubleclick.net
-127.0.0.1 ad.3ad.doubleclick.net
-127.0.0.1 ad.3au.doubleclick.net
-127.0.0.1 ad.adx.doubleclick.net
-127.0.0.1 ad.ae.doubleclick.net
-127.0.0.1 ad.ar.doubleclick.net
-127.0.0.1 ad.at.doubleclick.net
-127.0.0.1 ad.au.doubleclick.net
-127.0.0.1 ad.be.doubleclick.net
-127.0.0.1 ad.bg.doubleclick.net
-127.0.0.1 ad.br.doubleclick.net
-127.0.0.1 ad.ca.doubleclick.net
-127.0.0.1 ad.ch.doubleclick.net
-127.0.0.1 ad.cibleclick.com
-127.0.0.1 ad.cl.doubleclick.net
-127.0.0.1 ad.cn.doubleclick.net
-127.0.0.1 ad.de.doubleclick.net
-127.0.0.1 ad.dk.doubleclick.net
-127.0.0.1 ad.doubleclick.com
-127.0.0.1 ad.doubleclick.net
-127.0.0.1 ad.es.doubleclick.net
-127.0.0.1 ad.fi.doubleclick.net
-127.0.0.1 ad.fr.doubleclick.net
-127.0.0.1 ad.gr.doubleclick.net
-127.0.0.1 ad.hk.doubleclick.net
-127.0.0.1 ad.hr.doubleclick.net
-127.0.0.1 ad.hu.doubleclick.net
-127.0.0.1 ad.ie.doubleclick.net
-127.0.0.1 ad.in.doubleclick.net
-127.0.0.1 ad.it.doubleclick.net
-127.0.0.1 ad.jp.doubleclick.net
-127.0.0.1 ad.kr.doubleclick.net
-127.0.0.1 ad.mo.doubleclick.net
-127.0.0.1 ad.n2434.doubleclick.net
-127.0.0.1 ad.nl.doubleclick.net
-127.0.0.1 ad.no.doubleclick.net
-127.0.0.1 ad.nz.doubleclick.net
-127.0.0.1 ad.pl.doubleclick.net
-127.0.0.1 ad.pt.doubleclick.net
-127.0.0.1 ad.ro.doubleclick.net
-127.0.0.1 ad.rs.doubleclick.net
-127.0.0.1 ad.ru.doubleclick.net
-127.0.0.1 ad.se.doubleclick.net
-127.0.0.1 ad.sg.doubleclick.net
-127.0.0.1 ad.si.doubleclick.net
-127.0.0.1 ad.terra.doubleclick.net
-127.0.0.1 ad.th.doubleclick.net
-127.0.0.1 ad.tw.doubleclick.net
-127.0.0.1 ad.uk.doubleclick.net
-127.0.0.1 ad.us.doubleclick.net
-127.0.0.1 ad.za.doubleclick.net
-127.0.0.1 ad2.doubleclick.net
-127.0.0.1 adclick.g.doubleclick.net
-127.0.0.1 adx.g.doubleclick.net
-127.0.0.1 amn.doubleclick.net
-127.0.0.1 cm.g.doubleclick.net
-127.0.0.1 creatives.doubleclick.net
-127.0.0.1 dart-apac.l.doubleclick.net
-127.0.0.1 dfp.doubleclick.net
-127.0.0.1 doubleclick.com
-127.0.0.1 doubleclick.de
-127.0.0.1 doubleclick.ne.jp
-127.0.0.1 doubleclick.net
-127.0.0.1 ebaycn.doubleclick.net
-127.0.0.1 ebaytw.doubleclick.net
-127.0.0.1 feedads.g.doubleclick.net
-127.0.0.1 fls.doubleclick.net
-127.0.0.1 fls.uk.doubleclick.net
-127.0.0.1 gan.doubleclick.net
-127.0.0.1 gdfp.g.doubleclick.net
-127.0.0.1 googleads.g.doubleclick.net
-127.0.0.1 googleads2.g.doubleclick.net
-127.0.0.1 ir.doubleclick.net
-127.0.0.1 iv.doubleclick.net
-127.0.0.1 ln.doubleclick.net
-127.0.0.1 m.doubleclick.net
-127.0.0.1 m.us.doubleclick.net
-127.0.0.1 m1.doubleclick.net
-127.0.0.1 m2.doubleclick.net
-127.0.0.1 motifcdn.doubleclick.net
-127.0.0.1 motifcdn2.doubleclick.net
-127.0.0.1 n3285ad.doubleclick.net
-127.0.0.1 n3349ad.doubleclick.net
-127.0.0.1 n4052ad.doubleclick.net
-127.0.0.1 n4061ad.doubleclick.net
-127.0.0.1 n4061ad.fr.doubleclick.net
-127.0.0.1 n4061ad.hk.doubleclick.net
-127.0.0.1 n4403ad.doubleclick.net
-127.0.0.1 n479ad.doubleclick.net
-127.0.0.1 n609ad.doubleclick.net
-127.0.0.1 optimize.doubleclick.net
-127.0.0.1 optout.doubleclick.net
-127.0.0.1 partnerad.l.doubleclick.net
-127.0.0.1 paypalssl.doubleclick.net
-127.0.0.1 pubads.g.doubleclick.net
-127.0.0.1 rd.intl.doubleclick.net
-127.0.0.1 s2.video.doubleclick.net
-127.0.0.1 se1.doubleclick.net
-127.0.0.1 securepubads.g.doubleclick.net
-127.0.0.1 www.doubleclick.net
-127.0.0.1 www3.doubleclick.net
-127.0.0.1 www2.doubleclick.com
-127.0.0.1 www3.doubleclick.com
-127.0.0.1 www.doubleclick.com
 127.0.0.1 pagead-dclk.l.google.com
 127.0.0.1 mobileads.google.com
 127.0.0.1 mobwin.android.com
@@ -6877,8 +6776,6 @@ fe80::1%lo0	localhost
 127.0.0.1 biz5c.sandai.net
 127.0.0.1 cknum.sandai.net
 127.0.0.1 click.cm.sandai.net
-127.0.0.1 com.down.sandai.net
-127.0.0.1 down.sandai.net
 127.0.0.1 float.sandai.net
 127.0.0.1 gvod.union.sandai.net
 127.0.0.1 hubciddata.sandai.net
@@ -8592,27 +8489,11 @@ fe80::1%lo0	localhost
 #新摄影
 127.0.0.1 util.nphoto.net
 @HostsX 国内站点广告/购物类网站
-#Amazon
-127.0.0.1 rcm-images.amazon.com
-127.0.0.1 rcm.amazon.com
-127.0.0.1 rcm-cn.amazon.cn
-#京东商城
-127.0.0.1 click.union.360buy.com
-127.0.0.1 show.union.360buy.com
-127.0.0.1 union.360buy.com
-#当当网
-127.0.0.1 a.dangdang.com
-127.0.0.1 central.dangdang.com
-127.0.0.1 union.dangdang.com
-#凡客诚品
-127.0.0.1 union.vancl.com
 #梦芭莎
 127.0.0.1 click.moonbasa.com
 127.0.0.1 static.moonbasa.com
 #家电联盟
 127.0.0.1 pic.jdunion.com
-#淘积分
-127.0.0.1 ad.taojifen.net
 @HostsX 国内站点广告/IT类网站
 #电脑之家
 127.0.0.1 ad.adver.com.tw
@@ -8925,23 +8806,6 @@ fe80::1%lo0	localhost
 127.0.0.1 tom.allyes.com
 127.0.0.1 adserve2.tomoimg.cn
 127.0.0.1 xtrack.tomonline-inc.com
-#TomSkype
-127.0.0.1 a2.skype.tom.com
-127.0.0.1 a3.skype.tom.com
-127.0.0.1 a4.skype.tom.com
-127.0.0.1 a5.skype.tom.com
-127.0.0.1 a6.skype.tom.com
-127.0.0.1 a7.skype.tom.com
-127.0.0.1 client.skype.tom.com
-127.0.0.1 download.skype.tom.com
-127.0.0.1 u1.skype.tom.com
-127.0.0.1 skype.tom.com
-127.0.0.1 track.skype.com
-127.0.0.1 skypetools1.tom.com
-127.0.0.1 skypetools3.tom.com
-127.0.0.1 skypetools5.tom.com
-127.0.0.1 store.ule.tom.com
-127.0.0.1 ule.tom.com
 #北青网
 127.0.0.1 a.emedia.cn
 127.0.0.1 v.emedia.cn

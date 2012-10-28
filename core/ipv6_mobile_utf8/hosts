@@ -1,4 +1,16 @@
-﻿# Copyright (c) 2011-2012 Huhamhire Hosts Group.
+﻿#        __        __
+#       /  \      /  \
+#       \__/      |  |
+#        __       |  |                              __
+#       /  \______|  |   ________    ________    __|  |__    ________
+#       |   ______   |  /   __   \  /   _____|  |__    __|  /   _____|
+#       |  |      \__/  |  /  \  |  |  |_____      |  |     |  |_____ 
+#       |  |       __   |  |  |  |  \_____   \     |  |     \_____   \
+#       |  |      /  \  |  \__/  |   _____|  |     |  |__    _____|  |
+#       \__/      \__/  \________/  |________/     \_____|  |________/
+#       
+#   
+# Copyright (c) 2011-2012 Huhamhire Hosts Group.
 #
 # This is a HOSTS file packed by Huhamhire Hosts Group for Windows, Linux,
 # Mac OS, iOS, etc.
@@ -23,7 +35,7 @@
 # Special thanks to: smarthosts, hostsx, ipv6-hosts, mwsl, yoyo, 
 #                    mvps, ATGFW and hpHosts
 #
-# Creating Timestamp : 1350057600
+# Creating Timestamp : 1351353600
 #
 ######## Localhost ########
 127.0.0.1   localhost
@@ -4775,12 +4787,6 @@ fe80::1%lo0	localhost
 #kenengba.com 可能吧
 2001:470:18:5f5::2 www.kenengba.com
 2001:470:18:5f5::2 m.kenengba.com
-
-#Shooter 射手网
-2607:f740:90::ea8 shooter.cn
-2607:f740:90::ea8 www.shooter.cn
-2607:f740:90::ea8 edu.shooter.cn
-#2607:f740:90::ea8 file.shooter.cn #有证书警告，但可以正常下载
 
 #Yegle 一阁
 2001:470:0:19b::b869:805d yegle.net

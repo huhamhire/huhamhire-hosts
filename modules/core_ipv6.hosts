@@ -4726,12 +4726,6 @@
 2001:470:18:5f5::2 www.kenengba.com
 2001:470:18:5f5::2 m.kenengba.com
 
-#Shooter 射手网
-2607:f740:90::ea8 shooter.cn
-2607:f740:90::ea8 www.shooter.cn
-2607:f740:90::ea8 edu.shooter.cn
-#2607:f740:90::ea8 file.shooter.cn #有证书警告，但可以正常下载
-
 #Yegle 一阁
 2001:470:0:19b::b869:805d yegle.net
 
