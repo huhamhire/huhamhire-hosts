@@ -10,7 +10,7 @@
 #       \__/      \__/  \________/  |________/     \_____|  |________/
 #       
 #   
-# Copyright (c) 2011-2012 Huhamhire Hosts Group.
+# Copyright (c) 2011-2013 Huhamhire Hosts Group.
 #
 # This is a HOSTS file packed by Huhamhire Hosts Group for Windows, Linux,
 # Mac OS, iOS, etc.
@@ -20,7 +20,7 @@
 # be placed in the first column followed by the corresponding host name.
 # The IP address and the host name should be separated by at least one
 # space.
-#
+    
 # comments (such as these) may be inserted on individual
 # lines or following the machine name denoted by a '#' symbol.
 #
@@ -35,7 +35,7 @@
 # Special thanks to: smarthosts, hostsx, ipv6-hosts, mwsl, yoyo, 
 #                    mvps, ATGFW and hpHosts
 #
-# Creating Timestamp : 1351353600
+# Creating Timestamp : 1352476800
 #
 ######## Localhost ########
 127.0.0.1   localhost

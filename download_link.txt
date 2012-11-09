@@ -1,18 +1,18 @@
 ###################
 Google Code:
-Windows版本(v1.2.7)
+Windows版本(v1.2.8)
 IPv4版 hosts_setup_win_ipv4_x86_x64.zip
 http://huhamhire-hosts.googlecode.com/git/downloads/hosts_setup_win_ipv4_x86_x64.zip
 IPv6版 hosts_setup_win_ipv6_x86_x64.zip
 http://huhamhire-hosts.googlecode.com/git/downloads/hosts_setup_win_ipv6_x86_x64.zip
 
-Macintosh版本(v1.2.7)
+Macintosh版本(v1.2.8)
 IPv4版 hosts_setup_mac_ipv4.dmg
 http://huhamhire-hosts.googlecode.com/git/downloads/hosts_setup_mac_ipv4.dmg
 IPv6版 hosts_setup_mac_ipv6.dmg
 http://huhamhire-hosts.googlecode.com/git/downloads/hosts_setup_mac_ipv6.dmg
 
-跨平台在线安装脚本(v1.2.7)
+跨平台在线安装脚本(v1.2.8)
 安装脚本(须Python支持) hosts_setup_OnL.py
 http://huhamhire-hosts.googlecode.com/git/downloads/hosts_setup_OnL.py
 Win下辅助脚本(可选) setup_win.bat
@@ -34,53 +34,53 @@ http://huhamhire-hosts.googlecode.com/git/core/ipv6_win_ansi.zip
 
 ###################
 SourceForge:
-Windows版本(v1.2.7)
+Windows版本(v1.2.8)
 IPv4版 hosts_setup_win_ipv4_x86_x64.zip:
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/hosts_setup_win_ipv4_x86_x64.zip/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/hosts_setup_win_ipv4_x86_x64.zip/download
 IPv6版 hosts_setup_win_ipv6_x86_x64.zip:
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/hosts_setup_win_ipv6_x86_x64.zip/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/hosts_setup_win_ipv6_x86_x64.zip/download
 
-Macintosh版本(v1.2.7)
+Macintosh版本(v1.2.8)
 IPv4版 hosts_setup_mac_ipv4.dmg
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/hosts_setup_mac_ipv4.dmg/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/hosts_setup_mac_ipv4.dmg/download
 IPv6版 hosts_setup_mac_ipv6.dmg
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/hosts_setup_mac_ipv6.dmg/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/hosts_setup_mac_ipv6.dmg/download
 
-跨平台在线安装脚本(v1.2.7)
+跨平台在线安装脚本(v1.2.8)
 安装脚本(须Python支持) hosts_setup_OnL.py
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/hosts_setup_OnL.py/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/hosts_setup_OnL.py/download
 Win下辅助脚本(可选) setup_win.bat
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/setup_win.bat/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/setup_win.bat/download
 
 纯hosts文件(手动覆盖)
 IPv4移动精简版(UTF8) ipv4_mobile_utf8.zip
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/ipv4_mobile_utf8.zip/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/ipv4_mobile_utf8.zip/download
 IPv6移动精简版(UTF8) ipv6_mobile_utf8.zip
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/ipv6_mobile_utf8.zip/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/ipv6_mobile_utf8.zip/download
 IPv4完整版(UTF8-Unix) ipv4_unix_utf8.zip
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/ipv4_unix_utf8.zip/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/ipv4_unix_utf8.zip/download
 IPv6完整版(UTF8-Unix) ipv6_unix_utf8.zip
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/ipv6_unix_utf8.zip/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/ipv6_unix_utf8.zip/download
 IPv4完整版(ANSI-Windows) ipv4_win_ansi.zip
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/ipv4_win_ansi.zip/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/ipv4_win_ansi.zip/download
 IPv6完整版(ANSI-Windows) ipv6_win_ansi.zip
-http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.7/ipv6_win_ansi.zip/download
+http://sourceforge.net/projects/huhamhirehosts/files/hosts%20v1.2.8/ipv6_win_ansi.zip/download
 
 ###################
 GitHub:
-Windows版本(v1.2.7)
+Windows版本(v1.2.8)
 IPv4版 hosts_setup_win_ipv4_x86_x64.zip
 http://github.com/huhamhire/huhamhire-hosts/raw/master/downloads/hosts_setup_win_ipv4_x86_x64.zip
 IPv6版 hosts_setup_win_ipv6_x86_x64.zip
 http://github.com/huhamhire/huhamhire-hosts/raw/master/downloads/hosts_setup_win_ipv6_x86_x64.zip
 
-Macintosh版本(v1.2.7)
+Macintosh版本(v1.2.8)
 IPv4版 hosts_setup_mac_ipv4.dmg
 http://github.com/huhamhire/huhamhire-hosts/raw/master/downloads/hosts_setup_mac_ipv4.dmg
 IPv6版 hosts_setup_mac_ipv6.dmg
 http://github.com/huhamhire/huhamhire-hosts/raw/master/downloads/hosts_setup_mac_ipv6.dmg
 
-跨平台在线安装脚本(v1.2.7)
+跨平台在线安装脚本(v1.2.8)
 安装脚本(须Python支持) hosts_setup_OnL.py
 http://github.com/huhamhire/huhamhire-hosts/raw/master/downloads/hosts_setup_OnL.py
 Win下辅助脚本(可选) setup_win.bat
@@ -102,19 +102,19 @@ http://github.com/huhamhire/huhamhire-hosts/raw/master/core/ipv6_win_ansi.zip
 
 ###################
 Huhamhire hosts:
-Windows版本(v1.2.7)
+Windows版本(v1.2.8)
 IPv4版 hosts_setup_win_ipv4_x86_x64.zip
 http://hosts.huhamhire.com/downfile/win/hosts_setup_win_ipv4_x86_x64.zip
 IPv6版 hosts_setup_win_ipv6_x86_x64.zip
 http://hosts.huhamhire.com/downfile/win/hosts_setup_win_ipv6_x86_x64.zip
 
-Macintosh版本(v1.2.7)
+Macintosh版本(v1.2.8)
 IPv4版 hosts_setup_mac_ipv4.dmg
 http://hosts.huhamhire.com/downfile/mac/hosts_setup_mac_ipv4.dmg
 IPv6版 hosts_setup_mac_ipv6.dmg
 http://hosts.huhamhire.com/downfile/mac/hosts_setup_mac_ipv6.dmg
 
-跨平台在线安装脚本(v1.2.7)
+跨平台在线安装脚本(v1.2.8)
 安装脚本(须Python支持) hosts_setup_OnL.py
 http://hosts.huhamhire.com/downfile/pyhosts/hosts_setup_OnL.py
 Win下辅助脚本(可选) setup_win.bat
