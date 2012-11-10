@@ -264,7 +264,7 @@
 173.194.72.100  suggestqueries.google.com
 74.125.31.101   suggestqueries.l.google.com
 74.125.31.139   support.google.com
-173.194.72.139  talkgadget.google.com
+74.125.135.138  talkgadget.google.com
 74.125.31.104   tbn0.google.com
 74.125.31.104   tbn1.google.com
 74.125.31.105   tbn2.google.com
@@ -366,6 +366,7 @@
 74.125.31.100   translate.google.com.hk
 173.194.72.100  wenda.google.com.hk
 74.125.31.105   www.google.com.hk
+74.125.135.103  www.google.com
 173.194.72.82   android.googlesource.com
 74.125.31.102   auth.keyhole.com
 74.125.31.121   chrome.angrybirds.com
@@ -462,7 +463,7 @@
 74.125.31.132   mt3.gstatic.com
 74.125.31.132   mt4.gstatic.com
 74.125.31.132   mt5.gstatic.com
-74.125.31.132  mt6.gstatic.com
+74.125.31.132   mt6.gstatic.com
 74.125.31.132   mt7.gstatic.com
 74.125.31.132   music-onebox.googleusercontent.com
 74.125.31.132   music.googleusercontent.com
@@ -508,10 +509,10 @@
 74.125.31.132   www-oz-opensocial.googleusercontent.com
 74.125.31.101   www.google-analytics.com
 74.125.31.82    www.googlesource.com
-173.194.72.132 www.googleusercontent.com
+173.194.72.132  www.googleusercontent.com
 74.125.31.120   www.gstatic.com
 74.125.31.120   ytimg.l.google.com
-173.194.64.141 chrometophone.appspot.com
+173.194.64.141  chrometophone.appspot.com
 
 #YouTube
 74.125.135.93 accounts.youtube.com
