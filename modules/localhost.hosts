@@ -6,7 +6,8 @@
 127.0.0.1 localhost.localdomain localhost
 
 #Linux
-#127.0.1.1   #Fill Your PC name here and delete the # at the front
+127.0.0.1   #Replace Your Device Name Here!
+127.0.1.1   #Replace Your Device Name Here!
 ::1 localhost ip6-localhost ip6-loopback
 fe00::0 ip6-localnet
 ff00::0 ip6-mcastprefix
