@@ -1,0 +1,404 @@
+# region other
+
+#Huhamhire HOSTS
+204.197.252.124 hosts.huhamhire.com
+
+#github
+207.97.227.239 github.com
+
+#Plurk
+2607:f128:47::1:1 plurk.com
+2607:f128:47::1:1 www.plurk.com
+2607:f128:47::1:1 ipv6.plurk.com
+
+#Blizzard Entertainment 暴雪娱乐
+2001:1890:e000:c01:dad3:85ff:fed9:ce24 ipv6.blizzard.com
+
+###其他IPv6网站
+##CN 中国大陆
+#GuAo.hk 谷奥
+2001:470:a803::250 www.guao.hk
+2001:470:a803::250 guao.hk
+2600:3c00::f03c:91ff:fe93:67f2 img.gd
+
+#kenengba.com 可能吧
+2001:470:18:5f5::2 www.kenengba.com
+2001:470:18:5f5::2 m.kenengba.com
+
+#Yegle 一阁
+2001:470:0:19b::b869:805d yegle.net
+
+##US 美国
+#Mozilla
+2620:101:8008:5::2:1 www.mozilla.org
+2620:101:8008:5::2:6 air.mozilla.org #generic.zlb.phx.mozilla.net
+2620:101:8008:5::2:2 addons.mozilla.org
+2620:101:8008:5::2:5 blog.mozilla.org
+2620:101:8008:5::2:9 bugzilla.mozilla.org #bugzilla.zlb.phx.mozilla.net
+2620:101:8008:5::2:6 dnt.mozilla.org #generic.zlb.phx.mozilla.net
+2620:101:8008:5::2:6 firefoxflicks.mozilla.org #generic.zlb.phx.mozilla.net
+2620:101:8008:5::2:6 hacks.mozilla.org #generic.zlb.phx.mozilla.net
+2620:101:8008:5::2:8 nightly.mozilla.org #static-non-ssl.zlb.phx.mozilla.net
+2620:101:8008:5::2:6 pastebin.mozilla.org #generic.zlb.phx.mozilla.net
+2620:101:8008:5::2:8 planet.mozilla.org #static-non-ssl.zlb.phx.mozilla.net
+2620:101:8008:5::2:6 quality.mozilla.org
+2001:6b0:e:2018::1337 releases.mozilla.org
+2620:101:8008:5::2:3 support.mozilla.org #sumo.zlb.phx.mozilla.net
+2620:101:8008:5::2:6 tbpl.mozilla.org #generic.zlb.phx.mozilla.net
+2620:101:8008:5::2:4 wiki.mozilla.org
+2620:101:8008:5::2:7 www.mozilla.com #static-redirect.zlb.phx.mozilla.net
+2620:101:8008:5::2:8 www.firefox.com #firefox.com
+2620:101:8008:5::2:8 firefox.com
+
+#Microsoft 微软
+2a01:111:2004:3::13 www.microsoft.com
+2600:140e:1:1::3cfe:83a3 i.microsoft.com
+2600:140e:1::3cfe:83c8 i2.microsoft.com
+2600:140e:1:1::3cfe:83b1 i3.microsoft.com
+2600:140e:1::3cfe:83ca i4.microsoft.com
+2002:836b:9820::836b:9886 www.ipv6.microsoft.com
+
+#ARIN
+2001:500:4:13::81 www.arin.net
+2001:500:13::48 whois.arin.net
+
+#Yahoo!
+2001:4998:f011:1fe::3000 www.yahoo.com
+2001:4998:f011:1fe::3000 news.yahoo.com
+2001:4998:f011:1fe::3000 hk.news.yahoo.com
+2001:4998:f011:1fe::3000 dstest.yahoo.com
+2001:4998:f011:1fe::3000 dstest2.yahoo.com
+2001:4998:f011:1fe::3000 dstest3.yahoo.com
+2406:2000:ac:8::c:9101 tw.news.yahoo.com
+2406:2000:ac:8::c:9102 tw.news.yahoo.com
+2001:4998:f011:1fb::c:1101 l.yimg.com
+2001:4998:f011:1fb::c:1101 l1.yimg.com
+2001:4998:f011:1fb::c:1101 l2.yimg.com
+2001:4998:f011:1fb::c:1101 l3.yimg.com
+2001:4998:f011:1fe::3000 ad.yieldmanager.com
+
+#Uncyclopedia
+2001:470:1d:28::6 uncyclopedia.hk
+2001:470:1d:28::6 uncyclopedia.info
+2001:470:1d:28::6 www.uncyclopedia.info
+2001:470:1d:28::6 uncyclopedia.tw
+2001:470:1d:28::6 uncyclomedia.org
+2001:470:1d:28::6 meta.uncyclomedia.org
+2001:470:1d:28::6 images.uncyc.org
+2001:470:1d:28::6 static.uncyc.org
+2001:470:1d:28::6 ansaikuropedia.org
+
+#华盟
+2001:470:a:4d::2 camoe.org
+2001:470:a:4d::2 g.camoe.org
+2001:470:a:4d::2 g.camoe.net
+
+##AT 奥地利
+#Tor Project
+2001:858:10f:f::1001 torproject.org
+2001:858:10f:f::1001 www.torproject.org
+2001:4dd0:1234:1::deb deb.torproject.org
+2620:0:6b0:b:1a1a:0:26e5:4808 trac.torproject.org
+2620:0:6b0:b:1a1a:0:26e5:480e cloud.torproject.org
+2620:0:6b0:b:1a1a:0:26e5:480e atlas.torproject.org
+2620:0:6b0:b:1a1a:0:26e5:480b svn.torproject.org
+
+##AU 澳大利亚
+#APNIC
+2001:dc0:2001:11::211 www.apnic.net
+2001:dc0:2001::14 wq.apnic.net
+2001:dc0:2001:11::205 submit.apnic.net #nori.apnic.net
+
+#DE 德国
+2002:c247:6b96::1 thepiratebay.se
+2002:c247:6b96::1 www.thepiratebay.se
+2002:c247:6b97::1 static.thepiratebay.se
+2002:c247:6b96::1 thepiratebay.org
+2002:c247:6b96::1 www.thepiratebay.org
+2002:c247:6b97::1 static.thepiratebay.org
+
+##FR 法国
+2a01:e0d:1:3:58bf:fa02:0:1 videolan.org
+2a01:e0d:1:3:58bf:fa02:0:1 www.videolan.org #ganesh.videolan.org
+
+##JP 日本
+#JAIST 北陸先端科学技術大学院大学
+2001:200:141:feed::feed ftp.jaist.ac.jp
+2001:200:141:feed::feed jaist.dl.sourceforge.net
+
+##NL 荷兰
+#Ubuntu Archive
+2001:7b8:3:37::21:2 ipv6.torrent.ubuntu.com #IPv6 Tracker
+2001:7b8:60b:2:213:154:234:36 nl.archive.ubuntu.com #ubuntuarchive.bit.nl #Archive Mirror NL
+
+#PA 巴拿马
+2a02:29b8:1925::2 bitsnoop.com
+
+#SE 瑞典
+2a00:1a28:1151:0:20c:29ff:feeb:294 torrage.com
+2a00:1a28:1151:4::117:443 zoink.it
+
+#其他托管在 Google 的服务
+#BlogSpot 上的其他常用博客 #blogspot.l.google.com
+2404:6800:4005:c00::84 googlesystem.blogspot.com #Google Operating System
+2404:6800:4005:c00::84 ipv6-or-no-ipv6.blogspot.com #IPv6 Related Stuff
+2404:6800:4005:c00::84 gfwrev.blogspot.com #GFW 技术评论
+2404:6800:4005:c00::84 kamonka.blogspot.com #NHK 纪录片精选
+
+#Google Code 上的其他常用项目 #googlecode.l.google.com
+2404:6800:4005:c00::52 ipv6-hosts.googlecode.com
+2404:6800:4005:c00::52 kibbles.googlecode.com
+
+# GAE 上的常用应用 #appspot.l.google.com
+2404:6800:4005:c00::8d gsdview.appspot.com
+2404:6800:4005:c00::8d wave-api.appspot.com #Google Wave API
+2404:6800:4005:c00::8d wave-skynet.appspot.com #SkyNet
+2404:6800:4005:c00::8d mytracks.appspot.com #My Tracks for Android
+2404:6800:4005:c00::8d autoproxy2pac.appspot.com #自动代理配置脚本生成器
+2404:6800:4005:c00::8d fakegdict.appspot.com #Fake Google Dictionary
+
+# 托管在 Google 上的其他常用域名 #ghs.l.google.com
+2404:6800:4005:c00::79 www.akb48plus.com
+2404:6800:4005:c00::79 wdyl.com
+2404:6800:4005:c00::79 www.wdyl.com
+2404:6800:4005:c00::79 advertising.twitter.com
+2404:6800:4005:c00::79 blog.twitter.com
+2404:6800:4005:c00::79 blog.opensocial.org
+2404:6800:4005:c00::79 blog.xmarks.com
+2404:6800:4005:c00::79 www.miraisearch.jp
+
+### IPv6/IPv4 转换代理
+# 以下地址均非各网站官方地址，属于 LITNET-NAT64 网段提供转换代理服务（技术细节）。
+# DNS64 服务器：
+2001:778::37 dns64.litnet.lt
+
+#Amazon S3
+2001:778:0:ffff:64:0:cdfb:f2a4 s3.amazonaws.com
+2001:778:0:ffff:64:0:4815:c210 twitter-any.s3.amazonaws.com
+2001:778:0:ffff:64:0:4815:c210 twitter-blog.s3.amazonaws.com
+2001:778:0:ffff:64:0:4815:c210 twitter-badges.s3.amazonaws.com
+2001:778:0:ffff:64:0:4815:c210 twitter_production.s3.amazonaws.com
+2001:778:0:ffff:64:0:4815:c210 twitter-widgets.s3.amazonaws.com
+2001:778:0:ffff:64:0:cdfb:f2c5 xinyusi.s3.amazonaws.com
+
+#bit.ly / j.mp
+2001:778:0:ffff:64:0:a88f:ac35 bit.ly
+2001:778:0:ffff:64:0:a88f:ac35 j.mp
+2001:778:0:ffff:64:0:a88f:ac36 api.bit.ly
+2001:778:0:ffff:64:0:a88f:ac36 api.bitly.com
+2001:778:0:ffff:64:0:a88f:ac39 bitly.com
+
+###其他IPv6网站
+##People Republic of China                             中华人民共和国
+#
+2001:252:0:2::2000 6rank.edu.cn                        #CNGI高校驻地网IPv6用户数量测试
+
+#kenengba.com                                          可能吧
+2001:470:1f04:8c1::2 www.kenengba.com           #可能吧
+
+#IPv6 Forum
+2001:a18:1:20::42 www.ipv6forum.com
+
+#LAMOST                                                大天区面积多目标光纤光谱天文望远镜
+2001:cc0:202c:99:225:b3ff:fe82:7b35
+
+#China Academy of Telecommunication Research of MIIT   工业和信息化部电信研究院
+2001:cc0:2426:101::2f www.catr.cn                      #泰尔网
+2001:cc0:2426:101::2f main.catr.cn                     #工业和信息化部电信研究院主页
+2001:cc0:2426:101::2f navigator6.catr.cn               #CNGI中主要资源链接导航
+
+#CERNET 2                                              第二代中国教育与科研计算机网
+2001:da8:1:100::80 www.cernet2.edu.cn                  #主页
+
+#Tsinghua University                                   清华大学
+2001:da8:200:200::4:100 www.tsinghua.edu.cn            #清华大学主页
+2001:da8:217:1::222 iptv.tsinghua.edu.cn
+
+#北京大学
+2001:da8:201:1129:162:105:129:14 search.pku.edu.cn     #北京大学天网中英文搜索引擎
+
+#Yegle 一阁
+2001:470:0:19b::b869:805d yegle.net
+
+#Beijing Normal University                             北京师范大学
+2001:da8:207:3:21a:64ff:fe6d:d1eb ipv6.bnu.edu.cn      #北京师范大学IPv6实验站
+
+#University of Science and Technology Beijing          北京科技大学
+2001:da8:208:10::14 ipv6.ustb.edu.cn                   #北京科技大学IPv6实验站
+2001:da8:208:10::19 www.ustb.edu.cn                    #北京科技大学主页
+2001:da8:208:10::19 2009.ustb.edu.cn                   #北京科技大学新版首页
+2001:da8:208:10::19 alumni.ustb.edu.cn                 #北京科技大学校友网
+2001:da8:208:10::19 gonghui.ustb.edu.cn                #北京科技大学工会
+2001:da8:208:10::19 student.ustb.edu.cn                #北京科技大学学子在线
+2001:da8:208:10::19 graduate.ustb.edu.cn               #北京科技大学研究生院
+2001:da8:208:10::19 ltx.ustb.edu.cn                    #北京科技大学离退休老干部处
+2001:da8:208:10::19 bbs.ustb.edu.cn                    #幻想空间BBS
+2001:da8:208:100::121 www.52v6.com                     #52v6 我爱威六 USTB
+2001:da8:208:100::122 tracker.52v6.com                 #52v6 PT flicker
+
+#北京邮电大学
+2001:da8:215:4010:250:56ff:fe87:61ec iptv.bupt.edu.cn
+2001:da8:215:4030:c892:13e6:ba3e:13d0 officetv.bupt.edu.cn
+2001:da8:215:4030:110:5980:84a0:186c officetv.bupt.edu.cn
+
+#University of Jinan                                   济南大学
+2001:da8:7005:1::1 www.ujn.edu.cn                      #
+
+#Shanghai Jiao Tong University                         上海交通大学
+2001:da8:8000:1::80 ipv6.sjtu.edu.cn                   #上海交通大学IPv6实验站
+2001:da8:a4:ff::84 video6.sjtu.edu.cn
+2001:da8:8000:1::81 www.sjtu.edu.cn                    #上海交通大学主页
+2001:da8:8000:1::82 alumni.sjtu.edu.cn                 #上海交通大学校友网
+2001:da8:8000:1::83 shipmuseum.sjtu.edu.cn             #船舶数字博物馆
+2001:da8:8000:1::84 net.sjtu.edu.cn                    #上海交通大学网络中心
+2001:da8:8000:1::85 icae.sjtu.edu.cn                   #
+2001:da8:8000:1::86 foundation.sjtu.edu.cn             #上海交通大学教育发展基金会
+2001:da8:8000:1::87 wlan.sjtu.edu.cn                   #上海交通大学网络中心无线网首页
+2001:da8:8000:1::88 ed.sjtu.edu.cn                     #上海交通大学 高等教育研究院
+2001:da8:8000:1::89 smd.sjtu.edu.cn                    #
+2001:da8:8000:5::239 search.sjtu.edu.cn                #
+2001:da8:8000:6003::161 bbs.sjtu.edu.cn                #饮水思源BBS站
+
+#Northeastern University                               东北大学
+2001:da8:9000::232 bt.neu.edu.cn                       #六维空间
+2001:da8:9000:a191:20d:60ff:fe1b:7514 ftp.ngi.neu.edu.cn #NEU NGI FTP Server
+2001:da8:9000:b255:210:5cff:fef5:ac49 www.neu.edu.cn     #主页
+2001:da8:9000:b255:223:aeff:fe71:efcb radio.neu.edu.cn   #东北大学在线电台
+
+#Tongji University                                     同济大学
+2001:da8:b8:190::12 mail.tongji.edu.cn                 #同济大学电子邮件系统
+2001:da8:b8:205::2 www.tongji.edu.cn                   #同济大学主页
+2001:da8:b8:205::3 news.tongji.edu.cn                  #同济大学新闻网
+
+#University of Science and Technology of China         中国科学技术大学
+2001:da8:d800::2 www.ustc.edu.cn                       #中国科学技术大学主页
+2001:da8:d800::3 bbs.ustc.edu.cn                       #瀚海星云BBS站
+2001:da8:d800::88 tv6.ustc.edu.cn                      #
+
+#Zhe Jiang University                                  浙江大学
+2001:da8:e000:88::11 www.zju.edu.cn                    #浙江大学主页
+2001:da8:e000:89::99 media.zju.edu.cn                  #浙江大学校网中心--多媒体中心
+2001:da8:e000:92::29 ipv6.zju.edu.cn                   #浙江大学IPV6试验网
+
+#Zhe Jiang University of Technology                    浙江工业大学
+2001:da8:e000:88::11 www.zjut.edu.cn                   #浙江工业大学首页
+
+#Nanjing Normal University                             南京师范大学
+2001:da8:1003:1::10 www.njnu.edu.cn                    #南京师范大学主页
+2001:da8:1003:1:20b:dbff:fead:4c60 www.innu.cn         #南京师范大学网络协会
+2001:da8:1003:1:20b:dbff:fead:4c60 bbs.njnu.edu.cn     #扬帆 - 南京师范大学|校园论坛
+2001:da8:1003:1:20b:dbff:fead:4c60 v6.innu.cn          #扬帆 - 南京师范大学|校园论坛
+2001:da8:1003:1:20b:dbff:fead:4c60 download.innu.cn    #
+
+#Dalian University of Technology                       大连理工大学
+2001:da8:a800:0:2d0:b7ff:feb8:4557 ipv6.dlut.edu.cn    #大连理工大学 IPv6 网站
+2001:da8:a800:3::5 bbs.dlut.edu.cn                     #BBS 碧海青天
+
+#GuangDong Polytechnic Normal University               广东技术师范学院
+2001:da8:2006::2 ipv6.gdin.edu.cn                      #广东技术师范学院IPv6实验网
+2001:da8:2006::6 tv1.gdin.edu.cn
+
+#IPv6home                                              IPv6之家
+240c:f::ffff:0:0:0:155 ipv6.ipv6home.cn                #论坛
+
+
+##Hong Kong                                            香港
+
+#The Chinese University of Hong Kong                   香港中文大学
+2405:3000:3:c02:137:189:192:35 www.ipv6.cuhk.net       #CUHK IPv6 Homepage
+
+#City University of Hong Kong                          香港城市大学
+2001:ce0:5:1:206:5bff:fe1d:64cf www.ipv6.cityu.edu.hk  #CSC home page
+
+
+##Republic of China                                    中华民国
+
+#National Central University                           國立中央大學
+2001:288:3001:17:21a:64ff:fec6:853c                    #歡迎光臨中央大學
+
+#Education Network Center of Taichung Country          台中县教育网络
+2001:288:5400::11 www.tcc.edu.tw                       #台中縣教育網路中心
+
+#National Ilan University                              國立宜蘭大學
+2001:288:a001:805:21c:c4ff:fec2:9cca www.niu.edu.tw    #
+
+#HiNet
+2001:b000::2 www.ipv6.hinet.net                        HiNet IPv6服務
+
+#National Chi Nan University                           國立暨南國際大學
+2001:e10:6840:12::52 ftp.ncnu.edu.tw                   #國立暨南國際大學檔案伺服器
+2001:e10:6840:67:b9b3:1928:3bd2:cd7 www.ncnu.edu.tw    #國立暨南國際大學-首頁
+
+#APOL asia pacific online service                      APOL亞太線上
+2404::2 www.apol.com.tw                                #IPv6首頁
+
+
+##America                                              美国
+
+#AnimeNfo.Com
+2001:470:1c:229::2 animenfo.com
+2001:470:1c:229::2 www.animenfo.com
+
+#.天空
+2001:470:1f04:836::2 tix.io                            #主页
+2001:470:1f04:836::2 blog.tix.io                       #Bolg
+
+#What is my IP?
+2001:470:8051:1:80::1 whatismyip.tv                    #主页
+
+#Free IPv6 Live Streaming TV
+2001:470:f057::7 www.freeipv6.info
+
+#Microsoft                                             微软
+2002:836b:9820::836b:9886 www.ipv6.microsoft.com       #IPv6主页
+
+
+##France                                               法国
+#alwaysData                                           
+2001:41d0:1:8f78::1 www.alwaysdata.com                 #主页
+2001:41d0:2:4139::1 fanfou.alwaysdata.net              #饭否
+
+
+##the Federal Republic of Germany                      德国
+2001:638:902:1::11 6bone.informatik.uni-leipzig.de     #IPv6 technology center Leipzig
+
+
+##NL
+
+#Ubuntu Archive
+2001:7b8:3:37::21:2 ipv6.torrent.ubuntu.com            #IPv6 Tracker
+2001:7b8:3:37::21:2 nl.archive.ubuntu.com              #Archive Mirror NL
+
+
+##Norway                                               挪威
+#Opera
+2001:840:4073:1::1:100 www.opera.com                   #主页
+2001:840:4073:1::1:101 www.opera.com                   #主页
+2001:840:4073:1::1:102 www.opera.com                   #主页
+2001:840:4073:1::1:103 www.opera.com                   #主页
+
+
+##Sweden                                               瑞典
+#IPv6.org
+2001:6b0:1:ea:202:a5ff:fecd:13a6 www.ipv6.org          #主页
+2001:6b0:1:ea:202:a5ff:fecd:13a6 www.stacken.kth.se    #
+2001:6b0:1:ea:202:a5ff:fecd:13a6 shake.stacken.kth.se  #
+
+#thepiratebay.org                                      海盗湾
+2a01:298:3:1::2 tracker.thepiratebay.org               #tracker
+2a01:298:3:1::abcd ipv6.thepiratebay.org               #主页
+2a01:298:3:1::b000 static.thepiratebay.org             #
+2a01:298:3:1::bee torrents.thepiratebay.org            #
+
+
+##Japan                                                日本
+
+#Casio                                                 カシオ計算機 企業情報
+2001:2c0:800:200::2:80 www.casio.co.jp                 #主页
+
+#Hitachi                                               日立製作所
+2001:240:400::8591:e013 www.hitachi.co.jp              #主页
+
+######## IPv6 HOSTS END ########
+
+# endregion

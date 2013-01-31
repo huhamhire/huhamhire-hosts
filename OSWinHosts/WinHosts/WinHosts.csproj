@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8E0A82C0-588D-4CF4-AA52-09E8581002C3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WinHosts</RootNamespace>
+    <AssemblyName>HostsPanel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>false</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <SupportUrl>http://hosts.huhamhire.com/</SupportUrl>
+    <ErrorReportUrl>http://hosts.huhamhire.com/</ErrorReportUrl>
+    <TargetCulture>zh-Hans</TargetCulture>
+    <ProductName>huhamhir-hosts Tool for Windows</ProductName>
+    <PublisherName>huhamhir-hosts Team.</PublisherName>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\ico\winhosts.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject>WinHosts.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>runtime.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>637E97CCFCC999EA3EE03C359F80BE99FBA29736</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WinHosts_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>Custom</TargetZone>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\DownBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DownBox.Designer.cs">
+      <DependentUpon>DownBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ErrorBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ErrorBox.Designer.cs">
+      <DependentUpon>ErrorBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\FileOps.cs" />
+    <Compile Include="Classes\GeometryCalc.cs" />
+    <Compile Include="Classes\HostsOps.cs" />
+    <Compile Include="Classes\ImgTrans.cs" />
+    <Compile Include="Forms\mainFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\mainFrame.Designer.cs">
+      <DependentUpon>mainFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Classes\Utilities.cs" />
+    <EmbeddedResource Include="Forms\DownBox.resx">
+      <DependentUpon>DownBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ErrorBox.resx">
+      <DependentUpon>ErrorBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\mainFrame.resx">
+      <DependentUpon>mainFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\mainFrame.zh-CN.resx">
+      <DependentUpon>mainFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Resources\hosts\windows_default_hosts" />
+    <None Include="runtime.manifest">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\errorbox\errorback.png" />
+    <None Include="Resources\downbox\downbox.png" />
+    <None Include="Resources\downbox\point.png" />
+    <Content Include="Resources\errorbox\icon_error.png" />
+    <Content Include="Resources\errorbox\icon_info.png" />
+    <Content Include="Resources\errorbox\icon_success.png" />
+    <Content Include="Resources\errorbox\icon_warning.png" />
+    <None Include="Resources\errorbox\ok_button_off.png" />
+    <None Include="Resources\errorbox\ok_button_on.png" />
+    <None Include="Resources\errorbox\messages\msg_alert_cfg.png" />
+    <None Include="Resources\errorbox\messages\msg_err_back.png" />
+    <None Include="Resources\errorbox\messages\msg_err_net.png" />
+    <None Include="Resources\errorbox\messages\msg_err_res.png" />
+    <None Include="Resources\errorbox\messages\msg_info_ins.png" />
+    <None Include="Resources\errorbox\messages\msg_info_rec.png" />
+    <None Include="Resources\errorbox\messages\msg_succ_ops.png" />
+    <None Include="Resources\errorbox\messages\msg_err_unr.png" />
+    <Content Include="Resources\framebg.png" />
+    <Content Include="Resources\sound\alert.wav" />
+    <Content Include="Resources\sound\beepx4.wav" />
+    <Content Include="Resources\sound\button_tick.wav" />
+    <Content Include="Resources\icon\Activation_green.png" />
+    <Content Include="Resources\icon\Activation_off.png" />
+    <Content Include="Resources\icon\Activation_on.png" />
+    <Content Include="Resources\ico\winhosts.ico" />
+    <None Include="Resources\icon\Activation_red.png" />
+    <Content Include="Resources\icon\ADblock_green.png" />
+    <Content Include="Resources\icon\ADblock_off.png" />
+    <Content Include="Resources\icon\ADblock_on.png" />
+    <None Include="Resources\icon\ADblock_red.png" />
+    <Content Include="Resources\icon\Apple_green.png" />
+    <Content Include="Resources\icon\Apple_off.png" />
+    <Content Include="Resources\icon\Apple_on.png" />
+    <None Include="Resources\icon\Apple_red.png" />
+    <Content Include="Resources\icon\Facebook_green.png" />
+    <Content Include="Resources\icon\Facebook_off.png" />
+    <Content Include="Resources\icon\Facebook_on.png" />
+    <None Include="Resources\icon\Facebook_red.png" />
+    <Content Include="Resources\icon\Google_green.png" />
+    <Content Include="Resources\icon\Google_off.png" />
+    <Content Include="Resources\icon\Google_on.png" />
+    <None Include="Resources\icon\Google_red.png" />
+    <Content Include="Resources\icon\Other_green.png" />
+    <Content Include="Resources\icon\Other_off.png" />
+    <Content Include="Resources\icon\Other_on.png" />
+    <None Include="Resources\icon\Other_red.png" />
+    <Content Include="Resources\icon\Twitter_green.png" />
+    <Content Include="Resources\icon\Twitter_off.png" />
+    <Content Include="Resources\icon\Twitter_on.png" />
+    <None Include="Resources\icon\Twitter_red.png" />
+    <Content Include="Resources\icon\Wikipedia_green.png" />
+    <Content Include="Resources\icon\Wikipedia_off.png" />
+    <Content Include="Resources\icon\Wikipedia_on.png" />
+    <None Include="Resources\icon\Wikipedia_red.png" />
+    <Content Include="Resources\icon\YouTube_green.png" />
+    <Content Include="Resources\icon\YouTube_off.png" />
+    <Content Include="Resources\icon\YouTube_on.png" />
+    <None Include="Resources\icon\YouTube_red.png" />
+    <None Include="Resources\sound\ding.wav" />
+    <Content Include="Resources\sound\dingx2.wav" />
+    <None Include="Resources\sound\doorbell.wav" />
+    <Content Include="Resources\switches\backup_metal_off.png" />
+    <Content Include="Resources\switches\backup_metal_on.png" />
+    <Content Include="Resources\switches\push.png" />
+    <Content Include="Resources\switches\recover_metal_off.png" />
+    <Content Include="Resources\switches\recover_metal_on.png" />
+    <Content Include="Resources\switches\reset.png" />
+    <Content Include="Resources\switches\start_metal_off.png" />
+    <Content Include="Resources\switches\start_metal_on.png" />
+    <Content Include="Resources\switches\wifi_off.png" />
+    <Content Include="Resources\switches\wifi_on.png" />
+    <None Include="Resources\sound\switch_ro.wav" />
+    <None Include="Resources\switches\switch_rotate.png" />
+    <None Include="Resources\switches\power_on.png" />
+    <None Include="Resources\switches\power_off.png" />
+    <None Include="Resources\switches\power_hover.png" />
+    <None Include="Resources\sound\switch.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switches\off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\switches\on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,194 @@
+# region other
+
+#Huhamhire HOSTS
+204.197.252.124 hosts.huhamhire.com
+
+#github
+207.97.227.239 github.com
+
+#Dropbox
+199.47.217.179 dropbox.com
+199.47.216.170 www.dropbox.com
+#107.20.207.62 dl.dropbox.com
+#107.20.207.62 dl-web.dropbox.com
+174.36.51.42 forums.dropbox.com
+174.36.51.42 wiki.dropbox.com
+
+#Flickr
+66.94.233.186 flickr.com
+66.94.233.186 www.flickr.com
+68.142.214.43 static.flickr.com
+66.196.118.49 farm1.static.flickr.com
+69.147.90.159 farm2.static.flickr.com
+76.13.18.78 farm3.static.flickr.com
+67.195.19.66 farm4.static.flickr.com
+76.13.18.79 farm5.static.flickr.com
+98.139.197.254 farm6.static.flickr.com
+98.139.102.46 farm7.static.flickr.com
+98.136.43.76 geo.yahoo.com
+68.142.250.161 l.yimg.com
+96.6.93.227 s.yimg.com
+98.137.88.88 d.yimg.com
+68.142.196.57 c5.ah.yahoo.com
+124.108.120.124 sa.edit.yahoo.com
+76.13.6.132 row.bc.yahoo.com
+66.163.168.247 open.login.yahoo.com
+209.191.92.114 login.yahoo.com
+209.191.92.115 edit.yahoo.com
+209.191.121.31 up.flickr.com
+209.191.105.102 adjax.flickr.yahoo.com
+204.0.5.35 content.yieldmanager.edgesuite.net
+76.13.6.132 us.bc.yahoo.com
+204.0.5.34 us.js2.yimg.com
+76.13.18.78 bf1.farm3.static.flickr.com
+76.13.18.78 farm3.static.flickr.com
+76.13.18.78 gq1.farm3.static.flickr.com
+76.13.18.78 sp1.farm3.static.flickr.com
+76.13.18.79 bf1.farm5.static.flickr.com
+76.13.18.79 farm5.static.flickr.com
+76.13.18.79 gq1.farm5.static.flickr.com
+98.139.102.46 bf1.farm7.static.flickr.com
+98.139.102.46 farm7.static.flickr.com
+98.139.102.46 gq1.farm7.static.flickr.com
+98.139.102.46 ne1.farm7.static.flickr.com
+98.139.197.254 bf1.farm6.static.flickr.com
+98.139.197.254 farm6.static.flickr.com
+98.139.197.254 gq1.farm6.static.flickr.com
+
+#Operachina
+59.151.106.253 operachina.com
+59.151.106.253 bbs.operachina.com
+59.151.106.253 mini.operachina.com
+59.151.106.253 portal.operachina.com
+59.151.106.253 press.operachina.com
+59.151.106.253 redir.operachina.com
+59.151.106.253 static.operachina.com
+59.151.106.253 wiki.operachina.com
+59.151.106.253 www.operachina.com
+
+######Other Internet Services######
+#Thunder Speedup
+58.61.39.214 hub5idx.shub.sandai.net
+121.9.209.134 hub5pr.sandai.net
+
+#FlashGet
+221.123.176.125 s5.flashget.com
+221.123.176.136 cplog.flashget.com
+
+#Avira
+62.146.87.171 premium.avira-update.com premium.avira-cdn.com
+62.146.87.172 prempeak.avira-update.com
+62.146.87.173 premium.de.avira-update.com
+89.105.213.21 premium.nl.avira-update.com
+89.105.213.22 premium.avira-update.net
+
+#Soutong
+2001:470:a:17c::2 ipv6.5isotoi5.org
+2001:470:a:17c::2 soutong.iloveyou
+63.223.106.181 soutong.com
+
+#MediaFire.com
+205.196.120.12 mediafire.com
+205.196.120.12 www.mediafire.com
+
+#Photobucket
+209.17.69.31 i37.photobucket.com
+209.17.69.33 i37.photobucket.com
+209.17.69.35 i37.photobucket.com
+
+#Imdb
+92.122.217.186 ia.media-imdb.com
+198.78.213.126 i.media-imdb.com
+
+#Multiupload
+85.17.76.195 multiupload.com
+85.17.76.195 www.multiupload.com
+85.17.76.195 www2.multiupload.com
+85.17.76.195 www3.multiupload.com
+85.17.76.195 www4.multiupload.com
+85.17.76.195 www5.multiupload.com
+85.17.76.195 www6.multiupload.com
+85.17.76.195 www7.multiupload.com
+85.17.76.195 www8.multiupload.com
+85.17.76.195 www9.multiupload.com
+85.17.76.195 www10.multiupload.com
+85.17.76.195 www11.multiupload.com
+85.17.76.195 www12.multiupload.com
+85.17.76.195 www13.multiupload.com
+85.17.76.195 www14.multiupload.com
+85.17.76.195 www15.multiupload.com
+85.17.76.195 www16.multiupload.com
+85.17.76.195 www17.multiupload.com
+85.17.76.195 www18.multiupload.com
+85.17.76.195 www19.multiupload.com
+85.17.76.195 www20.multiupload.com
+85.17.76.195 www21.multiupload.com
+85.17.76.195 www22.multiupload.com
+85.17.76.195 www23.multiupload.com
+85.17.76.195 www24.multiupload.com
+85.17.76.195 www25.multiupload.com
+85.17.76.195 www26.multiupload.com
+85.17.76.195 www28.multiupload.com
+85.17.76.195 www29.multiupload.com
+85.17.76.195 www30.multiupload.com
+85.17.76.195 www31.multiupload.com
+85.17.76.195 www32.multiupload.com
+85.17.76.195 www33.multiupload.com
+85.17.76.195 www34.multiupload.com
+85.17.76.195 www35.multiupload.com
+85.17.76.195 www36.multiupload.com
+85.17.76.195 www37.multiupload.com
+85.17.76.195 www38.multiupload.com
+85.17.76.195 www39.multiupload.com
+85.17.76.195 www40.multiupload.com
+85.17.76.195 www41.multiupload.com
+85.17.76.195 www42.multiupload.com
+85.17.76.195 www43.multiupload.com
+85.17.76.195 www44.multiupload.com
+85.17.76.195 www45.multiupload.com
+85.17.76.195 www46.multiupload.com
+85.17.76.195 www47.multiupload.com
+85.17.76.195 www48.multiupload.com
+85.17.76.195 www49.multiupload.com
+85.17.76.195 www50.multiupload.com
+
+#Gravatar
+93.184.220.20 s.gravatar.com
+93.184.220.20 0.gravatar.com
+93.184.220.20 1.gravatar.com
+93.184.220.20 2.gravatar.com
+
+#Foursquare
+50.16.194.30 foursquare.com
+50.16.194.30 www.foursquare.com
+
+#Wordpress
+72.233.119.209 i.polldaddy.com
+72.233.119.209 i0.poll.fm
+74.200.247.60 wordpress.com
+93.184.220.20 s0.wp.com
+93.184.220.20 s1.wp.com
+93.184.220.20 s2.wp.com
+93.184.220.20 s.wordpress.org
+93.184.220.20 s.wordpress.com
+93.184.220.20 s1.wordpress.com
+93.184.220.20 s2.wordpress.com
+93.184.220.20 s3.wordpress.com
+93.184.220.20 s.stats.wordpress.com
+74.200.244.59 lb.wordpress.com
+74.200.244.59 zh.wordpress.com
+74.200.244.59 zh-sg.wordpress.com
+74.200.244.59 dashboard.wordpress.com
+74.200.244.59 forums.wordpress.com
+74.200.244.59 en.forums.wordpress.com
+74.200.244.59 en.blog.wordpress.com
+74.200.244.59 stats.wordpress.com
+74.200.244.59 wpcom.wordpress.com
+72.233.69.6 botd2.wordpress.com
+72.233.69.6 botd.wordpress.com
+74.200.244.59 lucifr.wordpress.com
+74.200.244.59 *.wordpress.com
+
+######## IPv4 HOSTS END ########
+
+# endregion
