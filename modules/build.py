@@ -14,7 +14,11 @@ class buildRAW:
         self.dir = dir
         #输出路径
         self.rawdir = rawdir
+        if os.path.exists(self.rawdir) == False:
+            os.mkdir(self.rawdir)
         self.zipdir = zipdir
+        if os.path.exists(self.zipdir) == False:
+            os.mkdir(self.zipdir)
         #创建中间文件
         self.combine = combineHosts(dir)
         self.combine.run()

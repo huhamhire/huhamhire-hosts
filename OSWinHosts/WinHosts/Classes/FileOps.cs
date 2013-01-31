@@ -136,9 +136,9 @@ namespace WinHosts
         private static void DownFile(int insmode, bool IPmode, DownBox downForm)
         {
             string[] DownPath = new string[4] {
-                "", @"http://huhamhire-hosts.googlecode.com/git/downloads/raw",
+                "", @"http://huhamhire-hosts.googlecode.com/git/downloads/raw/",
                 @"http://hosts.huhamhire.com/downfile/raw/",
-                @"https://github.com/huhamhire/huhamhire-hosts/raw/master/downloads/raw"};
+                @"https://github.com/huhamhire/huhamhire-hosts/raw/master/downloads/raw/"};
             string[] IpPath = new string[2] { @"ipv4", @"ipv6" };
 
             //初始化路径

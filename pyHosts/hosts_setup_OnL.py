@@ -20,7 +20,7 @@ SF_mirror_list = {'superb-dca2': ('Superb Internet', 'United States'), 'aarnet':
 update_url = [('http://huhamhire-hosts.googlecode.com/files/hosts_setup_OnL.py', 'Google Code'), 
               ('http://github.com/huhamhire/huhamhire-hosts/raw/master/pyHosts_OL/hosts_setup_OnL.py', 'GitHub'),
               ('http://superb-dca2.dl.sourceforge.net/project/huhamhirehosts/latest%20PyHosts/hosts_setup_OnL.py', 'SourceForge' ),
-              ('http://www.mirrorservice.org/sites/download.sourceforge.net/pub/sourceforge/h/project/hu/huhamhirehosts/latest%20PyHosts/hosts_setup_OnL.py', ' SFMirror')]
+              ('http://hosts.huhamhire.com/downfile/pyhosts/hosts_setup_OnL.py', ' SFMirror')]
 
 startTime = time.time()
 url = ''
@@ -373,10 +373,10 @@ def main(site):
     exit()
 
 if __name__ == '__main__':
-    site = ('http://huhamhire-hosts.googlecode.com/git/core/', '')
+    site = ('http://huhamhire-hosts.googlecode.com/git/downloads/raw/', '')
     if len(sys.argv) > 1:
         if (sys.argv[1] == '-SFM') and (len(sys.argv) == 2):
-            url_front = 'http://www.mirrorservice.org/sites/download.sourceforge.net/pub/sourceforge/h/project/hu/huhamhirehosts/latest%20hosts%20file%28only%29/'
+            url_front = 'http://hosts.huhamhire.com/downfile/raw/'
             url_tail = ''   #尾标记，SF镜像留空
             site = (url_front, url_tail)
         elif sys.argv[1] == '-SF':
@@ -391,7 +391,7 @@ if __name__ == '__main__':
         elif sys.argv[1] == '-ListSF':
             list_sf()
         elif sys.argv[1] == '-Git':
-            url_front = 'http://github.com/huhamhire/huhamhire-hosts/raw/master/core/'
+            url_front = 'http://github.com/huhamhire/huhamhire-hosts/raw/master/downloads/raw/'
             url_tail = ''   #尾标记，GitHub留空
             site = (url_front, url_tail)
         elif sys.argv[1] == '-HH':
