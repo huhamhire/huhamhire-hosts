@@ -25,3 +25,7 @@ cat tmp/main_ipv4.hosts > ../downloads/raw/ipv4_mobile_utf8/hosts
 cat tmp/main_ipv4.hosts tmp/adblock.hosts > ../downloads/raw/ipv4_unix_utf8/hosts
 cat tmp/main_ipv4.hosts tmp/adblock.hosts | iconv -f utf-8 -t GBK > ../downloads/raw/ipv4_win_ansi/hosts
 
+cat tmp/main_ipv6.hosts > ../downloads/raw/ipv6_mobile_utf8/hosts
+cat tmp/main_ipv6.hosts tmp/adblock.hosts > ../downloads/raw/ipv6_unix_utf8/hosts
+cat tmp/main_ipv6.hosts tmp/adblock.hosts | iconv -f utf-8 -t GBK > ../downloads/raw/ipv6_win_ansi/hosts
+
