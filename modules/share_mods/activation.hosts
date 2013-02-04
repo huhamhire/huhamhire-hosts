@@ -1,6 +1,6 @@
 # region activation
 ######## IPv4 HOSTS ########
-# ÆÁ±ÎAdobe¼¤»î·şÎñÆ÷£º
+# å±è”½Adobeæ¿€æ´»æœåŠ¡å™¨ï¼š
 127.0.0.1 activate.adobe.com
 127.0.0.1 practivate.adobe.com
 127.0.0.1 ereg.adobe.com
@@ -19,7 +19,7 @@
 127.0.0.1 lmlicenses.wip4.adobe.com
 127.0.0.1 lm.licenses.adobe.com
 
-# ÆÁ±ÎParallels Desktop 7¼¤»î·şÎñÆ÷£º
+# å±è”½Parallels Desktop 7æ¿€æ´»æœåŠ¡å™¨ï¼š
 127.0.0.1 pd6.blist.parallels.com
 127.0.0.1 pd7.blist.parallels.com
 127.0.0.1 pdfm7.blist.parallels.com 
