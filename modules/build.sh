@@ -3,9 +3,8 @@
 # Shell script to generate hosts files
 # author: Weihong Guan (@aGuegu)
 
-cat info.hosts timestamp.hosts localhost.hosts > tmp/header.hosts.tmp
-
 mkdir -p tmp
+cat info.hosts timestamp.hosts localhost.hosts > tmp/header.hosts.tmp
 
 for folder in $(ls -d *_mods)
 do
@@ -32,3 +31,9 @@ cat tmp/main_ipv6.hosts tmp/adblock.hosts > ../downloads/raw/ipv6_unix_utf8/host
 cat tmp/main_ipv6.hosts tmp/adblock.hosts | iconv -f utf-8 -t GBK > ../downloads/raw/ipv6_win_ansi/hosts
 
 rm -r tmp/
+
+for folder in $(ls ../downloads/raw)
+do
+	rm -f ../downloads/zip/$folder.zip
+	zip -j ../downloads/zip/$folder.zip ../downloads/raw/$folder/hosts > /dev/null
+done
