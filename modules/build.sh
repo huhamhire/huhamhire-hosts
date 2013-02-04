@@ -22,6 +22,6 @@ cat tmp/adblock_mods.hosts.tmp > tmp/adblock.hosts
 rm tmp/*.tmp
 
 cat tmp/main_ipv4.hosts > ../downloads/raw/ipv4_mobile_utf8/hosts
-cat tmp/main_ipv4.hosts > ../downloads/raw/ipv4_unix_utf8/hosts
+cat tmp/main_ipv4.hosts tmp/adblock.hosts > ../downloads/raw/ipv4_unix_utf8/hosts
 cat tmp/main_ipv4.hosts tmp/adblock.hosts | iconv -f utf-8 -t GBK > ../downloads/raw/ipv4_win_ansi/hosts
 
