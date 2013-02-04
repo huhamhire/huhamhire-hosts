@@ -3,16 +3,19 @@
 newhost=/tmp/hosts.$$
 
 echo "1. Download ipv6 host for unix:"
-wget https://raw.github.com/aguegu/huhamhire-hosts/master/downloads/raw/ipv6_unix_utf8/hosts -O $newhost
+wget https://raw.github.com/aguegu/huhamhire-hosts/master/downloads/zip/ipv6_unix_utf8.zip -O $newhost.zip
 
-echo "2. Implant hostname:"
+echo "2. Extract & Implant hostname:"
 if [ $? -eq 0 ]
 then
+	unzip $newhost.zip
+	mv hosts $newhost
 	sed -i $newhost -e "s/#Replace Your Device Name Here!/$(hostname)/g"
 	echo "Done. hostname: " $(hostname)
 else
 	echo "Download failed."
 	rm -r $newhost
+	rm -r $newhost.zip
 	exit 1
 fi
 
