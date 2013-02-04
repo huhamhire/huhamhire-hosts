@@ -1,7 +1,7 @@
 #######################################
 #AD Blocking
 #######################################
-#### ÃÅ»§ÍøÕ¾¼°³£ÓÃÍøÕ¾
+#### é—¨æˆ·ç½‘ç«™åŠå¸¸ç”¨ç½‘ç«™
 #GoogleAdWord
 127.0.0.1 adwords.google.com
 127.0.0.1 adwords.google.sk
@@ -156,7 +156,7 @@
 127.0.0.1 mobileads.google.com
 127.0.0.1 mobwin.android.com
 
-#°Ù¶È¹ã¸æÁªÃË
+#ç™¾åº¦å¹¿å‘Šè”ç›Ÿ
 127.0.0.1 m1.baidu.com
 127.0.0.1 mobads.baidu.com
 127.0.0.1 mpro.baidu.com
@@ -204,7 +204,7 @@
 127.0.0.1 utk.baidu.com
 127.0.0.1 wangmeng.baidu.com
 
-#°¢Àï¹ã¸æÁªÃË
+#é˜¿é‡Œå¹¿å‘Šè”ç›Ÿ
 127.0.0.1 a.alimama.cn
 127.0.0.1 bm.alimama.cn
 127.0.0.1 bmvip.alimama.cn
@@ -251,7 +251,7 @@
 127.0.0.1 taobaoafp.allyes.cn
 127.0.0.1 taobaoafp.allyes.com
 
-#ĞÂÀËÍø
+#æ–°æµªç½‘
 127.0.0.1 c.biz.weibo.com
 127.0.0.1 iyh365.cn
 127.0.0.1 8.show.sina.com.cn
@@ -302,7 +302,7 @@
 127.0.0.1 track.ra.icast.cn
 127.0.0.1 track2.ra.icast.cn
 
-#ÍøÒ×163
+#ç½‘æ˜“163
 127.0.0.1 analytics.ws.126.net
 127.0.0.1 img1.126.net
 127.0.0.1 stat.ws.126.net
@@ -324,7 +324,7 @@
 127.0.0.1 ud.blog.163.com
 127.0.0.1 union.163.com
 
-#ÓĞµÀËÑË÷
+#æœ‰é“æœç´¢
 127.0.0.1 a.youdao.com
 127.0.0.1 clkservice.mail.youdao.com
 127.0.0.1 clkservice.youdao.com
@@ -336,7 +336,7 @@
 127.0.0.1 impservice2.youdao.com
 127.0.0.1 union.youdao.com
 
-#ÌÚÑ¶QQ
+#è…¾è®¯QQ
 127.0.0.1 ad.qq.com
 127.0.0.1 adping.qq.com
 127.0.0.1 adsclick.qq.com
@@ -382,25 +382,25 @@
 127.0.0.1 trace.qq.com
 127.0.0.1 w.l.qq.com
 
-#ËÑËÑ
+#æœæœ
 127.0.0.1 dr.soso.com
 127.0.0.1 jzclick.soso.com
 127.0.0.1 pingfore.soso.com
 127.0.0.1 v3.toolbar.soso.com
 127.0.0.1 toolbar.soso.com
 
-#¹·¹·ËÑË÷
+#ç‹—ç‹—æœç´¢
 127.0.0.1 s.gougou.com
 127.0.0.1 un.so.gougou.com
 127.0.0.1 www.155.com
 
-#Ñ¸À×
+#è¿…é›·
 127.0.0.1 cl.kankan.xunlei.com
 127.0.0.1 float.sandai.net
 127.0.0.1 adsresult.joywell.com.cn
 127.0.0.1 advstat.xunlei.com
 
-#Ñ¸À×¿´¿´
+#è¿…é›·çœ‹çœ‹
 127.0.0.1 cop.my.sandai.net
 127.0.0.1 adcount.sandai.net
 127.0.0.1 analytics-union.sandai.net
@@ -452,7 +452,7 @@
 127.0.0.1 wy.xunlei.com
 127.0.0.1 xmlconf.client.xunlei.com
 
-#ËÑºü
+#æœç‹
 127.0.0.1 imp.go.sohu.com
 127.0.0.1 count.vrs.sohu.com
 127.0.0.1 hot.vrs.sohu.com
@@ -476,7 +476,7 @@
 127.0.0.1 u.ad-plus.cn
 127.0.0.1 sohu.datamaster.com.cn
 
-#ËÑ¹·
+#æœç‹—
 127.0.0.1 a1click.cpc.sogou.com
 127.0.0.1 adsence.sogou.com
 127.0.0.1 alpha.brand.sogou.com
@@ -500,7 +500,7 @@
 127.0.0.1 wb.brand.sogou.com
 127.0.0.1 xls.go.sohu.com
 
-#½ğÉ½ÔÚÏß
+#é‡‘å±±åœ¨çº¿
 127.0.0.1 kinfo.wps.cn
 127.0.0.1 db.union.download.kingsoft.com
 127.0.0.1 push.db.kingsoft.com
@@ -509,7 +509,7 @@
 127.0.0.1 union.kingsoft.com
 127.0.0.1 union.wps.kingsoft.com
 
-#ÓÅ¿á
+#ä¼˜é…·
 127.0.0.1 atm.youku.com
 127.0.0.1 Fvid.atm.youku.com
 127.0.0.1 html.atm.youku.com
@@ -526,7 +526,7 @@
 127.0.0.1 vid.atm.youku.com
 127.0.0.1 walp.atm.youku.com
 
-#ÆæÒÕ
+#å¥‡è‰º
 127.0.0.1 afp.qiyi.com
 127.0.0.1 focusbaiduafp.allyes.com
 
@@ -538,16 +538,16 @@
 127.0.0.1 adguanggao.eee114.com
 127.0.0.1 cctv.adsunion.com
 
-#ĞÂÀËÊÓÆµ
+#æ–°æµªè§†é¢‘
 127.0.0.1 dcads.sina.com.cn
 
 #pptv
 127.0.0.1 pp2.pptv.com
 
-#ÀÖÊÓ
+#ä¹è§†
 127.0.0.1 pro.letv.com
 
-#ËÑºü¸ßÇå
+#æœç‹é«˜æ¸…
 127.0.0.1 images.sohu.com
 
 #CNTV
@@ -558,7 +558,7 @@
 127.0.0.1 adguanggao.eee114.com
 127.0.0.1 cctv.adsunion.com
 
-#56Íø
+#56ç½‘
 127.0.0.1 acs.56.com
 127.0.0.1 acs.agent.56.com
 127.0.0.1 acs.agent.v-56.com
@@ -570,21 +570,21 @@
 127.0.0.1 uvimage.56.com
 127.0.0.1 v16.56.com
 
-#6¼ä·¿
+#6é—´æˆ¿
 127.0.0.1 pole.6rooms.com
 127.0.0.1 shrek.6.cn
 127.0.0.1 simba.6.cn
 127.0.0.1 union.6.cn
 
-#¼¤¶¯Íø
+#æ¿€åŠ¨ç½‘
 127.0.0.1 86file.megajoy.com
 127.0.0.1 86get.joy.cn
 127.0.0.1 86log.joy.cn
 
-#ËÑºü¸ßÇå
+#æœç‹é«˜æ¸…
 127.0.0.1 images.sohu.com
 
-#ÍÁ¶¹Íø
+#åœŸè±†ç½‘
 127.0.0.1 adextensioncontrol.tudou.com
 127.0.0.1 adplay.tudou.com
 127.0.0.1 iwstat.tudou.com
@@ -596,7 +596,7 @@
 127.0.0.1 *.p2v.tudou.com*
 127.0.0.1 adcontrol.tudou.com
 
-#¿á6Íø
+#é…·6ç½‘
 127.0.0.1 1.allyes.com.cn
 127.0.0.1 analytics.ku6.com
 127.0.0.1 gug.ku6cdn.com
@@ -615,7 +615,7 @@
 127.0.0.1 v2.stat.ku6.com
 127.0.0.1 v3.stat.ku6.com
 
-#ÈËÈË
+#äººäºº
 127.0.0.1 c.renren.com
 127.0.0.1 *.jebe.renren.com
 127.0.0.1 ebp.renren.com
@@ -625,7 +625,7 @@
 #ifeng
 127.0.0.1 flvad.ifeng.com 
 
-####¹úÍâÃÅ»§
+####å›½å¤–é—¨æˆ·
 #Adbureau
 127.0.0.1 ad101com-images.adbureau.net
 127.0.0.1 ad101com.adbureau.net
@@ -1277,7 +1277,7 @@
 127.0.0.1 spd.netconversions.com
 127.0.0.1 madserver.net
 127.0.0.1 ads.msn.com.nsatc.net
-@ÃÅ»§ºÍ³£ÓÃÍøÕ¾/Yahoo!
+#é—¨æˆ·å’Œå¸¸ç”¨ç½‘ç«™/Yahoo!
 #Adinterax
 127.0.0.1 adinterax.com
 127.0.0.1 mi.adinterax.com
@@ -1599,7 +1599,7 @@
 127.0.0.1 www.rightmedia.com
 127.0.0.1 www.yfdmedia.com
 127.0.0.1 ym.bannerconnect.net
-@HostsX º£ÍâÕ¾µã¹ã¸æ
+#HostsX æµ·å¤–ç«™ç‚¹å¹¿å‘Š
 #BNet
 127.0.0.1 bwp.bnet.com
 127.0.0.1 mads.bnet.com
@@ -1852,9 +1852,9 @@
 127.0.0.1 ads.miniclip.com
 127.0.0.1 ads.ttv.com.tw
 127.0.0.1 drd.hauchi.com.tw
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/ÉçÇøÀàÍøÕ¾
-#ÌìÑÄÉçÇø
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/ç¤¾åŒºç±»ç½‘ç«™
+#å¤©æ¶¯ç¤¾åŒº
 127.0.0.1 801.tianya.cn
 127.0.0.1 803.tianya.cn
 127.0.0.1 806.tianya.cn
@@ -1866,12 +1866,12 @@
 127.0.0.1 urchin.tianya.cn
 127.0.0.1 801.tianyaui.com
 127.0.0.1 click.tianyaui.com
-#¿­µÏÍø
+#å‡¯è¿ªç½‘
 127.0.0.1 panda.kdnet.net
 127.0.0.1 tracking.kdnet.net
-#¿ªĞÄÍø
+#å¼€å¿ƒç½‘
 127.0.0.1 m222034.kaixin001.com
-#Ææ»¢ÉçÇø
+#å¥‡è™ç¤¾åŒº
 127.0.0.1 aimg.qihoo.com
 127.0.0.1 clkstat.qihoo.com
 127.0.0.1 code.qihoo.com
@@ -1881,7 +1881,7 @@
 127.0.0.1 qd.code.qihoo.com
 127.0.0.1 rd.qihoo.com
 127.0.0.1 union.qihoo.com
-#Ã¨ÆËÍø
+#çŒ«æ‰‘ç½‘
 127.0.0.1 g.mop.com
 127.0.0.1 gg.mop.com
 127.0.0.1 imgpub.mop.com
@@ -1902,7 +1902,7 @@
 127.0.0.1 yx.mop.com
 127.0.0.1 union.uume.com
 127.0.0.1 jh.uume.com
-#ÈËÈËÍø
+#äººäººç½‘
 127.0.0.1 c.renren.com
 127.0.0.1 click.jebe.renren.com
 127.0.0.1 cupid.jebe.renren.com
@@ -1916,23 +1916,23 @@
 127.0.0.1 shaft.jebe.renren.com
 127.0.0.1 track.yx.renren.com
 127.0.0.1 jebe.xnimg.cn
-#ÌúÑªÍø
+#é“è¡€ç½‘
 127.0.0.1 ads.tiexue.net
 127.0.0.1 x.itiexue.net
 #VeryCD
 127.0.0.1 sp.vcimg.com
 127.0.0.1 sponsor.verycd.com
-#Î÷Â½Íø
+#è¥¿é™†ç½‘
 127.0.0.1 a.xilu.com
 127.0.0.1 content.xilu.com
 127.0.0.1 stat.xilu.com
 127.0.0.1 test.xilu.com
-#´óÆìÍø
+#å¤§æ——ç½‘
 127.0.0.1 adcount.yoka.com
 127.0.0.1 gg.daqi.com
 127.0.0.1 log.daqi.com
 127.0.0.1 union.daqi.com
-#Î÷ìôºúÍ¬
+#è¥¿ç¥ èƒ¡åŒ
 127.0.0.1 ad.xici.net
 127.0.0.1 data.xici.net
 #5d6d
@@ -1949,99 +1949,99 @@
 127.0.0.1 pro.blogbus.com
 #51.com
 127.0.0.1 v3.apic.51.com
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/Ğ¡ËµÀàÍøÕ¾
-#ÆğµãÖĞÎÄÍø
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/å°è¯´ç±»ç½‘ç«™
+#èµ·ç‚¹ä¸­æ–‡ç½‘
 127.0.0.1 qidian.adsame.com
 127.0.0.1 uedas.qidian.com
 127.0.0.1 js.ap.snyu.com
 127.0.0.1 rr.ap.snyu.com
 127.0.0.1 de.ap.snyu.com
 127.0.0.1 pic.snyu.com
-#Ò»Æğ¿´Ğ¡Ëµ
+#ä¸€èµ·çœ‹å°è¯´
 127.0.0.1 ad.17k.com
 127.0.0.1 log.17k.com
-#ÖğÀËÍø
+#é€æµªç½‘
 127.0.0.1 images2.zhulang.com
 127.0.0.1 pv.zhulang.com
-#äìÏæÊéÔº
+#æ½‡æ¹˜ä¹¦é™¢
 127.0.0.1 images.xxsy.net
 127.0.0.1 xxsy.bohelady.com
-#ºìĞäÌíÏã
+#çº¢è¢–æ·»é¦™
 127.0.0.1 m.union.hongxiu.com
-#Ğ¡ËµÔÄ¶ÁÍø
+#å°è¯´é˜…è¯»ç½‘
 127.0.0.1 a.readnovel.com
 127.0.0.1 stat.readnovel.com
-#ĞéÄâÌì¿Õ
+#è™šæ‹Ÿå¤©ç©º
 127.0.0.1 b.xntk.com
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/ĞÂÎÅÀàÍøÕ¾
-#ĞÂ»ªÍø
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/æ–°é—»ç±»ç½‘ç«™
+#æ–°åç½‘
 127.0.0.1 adcenter.xinhuanet.com
 127.0.0.1 embed.xinhuanet.com
 127.0.0.1 entity.xinhuanet.com
-#ÈËÃñÍø
+#äººæ°‘ç½‘
 127.0.0.1 ads.people.com.cn
 127.0.0.1 pro.people.com.cn
-#·ï»ËÍø
+#å‡¤å‡°ç½‘
 127.0.0.1 bc.ifeng.com
 127.0.0.1 sta.ifeng.com
 127.0.0.1 stadig.ifeng.com
-#ÁªºÏÔç±¨
+#è”åˆæ—©æŠ¥
 127.0.0.1 ads.zaobao.com
-#ĞÂÃñÍø
+#æ–°æ°‘ç½‘
 127.0.0.1 iads.xinmin.cn
-#»Û´ÏÍø
+#æ…§èªç½‘
 127.0.0.1 hcafp.allyes.com
-#ÖĞĞÂÍø
+#ä¸­æ–°ç½‘
 127.0.0.1 www.pagechoice.net
 127.0.0.1 report.chinanews.com
-#ÖĞ»ªÍø
+#ä¸­åç½‘
 127.0.0.1 c.china.com
 127.0.0.1 dvs.china.com
 127.0.0.1 dvsend.china.com
 127.0.0.1 richmedia.china.com
 127.0.0.1 track.china.com
-#¶«·½ÈÈÏß
+#ä¸œæ–¹çƒ­çº¿
 127.0.0.1 adi.cnool.net
 127.0.0.1 adp1.cnool.net
 127.0.0.1 countimages.cnool.net
-#ĞÇµº»·ÇòÍø
+#æ˜Ÿå²›ç¯çƒç½‘
 127.0.0.1 stnn.adsame.com
-#´óÖÚÍø
+#å¤§ä¼—ç½‘
 127.0.0.1 ad.dzwww.com
-#Ç§ÁúÍø
+#åƒé¾™ç½‘
 127.0.0.1 ad.cqnews.net
 127.0.0.1 adimg.cqnews.net
-#ÆëÂ³ÔÚÏß
+#é½é²åœ¨çº¿
 127.0.0.1 c.iqilu.com
 127.0.0.1 g.iqilu.com
 127.0.0.1 gimg.iqilu.com
-#»ªÉÌÍø
+#åå•†ç½‘
 127.0.0.1 g.hsw.cn
 127.0.0.1 stat.hsw.cn
-#ÄÏº£Íø
+#å—æµ·ç½‘
 127.0.0.1 emarketing.hinews.cn
 127.0.0.1 pl.hinews.cn
-#ÈıÁªËØ²Ä
+#ä¸‰è”ç´ æ
 127.0.0.1 ad.3lian.com
-#ÖØÇìÍí±¨
+#é‡åº†æ™šæŠ¥
 127.0.0.1 ad.cqwb.com.cn
-#´óÑóÍø
+#å¤§æ´‹ç½‘
 127.0.0.1 adimg.dayoo.com
 127.0.0.1 rnd.dayoo.com
 127.0.0.1 sta.dayoo.com
-#±±·½Íø
+#åŒ—æ–¹ç½‘
 127.0.0.1 eap.enorth.com.cn
 127.0.0.1 jsp5.enorth.com.cn
 127.0.0.1 swf.enorth.com.cn
-#»·ÇòÍø
+#ç¯çƒç½‘
 127.0.0.1 cl2.webterren.com
 127.0.0.1 bjafp.allyes.com
 127.0.0.1 huanqiu.allyes.com
 127.0.0.1 huanqiu.datamaster.com.cn
-#Öéº£ÊÓ´°
+#ç æµ·è§†çª—
 127.0.0.1 poo.zhuhai.gd.cn
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/ÓÎÏ·ÀàÍøÕ¾
-#µçÍæ°ÍÊ¿
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/æ¸¸æˆç±»ç½‘ç«™
+#ç”µç©å·´å£«
 127.0.0.1 bill.tgbus.com
 127.0.0.1 g.tgbus.com
 127.0.0.1 g.tgbusdata.cn
@@ -2052,9 +2052,9 @@
 #178
 127.0.0.1 adcount.178.com
 127.0.0.1 market.178.com
-#ÓÎÏÀÍø
+#æ¸¸ä¾ ç½‘
 127.0.0.1 bmp.ali213.net
-#°®ÅÄÓÎÏ·
+#çˆ±æ‹æ¸¸æˆ
 127.0.0.1 apas.aipai.com
 #776
 127.0.0.1 dynamic.766.com
@@ -2071,14 +2071,14 @@
 127.0.0.1 js.adm.cngba.com
 #DM5
 127.0.0.1 by.dm5.com
-#ÓÎ¾ÃÍø
+#æ¸¸ä¹…ç½‘
 127.0.0.1 stat.uuu9.com
-#4399Ğ¡ÓÎÏ·
+#4399å°æ¸¸æˆ
 127.0.0.1 aszt1.my4399.com
 127.0.0.1 stat.api.4399.com
 127.0.0.1 uimg.my4399.com
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/²Æ¾­ÀàÍøÕ¾
-#ºÍÑ¶²Æ¾­
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/è´¢ç»ç±»ç½‘ç«™
+#å’Œè®¯è´¢ç»
 127.0.0.1 ads.hexun.com
 127.0.0.1 analytics.tool.hexun.com
 127.0.0.1 count.tool.hexun.com
@@ -2089,46 +2089,46 @@
 127.0.0.1 union.hexun.com
 127.0.0.1 utrack.hexun.com
 127.0.0.1 wizard.stock.hexun.com
-#¶«·½²Æ¸»Íø
+#ä¸œæ–¹è´¢å¯Œç½‘
 127.0.0.1 ay.eastmoney.com
 127.0.0.1 cp.eastmoney.com
 127.0.0.1 js1.eastmoney.com
 127.0.0.1 same.eastmoney.com
 127.0.0.1 eastmoney.allyes.com
 127.0.0.1 wonderadafa7.allyes.com
-#½ğÈÚ½ç
+#é‡‘èç•Œ
 127.0.0.1 allyes.jrj.com
 127.0.0.1 aps4.jrjimg.cn
-#Ö¤È¯Ö®ĞÇ
+#è¯åˆ¸ä¹‹æ˜Ÿ
 127.0.0.1 allyes.stockstar.com
-#ÖĞ½ğÔÚÏß
+#ä¸­é‡‘åœ¨çº¿
 127.0.0.1 click.cnfol.com
 127.0.0.1 pagead.cnfol.com
 127.0.0.1 he.js.cnfol.com
 127.0.0.1 csad.adsame.com
-#MACD½ğÈÚÍø
+#MACDé‡‘èç½‘
 127.0.0.1 xc.macd.cn
-#ÖĞ¹ú×Ê±¾Ö¤È¯Íø
+#ä¸­å›½èµ„æœ¬è¯åˆ¸ç½‘
 127.0.0.1 ads.ccstock.cn
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/ÉãÓ°ÀàÍøÕ¾
-#·äÄñÍø
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/æ‘„å½±ç±»ç½‘ç«™
+#èœ‚é¸Ÿç½‘
 127.0.0.1 pic.fengniao.com
 127.0.0.1 stat.fengniao.com
 127.0.0.1 js.fengniao.com
-#É«Ó°ÎŞ¼É
+#è‰²å½±æ— å¿Œ
 127.0.0.1 www8.xitek.com
 #POCO
 127.0.0.1 a-m-s.poco.cn
-#ĞÂÉãÓ°
+#æ–°æ‘„å½±
 127.0.0.1 util.nphoto.net
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/¹ºÎïÀàÍøÕ¾
-#ÃÎ°ÅÉ¯
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/è´­ç‰©ç±»ç½‘ç«™
+#æ¢¦èŠ­è
 127.0.0.1 click.moonbasa.com
 127.0.0.1 static.moonbasa.com
-#¼ÒµçÁªÃË
+#å®¶ç”µè”ç›Ÿ
 127.0.0.1 pic.jdunion.com
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/ITÀàÍøÕ¾
-#µçÄÔÖ®¼Ò
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/ITç±»ç½‘ç«™
+#ç”µè„‘ä¹‹å®¶
 127.0.0.1 ad.adver.com.tw
 127.0.0.1 ad.pchome.net
 127.0.0.1 btm.pchome.net
@@ -2138,7 +2138,7 @@
 127.0.0.1 js-1.pchome.net
 127.0.0.1 market.pchome.net
 127.0.0.1 stat.pchome.net
-#ÖĞ¹Ø´åÔÚÏß
+#ä¸­å…³æ‘åœ¨çº¿
 127.0.0.1 adm.zol.com.cn
 127.0.0.1 bd.zol.com.cn
 127.0.0.1 bwp.zol.com.cn
@@ -2149,7 +2149,7 @@
 127.0.0.1 pvmsite.zol.com.cn
 127.0.0.1 pvsite.zol.com.cn
 127.0.0.1 stat.zol.com.cn
-#PcÅİÅİ
+#Pcæ³¡æ³¡
 127.0.0.1 33.pcpop.com
 127.0.0.1 app.pcpop.com
 127.0.0.1 ashow.pcpop.com
@@ -2166,16 +2166,16 @@
 127.0.0.1 168.it168.com
 127.0.0.1 adshow.it168.com
 127.0.0.1 stat.it168.com
-#Î÷ÓòIT
+#è¥¿åŸŸIT
 127.0.0.1 apic.xiyuit.com
-#î£ÉÌÔÚÏß
+#ç¿å•†åœ¨çº¿
 127.0.0.1 count.spn.com.cn
 127.0.0.1 www2.spn.com.cn
-#ÍòÎ¬¼ÒµçÍø
+#ä¸‡ç»´å®¶ç”µç½‘
 127.0.0.1 js.ea3w.com
 127.0.0.1 pic.ea3w.com
 127.0.0.1 stat.ea3w.com
-#Ìì¼«Íø
+#å¤©æç½‘
 127.0.0.1 counter.tianjimedia.com
 127.0.0.1 more.tianjimedia.com
 127.0.0.1 pv.tianjimedia.com
@@ -2184,21 +2184,21 @@
 127.0.0.1 ucpn.yesky.com
 127.0.0.1 union.yesky.com
 127.0.0.1 yeskyafp.allyes.com
-#¹è¹È¶¯Á¦
+#ç¡…è°·åŠ¨åŠ›
 127.0.0.1 trace.enet.com.cn
 127.0.0.1 enet4.enet.com.cn
-#±ÈÌØÍø
+#æ¯”ç‰¹ç½‘
 127.0.0.1 adsame.tianjimedia.com
-#ÈüµÏÍø
+#èµ›è¿ªç½‘
 127.0.0.1 stat.ccidnet.com
 127.0.0.1 www2.ccidnet.com
-#¶¹¶¹Íø
+#è±†è±†ç½‘
 127.0.0.1 ad.ddvip.com
 #Donews
 127.0.0.1 gg.donews.com
-#Ğ¡ĞÜÔÚÏß
+#å°ç†Šåœ¨çº¿
 127.0.0.1 yahoo1.beareyes.com.cn
-#À¶É«ÀíÏë
+#è“è‰²ç†æƒ³
 127.0.0.1 gg.blueidea.com
 #CSDN
 127.0.0.1 counter.csdn.net
@@ -2209,7 +2209,7 @@
 127.0.0.1 img.rayfile.com
 127.0.0.1 raya.rayfile.com
 127.0.0.1 w105.rayfile.com
-#»ªÎªÍøÅÌ
+#åä¸ºç½‘ç›˜
 127.0.0.1 acd.adkongjian.com
 127.0.0.1 cs.adkongjian.com
 127.0.0.1 cs.twcczhu.com
@@ -2225,39 +2225,39 @@
 127.0.0.1 www.114la.com
 127.0.0.1 un.i.116.com
 127.0.0.1 un.v.116.com
-#Ä¾ÂìÒÏ
+#æœ¨èš‚èš
 127.0.0.1 js.mumayi.net
 #Xdowns
 127.0.0.1 ccc.xdowns.com
 #Crsky
 127.0.0.1 images.crsky.com
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/Æû³µÀàÍøÕ¾
-#³µÊĞÍø
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/æ±½è½¦ç±»ç½‘ç«™
+#è½¦å¸‚ç½‘
 127.0.0.1 analyze.cheshi.com
 127.0.0.1 click.cheshi.com
 127.0.0.1 media.cheshi-img.com
 127.0.0.1 pv.cheshi.com
 127.0.0.1 fallyesbjafa.allyes.com
-#°®¿¨Æû³µ
+#çˆ±å¡æ±½è½¦
 127.0.0.1 count.xcar.com.cn
 127.0.0.1 d0.xcar.com.cn
 127.0.0.1 d1.xcar.com.cn
 127.0.0.1 dw.xcar.com.cn
-#Ò×³µÍø
+#æ˜“è½¦ç½‘
 127.0.0.1 autosense.bitauto.com
 127.0.0.1 g.bitauto.com
 127.0.0.1 gimg.bitauto.com
 127.0.0.1 ip.bitauto.com
 127.0.0.1 log.bitauto.com
-#Æû³µÖ®¼Ò
+#æ±½è½¦ä¹‹å®¶
 127.0.0.1 33.autohome.com.cn
 127.0.0.1 adshow.che168.com
 127.0.0.1 pv.che168.com
-#Ì«Æ½ÑóÆû³µÍø
+#å¤ªå¹³æ´‹æ±½è½¦ç½‘
 127.0.0.1 count.pcauto.com.cn
-#ÖĞ¹úÆû³µÍø
+#ä¸­å›½æ±½è½¦ç½‘
 127.0.0.1 chinacarsafp.allyes.com
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/ÊÓÆµÀàÍøÕ¾
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/è§†é¢‘ç±»ç½‘ç«™
 #CNTV
 127.0.0.1 a.cctv.com
 127.0.0.1 a.cntv.cn
@@ -2278,7 +2278,7 @@
 #JSTV
 127.0.0.1 jstvimedia.allyes.com
 127.0.0.1 jstv.allyes.com
-#ÎÒÀÖÍø
+#æˆ‘ä¹ç½‘
 127.0.0.1 acs.agent.v-56.com
 127.0.0.1 bill.agent.v-56.com
 127.0.0.1 stat3.corp.v-56.com
@@ -2291,12 +2291,12 @@
 127.0.0.1 union.56.com
 127.0.0.1 uvimage.56.com
 127.0.0.1 v16.56.com
-#6¼ä·¿
+#6é—´æˆ¿
 127.0.0.1 pole.6rooms.com
 127.0.0.1 shrek.6.cn
 127.0.0.1 simba.6.cn
 127.0.0.1 union.6.cn
-#iÆæÒÕ
+#iå¥‡è‰º
 127.0.0.1 minisite.qiyi.com
 127.0.0.1 policy.cupid.qiyi.com
 127.0.0.1 show.cupid.qiyi.com
@@ -2308,7 +2308,7 @@
 127.0.0.1 bsg.unlitui.com
 127.0.0.1 b.scorecardresearch.com
 127.0.0.1 log.51network.com
-#ÓÅ¿áÍø
+#ä¼˜é…·ç½‘
 127.0.0.1 atm.youku.com
 127.0.0.1 count.atm.youku.com
 127.0.0.1 e.stat.youku.com
@@ -2331,7 +2331,7 @@
 127.0.0.1 walp.atm.youku.com
 127.0.0.1 smarttrade.allyes.com
 127.0.0.1 a.htwisdom.com
-#ÍÁ¶¹Íø
+#åœŸè±†ç½‘
 127.0.0.1 adcontrol.tudou.com
 127.0.0.1 adextensioncontrol.tudou.com
 127.0.0.1 adplay.tudou.com
@@ -2344,7 +2344,7 @@
 127.0.0.1 tdcm.tudou.com
 127.0.0.1 wwwtest.tudou.com
 127.0.0.1 tudouflv.dnion.com
-#¿á6Íø
+#é…·6ç½‘
 127.0.0.1 1.allyes.com.cn
 127.0.0.1 ku6.allyes.com
 127.0.0.1 gug.ku6cdn.com
@@ -2361,41 +2361,41 @@
 127.0.0.1 v2.stat.ku6.com
 127.0.0.1 v3.stat.ku6.com
 127.0.0.1 youyou.ku6.com
-#¼¤¶¯Íø
+#æ¿€åŠ¨ç½‘
 127.0.0.1 86file.megajoy.com
 127.0.0.1 86mms.megajoy.com
 127.0.0.1 86get.joy.cn
 127.0.0.1 86log.joy.cn
-#ÌìÏßÊÓÆµ
+#å¤©çº¿è§†é¢‘
 127.0.0.1 casting.openv.com
 127.0.0.1 m.openv.tv
 127.0.0.1 uniclick.openv.com
 #UstreamTV
 127.0.0.1 media.scanscout.com
 127.0.0.1 log.adap.tv
-#Æ¤Æ¤Ó°ÊÓ
+#çš®çš®å½±è§†
 127.0.0.1 afm.pipi.cn
 127.0.0.1 game.pipi.cn
 127.0.0.1 qian.pipi.cn
-#µÚÒ»·ÅÓ³ÊÒ
+#ç¬¬ä¸€æ”¾æ˜ å®¤
 127.0.0.1 admin.onefy.com
 127.0.0.1 bo.tv365.cc
 #Wo318
 127.0.0.1 wo318.k621.com
-#±¬Ã×»¨
+#çˆ†ç±³èŠ±
 127.0.0.1 union.pomoho.com
-#ÀÖÊÓÍø
+#ä¹è§†ç½‘
 127.0.0.1 dc.letv.com
 127.0.0.1 pro.letv.com
 127.0.0.1 stat.letv.com
-#¾Ş¾¨Íø
+#å·¨é²¸ç½‘
 127.0.0.1 t.top100.cn
 #DJ527
 127.0.0.1 ad.dj527.com
 127.0.0.1 sy.0575dp.com
 127.0.0.1 www.0575dp.com
-@HostsX ¹úÄÚÕ¾µã¹ã¸æ/ĞÅÏ¢·şÎñÀàÍøÕ¾
-#ËÑ·¿
+#HostsX å›½å†…ç«™ç‚¹å¹¿å‘Š/ä¿¡æ¯æœåŠ¡ç±»ç½‘ç«™
+#æœæˆ¿
 127.0.0.1 clickn.soufun.com
 127.0.0.1 count.soufun.com
 127.0.0.1 flas.soufun.com
@@ -2404,22 +2404,22 @@
 127.0.0.1 show.soufun.com
 127.0.0.1 shows.soufun.com
 127.0.0.1 shows1.soufun.com
-#°¢°îÍø
+#é˜¿é‚¦ç½‘
 127.0.0.1 abangafp.abang.com
-#ÖĞ¹úÌìÆø
+#ä¸­å›½å¤©æ°”
 127.0.0.1 poster1.weather.com.cn
 127.0.0.1 poster.weather.com.cn
-#39½¡¿µÍø
+#39å¥åº·ç½‘
 127.0.0.1 app-g.39.net
 127.0.0.1 dpvc.39.net
 127.0.0.1 39net.datamaster.com.cn
-#Ñ°Ò½ÎÊÒ©Íø
+#å¯»åŒ»é—®è¯ç½‘
 127.0.0.1 gg.xywy.com
-#ôÜÊÂ°Ù¿Æ
+#ç³—äº‹ç™¾ç§‘
 127.0.0.1 ad.qiushibaike.com
-#»¥¶¯°Ù¿Æ
+#äº’åŠ¨ç™¾ç§‘
 127.0.0.1 stat.hudong.com
-#Ğ¯³ÌÍø
+#æºç¨‹ç½‘
 127.0.0.1 allyes.ctrip.com
 #21CN
 127.0.0.1 analytics.21cn.com
@@ -2439,32 +2439,32 @@
 127.0.0.1 tom.allyes.com
 127.0.0.1 adserve2.tomoimg.cn
 127.0.0.1 xtrack.tomonline-inc.com
-#±±ÇàÍø
+#åŒ—é’ç½‘
 127.0.0.1 a.emedia.cn
 127.0.0.1 v.emedia.cn
 127.0.0.1 z3.emedia.cn
 127.0.0.1 ad.ynet.com
 127.0.0.1 fun.ynet.com
 127.0.0.1 ranking.ynet.com
-#µÂÖİÖ®´°
+#å¾·å·ä¹‹çª—
 127.0.0.1 gg.dzwindows.com
-#ºÓ³Ø365
+#æ²³æ± 365
 127.0.0.1 bbs.corp.gxhc365.com
-#±±º£365
+#åŒ—æµ·365
 127.0.0.1 ad.beihai365.com
-#HiaoºÃÍø
+#Hiaoå¥½ç½‘
 127.0.0.1 stat.hiao.com
 127.0.0.1 up.hiao.com
-#»ªÉùÂÛÌ³
+#åå£°è®ºå›
 127.0.0.1 click.hnol.net
 127.0.0.1 clickip.hnol.net
 127.0.0.1 ts.instreet.cn
-#ÒÚ·¿
+#äº¿æˆ¿
 127.0.0.1 shows.fdc.com.cn
 #51Job
 127.0.0.1 logs.51job.com
 127.0.0.1 kwdsrv.51job.com
-#ÖÇÁªÕĞÆ¸
+#æ™ºè”æ‹›è˜
 127.0.0.1 cnt.zhaopin.com
 #Yidaba
 127.0.0.1 adc.yidaba.com
@@ -2479,7 +2479,7 @@
 127.0.0.1 images.yidaba.com
 127.0.0.1 images.cms.yidaba.com
 127.0.0.1 static.yidaba.com
-@Windows Èí¼ş¹ã¸æ¹ıÂË
+#Windows è½¯ä»¶å¹¿å‘Šè¿‡æ»¤
 #360Safe
 127.0.0.1 inst.360safe.com
 127.0.0.1 pdown.stat.360safe.com
@@ -2507,7 +2507,7 @@
 127.0.0.1 advert.estsoft.com
 #Potplayer
 127.0.0.1 m.adtc.daum.net
-#±©·çÓ°Òô
+#æš´é£å½±éŸ³
 127.0.0.1 boxlist.baofeng.net
 127.0.0.1 clicklog.moviebox.baofeng.net
 127.0.0.1 diag.baofeng.net
@@ -2661,9 +2661,9 @@
 127.0.0.1 al.myrice.com
 127.0.0.1 all.myrice.com
 127.0.0.1 client.myrice.com
-#¶àÃ×ÒôÀÖ
+#å¤šç±³éŸ³ä¹
 127.0.0.1 pc.boxshows.com
-#YYÓïÒô
+#YYè¯­éŸ³
 127.0.0.1 ad.yy.duowan.com
 127.0.0.1 do.yy.duowan.com
 127.0.0.1 forceupdate.yy.duowan.com
@@ -2675,7 +2675,7 @@
 127.0.0.1 dw.hiido.cn
 127.0.0.1 im.yy.hiido.cn
 127.0.0.1 njs.dw.hiido.cn
-#·ÉĞÅ¿Í»§¶Ë
+#é£ä¿¡å®¢æˆ·ç«¯
 127.0.0.1 f.10086.cn
 127.0.0.1 gg.joytod.com
 127.0.0.1 hdss1fta.fetion.com.cn
@@ -2683,7 +2683,7 @@
 127.0.0.1 imgl.fetionpic.com
 127.0.0.1 minisite.fetionpic.com
 127.0.0.1 minisite0.fetionpic.com
-#°¢ÀïÍúÍú
+#é˜¿é‡Œæ—ºæ—º
 127.0.0.1 jc.wangwang.taobao.com
 127.0.0.1 dailyupdate.wangwang.taobao.com
 127.0.0.1 files.dailyupdate.wangwang.taobao.com
@@ -2704,17 +2704,17 @@
 127.0.0.1 isgame.ipark.cn
 127.0.0.1 ghpage.iuzone.com
 127.0.0.1 page.iuzone.com
-#Ç§Ç§¾²Ìı
+#åƒåƒé™å¬
 127.0.0.1 ads.qianqian.com
 127.0.0.1 ttads.ttplayer.com
 127.0.0.1 ttmsg.qianqian.com
-#¿áÎÒÒôÀÖ
+#é…·æˆ‘éŸ³ä¹
 127.0.0.1 g.kuwo.cn
 127.0.0.1 wa.kuwo.cn
 127.0.0.1 updatepage.kuwo.cn
 127.0.0.1 g.koowo.com
 127.0.0.1 wa.koowo.com
-#¿á¹·ÒôÀÖ
+#é…·ç‹—éŸ³ä¹
 127.0.0.1 dl.ddong.com
 127.0.0.1 game.kugou.com
 127.0.0.1 games.kugou.com
@@ -2739,7 +2739,7 @@
 #Micronichefinder
 127.0.0.1 www.micronichefinder.com
 127.0.0.1 micronichefinder.com
-#¹âÓ°Ä§ÊõÊÖ
+#å…‰å½±é­”æœ¯æ‰‹
 127.0.0.1 ad.neoimaging.cn
 127.0.0.1 clientconfig.neoimaging.cn
 127.0.0.1 jump.neoimaging.cn
@@ -2761,7 +2761,7 @@
 127.0.0.1 tj.pctutu.net
 127.0.0.1 update.pctutu.com
 127.0.0.1 update.pctutu.net
-#½ğÉ½¶¾°Ô
+#é‡‘å±±æ¯’éœ¸
 127.0.0.1 i2c.duba.net
 127.0.0.1 i2u.www.duba.net
 127.0.0.1 ifr.duba.net
@@ -2771,13 +2771,13 @@
 127.0.0.1 api.pc120.com
 127.0.0.1 stat.sd.keniu.com
 127.0.0.1 tq.sd.keniu.com
-#½ğÉ½´Ê°Ô
+#é‡‘å±±è¯éœ¸
 127.0.0.1 34.goto.www.iciba.com
 127.0.0.1 counter.kds.iciba.com
 127.0.0.1 goto.www.iciba.com
 127.0.0.1 u.iciba.com
 127.0.0.1 u.sl.iciba.com
-#QQ¹Ü¼Ò
+#QQç®¡å®¶
 127.0.0.1 s.pcmgr.qq.com
 #QQCEO
 127.0.0.1 ad.qqceo.net
@@ -2790,7 +2790,7 @@
 #QQvoice
 127.0.0.1 union.qqvoice.com
 127.0.0.1 union.uucall.hk
-#ËÑ¹·ä¯ÀÀÆ÷
+#æœç‹—æµè§ˆå™¨
 127.0.0.1 conf.ie.sogou.com
 127.0.0.1 config.ie.sogou.com
 127.0.0.1 ping.ie.sogou.com
@@ -2803,7 +2803,7 @@
 #Yunduan
 127.0.0.1 tj.yunduan.cn
 127.0.0.1 update.yunduan.cn
-@Windows Èí¼şÑéÖ¤ÆÁ±Î
+#Windows è½¯ä»¶éªŒè¯å±è”½
 #Game Assassin's Creed
 127.0.0.1 onlineconfigservice.ubi.com
 127.0.0.1 orbitservice.ubi.com
@@ -2902,7 +2902,7 @@
 127.0.0.1 www.comodogroup.com
 127.0.0.1 www.usertrust.com
 127.0.0.1 crl.usertrust.com
-#Emurasoft£¨EmEditor£©
+#Emurasoftï¼ˆEmEditorï¼‰
 127.0.0.1 www.emurasoft.com
 #FlashFXP
 127.0.0.1 liveupdate.inicom.net
@@ -2966,7 +2966,7 @@
 127.0.0.1 ps2.zonelabs.com
 127.0.0.1 register.zonelabs.com
 127.0.0.1 update.zonelabs.com
-@HostsX ¹úÍâ¹ã¸æÆ½Ì¨
+#HostsX å›½å¤–å¹¿å‘Šå¹³å°
 #247realmedia
 127.0.0.1 accuweathercollect.247realmedia.com
 127.0.0.1 adv.247realmedia.com
@@ -8088,7 +8088,7 @@
 127.0.0.1 www.linkworth.com
 127.0.0.1 ox-d.majorgeeks.com
 127.0.0.1 ox-i.majorgeeks.com
-@HostsX ¹úÄÚ¹ã¸æÁªÃË
+#HostsX å›½å†…å¹¿å‘Šè”ç›Ÿ
 #0252
 127.0.0.1 js.0252.com
 127.0.0.1 jump.0252.com
@@ -9160,7 +9160,7 @@
 127.0.0.1 union.zhubajie.com
 127.0.0.1 list.zhubajie.com
 127.0.0.1 un.zhubajie.com
-@Mobile ÊÖ»ú¹ã¸æÆ½Ì¨
+#Mobile æ‰‹æœºå¹¿å‘Šå¹³å°
 #16kxs
 127.0.0.1 ad.16kxs.com
 127.0.0.1 wap10.16kxs.com
@@ -9646,7 +9646,7 @@
 127.0.0.1 www.stickylogic.com
 127.0.0.1 www.wqmobile.com
 127.0.0.1 pixel-hk.pixelinteractivemedia.com
-@HostsX Í³¼Æ¸ú×ÙÆÁ±Î
+#HostsX ç»Ÿè®¡è·Ÿè¸ªå±è”½
 #51La
 127.0.0.1 img.users.51.la
 127.0.0.1 js.users.51.la
@@ -9743,7 +9743,7 @@
 127.0.0.1 code3.soua.com
 127.0.0.1 www.soua.com
 127.0.0.1 union.soua.com
-#Ê¢´óÍ³¼Æ
+#ç››å¤§ç»Ÿè®¡
 127.0.0.1 photo.staticsdo.com
 127.0.0.1 feo.staticsdo.com
 127.0.0.1 adrs.sdo.com
@@ -9839,10 +9839,10 @@
 127.0.0.1 www.referer.cn
 127.0.0.1 www.zzcount.com
 127.0.0.1 zjomo2.app9.hubspot.com
-@HostsX ·ÀÖ¹ÍøÂç½Ù³Ö
-#ÓòÃû½Ù³Ö
+#HostsX é˜²æ­¢ç½‘ç»œåŠ«æŒ
+#åŸŸååŠ«æŒ
 127.0.0.1 ss.cnnic.cn
-#ÔËÓªÉÌ½Ù³Ö
+#è¿è¥å•†åŠ«æŒ
 127.0.0.1 sh.114so.cn
 127.0.0.1 118114.cn
 127.0.0.1 so.118114.cn
@@ -9872,7 +9872,7 @@
 127.0.0.1 sddnserror7.wo.com.cn
 127.0.0.1 nfdnserror8.wo.com.cn
 127.0.0.1 pop.17lele.net
-#¸÷µØÔËÓªÉÌ¹ã¸æ
+#å„åœ°è¿è¥å•†å¹¿å‘Š
 127.0.0.1 lc.havod.com
 127.0.0.1 havod.com
 127.0.0.1 www.havod.com
@@ -9881,8 +9881,8 @@
 127.0.0.1 ad.xunkoo.com
 127.0.0.1 ads.iisdoor.com
 127.0.0.1 pv.bbapp.net
-@HostsX ¿ÉÒÉ²¡¶¾À¹½Ø
-#µöÓãÕ©Æ­
+#HostsX å¯ç–‘ç—…æ¯’æ‹¦æˆª
+#é’“é±¼è¯ˆéª—
 127.0.0.1 98712.com
 127.0.0.1 t.98712.com
 127.0.0.1 zx.98712.com
@@ -10135,7 +10135,7 @@
 127.0.0.1 chat.live800.com
 127.0.0.1 zxrj.400fly.com
 127.0.0.1 3g.wjdb007.com
-#ä¯ÀÀÆ÷½Ù³Ö
+#æµè§ˆå™¨åŠ«æŒ
 127.0.0.1 054.cc
 127.0.0.1 1188.com
 127.0.0.1 2345.com
@@ -10286,7 +10286,7 @@
 127.0.0.1 xiujue.net
 127.0.0.1 yaoxp.com
 127.0.0.1 yxbao.com
-#²¡¶¾ÏÂÔØ
+#ç—…æ¯’ä¸‹è½½
 127.0.0.1 union.qyule.com
 127.0.0.1 unionch.qyule.com
 127.0.0.1 kb.ttdk2.com
@@ -10401,8 +10401,8 @@
 127.0.0.1 www.winscp.cc
 127.0.0.1 www.sshsecure.com
 127.0.0.1 l.ip-163.com
-@HostsX ¶ñÒâµ¯´°ÆÁ±Î
-#Ç©Ãûµ¯´°
+#HostsX æ¶æ„å¼¹çª—å±è”½
+#ç­¾åå¼¹çª—
 127.0.0.1 code.2010qianming.com
 127.0.0.1 code.52qiangming.com
 127.0.0.1 code.aizhuanlove.cn
@@ -10417,7 +10417,7 @@
 127.0.0.1 www.aiqianming.cn
 127.0.0.1 www.cangtoushi.cn
 127.0.0.1 www1.99mc.com
-#¿Í·şµ¯´°
+#å®¢æœå¼¹çª—
 127.0.0.1 chat.53kf.com
 127.0.0.1 up.53kf.com
 127.0.0.1 www.53kf.com
@@ -10425,7 +10425,7 @@
 127.0.0.1 www.918kf.com
 127.0.0.1 www.54kfqq.com
 127.0.0.1 www.live800.com
-#ÓÎÏ·µ¯´°
+#æ¸¸æˆå¼¹çª—
 127.0.0.1 astd.snsfun.cc
 127.0.0.1 astds3.snsfun.cc
 127.0.0.1 plsm.snsfun.cc
@@ -10597,7 +10597,7 @@
 127.0.0.1 c.ooo1000.com
 127.0.0.1 d.ooo1000.com
 127.0.0.1 e.ooo1000.com
-#¶ñÒâµ¯´°
+#æ¶æ„å¼¹çª—
 127.0.0.1 1.usazm.net
 127.0.0.1 10000.mm.oishow.com
 127.0.0.1 11.ki99.info
