@@ -1,7 +1,0 @@
-#!/bin/sh
-
-if [ -e "$3/private/etc/hosts" ]
-then
-rm -rf "$3/private/etc/hosts"
-fi
-

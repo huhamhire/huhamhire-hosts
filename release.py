@@ -9,6 +9,7 @@ class releaseHostsPanel:
     def __init__(self, dir, downdir, relname):
         #³õÊ¼»¯
         self.bindir = dir + 'WinHosts/bin/'
+        self.objdir = dir + 'WinHosts/obj/'
         self.reldir = 'Release/'
         self.binfile = 'HostsPanel.exe'
         self.downdir = downdir
@@ -23,17 +24,22 @@ class releaseHostsPanel:
         f.close() 
 
     def delBinDir(self):
-        #É¾³ýÁÙÊ±Ä¿Â¼
+        #É¾³ý±àÒëÄ¿Â¼
         shutil.rmtree(self.bindir)
+        shutil.rmtree(self.objdir)
         
     def run(self):
         self.toZip(self.downdir + self.relname + '.zip')
-        self.delBinDir()
         
 if __name__ == '__main__':
     rel = releaseHostsPanel('./', '../downloads/win/', 'HostsPanel_win_1.0beta')
     try:
         rel.run()
         print('Done!')
+    except WindowsError:
+        print('Bin file not exists!')
+    
+    try:
+        rel.delBinDir()
     except WindowsError:
         print('Bin file not exists!')
