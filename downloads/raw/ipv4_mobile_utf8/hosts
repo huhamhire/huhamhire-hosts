@@ -33,10 +33,14 @@
 #	::1             localhost
 #
 # Special thanks to: smarthosts, hostsx, ipv6-hosts, mwsl, yoyo, 
-#                    mvps, ATGFW and hpHosts#
+#                    mvps, ATGFW and hpHosts
+
+#
 # HostsVer Timestamp : 1359561600
 # Creation Timestamp : 1359561600
-######### Localhost ########
+#
+
+######## Localhost ########
 
 #Windows
 127.0.0.1 localhost.localdomain localhost
@@ -56,7 +60,9 @@ ff02::3 ip6-allhosts
 fe80::1 lo0	localhost
 255.255.255.255	broadcasthost
 
-######## Localhost END ######### region activation
+######## Localhost END ########
+
+# region activation
 ######## IPv4 HOSTS ########
 # 屏蔽Adobe激活服务器：
 127.0.0.1 activate.adobe.com
@@ -85,7 +91,9 @@ fe80::1 lo0	localhost
 127.0.0.1 parallels.com
 127.0.0.1 update.parallels.com
 
-# endregion# region apple
+# endregion
+
+# region apple
 
 #Apple Services
 203.78.36.40 adcdownload.apple.com
@@ -2112,7 +2120,9 @@ fe80::1 lo0	localhost
 63.141.192.105 a1999.phobos.apple.com
 63.141.192.105 a2000.phobos.apple.com
 
-# endregion# region facebook
+# endregion
+
+# region facebook
 
 #facebook
 118.215.189.177 s-static.ak.facebook.net
@@ -2171,7 +2181,9 @@ fe80::1 lo0	localhost
 69.171.246.17 channel-staging-ecmp-05-ash3.facebook.com
 69.171.246.18 channel-testing-ecmp-05-ash3.facebook.com
 
-# endregion# region google
+# endregion
+
+# region google
 
 ######  Google Services from Beijing, China ######
 203.208.46.200 0.docs.google.com
@@ -2681,7 +2693,9 @@ fe80::1 lo0	localhost
 
 74.125.128.141 www.panoramio.com
 
-# endregion# region other
+# endregion
+
+# region other
 
 #Huhamhire HOSTS
 204.197.252.124 hosts.huhamhire.com
@@ -2877,7 +2891,9 @@ fe80::1 lo0	localhost
 
 ######## IPv4 HOSTS END ########
 
-# endregion# region twitter
+# endregion
+
+# region twitter
 
 #Twitter
 #Twitter
@@ -2908,7 +2924,9 @@ fe80::1 lo0	localhost
 199.59.149.213 upload.twitter.com 
 199.59.149.210 t.co
 
-# endregion# region wikipedia
+# endregion
+
+# region wikipedia
 
 #Wikipedia
 208.80.152.201 wikipedia.org
@@ -2960,7 +2978,9 @@ fe80::1 lo0	localhost
 208.80.152.201 mediawiki.org
 208.80.152.201 www.mediawiki.org
 
-# endregion# region youtube
+# endregion
+
+# region youtube
 
 #YouTube
 74.125.135.93 accounts.youtube.com
@@ -3585,3 +3605,4 @@ fe80::1 lo0	localhost
 173.194.38.166 v24.lscache8.c.youtube.com
 
 # endregion
+

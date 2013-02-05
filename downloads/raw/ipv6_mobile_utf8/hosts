@@ -33,10 +33,14 @@
 #	::1             localhost
 #
 # Special thanks to: smarthosts, hostsx, ipv6-hosts, mwsl, yoyo, 
-#                    mvps, ATGFW and hpHosts#
+#                    mvps, ATGFW and hpHosts
+
+#
 # HostsVer Timestamp : 1359561600
 # Creation Timestamp : 1359561600
-######### Localhost ########
+#
+
+######## Localhost ########
 
 #Windows
 127.0.0.1 localhost.localdomain localhost
@@ -56,7 +60,9 @@ ff02::3 ip6-allhosts
 fe80::1 lo0	localhost
 255.255.255.255	broadcasthost
 
-######## Localhost END ######### region activation
+######## Localhost END ########
+
+# region activation
 ######## IPv4 HOSTS ########
 # 屏蔽Adobe激活服务器：
 127.0.0.1 activate.adobe.com
@@ -85,7 +91,9 @@ fe80::1 lo0	localhost
 127.0.0.1 parallels.com
 127.0.0.1 update.parallels.com
 
-# endregion# region apple
+# endregion
+
+# region apple
 
 #Apple Services
 203.78.36.40 adcdownload.apple.com
@@ -2112,7 +2120,9 @@ fe80::1 lo0	localhost
 63.141.192.105 a1999.phobos.apple.com
 63.141.192.105 a2000.phobos.apple.com
 
-# endregion# region facebook
+# endregion
+
+# region facebook
 
 #Facebook 脸谱网
 2a03:2880:10:cf01:face:b00c::: facebook.com
@@ -2276,7 +2286,9 @@ fe80::1 lo0	localhost
 69.171.246.17 channel-staging-ecmp-05-ash3.facebook.com
 69.171.246.18 channel-testing-ecmp-05-ash3.facebook.com
 
-# endregion# region google
+# endregion
+
+# region google
 
 ##Google.com Google.com
 2404:6800:4005:c00::64 google.com
@@ -5797,7 +5809,9 @@ fe80::1 lo0	localhost
 #Google Plus
 2001:778:0:ffff:64:0:1faa:a606 plus.url.google.com.hk #非官方，有错误请汇报
 
-# endregion# region other
+# endregion
+
+# region other
 
 #Huhamhire HOSTS
 204.197.252.124 hosts.huhamhire.com
@@ -6200,7 +6214,9 @@ fe80::1 lo0	localhost
 
 ######## IPv6 HOSTS END ########
 
-# endregion# region twitter
+# endregion
+
+# region twitter
 
 #Twitter
 2001:778:0:ffff:64:0:c73b:940a twitter.com
@@ -6261,7 +6277,9 @@ fe80::1 lo0	localhost
 2001:778:0:ffff:64:0:5f64:4f90 si5.twimg.com #e3826.g.akamaiedge.net
 2001:778:0:ffff:64:0:b8a9:4f21 widgets.twimg.com #orig-10012.twitter.cotcdn.net
 
-# endregion# region wikipedia
+# endregion
+
+# region wikipedia
 
 #WikiMedia 维基媒体
 2620:0:860:2:21d:9ff:fe33:f235 static.wikipedia.org #hume.wikimedia.org
@@ -7107,7 +7125,9 @@ fe80::1 lo0	localhost
 2001:778:0:ffff:64:0:4a78:bc7d uncyclopedia.wikia.com
 2001:778:0:ffff:64:0:4a78:bc7d cn.uncyclopedia.wikia.com
 
-# endregion# region youtube
+# endregion
+
+# region youtube
 
 ##Google其他服务
 
@@ -8164,3 +8184,4 @@ fe80::1 lo0	localhost
 2404:6800:4005:1::19 r20.maa03s09.c.youtube.com
 
 # endregion
+
