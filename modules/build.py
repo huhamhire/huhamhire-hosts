@@ -1,6 +1,7 @@
-# coding: gbk
-"""
-Éú³ÉhostsÔ­Ê¼ÎÄ¼ş
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+U"""
+ç”ŸæˆhostsåŸå§‹æ–‡ä»¶åŠZipæ–‡ä»¶
 """
 import sys, os
 import zipfile
@@ -10,32 +11,40 @@ from convert import convertfile
 
 class buildRAW:
     def __init__(self, dir, rawdir, zipdir):
-        #ÔËĞĞÂ·¾¶
+        #è¿è¡Œè·¯å¾„
         self.dir = dir
-        #Êä³öÂ·¾¶
+        #è¾“å‡ºè·¯å¾„
         self.rawdir = rawdir
         if os.path.exists(self.rawdir) == False:
             os.mkdir(self.rawdir)
         self.zipdir = zipdir
         if os.path.exists(self.zipdir) == False:
             os.mkdir(self.zipdir)
-        #´´½¨ÖĞ¼äÎÄ¼ş
+        #åˆ›å»ºä¸­é—´æ–‡ä»¶
         self.combine = combineHosts(dir)
         self.combine.run()
         
-        #²ÎÊıÉèÖÃ
+        #å‚æ•°è®¾ç½®
         self.IPvX = ['ipv4', 'ipv6']
         self.platforms = ['win', 'unix', 'mobile']
         self.encodings = ['ansi', 'utf8']
         self.filename = 'hosts'
         self.mainfile_pre = 'main_'
         self.adfile = 'adblock'
-        self.fileext = '.hosts'     #À©Õ¹Ãû
+        self.fileext = '.hosts'     #æ‰©å±•å
         self.tmpdir = 'tmp/'
-
+        
+        #èµ„æºæ–‡ä»¶ç¼–ç 
+        self.coding = 'utf-8'
+        
     def build(self):
-        #±àÂë¿ØÖÆ
+        #ç¼–ç æ§åˆ¶
         subdir = ''
+        
+        #åˆå§‹åŒ–ä¿¡æ¯
+        print('Start building hosts')
+        print('-' * 50)
+        
         for ip in self.IPvX:
             for platform in self.platforms:
                 if platform == 'win':
@@ -47,39 +56,54 @@ class buildRAW:
                 else:
                     subdir = ip + '_' + platform + '_' + self.encodings[1] + '/'
                     self.export(subdir, ip, 'utf-8')
-                self.toZip(subdir)          #Ñ¹Ëõ
+                
+                #è¾“å‡ºä¿¡æ¯
+                print("Building '%s' ..." % ('raw/' + subdir + 'hosts'))
+                print("Compressing to '%s' ..." % ('zip/' + subdir[0:-1] + '.zip'))
+                
+                #å‹ç¼©ä¸ºZIP
+                self.toZip(subdir)
+        #åˆ é™¤ä¸´æ—¶æ–‡ä»¶
         self.combine.delTmpDir()
+        
+        print('-' * 50)
+        print('Done!')
     
     def export(self, subdir, ip, coding, ADflag = True):
-        #Éú³ÉÎÄ¼ş
-        type = sys.getfilesystemencoding()
+        #ç”Ÿæˆæ–‡ä»¶
         if os.path.exists(self.rawdir + subdir) == False:
             os.mkdir(self.rawdir + subdir)
         outstream = open(self.rawdir + subdir + 'hosts', 'w')
-        #Ğ´Ö÷ÎÄ¼ş
+        #å†™ä¸»æ–‡ä»¶
         instream = open(self.dir + self.tmpdir + self.mainfile_pre + ip + self.fileext, 'rU')
         lines = instream.readlines()
         for line in lines:
-            outstream.write(line.decode(type).encode(coding, 'ignore'))
+            outstream.write(line.decode(self.coding).encode(coding, 'ignore'))
         instream.close()
-        #Ğ´ADBlockÎÄ¼ş
+        #å†™ADBlockæ–‡ä»¶
         if ADflag:
             instream = open(self.dir + self.tmpdir + self.adfile + self.fileext, 'rU')
             lines = instream.readlines()
             for line in lines:
-                outstream.write(line.decode(type).encode(coding, 'ignore'))
+                outstream.write(line.decode(self.coding).encode(coding, 'ignore'))
         outstream.close()
         if coding == 'utf-8':
             convertfile(self.rawdir + subdir + 'hosts')
         
     
     def toZip(self, subdir):
-        #Éú³ÉÑ¹Ëõ°ü
+        #ç”Ÿæˆå‹ç¼©åŒ…
         f = zipfile.ZipFile(self.zipdir + subdir[0:-1] + '.zip', 'w', zipfile.ZIP_DEFLATED)
         f.write(self.rawdir + subdir + self.filename, self.filename)
         f.close() 
         
+def clear():
+    # æ¸…ç†è¿è¡Œç”Ÿæˆçš„äºŒè¿›åˆ¶æ–‡ä»¶
+    os.remove('convert.pyc')
+    os.remove('combine.pyc')
+
 if __name__ == '__main__':
     build = buildRAW('./', '../downloads/raw/', '../downloads/zip/')
     build.build()
-    print('Done!')
+    clear()
+    
