@@ -1,11 +1,12 @@
-# coding: gbk
-"""
-ÎÄ¼ş×ª»»¹¤¾ß£ºDosÎÄ¼ş×ªUnix
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+U"""
+æ–‡ä»¶è½¬æ¢å·¥å…·ï¼šDosæ–‡ä»¶è½¬Unix
 """
 import re, os
 
 def convert_line_endings(temp, mode): 
-    #Ìæ»»»»ĞĞ·û
+    #æ›¿æ¢æ¢è¡Œç¬¦
     if mode in ['u', 'p']: #unix, posix  
         temp = temp.replace('\r\n', '\n')  
         temp = temp.replace('\r', '\n')  
@@ -17,7 +18,7 @@ def convert_line_endings(temp, mode):
     return temp  
     
 def convertfile(filename):
-    #×ª»»ÎÄ¼ş
+    #è½¬æ¢æ–‡ä»¶
     statinfo = None 
     with file(filename, 'rb+') as f:  
         data = f.read() 

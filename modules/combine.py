@@ -1,29 +1,36 @@
-# coding: gbk
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+U"""
+åˆå¹¶hostsæ¨¡å—æ–‡ä»¶
 """
-ºÏ²¢hostsÄ£¿éÎÄ¼ş
-"""
-import os, shutil
+import os
+import shutil
+
+from convert import convertfile
 
 class combineHosts:
     def __init__(self, dir):
-        #ÔËĞĞÂ·¾¶
+        #è¿è¡Œè·¯å¾„
         self.dir = dir
         self.IPvX = ['ipv4', 'ipv6']
-        #ºËĞÄÄ£¿é
+        #æ ¸å¿ƒæ¨¡å—
         self.coremods = ['google', 'youtube', 'facebook', 'twitter', 'wikipedia', 'other']
         self.sharemods = ['activation', 'apple']
         self.coredir = '_mods/'
         self.sharedir = 'share_mods/'
-        #Ö÷Ä£¿é
+        #ä¸»æ¨¡å—
         self.modules = ['info', 'timestamp', 'localhost']
-        #¹ã¸æÆÁ±ÎÄ£¿é
+        #å¹¿å‘Šå±è”½æ¨¡å—
         self.admods = ['hostsx','mwsl', 'yoyo', 'mvps']
         self.adfile = 'adblock'
         self.adsubdir = 'adblock_mods/'        
-        #À©Õ¹ÃûÉèÖÃ
+        #æ‰©å±•åè®¾ç½®
         self.fileext = '.hosts'
         
-        #½¨Á¢ÁÙÊ±Â·¾¶
+        #èµ„æºæ–‡ä»¶ç¼–ç 
+        self.coding = 'utf-8'
+        
+        #å»ºç«‹ä¸´æ—¶è·¯å¾„
         self.tmpdir = 'tmp/'
         try:
             os.makedirs(dir + self.tmpdir)
@@ -31,9 +38,9 @@ class combineHosts:
             pass
         
     def combineCore(self, ip):
-        #ºÏ²¢ºËĞÄÁĞ±í
+        #åˆå¹¶æ ¸å¿ƒåˆ—è¡¨
         
-        #Éè¶¨Ä£¿é
+        #è®¾å®šæ¨¡å—
         mods = []
         mods.append(self.sharedir + self.sharemods[0])
         for mod in self.coremods:
@@ -41,64 +48,104 @@ class combineHosts:
         mods.append(self.sharedir + self.sharemods[1])
         
         self.corefile = self.tmpdir + 'core_' + ip
-        outstream = open(self.dir + self.corefile + self.fileext, 'w')
+        #æ“ä½œä¿¡æ¯
+        corefile = self.dir + self.corefile + self.fileext
+        print("Preparing corefile: '%s'" % (corefile))
         
-        #ºÏ²¢²Ù×÷
+        outstream = open(corefile, 'w')
+        
+        #åˆå¹¶æ“ä½œ
         for module in mods:
-            instream = open(self.dir + module + self.fileext, 'r')
+            modfile = self.dir + module + self.fileext
+            #åé¦ˆçŠ¶æ€
+            print("%s -> %s" % (modfile, corefile))
+            instream = open(modfile, 'r')
             lines = instream.readlines()
             for line in lines:
-                outstream.write(line)
+                outstream.write(line.decode(self.coding).encode(self.coding, 'ignore'))
             instream.close()
             outstream.write('\n')
         outstream.close()
+        print('')
+        #è§„èŒƒç¼–ç åŠæ¢è¡Œç¬¦
+        convertfile(corefile)
         
     def combineMain(self, ip):
-        #ºÏ²¢Ö÷ÁĞ±í
+        #åˆå¹¶ä¸»åˆ—è¡¨
         self.outfile = self.tmpdir + 'main_' + ip
         self.corefile = self.tmpdir + 'core_' + ip
+        #æ“ä½œä¿¡æ¯
+        mainfile = self.dir + self.outfile + self.fileext
+        print("Preparing main tempfile: '%s'" % (mainfile))
+        
         outstream = open(self.dir + self.outfile + self.fileext, 'w')
         mods = self.modules
         mods.append(self.corefile)
         for module in mods:
-            instream = open(self.dir + module + self.fileext, 'r')
+            modfile = self.dir + module + self.fileext
+            #åé¦ˆçŠ¶æ€
+            print("%s -> %s" % (modfile, mainfile))
+            instream = open(modfile, 'r')
             lines = instream.readlines()
             for line in lines:
-                outstream.write(line)
+                outstream.write(line.decode(self.coding).encode(self.coding, 'ignore'))
             instream.close()
             outstream.write('\n')
         outstream.close()
         
-        mods.remove(self.corefile)                                      #É¾³ı×ÔÓĞÄ£¿é
-        os.remove(self.dir + self.corefile + self.fileext)              #É¾³ıºËĞÄÎÄ¼ş
+        #è§„èŒƒç¼–ç åŠæ¢è¡Œç¬¦
+        convertfile(mainfile)
+        
+        # Coreæ–‡ä»¶åˆ é™¤ä¿¡æ¯
+        print("remove corefile: '%s'" % (self.corefile))
+        
+        mods.remove(self.corefile)                                      #åˆ é™¤è‡ªæœ‰æ¨¡å—
+        os.remove(self.dir + self.corefile + self.fileext)              #åˆ é™¤æ ¸å¿ƒæ–‡ä»¶
+        print('')
     
     def combineAdblock(self):
-        #ºÏ²¢¹ã¸æÆÁ±ÎÁĞ±í
-        outstream = open(self.dir + self.tmpdir + self.adfile + self.fileext, 'w')
+        #åˆå¹¶å¹¿å‘Šå±è”½åˆ—è¡¨
+        adfile = self.dir + self.tmpdir + self.adfile + self.fileext
+        print("Preparing ADblock tempfile: '%s'" % (adfile))
+        
+        outstream = open(adfile, 'w')
         outstream.write('# region adblock\n\n')
         mods = self.admods
         for module in mods:
-            instream = open(self.dir + self.adsubdir + module + self.fileext, 'r')
+            modfile = self.dir + self.adsubdir + module + self.fileext
+            #åé¦ˆçŠ¶æ€
+            print("%s -> %s" % (modfile, adfile))
+            instream = open(modfile, 'r')
             lines = instream.readlines()
             for line in lines:
-                outstream.write(line)
+                outstream.write(line.decode(self.coding).encode(self.coding, 'ignore'))
             instream.close()
             outstream.write('\n')
+            
         outstream.write('# endregion')
         outstream.close()
+        print('')
+        #è§„èŒƒç¼–ç åŠæ¢è¡Œç¬¦
+        convertfile(adfile)
     
     def run(self):
-        #Ö´ĞĞÈë¿Ú
+        #æ‰§è¡Œå…¥å£
+        
+        #åˆå§‹åŒ–ä¿¡æ¯
+        print("Preparing tempfiles in: '%s' ..." % (self.dir + self.tmpdir))
+        print('-' * 50)
         for cate in self.IPvX:
-            self.combineCore(cate)          #ºÏ²¢ºËĞÄÎÄ¼ş
-            self.combineMain(cate)          #ºÏ²¢Ö÷ÎÄ¼ş
+            self.combineCore(cate)          #åˆå¹¶æ ¸å¿ƒæ–‡ä»¶
+            self.combineMain(cate)          #åˆå¹¶ä¸»æ–‡ä»¶
         self.combineAdblock()
     
     def delTmpDir(self):
-        #É¾³ıÁÙÊ±Ä¿Â¼
-        shutil.rmtree(self.dir + self.tmpdir)
+        #åˆ é™¤ä¸´æ—¶ç›®å½•
+        tmpdir = self.dir + self.tmpdir
+        print("Remove tempdirectory: '%s'" % (tmpdir))
+        shutil.rmtree(tmpdir)
         
 if __name__ == '__main__':
     ops = combineHosts('./')
     ops.run()
-    print('Done!')\
+    print('Done!')
