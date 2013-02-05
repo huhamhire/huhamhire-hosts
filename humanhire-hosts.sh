@@ -1,14 +1,32 @@
 #!/bin/sh
 
+echo "  1. Install ipv4 hosts"
+echo "  2. Install ipv6 hosts"
+echo "> 3. Exit"
+read -p "choice[1-3]: " choice
+
+choice=${choice:=3}
+
+if [ $choice -eq 1 ]
+then
+	url=https://raw.github.com/aguegu/huhamhire-hosts/master/downloads/zip/ipv4_unix_utf8.zip
+	echo "1) Download ipv4 host for unix:"
+elif [ $choice -eq 2  ]
+then
+	url=https://raw.github.com/aguegu/huhamhire-hosts/master/downloads/zip/ipv6_unix_utf8.zip
+	echo "1) Download ipv6 host for unix:"
+else
+	echo "exit."
+	exit 3
+fi
+
 newhost=/tmp/hosts.$$
 
-echo "1. Download ipv6 host for unix:"
-wget https://raw.github.com/aguegu/huhamhire-hosts/master/downloads/zip/ipv6_unix_utf8.zip -O $newhost.zip
-echo 
+wget $url -O $newhost.zip
 
-echo "2. Extract & Implant hostname:"
 if [ $? -eq 0 ]
 then
+	echo "2) Extract & Implant hostname:"
 	unzip $newhost.zip
 	mv hosts $newhost
 	sed -i $newhost -e "s/#Replace Your Device Name Here!/$(hostname)/g"
@@ -20,15 +38,17 @@ else
 	exit 1
 fi
 
-echo "3. Copy new hosts to /etc/hosts:"
-if [ $(whoami) = "root" ]
+echo "3) Copy new hosts to /etc/hosts: (root required)"
+sudo cp $newhost /etc/hosts
+
+if [ $? -eq 0 ]
 then
-	cp $newhost /etc/hosts
-	rm $newhost
+	echo "Host updates successfully."
+	result=0
 else
-	echo "Update Failed. script needs to be processed by root"
-	exit 2
+	echo "Could not replace /etc/hosts. (root required)"
+	result=2
 fi
 
-echo "Host updates successfully."
-exit 0
+rm -r $newhost
+exit $result
