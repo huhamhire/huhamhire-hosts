@@ -4,6 +4,7 @@ newhost=/tmp/hosts.$$
 
 echo "1. Download ipv6 host for unix:"
 wget https://raw.github.com/aguegu/huhamhire-hosts/master/downloads/zip/ipv6_unix_utf8.zip -O $newhost.zip
+echo 
 
 echo "2. Extract & Implant hostname:"
 if [ $? -eq 0 ]
