@@ -9,11 +9,11 @@ choice=${choice:=3}
 
 if [ $choice -eq 1 ]
 then
-	url=https://raw.github.com/aguegu/huhamhire-hosts/Hosts-Modules/downloads/hosts_ipv4.tar.gz
+	url=https://raw.github.com/aguegu/huhamhire-hosts/Hosts-Modules/downloads/hosts_ipv4.gz
 	echo "1) Download ipv4 host for unix:"
 elif [ $choice -eq 2  ]
 then
-	url=https://raw.github.com/aguegu/huhamhire-hosts/Hosts-Modules/downloads/hosts_ipv6.tar.gz
+	url=https://raw.github.com/aguegu/huhamhire-hosts/Hosts-Modules/downloads/hosts_ipv6.gz
 	echo "1) Download ipv6 host for unix:"
 else
 	echo "exit."
@@ -22,13 +22,12 @@ fi
 
 newhost=/tmp/hosts.$$
 
-wget $url -O $newhost.tar.gz
+wget $url -O $newhost.gz
 
 if [ $? -eq 0 ]
 then
 	echo "2) Extract & Implant hostname:"
-	gunzip $newhost.tar.gz
-	tar -xvf $newhost.tar > /dev/null
+	tar -zxvf $newhost.gz > /dev/null
 	
 	mv hosts $newhost
 	sed -i $newhost -e "s/#Replace Your Device Name Here!/$(hostname)/g"
@@ -36,7 +35,7 @@ then
 else
 	echo "Download failed."
 	rm -r $newhost
-	rm -r $newhost.tar.gz
+	rm -r $newhost.gz
 	exit 1
 fi
 
@@ -52,8 +51,7 @@ else
 	result=2
 fi
 
-rm -r $newhost.tar.gz
-rm -r $newhost.tar
+rm -r $newhost.gz
 rm -r $newhost
 
 exit $result
