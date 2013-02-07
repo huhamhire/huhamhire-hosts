@@ -1,6 +1,13 @@
 #!/bin/sh
-# humanhire-host.sh
+# project name: Humanhire-hosts
+# A free and open world depends on a free and open Internet.
+# humanhire-hosts is for breaking GWF with hosts file
+# filename: humanhire-host.sh
+# description: bash script for linux platforms to download, update
+# 	humanhire-hosts files for ipv4/6, backup and restore hosts files.
 # host on https://github.com/aguegu/huhamhire-hosts/tree/Client-Linux
+# author: Weihong Guan (@aGuegu)
+# shard on CC BY-NC 3.0 (https://creativecommons.org/licenses/by-nc/3.0/ )
 
 backup_hosts()
 {
@@ -53,7 +60,7 @@ then
 		echo "done."
 		exit 0
 	else
-	exit 4	
+		exit 4	
 	fi
 
 	echo $id
