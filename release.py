@@ -1,15 +1,13 @@
-# coding: gbk
+# coding: utf-8
 """
-Éú³ÉhostsÔ­Ê¼ÎÄ¼ş
+ç”ŸæˆhostsåŸå§‹æ–‡ä»¶
 """
 import os, shutil
 import zipfile
 
 class releaseHostsPanel:
     def __init__(self, dir, downdir, relname):
-        #³õÊ¼»¯
-        self.bindir = dir + 'WinHosts/bin/'
-        self.objdir = dir + 'WinHosts/obj/'
+        #åˆå§‹åŒ–
         self.reldir = 'Release/'
         self.binfile = 'HostsPanel.exe'
         self.downdir = downdir
@@ -18,15 +16,10 @@ class releaseHostsPanel:
         self.relname = relname
         
     def toZip(self, destination):
-        #Éú³ÉÑ¹Ëõ°ü
+        #ç”Ÿæˆå‹ç¼©åŒ…
         f = zipfile.ZipFile(destination, 'w', zipfile.ZIP_DEFLATED)
         f.write(self.bindir + self.reldir + self.binfile, self.binfile)
         f.close() 
-
-    def delBinDir(self):
-        #É¾³ı±àÒëÄ¿Â¼
-        shutil.rmtree(self.bindir)
-        shutil.rmtree(self.objdir)
         
     def run(self):
         self.toZip(self.downdir + self.relname + '.zip')
@@ -36,10 +29,5 @@ if __name__ == '__main__':
     try:
         rel.run()
         print('Done!')
-    except WindowsError:
-        print('Bin file not exists!')
-    
-    try:
-        rel.delBinDir()
     except WindowsError:
         print('Bin file not exists!')

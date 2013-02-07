@@ -1,8 +1,17 @@
 # Set default behaviour, in case users don't have core.autocrlf set.
 * text=auto
+* text eol=CRLF
 
-downloads/raw/ipv4_win_ansi/hosts text eol=crlf
-downloads/raw/ipv6_win_ansi/hosts text eol=crlf
+*.py text eol=LF
 
+# Binary Files
+*.png binary
+*.wav binary
 
-hosts text eol=lf
+# Custom for Visual Studio
+*.cs     diff=csharp
+*.sln    merge=union
+*.csproj merge=union
+*.vbproj merge=union
+*.fsproj merge=union
+*.dbproj merge=union
