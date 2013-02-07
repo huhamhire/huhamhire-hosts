@@ -15,8 +15,10 @@ ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 
 #Mac OS X
-fe80::1 lo0	localhost
-255.255.255.255	broadcasthost
+127.0.0.1   localhost
+255.255.255.255   broadcasthost
+::1         localhost 
+fe80::1%lo0   localhost
 
 ######## Localhost END ########
 
