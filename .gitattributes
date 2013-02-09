@@ -2,4 +2,4 @@
 * text=auto
 
 *.py text eol=lf
-*.bat text eol=CRLF
+*.bat text eol=crlf
