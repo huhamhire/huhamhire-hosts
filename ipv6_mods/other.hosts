@@ -3,8 +3,11 @@
 #Huhamhire HOSTS
 204.197.252.124 hosts.huhamhire.com
 
-#github
+#GITHUB
 207.97.227.239 github.com
+207.97.227.252 nodeload.github.com
+207.97.227.243 raw.github.com
+204.232.175.78 documentcloud.github.com
 
 #Plurk
 2607:f128:47::1:1 plurk.com
