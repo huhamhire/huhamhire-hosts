@@ -8,7 +8,7 @@ import zipfile
 class releaseHostsPanel:
     def __init__(self, dir, downdir, relname):
         #初始化
-        self.reldir = 'Release/'
+        self.reldir = './WinHosts/bin/Release/'
         self.binfile = 'HostsPanel.exe'
         self.downdir = downdir
         if os.path.exists(self.downdir) == False:
@@ -18,14 +18,14 @@ class releaseHostsPanel:
     def toZip(self, destination):
         #生成压缩包
         f = zipfile.ZipFile(destination, 'w', zipfile.ZIP_DEFLATED)
-        f.write(self.bindir + self.reldir + self.binfile, self.binfile)
+        f.write(self.reldir + self.binfile, self.binfile)
         f.close() 
         
     def run(self):
         self.toZip(self.downdir + self.relname + '.zip')
         
 if __name__ == '__main__':
-    rel = releaseHostsPanel('./', '../downloads/win/', 'HostsPanel_win_1.0beta')
+    rel = releaseHostsPanel('./', '../downloads/win/', 'HostsPanel_win_1.0')
     try:
         rel.run()
         print('Done!')

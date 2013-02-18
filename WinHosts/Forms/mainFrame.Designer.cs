@@ -439,10 +439,10 @@
             // 
             // mainFrame
             // 
-            resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::WinHosts.Properties.Resources.framebg;
+            resources.ApplyResources(this, "$this");
             this.Controls.Add(this.backup_button);
             this.Controls.Add(this.recover_button);
             this.Controls.Add(this.reset_button);
