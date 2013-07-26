@@ -1,60 +1,5 @@
 # region other
 
-#GITHUB
-207.97.227.239 github.com
-207.97.227.252 nodeload.github.com
-207.97.227.243 raw.github.com
-204.232.175.78 documentcloud.github.com
-
-#Dropbox
-199.47.217.179 dropbox.com
-199.47.216.170 www.dropbox.com
-#107.20.207.62 dl.dropbox.com
-#107.20.207.62 dl-web.dropbox.com
-174.36.51.42 forums.dropbox.com
-174.36.51.42 wiki.dropbox.com
-
-#Flickr
-66.94.233.186 flickr.com
-66.94.233.186 www.flickr.com
-68.142.214.43 static.flickr.com
-66.196.118.49 farm1.static.flickr.com
-69.147.90.159 farm2.static.flickr.com
-76.13.18.78 farm3.static.flickr.com
-67.195.19.66 farm4.static.flickr.com
-76.13.18.79 farm5.static.flickr.com
-98.139.197.254 farm6.static.flickr.com
-98.139.102.46 farm7.static.flickr.com
-98.136.43.76 geo.yahoo.com
-68.142.250.161 l.yimg.com
-96.6.93.227 s.yimg.com
-98.137.88.88 d.yimg.com
-68.142.196.57 c5.ah.yahoo.com
-124.108.120.124 sa.edit.yahoo.com
-76.13.6.132 row.bc.yahoo.com
-66.163.168.247 open.login.yahoo.com
-209.191.92.114 login.yahoo.com
-209.191.92.115 edit.yahoo.com
-209.191.121.31 up.flickr.com
-209.191.105.102 adjax.flickr.yahoo.com
-204.0.5.35 content.yieldmanager.edgesuite.net
-76.13.6.132 us.bc.yahoo.com
-204.0.5.34 us.js2.yimg.com
-76.13.18.78 bf1.farm3.static.flickr.com
-76.13.18.78 farm3.static.flickr.com
-76.13.18.78 gq1.farm3.static.flickr.com
-76.13.18.78 sp1.farm3.static.flickr.com
-76.13.18.79 bf1.farm5.static.flickr.com
-76.13.18.79 farm5.static.flickr.com
-76.13.18.79 gq1.farm5.static.flickr.com
-98.139.102.46 bf1.farm7.static.flickr.com
-98.139.102.46 farm7.static.flickr.com
-98.139.102.46 gq1.farm7.static.flickr.com
-98.139.102.46 ne1.farm7.static.flickr.com
-98.139.197.254 bf1.farm6.static.flickr.com
-98.139.197.254 farm6.static.flickr.com
-98.139.197.254 gq1.farm6.static.flickr.com
-
 #Operachina
 59.151.106.253 operachina.com
 59.151.106.253 bbs.operachina.com
@@ -100,8 +45,8 @@
 209.17.69.35 i37.photobucket.com
 
 #Imdb
-92.122.217.186 ia.media-imdb.com
-198.78.213.126 i.media-imdb.com
+165.254.99.50 ia.media-imdb.com
+54.230.88.54 i.media-imdb.com
 
 #Multiupload
 85.17.76.195 multiupload.com

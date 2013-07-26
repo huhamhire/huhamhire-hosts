@@ -1,6 +1,6 @@
 # region activation
 ######## IPv4 HOSTS ########
-# 屏蔽Adobe激活服务器：
+# Adobe
 127.0.0.1 activate.adobe.com
 127.0.0.1 practivate.adobe.com
 127.0.0.1 ereg.adobe.com
@@ -19,13 +19,18 @@
 127.0.0.1 lmlicenses.wip4.adobe.com
 127.0.0.1 lm.licenses.adobe.com
 
-# 屏蔽Parallels Desktop 7激活服务器：
+# Parallels Desktop 7
 127.0.0.1 pd6.blist.parallels.com
 127.0.0.1 pd7.blist.parallels.com
-127.0.0.1 pdfm7.blist.parallels.com 
+127.0.0.1 pdfm7.blist.parallels.com
 127.0.0.1 registration.parallels.com
 127.0.0.1 parallels.com
 127.0.0.1 update.parallels.com
+
+# Altium Designer 10
+127.0.0.1 portal2.altium.com
+127.0.0.1 portal2.altium.eu
+127.0.0.1 portal2.altium.com.cn
 
 # endregion
 
