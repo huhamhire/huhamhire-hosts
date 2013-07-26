@@ -79,7 +79,7 @@ if sys.argv > 1:
         # Pack up script package for Linux users
         file_path = lambda rel_path: SCRIPT_DIR + rel_path
         includes = ["*.py", "lang/*.qm", "LICENSE", "README"]
-        excludes = ["_*.py"]
+        excludes = ["_*.py", ".gitattributes", "README.md"]
         ex_files = []
         prefix = "HostsUtl-x11-gpl-"
         tar_flag = 1
@@ -88,7 +88,7 @@ if sys.argv > 1:
         # Pack up source package for Linux users
         file_path = lambda rel_path: SCRIPT_DIR + rel_path
         includes = ["*"]
-        excludes = []
+        excludes = [".gitattributes", "README.md"]
         ex_files = []
         prefix = "HostsUtl-source-gpl-"
         tar_flag = 1
