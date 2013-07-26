@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyleft (C) 2013 - Huhamhire-hosts Team -->
+<hostslist>
+    <part id="0x10" default="0x003D">
+        <table>hosts_ipv4</table>
+        <path>ipv4_mods/</path>
+        <modules>
+            <mod cate="0x0001" mutex="0x0002">google(cn)</mod>
+            <mod cate="0x0002" mutex="0x0001">google(us)</mod>
+            <mod cate="0x0004" mutex="0x0000">twitter</mod>
+            <mod cate="0x0008" mutex="0x0000">youtube</mod>
+            <mod cate="0x0010" mutex="0x0000">wikipedia</mod>
+            <mod cate="0x0020" mutex="0x0000">others</mod>
+        </modules>
+    </part>
+    <part id="0x20" default="0x003F">
+        <table>hosts_ipv6</table>
+        <path>ipv6_mods/</path>
+        <modules>
+            <mod cate="0x0001" mutex="0x0000">google</mod>
+            <mod cate="0x0002" mutex="0x0000">facebook</mod>
+            <mod cate="0x0004" mutex="0x0000">twitter</mod>
+            <mod cate="0x0008" mutex="0x0000">youtube</mod>
+            <mod cate="0x0010" mutex="0x0000">wikipedia</mod>
+            <mod cate="0x0020" mutex="0x0000">others</mod>
+        </modules>
+    </part>
+    <part id="0x40" default="0x0000">
+        <table>hosts_adblock</table>
+        <path>adblock_mods/</path>
+        <modules>
+            <mod cate="0x0001" mutex="0x0000">adblock-hostsx</mod>
+            <mod cate="0x0002" mutex="0x0000">adblock-mvps</mod>
+            <mod cate="0x0004" mutex="0x0000">adblock-mwsl</mod>
+            <mod cate="0x0008" mutex="0x0000">adblock-yoyo</mod>
+        </modules>
+    </part>
+    <part id="0x08" default="0x0000">
+        <table>hosts_share</table>
+        <path>share_mods/</path>
+        <modules>
+            <mod cate="0x0001" mutex="0x0000">activation-helper</mod>
+        </modules>
+    </part>
+    <part id="0x02" default="0x0000">
+        <table>localhost</table>
+        <path>info_mods/</path>
+        <modules>
+            <mod cate="0x0001" mutex="0x0006">localhost-nt</mod>
+            <mod cate="0x0002" mutex="0x0005">localhost-linux</mod>
+            <mod cate="0x0004" mutex="0x0003">localhost-darwin</mod>
+        </modules>
+    </part>
+    <head id="0x00" default="0x0000">
+        <table>hosts_head</table>
+        <path>info_mods/</path>
+        <module>head</module>
+    </head>
+    <info id="0x01" default="0x0000">
+        <table>info</table>
+    </info>
+</hostslist>
