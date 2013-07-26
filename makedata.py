@@ -29,7 +29,7 @@ import zipfile
 from xml.etree.ElementTree import ElementTree
 
 # The version of hosts data file
-DATA_VERSION = "1.3.2"
+DATA_VERSION = "1.3.3"
 
 # File Settings
 DATA_PATH = "../data/"
