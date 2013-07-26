@@ -1,0 +1,13 @@
+<RCC>
+  <qresource prefix="buttons">
+    <file>img/icon_apply.png</file>
+    <file>img/icon_backup.png</file>
+    <file>img/icon_exit.png</file>
+    <file>img/icon_fetch.png</file>
+    <file>img/icon_restore.png</file>
+    <file>img/icon_update.png</file>
+  </qresource>
+  <qresource prefix="icon">
+    <file>img/utl_icon.png</file>
+  </qresource>
+</RCC>
