@@ -1,0 +1,166 @@
+# region facebook
+
+#Facebook 脸谱网
+2a03:2880:10:cf01:face:b00c::: facebook.com
+2a03:2880:10:8f02:face:b00c:0:25 www.facebook.com
+2a03:2880:10:8f02:face:b00c:0:26 api-read.facebook.com
+2a03:2880:10:cf02:face:b00c:: connect.facebook.com #www.facebook.com
+2a03:2880:10:8f02:face:b00c:0:26 graph.facebook.com
+2a03:2880:10:6f01:face:b00c:0:2 zh-cn.facebook.com #star.facebook.com
+2a03:2880:10:6f01:face:b00c:0:2 zh-tw.facebook.com #star.facebook.com
+2a03:2880:10:6f01:face:b00c:0:2 check6.facebook.com
+2a03:2880:10:6f01:face:b00c:0:3 m.facebook.com
+2a03:2880:10:8f02:face:b00c:0:27 apps.facebook.com
+2a03:2880:10:6f01:face:b00c:0:2 login.facebook.com #star.facebook.com
+2a03:2880:10:8f01:face:b00c:0:27 pixel.facebook.com #star.facebook.com
+2a03:2880:10:8f01:face:b00c:0:27 star.facebook.com
+2a03:2880:10:8f02:face:b00c:0:29 upload.facebook.com
+2620:0:1cfe:face:b00c::3 www.v6.facebook.com
+2620:0:1cfe:face:b00c::3 attachments.facebook.com #?
+#2620:0:1cfe:face:b00c::4 login.v6.facebook.com
+2620:0:1cfe:face:b00c::6 apps.v6.facebook.com
+2620:0:1cfe:face:b00c::3 333.channel.facebook.com #?
+#2620:0:1cfe:face:b00c::3 333.ctest.facebook.com
+#如需正常使用页面底部聊天功能，请通过 pac 代理 *.channel.facebook.com
+2a03:2880:10:cf01:face:b00c:0:4 developers.facebook.com
+#2620:0:1cfe:face:b00c::3 developers.v6.facebook.com
+#2620:0:1cfe:face:b00c::3 external.ak.fbcdn.net
+2620:0:1cfe:face:b00c::3 error.12.channel.facebook.com #?
+2620:0:1cfe:face:b00c::3 pixel.v6.facebook.com #www.v6.facebook.com
+2620:0:1cfe:face:b00c::3 vupload.facebook.com #?
+#2620:0:1cfe:face:b00c::3 static.ak.fbcdn.net #网站资源（图像、脚本等）新机制尚未部署至 ipv6
+#2620:0:1cfe:face:b00c::4 s-static.ak.facebook.com #https 连接用网站资源，证书有问题
+2620:0:1cfe:face:b00c::7 m.v6.facebook.com #移动版
+2610:d0:face::9 www.lisp6.facebook.com
+2610:d0:face::9 m.lisp6.facebook.com #www.lisp6.facebook.com
+
+#Akamai
+2600:140e:3:1:8600::236 s-static.ak.facebook.com #s-static.ak.facebook.com.edgekey.net
+2600:140e:3:1:8000::38a s-external.ak.fbcdn.net #s-external.ak.fbcdn.net.edgekey.net
+2600:140e:3:1:8100::d19 s-static.ak.fbcdn.net #s-static.ak.fbcdn.net.edgekey.net
+2600:140e:3:1:8c00::eed connect.facebook.net #connect.facebook.net.edgekey.net
+2600:140e:1::3cfe:833e creative.ak.fbcdn.net #ads.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8336 external.ak.fbcdn.net #external.ak.fbcdn.net.edgesuite.net
+2600:140e:1::3cfe:8335 static.ak.fbcdn.net #static.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8338 platform.ak.fbcdn.net #platform.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:833d profile.ak.fbcdn.net #profile.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8348 fbcdn-profile-a.akamaihd.net#fbcdn-profile-a.akamaihd.net.edgesuite.net
+2600:140e:1::3cfe:8337 static.ak.facebook.com #static.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:833f photos-a.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-e.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-i.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-m.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-q.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-u.ak.fbcdn.net
+2600:140e:1::3cfe:833f photos-y.ak.fbcdn.net#photos-a.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8338 photos-b.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-f.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-j.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-n.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-r.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-v.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-z.ak.fbcdn.net#photos-b.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8336 photos-c.ak.fbcdn.net
+2600:140e:1::3cfe:8336 photos-g.ak.fbcdn.net
+2600:140e:1::3cfe:8336 photos-k.ak.fbcdn.net
+2600:140e:1::3cfe:8336 photos-o.ak.fbcdn.net
+2600:140e:1::3cfe:8336 photos-s.ak.fbcdn.net
+2600:140e:1::3cfe:8336 photos-w.ak.fbcdn.net#photos-c.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8338 photos-d.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-h.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-l.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-p.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-t.ak.fbcdn.net
+2600:140e:1::3cfe:8338 photos-x.ak.fbcdn.net#photos-d.ak.facebook.com.edgesuite.net
+2600:140e:1::3cfe:8336 fbcdn-photos-a.akamaihd.net#fbcdn-photos-a.akamaihd.net.edgesuite.net
+2001:590:1:602::3f8d:c05a a1.sphotos.ak.fbcdn.net#a1.sphotos.ak.fbcdn.net.edgesuite.net
+2001:590:1:602::3f8d:c071 a2.sphotos.ak.fbcdn.net#a2.sphotos.ak.fbcdn.net.edgesuite.net
+2001:428:4c02:1fd::d02e:a312 a3.sphotos.ak.fbcdn.net#a3.sphotos.ak.fbcdn.net.edgesuite.net
+2001:428:4c02:1fd::d02e:a339 a4.sphotos.ak.fbcdn.net#a4.sphotos.ak.fbcdn.net.edgesuite.net
+2001:2030:0:c::d9d4:fcb3 a5.sphotos.ak.fbcdn.net#a5.sphotos.ak.fbcdn.net.edgesuite.net
+2001:2030:0:c::d9d4:fc92 a6.sphotos.ak.fbcdn.net#a6.sphotos.ak.fbcdn.net.edgesuite.net
+2001:418:8404:11::c7ef:b6eb a7.sphotos.ak.fbcdn.net#a7.sphotos.ak.fbcdn.net.edgesuite.net
+2001:418:8404:11::c7ef:b6ea a8.sphotos.ak.fbcdn.net#a8.sphotos.ak.fbcdn.net.edgesuite.net
+2001:428:4c02::cda8:ed09 vthumb.ak.fbcdn.net#vthumb.facebook.com.edgesuite.net
+2001:428:7000:2::3feb:1ca0 fbcdn-sphotos-a.akamaihd.net#fbcdn-sphotos-a.akamaihd.net.edgesuite.net
+2001:428:4c02::cda8:eccb fbcdn-vthumb-a.akamaihd.net#fbcdn-vthumb-a.akamaihd.net.edgesuite.net
+
+#Facebook CDN
+2001:778:0:ffff:64:0:45ab:e329 0-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 1-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 2-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 3-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 4-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 5-333.channel.facebook.com
+2001:778:0:ffff:64:0:45ab:e329 6-333.channel.facebook.com
+#2001:778:0:ffff:64:0:42dc:9a1d hphotos-iad1.fbcdn.net
+2001:778:0:ffff:64:0:45ab:f00c hphotos-ash1.fbcdn.net #hphotos-ak-ash4.facebook.com
+2001:778:0:ffff:64:0:45ab:f00c hphotos-ash2.fbcdn.net #hphotos-ak-ash4.facebook.com
+2001:778:0:ffff:64:0:45ab:f608 hphotos-ash3.fbcdn.net #hphotos-1-01-05-ash3.fbcdn.net
+2001:778:0:ffff:64:0:45ab:f30c hphotos-ash4.fbcdn.net #hphotos-ak-ash4.facebook.com
+#2001:778:0:ffff:64:0:453f:b723 hphotos-sjc1.fbcdn.net
+2001:778:0:ffff:64:0:42dc:9720 hphotos-snc1.fbcdn.net #minull-01-01-snc6.fbcdn.net
+2001:778:0:ffff:64:0:42dc:9720 hphotos-snc3.fbcdn.net #minull-01-01-snc6.fbcdn.net
+2001:778:0:ffff:64:0:45ab:e319 hphotos-snc4.fbcdn.net #hphotos-snc7.fbcdn.net
+2001:778:0:ffff:64:0:42dc:9716 hphotos-snc6.fbcdn.net
+2001:778:0:ffff:64:0:45ab:e319 hphotos-snc7.fbcdn.net #hphotos-04-snc7.fbcdn.net
+
+#facebook IPv4
+118.215.189.177 s-static.ak.facebook.net
+184.85.66.110 s-static.ak.facebook.com 
+208.46.163.41 profile.ak.facebook.com 
+63.110.246.49 static.ak.facebook.com 
+165.254.42.83 b.static.ak.facebook.com
+66.220.149.99 graph.facebook.com 
+173.252.110.27 ssl.facebook.com 
+66.220.158.27 api.facebook.com 
+66.220.151.32 secure-profile.facebook.com 
+69.63.188.59 secure.facebook.com 
+69.171.237.24 zh-cn.facebook.com 
+69.171.229.25 login.facebook.com 
+69.171.237.41 m.facebook.com 
+184.106.71.238 messages-facebook.com
+69.171.237.33 attachments.facebook.com
+66.220.147.90 touch.facebook.com 
+173.252.100.27 facebook.com 
+173.252.100.27 www.facebook.com 
+69.171.228.24 apps.facebook.com 
+198.87.182.145 profile.ak.fbcdn.net 
+66.220.144.41 vpn.tfbnw.net
+63.238.2.161 vthumb.ak.fbcdn.net 
+198.87.182.224 photos-a.ak.fbcdn.net 
+198.87.182.152 photos-b.ak.fbcdn.net 
+198.87.182.217 photos-c.ak.fbcdn.net 
+198.87.182.161 photos-d.ak.fbcdn.net 
+198.87.182.201 photos-e.ak.fbcdn.net 
+63.110.246.24 photos-f.ak.fbcdn.net 
+64.212.100.107 photos-g.ak.fbcdn.net 
+63.110.246.8 photos-h.ak.fbcdn.net 
+63.110.246.74 creative.ak.fbcdn.net 
+69.171.234.21 fbcdn.net 
+208.49.52.40 external.ak.fbcdn.nets
+208.49.52.11 b.static.ak.fbcdn.net 
+208.49.52.11 static.ak.fbcdn.net 
+69.171.229.20 upload.facebook.com 
+66.220.158.27 developers.facebook.com
+
+69.171.246.16 act.channel.facebook.com
+69.171.246.16 0-act.channel.facebook.com
+69.171.246.16 1-act.channel.facebook.com
+69.171.246.16 2-act.channel.facebook.com
+69.171.246.16 3-act.channel.facebook.com
+69.171.246.16 4-act.channel.facebook.com
+69.171.246.16 5-act.channel.facebook.com
+69.171.246.16 6-act.channel.facebook.com
+
+69.171.246.7 beta-chat-01-05-ash3.facebook.com
+69.171.246.8 origincache-ai-01-05-ash3.fbcdn.net
+69.171.246.9 static.thefacebook.com
+69.171.246.10 inyour-slb-01-05-ash3.facebook.com
+69.171.246.12 origincache-starfacebook-ai-01-05-ash3.facebook.com
+69.171.246.16 channel-ecmp-05-ash3.facebook.com
+69.171.246.17 channel-staging-ecmp-05-ash3.facebook.com
+69.171.246.18 channel-testing-ecmp-05-ash3.facebook.com
+
+# endregion
+
