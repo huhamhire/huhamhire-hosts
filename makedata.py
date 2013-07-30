@@ -28,9 +28,6 @@ import time
 import zipfile
 from xml.etree.ElementTree import ElementTree
 
-# The version of hosts data file
-DATA_VERSION = "1.3.2"
-
 # File Settings
 DATA_PATH = "../data/"
 DATA_NAME = "hostslist.data"
@@ -339,18 +336,19 @@ class MakeJSON(object):
         return os.path.getsize(filepath)
 
     @classmethod
-    def makejson(cls, filepath):
+    def makejson(cls, filepath, version):
         """Make the JSON file - Class Method
 
         Creat info-file of data-file for huhamhire-hosts.
 
         Args:
-            filepath (str): A string indicating the path of the data-file.
+            filepath (str): A string indicating the path of data-file.
+            version (str): A string indicating the version of data-file.
         """
-        global DATA_NAME, DATA_VERSION, JSON_FILE
+        global DATA_NAME, JSON_FILE
         fileinfo = {
             "filename": DATA_NAME,
-            "version": DATA_VERSION,
+            "version": version,
             "md5": cls._calc_md5(filepath),
             "sha1": cls._calc_sha1(filepath),
             "size": cls._get_filesize(filepath),
@@ -375,6 +373,7 @@ def get_mod_info(infile="mods.xml"):
     """
     tree = ElementTree()
     xmlfile = tree.parse(infile)
+    version = xmlfile.get("version")
     # Get partition information
     parts = []
     for xml_part in xmlfile.iter(tag='part'):
@@ -407,7 +406,7 @@ def get_mod_info(infile="mods.xml"):
     info["part_id"] = int(xml_info.get("id"), 16)
     info["default"] = int(xml_part.get("default"), 16)
     info["table"] = xml_info.find("table").text
-    return parts, head, info
+    return parts, head, info, version
 
 def make():
     """Make data file
@@ -415,7 +414,7 @@ def make():
     Operations to make a hosts datafile which contains all latest hosts
     entries.
     """
-    parts, head, info = get_mod_info()
+    parts, head, info, version = get_mod_info()
     mod_extension = MOD_EXTENSION
     if not os.path.exists(DATA_PATH):
         os.mkdir(DATA_PATH)
@@ -444,7 +443,7 @@ def make():
     MakeData.create_table(info["table"], "info")
     MakeData.insert_info(info["table"], "Buildtime", timestamp)
     MakeData.insert_info(info["table"], "Author", __author__)
-    MakeData.insert_info(info["table"], "Version", DATA_VERSION)
+    MakeData.insert_info(info["table"], "Version", version)
     MakeData.insert_partinfo("parts", info)
     global DATA_FILE
     MakeData.packtozip(DATA_FILE)
@@ -454,7 +453,7 @@ def make():
     total_time = "%.4f" % (end_time - start_time)
     print "%d entries inserted in %ss." % (MakeData.count, total_time)
     print '-' * 60
-    MakeJSON.makejson(DATA_FILE)
+    MakeJSON.makejson(DATA_FILE, version)
 
 if __name__ == "__main__":
     make()
