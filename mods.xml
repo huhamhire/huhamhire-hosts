@@ -7,7 +7,7 @@
         <modules>
             <mod cate="0x0001" mutex="0x0002">google(cn)</mod>
             <mod cate="0x0002" mutex="0x0001">google(us)</mod>
-            <mod cate="0x0004" mutex="0x0001">facebook</mod>
+            <mod cate="0x0004" mutex="0x0000">facebook</mod>
             <mod cate="0x0008" mutex="0x0000">twitter</mod>
             <mod cate="0x0010" mutex="0x0000">youtube</mod>
             <mod cate="0x0020" mutex="0x0000">wikipedia</mod>
