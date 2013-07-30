@@ -1,10 +1,9 @@
-===================
 Hosts Setup Utility
 ===================
 
 
 INTRODUCTION
-============
+------------
 
 Due to the Chinese government is using the GFW blocking the web access to some
 world famous sites like Googel+, twitter, Facebook, and Wikipedia etc., we
@@ -22,7 +21,7 @@ http://code.google.com/p/huhamhire-hosts/.
 
 
 LICENSE
-=======
+-------
 
 Licensed under the GNU General Public License, version 3. You should
 have received a copy of the GNU General Public License along with
@@ -30,7 +29,7 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 
 USAGE
-=====
+-----
 
 * Windows(x86/x64): run hostsutl.exe from the binary excutables package to get
         started.
@@ -56,7 +55,7 @@ hosts file and update the local data file.)
 
 
 REQUIREMENTS
-============
+------------
 
 * Microsoft Windows 2000 or newer for Windows users.
 
@@ -71,7 +70,7 @@ REQUIREMENTS
 
 
 AVAILABLE MODULES
-=================
+-----------------
 
 * hostsutl.py - contains main parts of Hosts Setup Utility.
 
@@ -86,7 +85,7 @@ AVAILABLE MODULES
 
 
 TOOLS FOR DEVELOPERS
-====================
+--------------------
 
 * _build.py - contains tools to make packages for different platforms.
 
@@ -110,7 +109,7 @@ TOOLS FOR DEVELOPERS
 
 
 THE REST OF THE DISTRIBUTION
-============================
+----------------------------
 
 * lang/ - This directory contains language files for Hosts Setup Utility.
         The *.qm files would be included in distribution packages.
@@ -133,5 +132,5 @@ THE REST OF THE DISTRIBUTION
 
 
 AUTHOR/MAINTAINER
-=================
+-----------------
 huhamhire <me@huhamhire.com>
