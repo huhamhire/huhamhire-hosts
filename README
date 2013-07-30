@@ -1,10 +1,10 @@
-===================
 Hosts Setup Utility
 ===================
 
 
-INTRODUCTION
-============
+
+Introduction
+------------
 
 Due to the Chinese government is using the GFW blocking the web access to some
 world famous sites like Googel+, twitter, Facebook, and Wikipedia etc., we
@@ -15,35 +15,38 @@ systems with a desktop environment. Users could use these tool to modify the
 hosts file in order to visit specified websites blocked by Chinese government.
 Tools for users to backup/restore hosts files is also provided.
 
-The home page of this project is https://hosts.huhamhire.com/.
+The home page of this project is <https://hosts.huhamhire.com/>.
 
 You can also visit the project page on Google Code to get our latest news
-http://code.google.com/p/huhamhire-hosts/.
+<http://code.google.com/p/huhamhire-hosts/>.
 
 
-LICENSE
-=======
+License
+-------
 
 Licensed under the GNU General Public License, version 3. You should
 have received a copy of the GNU General Public License along with
 this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-USAGE
-=====
+Usage
+-----
 
 * Windows(x86/x64): run hostsutl.exe from the binary excutables package to get
         started.
+
         - "Run as Administrator" is needed for operations to change the hosts
           file on Windows Vista or newer.
 
 * Mac OS X: run HostsUtl application from the binary excutables package to get
         started.
+
         - Because of the locale problem with py2app, the automatic language
           selection may not work correctly on Mac OS with binary excutables.
           You can just choose the language on your on choice.
 
 * Linux/X11(Source code): run command "python hostsutl.py" to get started.
+
         - All platforms with python and the PyQT4 extension could use this
         - method to run the source code.
         - A desktop environment with QT and python is needed only for
@@ -55,8 +58,8 @@ a warning message would be shown and you could only do operations like backup
 hosts file and update the local data file.)
 
 
-REQUIREMENTS
-============
+Requirements
+------------
 
 * Microsoft Windows 2000 or newer for Windows users.
 
@@ -70,8 +73,8 @@ REQUIREMENTS
         specified platforms.
 
 
-AVAILABLE MODULES
-=================
+Available Modules
+-----------------
 
 * hostsutl.py - contains main parts of Hosts Setup Utility.
 
@@ -85,19 +88,16 @@ AVAILABLE MODULES
 * utilities.py - contains basic utilities used by Hosts Setup Utility.
 
 
-TOOLS FOR DEVELOPERS
-====================
+Tools for Developers
+--------------------
 
 * _build.py - contains tools to make packages for different platforms.
 
-    Usage: _build.py [type]
-
-    Options:
-        type        define the platform to make package for. Optional choices
+        Usage: _build.py [type]
+        Options:
+            type    define the platform to make package for. Optional choices
                     could be: py2exe, py2app, py2tar, py2source
                         py2exe - Make binary excutables for Windows. The
-                            operations of this option depends on the py2exe
-                            distutils extension.
                         py2app - Make binary excutables for Mac OS X. The
                             operations of this option depends on the py2app
                             distutils extension.
@@ -109,8 +109,8 @@ TOOLS FOR DEVELOPERS
 * _pyuic4.py : contains tools update the UI code from UI design.
 
 
-THE REST OF THE DISTRIBUTION
-============================
+The Rest of the Distribution
+----------------------------
 
 * lang/ - This directory contains language files for Hosts Setup Utility.
         The *.qm files would be included in distribution packages.
@@ -132,6 +132,6 @@ THE REST OF THE DISTRIBUTION
 * qthostsui.ui - UI project file for the main dialog.
 
 
-AUTHOR/MAINTAINER
-=================
+Author/Maintainer
+-----------------
 huhamhire <me@huhamhire.com>
