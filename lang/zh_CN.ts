@@ -4,7 +4,7 @@
 <context>
     <name>HostsUtlMain</name>
     <message>
-        <location filename="qthostsui.py" line="250"/>
+        <location filename="qthostsui.py" line="266"/>
         <source>Backup hosts</source>
         <translation>备份 hosts 文件</translation>
     </message>
@@ -19,7 +19,7 @@
         <translation>还原备份的 hosts 文件</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="249"/>
+        <location filename="qthostsui.py" line="265"/>
         <source>Functions</source>
         <translation>功能列表</translation>
     </message>
@@ -54,117 +54,117 @@
         <translation>操作完成</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="240"/>
+        <location filename="qthostsui.py" line="256"/>
         <source>Hosts Setup Utility</source>
         <translation>hosts 文件配置工具</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="241"/>
+        <location filename="qthostsui.py" line="257"/>
         <source>Config</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="242"/>
+        <location filename="qthostsui.py" line="258"/>
         <source>Server</source>
         <translation>服务器</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="243"/>
+        <location filename="qthostsui.py" line="259"/>
         <source>IP Version</source>
         <translation>IP 协议版本</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="244"/>
+        <location filename="qthostsui.py" line="260"/>
         <source>Status</source>
         <translation>状态</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="245"/>
+        <location filename="qthostsui.py" line="261"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="268"/>
+        <location filename="qthostsui.py" line="288"/>
         <source>N/A</source>
         <translation>无</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="247"/>
+        <location filename="qthostsui.py" line="263"/>
         <source>OS</source>
         <translation>操作系统</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="251"/>
+        <location filename="qthostsui.py" line="267"/>
         <source>Backup the hosts file of current system.</source>
         <translation>备份当前系统的 hosts 文件。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="252"/>
+        <location filename="qthostsui.py" line="268"/>
         <source>Download data file</source>
         <translation>下载数据文件</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="253"/>
+        <location filename="qthostsui.py" line="269"/>
         <source>Download the latest data file.</source>
         <translation>下载最新数据文件。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="254"/>
+        <location filename="qthostsui.py" line="270"/>
         <source>Restore backup</source>
         <translation>还原备份</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="255"/>
+        <location filename="qthostsui.py" line="271"/>
         <source>Restore a previous backup of hosts file.</source>
         <translation>还原先前备份的 hosts 文件。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="256"/>
+        <location filename="qthostsui.py" line="272"/>
         <source>Apply hosts</source>
         <translation>更改 hosts</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="257"/>
+        <location filename="qthostsui.py" line="273"/>
         <source>Apply changes to the hosts file.</source>
         <translation>对 hosts 文件进行修改。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="258"/>
+        <location filename="qthostsui.py" line="274"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="259"/>
+        <location filename="qthostsui.py" line="275"/>
         <source>Close this tool.</source>
         <translation>关闭本工具。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="261"/>
+        <location filename="qthostsui.py" line="277"/>
         <source>Check the latest version of hosts data file.</source>
         <translation>在线检查数据文件的最新版本。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="262"/>
+        <location filename="qthostsui.py" line="282"/>
         <source>Hosts Info</source>
         <translation>数据文件信息</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="263"/>
+        <location filename="qthostsui.py" line="283"/>
         <source>Version</source>
         <translation>当前版本</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="265"/>
+        <location filename="qthostsui.py" line="285"/>
         <source>Release</source>
         <translation>发布日期</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="267"/>
+        <location filename="qthostsui.py" line="287"/>
         <source>Latest</source>
         <translation>最新版本</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="260"/>
+        <location filename="qthostsui.py" line="276"/>
         <source>Check update / Refresh</source>
         <translation>检查更新/刷新</translation>
     </message>
@@ -331,6 +331,26 @@ current hosts file.</source>
 
 若先前未对 hosts 文件进行备份，该操作将
 不可逆转。</translation>
+    </message>
+    <message>
+        <location filename="qthostsui.py" line="278"/>
+        <source>Save with ANSI</source>
+        <translation>保存为 ANSI 格式</translation>
+    </message>
+    <message>
+        <location filename="qthostsui.py" line="279"/>
+        <source>Export to hosts file encoding by ANSI.</source>
+        <translation>以 ANSI 的编码方式导出 hosts 文件。</translation>
+    </message>
+    <message>
+        <location filename="qthostsui.py" line="280"/>
+        <source>Save with UTF-8</source>
+        <translation>保存为 UTF-8 格式</translation>
+    </message>
+    <message>
+        <location filename="qthostsui.py" line="281"/>
+        <source>Export to hosts file encoding by UTF-8.</source>
+        <translation>以 UTF-8 的编码方式导出 hosts 文件。</translation>
     </message>
 </context>
 </TS>
