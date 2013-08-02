@@ -127,7 +127,7 @@ class MainDialog(QtGui.QDialog):
                     "huhamhirehosts/update/")},
         {"tag": "Github", "test_url": "github.com",
          "update": "http://huhamhire.github.com/huhamhire-hosts/update/"},
-        {"tag": "Atlanta", "test_url": "hosts.huhamhire.com",
+        {"tag": "Seattle", "test_url": "hosts.huhamhire.com",
          "update": "http://hosts.huhamhire.com/update/"}, ]
     # Name of items from the function list to be localized
     __list_trans = [
@@ -227,7 +227,7 @@ class MainDialog(QtGui.QDialog):
         new_lang = LangUtilities.get_locale_by_language(unicode(lang))
         trans = QtCore.QTranslator()
         global LANG_DIR
-        trans.load(''.join([LANG_DIR, new_lang]))
+        trans.load(LANG_DIR + new_lang)
         QtGui.QApplication.removeTranslator(self._trans)
         QtGui.QApplication.installTranslator(trans)
         self._trans = trans
@@ -264,9 +264,9 @@ class MainDialog(QtGui.QDialog):
         """
         l_time = time.localtime(time.time())
         backtime = time.strftime("%Y-%m-%d-%H%M%S", l_time)
-        filename = ''.join(["hosts_", backtime, ".bak"])
+        filename = "hosts_" + backtime + ".bak"
         if self.platform == "OS X":
-            filename = ''.join(["/Users/", filename])
+            filename = "/Users/" + filename
         filepath = QtGui.QFileDialog.getSaveFileName(
             self, _translate("HostsUtlMain", "Backup hosts", None),
             QtCore.QString(filename),
@@ -289,7 +289,7 @@ class MainDialog(QtGui.QDialog):
             return
         filename = ''
         if self.platform == "OS X":
-            filename = ''.join(["/Users/", filename])
+            filename = "/Users/" + filename
         filepath = QtGui.QFileDialog.getOpenFileName(
             self, _translate("HostsUtlMain", "Restore hosts", None),
             QtCore.QString(filename),
@@ -496,7 +496,7 @@ class MainDialog(QtGui.QDialog):
         langs = LangUtilities.language
         langs_not_found = []
         for locale in langs:
-            if not os.path.isfile(''.join([LANG_DIR, locale, ".qm"])):
+            if not os.path.isfile(LANG_DIR + locale + ".qm"):
                 langs_not_found.append(locale)
         for locale in langs_not_found:
             langs.pop(locale)
@@ -810,7 +810,7 @@ class MainDialog(QtGui.QDialog):
                 "HostsUtlMain", "Progress", None))
             self.Ui.Functionlist.clear()
         item = QtGui.QListWidgetItem()
-        item.setText(''.join(["- " , msg]))
+        item.setText("- " + msg)
         item.setFlags(QtCore.Qt.ItemIsEnabled)
         self.Ui.Functionlist.addItem(item)
 
@@ -1106,11 +1106,9 @@ class QSubFetchUpdate(QtCore.QThread):
                 from.
         """
         super(QSubFetchUpdate, self).__init__(parent)
-        self.url = ''.join([
-            parent.mirrors[parent._mirr_id]["update"],
-            parent.filename])
-        self.path = ''.join(["./", parent.filename])
-        self.tmp_path = ''.join([self.path, ".download"])
+        self.url = parent.mirrors[parent._mirr_id]["update"] + parent.filename
+        self.path = "./" + parent.filename
+        self.tmp_path = self.path + ".download"
         self.filesize = parent._update["size"]
 
     def run(self):
@@ -1361,9 +1359,7 @@ class QSubChkUpdate(QtCore.QThread):
                 from.
         """
         super(QSubChkUpdate, self).__init__(parent)
-        self.url = ''.join([
-            parent.mirrors[parent._mirr_id]["update"],
-            parent.infofile])
+        self.url = parent.mirrors[parent._mirr_id]["update"] + parent.infofile
 
     def run(self):
         """Check update - Public Method
