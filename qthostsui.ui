@@ -755,6 +755,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>ButtonANSI</sender>
+   <signal>clicked()</signal>
+   <receiver>HostsUtlMain</receiver>
+   <slot>on_MakeANSI_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>549</x>
+     <y>203</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>517</x>
+     <y>176</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonUTF</sender>
+   <signal>clicked()</signal>
+   <receiver>HostsUtlMain</receiver>
+   <slot>on_MakeUTF8_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>607</x>
+     <y>208</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>634</x>
+     <y>177</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_Mirror_changed(int)</slot>
@@ -766,5 +798,7 @@
   <slot>on_CheckUpdate_clicked()</slot>
   <slot>on_FetchUpdate_clicked()</slot>
   <slot>on_Lang_changed(QString)</slot>
+  <slot>on_MakeANSI_clicked()</slot>
+  <slot>on_MakeUTF8_clicked()</slot>
  </slots>
 </ui>

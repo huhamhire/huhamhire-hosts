@@ -1,1 +1,4 @@
 *.tmp
+*.pyc
+*.data
+Thumbs.db

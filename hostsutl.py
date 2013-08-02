@@ -66,6 +66,11 @@ class MainDialog(QtGui.QDialog):
             function list for IPv4 and IPv6 environment.
         _make_cfg (dict): A dictionary containing the selection control bytes
             to make a hosts file.
+        _make_mode (str): A string indicating the operation mode for making
+            hosts file.
+        _make_dir (str): A string indicating directory to store the hosts file
+            in export mode.
+        _sys_eol (str): A string indicating the End-Of-Line marker.
         _update (dict): A dictionary containing the update information of the
             current data file on server.
         _trans (obj): A QtCore.QTranslator object indicating the current UI
@@ -103,6 +108,9 @@ class MainDialog(QtGui.QDialog):
     _down_flag = 0
     _funcs = [[], []]
     _make_cfg = {}
+    _make_mode = ""
+    _make_dir = "./"
+    _sys_eol = ""
     _update = {}
     _trans = None
 
@@ -248,12 +256,18 @@ class MainDialog(QtGui.QDialog):
             self.warning_permission()
             return
         if self.question_apply():
-            self.set_makemsg(unicode(_translate(
-                "HostsUtlMain", "Building hosts file...", None)), 1)
-            self.set_cfgbytes()
-            self.make_hosts()
+            self._make_dir = "./"
+            self.make_hosts("system")
         else:
             return
+
+    def on_MakeANSI_clicked(self):
+        self._make_dir = "./"
+        self.make_hosts("ansi")
+
+    def on_MakeUTF8_clicked(self):
+        self._make_dir = "./"
+        self.make_hosts("utf-8")
 
     def on_Backup_clicked(self):
         """Backup system hosts file - Public Method
@@ -308,6 +322,8 @@ class MainDialog(QtGui.QDialog):
         if self.choice != [[], []]:
             self.refresh_func_list()
             self.Ui.ButtonApply.setEnabled(True)
+            self.Ui.ButtonANSI.setEnabled(True)
+            self.Ui.ButtonUTF.setEnabled(True)
         if self._update == {} or self._update["version"] == \
             unicode(_translate("HostsUtlMain", "[Error]", None)):
             self.check_update()
@@ -325,6 +341,8 @@ class MainDialog(QtGui.QDialog):
         self._down_flag = 1
         self.Ui.Functionlist.setEnabled(False)
         self.Ui.ButtonApply.setEnabled(False)
+        self.Ui.ButtonANSI.setEnabled(False)
+        self.Ui.ButtonUTF.setEnabled(False)
         if self._update == {} or self._update["version"] == \
             unicode(_translate("HostsUtlMain", "[Error]", None)):
             self.check_update()
@@ -426,6 +444,8 @@ class MainDialog(QtGui.QDialog):
         self.Ui.ButtonCheck.setEnabled(False)
         self.Ui.ButtonUpdate.setEnabled(False)
         self.Ui.ButtonApply.setEnabled(False)
+        self.Ui.ButtonANSI.setEnabled(False)
+        self.Ui.ButtonUTF.setEnabled(False)
         self.Ui.ButtonExit.setEnabled(False)
         thread = QSubFetchUpdate(self)
         thread.prog_trigger.connect(self.set_downprogbar)
@@ -447,19 +467,29 @@ class MainDialog(QtGui.QDialog):
             self.info_uptodate()
             self.finish_fetch()
 
-    def make_hosts(self):
+    def make_hosts(self, mode="system"):
         """Operations to make hosts file - Public Method
 
         Call operations to make a new hosts file for current system.
+
+        Args:
+            mode (str): A string indicating the operation mode for making
+                hosts file.
         """
         self.Ui.Functionlist.setEnabled(False)
         self.Ui.SelectIP.setEnabled(False)
         self.Ui.ButtonCheck.setEnabled(False)
         self.Ui.ButtonUpdate.setEnabled(False)
         self.Ui.ButtonApply.setEnabled(False)
+        self.Ui.ButtonANSI.setEnabled(False)
+        self.Ui.ButtonUTF.setEnabled(False)
         self.Ui.ButtonExit.setEnabled(False)
+        self.set_makemsg(unicode(_translate(
+            "HostsUtlMain", "Building hosts file...", None)), 1)
         # Avoid conflict while making hosts file
         RetrieveData.disconnect_db()
+        self._make_mode = mode
+        self.set_cfgbytes(mode)
         thread = QSubMakeHosts(self)
         thread.info_trigger.connect(self.set_makeprog)
         thread.fina_trigger.connect(self.set_makefina)
@@ -529,6 +559,10 @@ class MainDialog(QtGui.QDialog):
         self.platform = system
         self.hostname = hostname
         self.hostspath = path
+        if encode == "win_ansi":
+            self._sys_eol = "\r\n"
+        else:
+            self._sys_eol = "\n"
 
     def set_font(self):
         """Set font and window style - Public Method
@@ -725,17 +759,24 @@ class MainDialog(QtGui.QDialog):
         item = self.Ui.Functionlist.item(item_id)
         item.setCheckState(QtCore.Qt.Unchecked)
 
-    def set_cfgbytes(self):
+    def set_cfgbytes(self, mode):
         """Set configuration byte words - Public Method
 
         Calculate the module configuration byte words by the selection from
         function list on the main dialog.
+
+        Args:
+            mode (str): A string indicating the operation mode for making
+                hosts file.
         """
         ip_flag = self._ipv_id
         selection = {}
-        localhost_word = {
-            "Windows": 0x0001, "Linux": 0x0002,
-            "Unix": 0x0002, "OS X": 0x0004}[self.platform]
+        if mode == "system":
+            localhost_word = {
+                "Windows": 0x0001, "Linux": 0x0002,
+                "Unix": 0x0002, "OS X": 0x0004}[self.platform]
+        else:
+            localhost_word = 0x0008
         selection[0x02] = localhost_word
         ch_parts = (0x08, 0x20 if self._ipv_id else 0x10, 0x40)
         slices = self.slices[ip_flag]
@@ -832,6 +873,8 @@ class MainDialog(QtGui.QDialog):
         self.Ui.ButtonCheck.setEnabled(True)
         self.Ui.ButtonUpdate.setEnabled(True)
         self.Ui.ButtonApply.setEnabled(False)
+        self.Ui.ButtonANSI.setEnabled(False)
+        self.Ui.ButtonUTF.setEnabled(False)
         self.Ui.ButtonExit.setEnabled(True)
         RetrieveData.connect_db()
         msg = unicode(_translate("HostsUtlMain",
@@ -898,6 +941,8 @@ class MainDialog(QtGui.QDialog):
                 "fetch a new data file.", None))
             self.set_message(msg_title, msg)
             self.Ui.ButtonApply.setEnabled(False)
+            self.Ui.ButtonANSI.setEnabled(False)
+            self.Ui.ButtonUTF.setEnabled(False)
             self.set_conn_status(0)
         else:
             # Data file retrieved successfully
@@ -906,6 +951,8 @@ class MainDialog(QtGui.QDialog):
                     "Download Complete", None)))
             self.refresh_info(refresh)
             self.Ui.ButtonApply.setEnabled(True)
+            self.Ui.ButtonANSI.setEnabled(True)
+            self.Ui.ButtonUTF.setEnabled(True)
         self.Ui.Functionlist.setEnabled(True)
         self.Ui.SelectMirror.setEnabled(True)
         self.Ui.ButtonCheck.setEnabled(True)
@@ -969,6 +1016,8 @@ class MainDialog(QtGui.QDialog):
             "fetch a new data file.", None))
         self.set_message(msg_title, msg)
         self.Ui.ButtonApply.setEnabled(False)
+        self.Ui.ButtonANSI.setEnabled(False)
+        self.Ui.ButtonUTF.setEnabled(False)
 
     def warning_no_datafile(self):
         """Show no data file warning - Public Method
@@ -982,6 +1031,8 @@ class MainDialog(QtGui.QDialog):
             "fetch a new data file.", None))
         self.set_message(msg_title, msg)
         self.Ui.ButtonApply.setEnabled(False)
+        self.Ui.ButtonANSI.setEnabled(False)
+        self.Ui.ButtonUTF.setEnabled(False)
 
     def question_apply(self):
         """Show confirm make question - Public Method
@@ -1222,8 +1273,15 @@ class QSubMakeHosts(QtCore.QThread):
         super(QSubMakeHosts, self).__init__(parent)
         self.count = 0
         self.make_cfg = parent._make_cfg
+        self.make_mode = parent._make_mode
         self.hostname = parent.hostname
-        self.hosts_file = open("hosts", "w")
+        self.hosts_file = open("hosts", "wb")
+        if parent._make_mode == "system":
+            self.eol = parent._sys_eol
+        elif parent._make_mode == "ansi":
+            self.eol = "\r\n"
+        elif parent._make_mode == "utf-8":
+            self.eol = "\n"
 
     def run(self):
         """Make new hosts file - Public Method
@@ -1241,7 +1299,8 @@ class QSubMakeHosts(QtCore.QThread):
         end_time = time.time()
         total_time = "%.4f" % (end_time - start_time)
         self.fina_trigger.emit(total_time, self.count)
-        self.move_trigger.emit()
+        if self.make_mode == "system":
+            self.move_trigger.emit()
         RetrieveData.disconnect_db()
 
     def get_hosts(self, make_cfg):
@@ -1286,7 +1345,7 @@ class QSubMakeHosts(QtCore.QThread):
         info_lines.append("# %s: %s" % ("Applytime", int(self.maketime)))
         info_lines.append("#")
         for line in info_lines:
-            self.hosts_file.write("%s\n" % line)
+            self.hosts_file.write("%s%s" % (line, self.eol))
 
     def write_common_mod(self, part_id, mod_id):
         """Write module section - Public Method
@@ -1302,11 +1361,12 @@ class QSubMakeHosts(QtCore.QThread):
         """
         hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
         self.info_trigger.emit(mod_name, self.mod_num)
-        self.hosts_file.write("\n# Section Start: %s\n" % mod_name)
+        self.hosts_file.write(
+            "%s# Section Start: %s%s" % (self.eol, mod_name, self.eol))
         for host in hosts:
-            self.hosts_file.write("%s %s\n" % (host[0], host[1]))
+            self.hosts_file.write("%s %s%s" % (host[0], host[1], self.eol))
             self.count += 1
-        self.hosts_file.write("# Section End: %s\n" % mod_name)
+        self.hosts_file.write("# Section End: %s%s" % (mod_name, self.eol))
 
     def write_localhost_mod(self, part_id, mod_id):
         """Write localhost section - Public Method
@@ -1322,13 +1382,14 @@ class QSubMakeHosts(QtCore.QThread):
         """
         hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
         self.info_trigger.emit(mod_name, self.mod_num)
-        self.hosts_file.write("\n# Section Start: Localhost\n")
+        self.hosts_file.write(
+            "%s# Section Start: Localhost%s" % (self.eol, self.eol))
         for host in hosts:
             if "#Replace" in host[1]:
                 host = (host[0], self.hostname)
-            self.hosts_file.write("%s %s\n" % (host[0], host[1]))
+            self.hosts_file.write("%s %s%s" % (host[0], host[1], self.eol))
             self.count += 1
-        self.hosts_file.write("# Section End: Localhost\n")
+        self.hosts_file.write("# Section End: Localhost%s" % (self.eol))
 
 
 class QSubChkUpdate(QtCore.QThread):
