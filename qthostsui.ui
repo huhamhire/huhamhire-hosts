@@ -430,6 +430,64 @@
      </size>
     </property>
    </widget>
+   <widget class="QPushButton" name="ButtonANSI">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>160</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Save with ANSI</string>
+    </property>
+    <property name="whatsThis">
+     <string>Export to hosts file encoding by ANSI.</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="qthosts.qrc">
+      <normaloff>:/buttons/img/icon_ansi.png</normaloff>:/buttons/img/icon_ansi.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ButtonUTF">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>160</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Save with UTF-8</string>
+    </property>
+    <property name="whatsThis">
+     <string>Export to hosts file encoding by UTF-8.</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="qthosts.qrc">
+      <normaloff>:/buttons/img/icon_utf.png</normaloff>:/buttons/img/icon_utf.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="InfoBox">
    <property name="geometry">
