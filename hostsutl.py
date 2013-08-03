@@ -68,7 +68,7 @@ class MainDialog(QtGui.QDialog):
             to make a hosts file.
         _make_mode (str): A string indicating the operation mode for making
             hosts file.
-        _make_dir (str): A string indicating directory to store the hosts file
+        _make_path (str): A string indicating the path to store the hosts file
             in export mode.
         _sys_eol (str): A string indicating the End-Of-Line marker.
         _update (dict): A dictionary containing the update information of the
@@ -109,7 +109,7 @@ class MainDialog(QtGui.QDialog):
     _funcs = [[], []]
     _make_cfg = {}
     _make_mode = ""
-    _make_dir = "./"
+    _make_path = "./hosts"
     _sys_eol = ""
     _update = {}
     _trans = None
@@ -256,18 +256,32 @@ class MainDialog(QtGui.QDialog):
             self.warning_permission()
             return
         if self.question_apply():
-            self._make_dir = "./"
+            self._make_path = "./hosts"
             self.make_hosts("system")
         else:
             return
 
     def on_MakeANSI_clicked(self):
-        self._make_dir = "./"
-        self.make_hosts("ansi")
+        """Export hosts ANSI - Public Method
+
+        The slot response to the signal from ButtonANSI widget while the
+        button is clicked. This method would call operations to export a hosts
+        file encoding in ANSI.
+        """
+        self._make_path = self.export_hosts()
+        if unicode(self._make_path) != u'':
+            self.make_hosts("ansi")
 
     def on_MakeUTF8_clicked(self):
-        self._make_dir = "./"
-        self.make_hosts("utf-8")
+        """Export hosts in UTF-8 - Public Method
+
+        The slot response to the signal from ButtonUTF widget while the
+        button is clicked. This method would call operations to export a hosts
+        file encoding in UTF-8.
+        """
+        self._make_path = self.export_hosts()
+        if unicode(self._make_path) != u'':
+            self.make_hosts("utf-8")
 
     def on_Backup_clicked(self):
         """Backup system hosts file - Public Method
@@ -466,6 +480,24 @@ class MainDialog(QtGui.QDialog):
         else:
             self.info_uptodate()
             self.finish_fetch()
+
+    def export_hosts(self):
+        """Draw export hosts dialog - Public Method
+
+        Show the export dialog and get the path to save the exported hosts
+        file.
+
+        Returns:
+            A string indicating the path to export a hosts file
+        """
+        filename = "hosts"
+        if self.platform == "OS X":
+            filename = "/Users/" + filename
+        filepath = QtGui.QFileDialog.getSaveFileName(
+            self, _translate("HostsUtlMain", "Export hosts", None),
+            QtCore.QString(filename),
+            _translate("HostsUtlMain", "hosts File", None))
+        return filepath
 
     def make_hosts(self, mode="system"):
         """Operations to make hosts file - Public Method
@@ -1254,12 +1286,21 @@ class QSubMakeHosts(QtCore.QThread):
             currently.
         mod_num (int): An integer indicating total number of modules being
             operated while making hosts file.
+        make_cfg (dict): A dictionary containing the selection control bytes
+            to make a hosts file.
+        make_mode (str): A string indicating the operation mode for making
+            hosts file.
+        eol (str): A string indicating the End-Of-Line marker.
     """
     info_trigger = QtCore.pyqtSignal(str, int)
     fina_trigger = QtCore.pyqtSignal(str, int)
     move_trigger = QtCore.pyqtSignal()
+
     count = 0
     mod_num = 0
+    make_cfg = {}
+    make_mode = ""
+    eol = ""
 
     def __init__(self, parent=None):
         """Initialize a new instance of this class - Private Method
@@ -1274,14 +1315,17 @@ class QSubMakeHosts(QtCore.QThread):
         self.count = 0
         self.make_cfg = parent._make_cfg
         self.make_mode = parent._make_mode
+        make_path = parent._make_path
         self.hostname = parent.hostname
-        self.hosts_file = open("hosts", "wb")
         if parent._make_mode == "system":
             self.eol = parent._sys_eol
+            self.hosts_file = open("hosts", "wb")
         elif parent._make_mode == "ansi":
             self.eol = "\r\n"
+            self.hosts_file = open(unicode(make_path), "wb")
         elif parent._make_mode == "utf-8":
             self.eol = "\n"
+            self.hosts_file = open(unicode(make_path), "wb")
 
     def run(self):
         """Make new hosts file - Public Method
@@ -1331,7 +1375,7 @@ class QSubMakeHosts(QtCore.QThread):
         Write the head part of new hosts file.
         """
         for head_str in RetrieveData.get_head():
-            self.hosts_file.write("%s\n" % head_str[0])
+            self.hosts_file.write("%s%s" % (head_str[0], self.eol))
 
     def write_info(self):
         """Write info section - Public Method
