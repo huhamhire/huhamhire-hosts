@@ -142,9 +142,9 @@ class Utilities(object):
         for sec in conf.sections():
             mirror = {}
             mirror["tag"] = sec
-            mirror["test"] = conf.get(sec, "server")
+            mirror["test_url"] = conf.get(sec, "server")
             mirror["update"] = conf.get(sec, "update")
-            mirrors.appendp[mirror]
+            mirrors.append(mirror)
         return mirrors
 
     @classmethod

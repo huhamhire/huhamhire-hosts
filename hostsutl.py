@@ -126,17 +126,7 @@ class MainDialog(QtGui.QDialog):
     hostspath = ''
     # Mirror related configuration
     _mirr_id = 0
-    mirrors = [
-        {"tag": "Google Code", "test_url": "huhamhire-hosts.googlecode.com",
-         "update": ("http://huhamhire-hosts.googlecode.com/git-history/"
-                    "gh-pages/update/")},
-        {"tag": "Sourceforge" , "test_url": "master.dl.sourceforge.net",
-         "update": ("http://master.dl.sourceforge.net/project/"
-                    "huhamhirehosts/update/")},
-        {"tag": "Github", "test_url": "github.com",
-         "update": "http://huhamhire.github.com/huhamhire-hosts/update/"},
-        {"tag": "Seattle", "test_url": "hosts.huhamhire.com",
-         "update": "http://hosts.huhamhire.com/update/"}, ]
+    mirrors = []
     # Name of items from the function list to be localized
     __list_trans = [
         _translate("HostsUtlMain", "google(cn)", None),
@@ -373,6 +363,8 @@ class MainDialog(QtGui.QDialog):
         current operating system and current session.
         """
         self.Ui.SelectMirror.clear()
+        # Set mirrors
+        self.mirrors = Utilities.set_network("network.conf")
         for i, mirror in enumerate(self.mirrors):
             self.Ui.SelectMirror.addItem(_fromUtf8(""))
             self.Ui.SelectMirror.setItemText(
