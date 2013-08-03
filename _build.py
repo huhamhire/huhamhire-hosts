@@ -70,7 +70,7 @@ DATA_FILES = [
         ]
     ),
     "LICENSE",
-    "README",
+    "README.md",
 ]
 
 if sys.argv > 1:

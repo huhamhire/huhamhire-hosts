@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'qthostsui.ui'
 #
-# Created: Fri Aug 02 14:02:22 2013
+# Created: Fri Aug 02 19:08:24 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -242,6 +242,8 @@ class Ui_HostsUtlMain(object):
         QtCore.QObject.connect(self.ButtonCheck, QtCore.SIGNAL(_fromUtf8("clicked()")), HostsUtlMain.on_CheckUpdate_clicked)
         QtCore.QObject.connect(self.ButtonUpdate, QtCore.SIGNAL(_fromUtf8("clicked()")), HostsUtlMain.on_FetchUpdate_clicked)
         QtCore.QObject.connect(self.SelectLang, QtCore.SIGNAL(_fromUtf8("currentIndexChanged(QString)")), HostsUtlMain.on_Lang_changed)
+        QtCore.QObject.connect(self.ButtonANSI, QtCore.SIGNAL(_fromUtf8("clicked()")), HostsUtlMain.on_MakeANSI_clicked)
+        QtCore.QObject.connect(self.ButtonUTF, QtCore.SIGNAL(_fromUtf8("clicked()")), HostsUtlMain.on_MakeUTF8_clicked)
         QtCore.QMetaObject.connectSlotsByName(HostsUtlMain)
         HostsUtlMain.setTabOrder(self.SelectMirror, self.SelectIP)
         HostsUtlMain.setTabOrder(self.SelectIP, self.Functionlist)
