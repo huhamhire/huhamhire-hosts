@@ -14,7 +14,7 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "1.9.5"
+__version__ = "1.9.6"
 __revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
