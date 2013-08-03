@@ -590,6 +590,9 @@
   <tabstop>ButtonUpdate</tabstop>
   <tabstop>ButtonBackup</tabstop>
   <tabstop>ButtonRestore</tabstop>
+  <tabstop>ButtonANSI</tabstop>
+  <tabstop>ButtonUTF</tabstop>
+  <tabstop>SelectLang</tabstop>
  </tabstops>
  <resources>
   <include location="qthosts.qrc"/>
