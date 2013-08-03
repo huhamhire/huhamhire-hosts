@@ -20,6 +20,7 @@ __author__ = "huhamhire <me@huhamhire.com>"
 
 __all__ = ["Utilities", "LangUtilities"]
 
+import ConfigParser
 import locale
 import math
 import os
@@ -125,6 +126,26 @@ class Utilities(object):
                     return (os.environ['USERNAME'], False)
                 except KeyError:
                     return (os.environ['USER'], False)
+
+    @classmethod
+    def set_network(cls, conf_file="network.conf"):
+        """Read network config file
+
+        Get configurations for mirrors to connect to.
+
+        Returns:
+            A dictionary containing tag, test url, and update url of mirrors.
+        """
+        conf = ConfigParser.ConfigParser()
+        conf.read(conf_file)
+        mirrors = []
+        for sec in conf.sections():
+            mirror = {}
+            mirror["tag"] = sec
+            mirror["test"] = conf.get(sec, "server")
+            mirror["update"] = conf.get(sec, "update")
+            mirrors.appendp[mirror]
+        return mirrors
 
     @classmethod
     def timestamp_to_date(cls, timestamp):
