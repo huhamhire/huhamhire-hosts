@@ -623,7 +623,7 @@
 127.0.0.1 jebe.xnimg.cn
 
 #ifeng
-127.0.0.1 flvad.ifeng.com 
+127.0.0.1 flvad.ifeng.com
 
 ####国外门户
 #Adbureau
@@ -2841,21 +2841,6 @@
 127.0.0.1 activation.acronis.com
 127.0.0.1 liveupdate.acronis.com
 #Adobe
-127.0.0.1	3dns-2.adobe.com
-127.0.0.1	3dns-3.adobe.com
-127.0.0.1	activate-sea.adobe.com
-127.0.0.1	activate-sjc0.adobe.com
-127.0.0.1	activate.adobe.com
-127.0.0.1	activate.wip3.adobe.com
-127.0.0.1	adobe-dns-2.adobe.com
-127.0.0.1	adobe-dns-3.adobe.com
-127.0.0.1	adobe-dns.adobe.com
-127.0.0.1	ereg.adobe.com
-127.0.0.1	ereg.wip3.adobe.com
-127.0.0.1	hl2rcv.adobe.com
-127.0.0.1	practivate.adobe.com
-127.0.0.1	wip3.adobe.com
-127.0.0.1	wwis-dubc1-vip60.adobe.com
 127.0.0.1 3dns-2.adobe.com
 127.0.0.1 3dns-3.adobe.com
 127.0.0.1 activate-sea.adobe.com
@@ -3586,7 +3571,7 @@
 127.0.0.1 web.burstmedia.com
 127.0.0.1 websurvey.burstmedia.com
 127.0.0.1 ads.burstnet.com
-127.0.0.1 ads.burstnet.com 
+127.0.0.1 ads.burstnet.com
 127.0.0.1 bet.burstnet.com
 127.0.0.1 bmuk.burstnet.com
 127.0.0.1 gifs.burstnet.com
@@ -6670,7 +6655,7 @@
 127.0.0.1 c28.statcounter.com
 127.0.0.1 c29.statcounter.com
 127.0.0.1 c3.statcounter.com
-127.0.0.1 c3.statcounter.com 
+127.0.0.1 c3.statcounter.com
 127.0.0.1 c30.statcounter.com
 127.0.0.1 c31.statcounter.com
 127.0.0.1 c32.statcounter.com
@@ -9260,7 +9245,7 @@
 #Devopenserv
 127.0.0.1 cloud2.devopenserv.com
 127.0.0.1 ck2.devopenserv.com
-127.0.0.1 dp3.devopenserv.com 
+127.0.0.1 dp3.devopenserv.com
 127.0.0.1 dp2.devopenserv.com
 #Duomeng
 127.0.0.1 duomeng.cn
