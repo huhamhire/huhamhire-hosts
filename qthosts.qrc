@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="buttons">
+    <file>img/icon_utf.png</file>
+    <file>img/icon_ansi.png</file>
     <file>img/icon_apply.png</file>
     <file>img/icon_backup.png</file>
     <file>img/icon_exit.png</file>

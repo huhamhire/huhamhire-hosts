@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'qthostsui.ui'
 #
-# Created: Mon Jul 22 15:51:02 2013
+# Created: Fri Aug 02 19:08:24 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -177,6 +177,22 @@ class Ui_HostsUtlMain(object):
         self.ButtonCheck.setIcon(icon6)
         self.ButtonCheck.setIconSize(QtCore.QSize(32, 32))
         self.ButtonCheck.setObjectName(_fromUtf8("ButtonCheck"))
+        self.ButtonANSI = QtGui.QPushButton(self.frame)
+        self.ButtonANSI.setGeometry(QtCore.QRect(0, 160, 48, 48))
+        self.ButtonANSI.setText(_fromUtf8(""))
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/icon_ansi.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ButtonANSI.setIcon(icon7)
+        self.ButtonANSI.setIconSize(QtCore.QSize(32, 32))
+        self.ButtonANSI.setObjectName(_fromUtf8("ButtonANSI"))
+        self.ButtonUTF = QtGui.QPushButton(self.frame)
+        self.ButtonUTF.setGeometry(QtCore.QRect(60, 160, 48, 48))
+        self.ButtonUTF.setText(_fromUtf8(""))
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/icon_utf.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.ButtonUTF.setIcon(icon8)
+        self.ButtonUTF.setIconSize(QtCore.QSize(32, 32))
+        self.ButtonUTF.setObjectName(_fromUtf8("ButtonUTF"))
         self.InfoBox = QtGui.QGroupBox(HostsUtlMain)
         self.InfoBox.setGeometry(QtCore.QRect(10, 220, 240, 90))
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
@@ -226,6 +242,8 @@ class Ui_HostsUtlMain(object):
         QtCore.QObject.connect(self.ButtonCheck, QtCore.SIGNAL(_fromUtf8("clicked()")), HostsUtlMain.on_CheckUpdate_clicked)
         QtCore.QObject.connect(self.ButtonUpdate, QtCore.SIGNAL(_fromUtf8("clicked()")), HostsUtlMain.on_FetchUpdate_clicked)
         QtCore.QObject.connect(self.SelectLang, QtCore.SIGNAL(_fromUtf8("currentIndexChanged(QString)")), HostsUtlMain.on_Lang_changed)
+        QtCore.QObject.connect(self.ButtonANSI, QtCore.SIGNAL(_fromUtf8("clicked()")), HostsUtlMain.on_MakeANSI_clicked)
+        QtCore.QObject.connect(self.ButtonUTF, QtCore.SIGNAL(_fromUtf8("clicked()")), HostsUtlMain.on_MakeUTF8_clicked)
         QtCore.QMetaObject.connectSlotsByName(HostsUtlMain)
         HostsUtlMain.setTabOrder(self.SelectMirror, self.SelectIP)
         HostsUtlMain.setTabOrder(self.SelectIP, self.Functionlist)
@@ -259,6 +277,10 @@ class Ui_HostsUtlMain(object):
         self.ButtonExit.setWhatsThis(_translate("HostsUtlMain", "Close this tool.", None))
         self.ButtonCheck.setToolTip(_translate("HostsUtlMain", "Check update / Refresh", None))
         self.ButtonCheck.setWhatsThis(_translate("HostsUtlMain", "Check the latest version of hosts data file.", None))
+        self.ButtonANSI.setToolTip(_translate("HostsUtlMain", "Save with ANSI", None))
+        self.ButtonANSI.setWhatsThis(_translate("HostsUtlMain", "Export to hosts file encoding by ANSI.", None))
+        self.ButtonUTF.setToolTip(_translate("HostsUtlMain", "Save with UTF-8", None))
+        self.ButtonUTF.setWhatsThis(_translate("HostsUtlMain", "Export to hosts file encoding by UTF-8.", None))
         self.InfoBox.setTitle(_translate("HostsUtlMain", "Hosts Info", None))
         self.labelVersion.setText(_translate("HostsUtlMain", "Version", None))
         self.labelVersionData.setText(_translate("HostsUtlMain", "N/A", None))

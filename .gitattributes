@@ -5,3 +5,7 @@
 *.zip   binary
 *.dmg   binary
 *.tar.gz   binary
+*.png   binary
+*.ico   binary
+*.icns  binary
+*.qm    binary

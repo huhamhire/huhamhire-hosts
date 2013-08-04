@@ -430,6 +430,64 @@
      </size>
     </property>
    </widget>
+   <widget class="QPushButton" name="ButtonANSI">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>160</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Save with ANSI</string>
+    </property>
+    <property name="whatsThis">
+     <string>Export to hosts file encoding by ANSI.</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="qthosts.qrc">
+      <normaloff>:/buttons/img/icon_ansi.png</normaloff>:/buttons/img/icon_ansi.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ButtonUTF">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>160</y>
+      <width>48</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Save with UTF-8</string>
+    </property>
+    <property name="whatsThis">
+     <string>Export to hosts file encoding by UTF-8.</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="qthosts.qrc">
+      <normaloff>:/buttons/img/icon_utf.png</normaloff>:/buttons/img/icon_utf.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>32</width>
+      <height>32</height>
+     </size>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="InfoBox">
    <property name="geometry">
@@ -532,6 +590,9 @@
   <tabstop>ButtonUpdate</tabstop>
   <tabstop>ButtonBackup</tabstop>
   <tabstop>ButtonRestore</tabstop>
+  <tabstop>ButtonANSI</tabstop>
+  <tabstop>ButtonUTF</tabstop>
+  <tabstop>SelectLang</tabstop>
  </tabstops>
  <resources>
   <include location="qthosts.qrc"/>
@@ -697,6 +758,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>ButtonANSI</sender>
+   <signal>clicked()</signal>
+   <receiver>HostsUtlMain</receiver>
+   <slot>on_MakeANSI_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>549</x>
+     <y>203</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>517</x>
+     <y>176</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonUTF</sender>
+   <signal>clicked()</signal>
+   <receiver>HostsUtlMain</receiver>
+   <slot>on_MakeUTF8_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>607</x>
+     <y>208</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>634</x>
+     <y>177</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_Mirror_changed(int)</slot>
@@ -708,5 +801,7 @@
   <slot>on_CheckUpdate_clicked()</slot>
   <slot>on_FetchUpdate_clicked()</slot>
   <slot>on_Lang_changed(QString)</slot>
+  <slot>on_MakeANSI_clicked()</slot>
+  <slot>on_MakeUTF8_clicked()</slot>
  </slots>
 </ui>

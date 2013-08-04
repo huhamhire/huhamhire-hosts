@@ -70,7 +70,8 @@ DATA_FILES = [
         ]
     ),
     "LICENSE",
-    "README",
+    "README.md",
+    "network.conf",
 ]
 
 if sys.argv > 1:
@@ -78,8 +79,9 @@ if sys.argv > 1:
     if sys.argv[1] == "py2tar":
         # Pack up script package for Linux users
         file_path = lambda rel_path: SCRIPT_DIR + rel_path
-        includes = ["*.py", "lang/*.qm", "LICENSE", "README"]
-        excludes = ["_*.py", ".gitattributes", "README.md"]
+        includes = [
+            "*.py", "lang/*.qm", "LICENSE", "README.md", "network.conf"]
+        excludes = ["_*.py", ".gitattributes"]
         ex_files = []
         prefix = "HostsUtl-x11-gpl-"
         tar_flag = 1
@@ -88,7 +90,7 @@ if sys.argv > 1:
         # Pack up source package for Linux users
         file_path = lambda rel_path: SCRIPT_DIR + rel_path
         includes = ["*"]
-        excludes = [".gitattributes", "README.md"]
+        excludes = [".gitattributes"]
         ex_files = []
         prefix = "HostsUtl-source-gpl-"
         tar_flag = 1
