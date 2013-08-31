@@ -1,749 +1,749 @@
 # region google
 
 ##Google.com Google.com
-2404:6800:4005:c00::64 google.com
-2404:6800:4005:c00::54 accounts.google.com #accounts.l.google.com
-2404:6800:4005:c00::5e accounts.google.com.hk #accounts-cctld.l.google.com
-2404:6800:4005:c00::54 accounts.l.google.com
-2404:6800:4005:c00::c1 m.google.com #mobile.l.google.com
-2404:6800:4005:c00::c1 m.google.com.hk #mobile.l.google.com
-2404:6800:4005:c00::c1 mobile.l.google.com
+2001:4860:4001:801::1002 google.com
+2001:4860:4001:801::54 accounts.google.com #accounts.l.google.com
+2001:4860:4001:801::5e accounts.google.com.hk #accounts-cctld.l.google.com
+2001:4860:4001:801::54 accounts.l.google.com
+2001:4860:4001:801::c1 m.google.com #mobile.l.google.com
+2001:4860:4001:801::c1 m.google.com.hk #mobile.l.google.com
+2001:4860:4001:801::c1 mobile.l.google.com
 2001:4860:4860::8888 google-public-dns-a.google.com
 2001:4860:4860::8844 google-public-dns-b.google.com
-2404:6800:4005:c00::64 services.google.com #www3.l.google.com
-2404:6800:4005:c00::71 goto.google.com #www3.l.google.com
-2404:6800:4005:c00::71 jmt0.google.com #www3.l.google.com
-###2404:6800:4005:c00::d2 wire.l.google.com
-#2404:6800:4005:c00::63 ipv6.google.com #ipv6.l.google.com
-#2404:6800:4005:c00::69 ipv6.google.com #ipv6.l.google.com
-#2404:6800:4005:c00::63 ipv6.google.com.hk #ipv6.google.com
-#2404:6800:4005:c00::69 ipv6.google.com.hk #ipv6.google.com
-#2404:6800:4005:c00::63 ipv6.google.co.jp #ipv6.google.com
-#2404:6800:4005:c00::69 ipv6.google.co.jp #ipv6.google.com
-#2404:6800:4005:c00::63 ipv6.l.google.com
+2001:4860:4001:801::1004 services.google.com #www3.l.google.com
+2001:4860:4001:801::1001 goto.google.com #www3.l.google.com
+2001:4860:4001:801::1003 jmt0.google.com #www3.l.google.com
+##2001:4860:4001:801::d2 wire.l.google.com
+2001:4860:4001:801::63 ipv6.google.com #ipv6.l.google.com
+2001:4860:4001:801::69 ipv6.google.com #ipv6.l.google.com
+2001:4860:4001:801::63 ipv6.google.com.hk #ipv6.google.com
+2001:4860:4001:801::69 ipv6.google.com.hk #ipv6.google.com
+2001:4860:4001:801::63 ipv6.google.co.jp #ipv6.google.com
+2001:4860:4001:801::69 ipv6.google.co.jp #ipv6.google.com
+2001:4860:4001:801::63 ipv6.l.google.com
 
 ##Google.com.hk 谷歌香港
-2404:6800:4005:c00::6a www.google.com.hk #www.l.google.com
-2404:6800:4005:c00::5b picasaweb.google.com.hk #picasaweb.l.google.com
-2404:6800:4005:c00::63 desktop.google.com.hk #desktop.l.google.com
-2404:6800:4005:c00::5e id.google.com.hk #id.l.google.com
-2404:6800:4005:c00::69 google.com.hk
-2404:6800:4005:c00::67 www.googlechinawebmaster.com
+2001:4860:4001:801::1010 www.google.com.hk #www.l.google.com
+2001:4860:4001:801::5b picasaweb.google.com.hk #picasaweb.l.google.com
+2001:4860:4001:801::63 desktop.google.com.hk #desktop.l.google.com
+2001:4860:4001:801::5e id.google.com.hk #id.l.google.com
+2001:4860:4001:801::1010 google.com.hk
+2001:4860:4001:801::1014 www.googlechinawebmaster.com
 
 ##Google.cn 谷歌中国（启用此地址无法正常使用谷歌音乐）
-#2404:6800:4005:c00::a0 www.google.cn
-2404:6800:4005:c00::a0 g.cn
-2404:6800:4005:c00::a0 google.cn
-2404:6800:4005:c00::a0 news.google.cn #www.google.cn
-2404:6800:4005:c00::a0 video.google.cn #www.google.cn
-#2404:6800:4005:c00::63 ipv6.google.cn #ipv6.l.google.com
-#2404:6800:4005:c00::69 ipv6.google.cn #ipv6.l.google.com
-###2404:6800:4005:c00::6a ipv6cn.l.google.com
-2404:6800:4005:c00::84 music.googleusercontent.cn #googleusercontent.cn
-2404:6800:4005:c00::a0 m.google.cn #www.google.cn
-2404:6800:4005:c00::a0 www.265.com #265.com
-2404:6800:4005:c00::a0 265.com
+2001:4860:4001:801::a0 www.google.cn
+2001:4860:4001:801::a0 g.cn
+2001:4860:4001:801::a0 google.cn
+2001:4860:4001:801::a0 news.google.cn #www.google.cn
+2001:4860:4001:801::a0 video.google.cn #www.google.cn
+2001:4860:4001:801::63 ipv6.google.cn #ipv6.l.google.com
+2001:4860:4001:801::69 ipv6.google.cn #ipv6.l.google.com
+##2001:4860:4001:801::6a ipv6cn.l.google.com
+2001:4860:4001:801::100b music.googleusercontent.cn #googleusercontent.cn
+2001:4860:4001:801::a0 m.google.cn #www.google.cn
+2001:4860:4001:801::a0 www.265.com #265.com
+2001:4860:4001:801::a0 265.com
 
 ##Google.com.tw Google 台湾
-2404:6800:4005:c00::5e www.google.com.tw #www-cctld.l.google.com
-2404:6800:4005:c00::88 picasaweb.google.com.tw #picasaweb.l.google.com
+2001:4860:4001:801::1017 www.google.com.tw #www-cctld.l.google.com
+2001:4860:4001:801::88 picasaweb.google.com.tw #picasaweb.l.google.com
 
 ##Google.co.jp Google 日本
-2404:6800:4005:c00::5e www.google.co.jp #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.co.jp #www-cctld.l.google.com
 
 ##其他
-2404:6800:4005:c00::5e www.google.ae #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.ar #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.at #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.au #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.be #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.br #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.ca #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.ch #www-cctld.l.google.com
-###2404:6800:4005:c00::a0 www.google.cn #中国（已死）
-2404:6800:4005:c00::5e www.google.fi #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.fr #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.de #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.gr #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.co.il #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.co.in #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.it #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.co.jp #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.co.kr #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.lt #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.lv #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.ly #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.my #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.nl #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.co.nz #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.pe #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.ph #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.pk #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.pl #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.pt #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.ro #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.ru #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.sg #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.tr #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.ua #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.co.uk #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.co.ve #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.com.vn #www-cctld.l.google.com
-2404:6800:4005:c00::5e www.google.co.za #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.ae #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.com.ar #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.at #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.com.au #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.be #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.com.br #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.ca #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.ch #www-cctld.l.google.com
+#####2001:4860:4001:801::a0 www.google.cn #中国（已死）
+2001:4860:4001:801::101f www.google.fi #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.fr #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.de #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.com.gr #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.co.il #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.co.in #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.it #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.co.jp #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.co.kr #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.lt #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.lv #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.com.ly #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.com.my #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.nl #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.co.nz #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.com.pe #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.com.ph #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.com.pk #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.pl #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.pt #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.ro #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.com.ru #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.com.sg #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.com.tr #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.com.ua #www-cctld.l.google.com
+2001:4860:4001:801::1018 www.google.co.uk #www-cctld.l.google.com
+2001:4860:4001:801::101f www.google.co.ve #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.com.vn #www-cctld.l.google.com
+2001:4860:4001:801::1017 www.google.co.za #www-cctld.l.google.com
 
 #Web 网页
-2404:6800:4005:c00::67 www.google.com #www.l.google.com #主/登录域名，GTalk 客户端用户需注释此条，参见 Issue 11
-2404:6800:4005:c00::66 encrypted.google.com #www3.l.google.com
-2404:6800:4005:c00::93 www.l.google.com
-###2404:6800:4005:c00::62 www0.l.google.com
-###2404:6800:4005:c00::62 www1.l.google.com
-2404:6800:4005:c00::93 www2.l.google.com
-2404:6800:4005:c00::8b www3.l.google.com
-2404:6800:4005:c00::85 www4.l.google.com
-2404:6800:4005:c00::66 suggestqueries.google.com #suggestqueries.l.google.com
-2404:6800:4005:c00::66 suggestqueries.l.google.com
-2404:6800:4005:c00::8b gxc.google.com #www3.l.google.com
-2404:6800:4005:c00::8b gxc.google.com.hk #www3.l.google.com
-2404:6800:4005:c00::64 investor.google.com #www3.l.google.com
-2404:6800:4005:c00::66 clients1.google.com #clients.l.google.com
-2404:6800:4005:c00::64 clients2.google.com #clients.l.google.com
-2404:6800:4005:c00::64 clients3.google.com #clients.l.google.com
-2404:6800:4005:c00::8b clients4.google.com #clients.l.google.com
-2404:6800:4005:c00::8a clients5.google.com #clients.l.google.com
-2404:6800:4005:c00::8b clients6.google.com #clients.l.google.com
-2404:6800:4005:c00::5e clients1.google.com.hk #clients-cctld.l.google.com
-2404:6800:4005:c00::5e clients1.google.com.tw #clients-cctld.l.google.com
-2404:6800:4005:c00::66 linkhelp.clients.google.com #clients.l.google.com
-2404:6800:4005:c00::64 clients.l.google.com
-2404:6800:4005:c00::64 encrypted-tbn0.google.com #encrypted-tbn.l.google.com
-2404:6800:4005:c00::8a encrypted-tbn1.google.com #encrypted-tbn.l.google.com
-2404:6800:4005:c00::8a encrypted-tbn2.google.com #encrypted-tbn.l.google.com
-2404:6800:4005:c00::65 encrypted-tbn3.google.com #encrypted-tbn.l.google.com
-2404:6800:4005:c00::64 encrypted-tbn.l.google.com
-2404:6800:4005:c00::8b support.google.com #www3.l.google.com
-2404:6800:4005:c00::c1 mobile.google.com #mobile.l.google.com
-2404:6800:4005:c00::63 mobile.google.com.hk #www.google.com
+2001:4860:4001:801::1010 www.google.com #www.l.google.com #主/登录域名，GTalk 客户端用户需注释此条，参见 Issue 11
+2001:4860:4001:801::1003 encrypted.google.com #www3.l.google.com
+2001:4860:4001:801::1014 www.l.google.com
+##2001:4860:4001:801::62 www0.l.google.com
+##2001:4860:4001:801::62 www1.l.google.com
+2001:4860:4001:801::1014 www2.l.google.com
+2001:4860:4001:801::100e www3.l.google.com
+2001:4860:4001:801::1007 www4.l.google.com
+2001:4860:4001:801::66 suggestqueries.google.com #suggestqueries.l.google.com
+2001:4860:4001:801::66 suggestqueries.l.google.com
+2001:4860:4001:801::1009 gxc.google.com #www3.l.google.com
+2001:4860:4001:801::1000 gxc.google.com.hk #www3.l.google.com
+2001:4860:4001:801::1000investor.google.com #www3.l.google.com
+2001:4860:4001:801::1004 clients1.google.com #clients.l.google.com
+2001:4860:4001:801::1000 clients2.google.com #clients.l.google.com
+2001:4860:4001:801::1000 clients3.google.com #clients.l.google.com
+2001:4860:4001:801::1000 clients4.google.com #clients.l.google.com
+2001:4860:4001:801::1000 clients5.google.com #clients.l.google.com
+2001:4860:4001:801::1003 clients6.google.com #clients.l.google.com
+2001:4860:4001:801::1018 clients1.google.com.hk #clients-cctld.l.google.com
+2001:4860:4001:801::1017 clients1.google.com.tw #clients-cctld.l.google.com
+2001:4860:4001:801::1001 linkhelp.clients.google.com #clients.l.google.com
+2001:4860:4001:801::100e clients.l.google.com
+2001:4860:4001:801::1007 encrypted-tbn0.google.com #encrypted-tbn.l.google.com
+2001:4860:4001:801::1007 encrypted-tbn1.google.com #encrypted-tbn.l.google.com
+2001:4860:4001:801::1000 encrypted-tbn2.google.com #encrypted-tbn.l.google.com
+2001:4860:4001:801::100e encrypted-tbn3.google.com #encrypted-tbn.l.google.com
+2001:4860:4001:801::1003 encrypted-tbn.l.google.com
+2001:4860:4001:801::1003 support.google.com #www3.l.google.com
+2001:4860:4001:801::c1 mobile.google.com #mobile.l.google.com
+2001:4860:4001:801::1012 mobile.google.com.hk #www.google.com
 
 #Google Apps 企业应用套件
-2404:6800:4005:c00::71 apps.google.com #www3.l.google.com
-2404:6800:4005:c00::79 ghs.google.com #ghs.l.google.com
-2404:6800:4005:c00::79 ghs46.google.com #ghs46.l.google.com #GHS 双栈入口！
-2404:6800:4005:c00::79 ghs.l.google.com
-2404:6800:4005:c00::79 ghs46.l.google.com
-#2404:6800:4005:c00::79 ghs.l.google.com #可以添加你 GApps 域名的博客地址 / GSites 地址到这里
+2001:4860:4001:801::1000 apps.google.com #www3.l.google.com
+2001:4860:4001:801::79 ghs.google.com #ghs.l.google.com
+2001:4860:4001:801::79 ghs46.google.com #ghs46.l.google.com #GHS 双栈入口！
+2001:4860:4001:801::79 ghs.l.google.com
+2001:4860:4001:801::79 ghs46.l.google.com
+2001:4860:4001:801::79 ghs.l.google.com #可以添加你 GApps 域名的博客地址 / GSites 地址到这里
 
 #Mashups/App Engine GAE
-2404:6800:4005:c00::68 googlemashups.com
-2404:6800:4005:c00::67 www.googlemashups.com #www2.l.google.com
-#2404:6800:4005:c00::62 googlemashups.l.google.com
-2404:6800:4005:c00::67 *.googlemashups.com #www2.l.google.com
-2404:6800:4005:c00::8b appengine.google.com #www3.l.google.com
-2404:6800:4005:c00::8d appspot.l.google.com
-2404:6800:4005:c00::8d productideas.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d storegadgetwizard.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d moderator.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d gv-gadget.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d haiticrisis.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d codereview.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d i18napis.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d googcloudlabs.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d googlesharedspaces.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d project-slingshot-gp.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d r3269-dot-latest-dot-project-slingshot-gp.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d newsfeed-dot-latest-dot-rovio-ad-engine.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d evolutionofweb.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d yt-debates.appspot.com #appspot.l.google.com
-2404:6800:4005:c00::8d *.appspot.com #appspot.l.google.com #可以添加自己的 gae 应用
+2001:4860:4001:801::1013 googlemashups.com
+2001:4860:4001:801::1013 www.googlemashups.com #www2.l.google.com
+2001:4860:4001:801::62 googlemashups.l.google.com
+2001:4860:4001:801::1010 *.googlemashups.com #www2.l.google.com
+2001:4860:4001:801::1009 appengine.google.com #www3.l.google.com
+2001:4860:4001:801::8d appspot.l.google.com
+2001:4860:4001:801::8d productideas.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d storegadgetwizard.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d moderator.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d gv-gadget.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d haiticrisis.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d codereview.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d i18napis.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d googcloudlabs.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d googlesharedspaces.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d project-slingshot-gp.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d r3269-dot-latest-dot-project-slingshot-gp.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d newsfeed-dot-latest-dot-rovio-ad-engine.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d evolutionofweb.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d yt-debates.appspot.com #appspot.l.google.com
+2001:4860:4001:801::8d *.appspot.com #appspot.l.google.com #可以添加自己的 gae 应用
 
 #Answers/Guru/WenDa 问答社区（国际版已停止运营）
-2404:6800:4005:c00::71 answers.google.com #www3.l.google.com
-###2404:6800:4005:c00::62 guru.google.com
-2404:6800:4005:c00::69 guru.google.co.th #www2.l.google.com
-2404:6800:4005:c00::66 wenda.google.com.hk #www3.l.google.com
+2001:4860:4001:801::1005 answers.google.com #www3.l.google.com
+##2001:4860:4001:801::62 guru.google.com
+2001:4860:4001:801::1010 guru.google.co.th #www2.l.google.com
+2001:4860:4001:801::1001 wenda.google.com.hk #www3.l.google.com
 
 #Blog 博客搜索
-2404:6800:4005:c00::93 blogsearch.google.com #www2.l.google.com
-2404:6800:4005:c00::93 blogsearch.google.com.hk #www2.l.google.com
-2404:6800:4005:c00::6a blogsearch.google.com.tw #www2.l.google.com
-2404:6800:4005:c00::a0 blogsearch.google.cn #www.google.cn
+2001:4860:4001:801::1014 blogsearch.google.com #www2.l.google.com
+2001:4860:4001:801::1014 blogsearch.google.com.hk #www2.l.google.com
+2001:4860:4001:801::1010 blogsearch.google.com.tw #www2.l.google.com
+2001:4860:4001:801::a0 blogsearch.google.cn #www.google.cn
 
 #Blogger 博客服务
-2404:6800:4005:c00::bf www.blogger.com #blogger.l.google.com
-2404:6800:4005:c00::bf blogger.com
-2404:6800:4005:c00::bf buttons.blogger.com #blogger.l.google.com
-2404:6800:4005:c00::bf beta.blogger.com #blogger.l.google.com
-2404:6800:4005:c00::bf draft.blogger.com #blogger.l.google.com
-2404:6800:4005:c00::bf status.blogger.com #blogger.l.google.com
-2404:6800:4005:c00::67 help.blogger.com #www2.l.google.com
-2404:6800:4005:c00::bf buzz.blogger.com #blogger.l.google.com
-2404:6800:4005:c00::67 photos1.blogger.com #photos1.l.google.com
-2404:6800:4005:c00::64 bp0.blogger.com #bloggerphotos.l.google.com
-2404:6800:4005:c00::65 bp1.blogger.com #bloggerphotos.l.google.com
-2404:6800:4005:c00::71 bp2.blogger.com #bloggerphotos.l.google.com
-2404:6800:4005:c00::65 bp3.blogger.com #bloggerphotos.l.google.com
-2404:6800:4005:c00::64 bloggerphotos.l.google.com
-2404:6800:4005:c00::bf blogger.google.com #blogger.l.google.com
-2404:6800:4005:c00::bf www2.blogger.com #blogger.l.google.com
-2404:6800:4005:c00::bf blogger.l.google.com
-2404:6800:4005:c00::bf www.blogblog.com #blogger.l.google.com
-2404:6800:4005:c00::bf www1.blogblog.com #blogger.l.google.com
-2404:6800:4005:c00::bf www2.blogblog.com #blogger.l.google.com
-2404:6800:4005:c00::84 img.blogblog.com #blogspot.l.google.com
-2404:6800:4005:c00::bf img1.blogblog.com #blogger.l.google.com
-2404:6800:4005:c00::bf img2.blogblog.com #blogger.l.google.com
-2404:6800:4005:c00::79 www.textcube.com #ghs.l.google.com
+2001:4860:4001:801::bf www.blogger.com #blogger.l.google.com
+2001:4860:4001:801::bf blogger.com
+2001:4860:4001:801::bf buttons.blogger.com #blogger.l.google.com
+2001:4860:4001:801::bf beta.blogger.com #blogger.l.google.com
+2001:4860:4001:801::bf draft.blogger.com #blogger.l.google.com
+2001:4860:4001:801::bf status.blogger.com #blogger.l.google.com
+2001:4860:4001:801::1013 help.blogger.com #www2.l.google.com
+2001:4860:4001:801::bf buzz.blogger.com #blogger.l.google.com
+2001:4860:4001:801::1012 photos1.blogger.com #photos1.l.google.com
+2001:4860:4001:801::1003 bp0.blogger.com #bloggerphotos.l.google.com
+2001:4860:4001:801::1008 bp1.blogger.com #bloggerphotos.l.google.com
+2001:4860:4001:801::1000 bp2.blogger.com #bloggerphotos.l.google.com
+2001:4860:4001:801::1009 bp3.blogger.com #bloggerphotos.l.google.com
+2001:4860:4001:801::1008 bloggerphotos.l.google.com
+2001:4860:4001:801::bf blogger.google.com #blogger.l.google.com
+2001:4860:4001:801::bf www2.blogger.com #blogger.l.google.com
+2001:4860:4001:801::bf blogger.l.google.com
+2001:4860:4001:801::bf www.blogblog.com #blogger.l.google.com
+2001:4860:4001:801::bf www1.blogblog.com #blogger.l.google.com
+2001:4860:4001:801::bf www2.blogblog.com #blogger.l.google.com
+2001:4860:4001:801::100a img.blogblog.com #blogspot.l.google.com
+2001:4860:4001:801::bf img1.blogblog.com #blogger.l.google.com
+2001:4860:4001:801::bf img2.blogblog.com #blogger.l.google.com
+2001:4860:4001:801::79 www.textcube.com #ghs.l.google.com
 
 #Blogspot 博客服务
-2404:6800:4005:c00::bf www.blogspot.com #blogger.l.google.com
-2404:6800:4005:c00::bf blogger.l.google.com
-2404:6800:4005:c00::bf blogspot.com
-2404:6800:4005:c00::84 blogsofnote.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 knownissues.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::8a 1.bp.blogspot.com #bloggerphotos.l.google.com
-2404:6800:4005:c00::8b 2.bp.blogspot.com #bloggerphotos.l.google.com
-2404:6800:4005:c00::64 3.bp.blogspot.com #bloggerphotos.l.google.com
-2404:6800:4005:c00::8a 4.bp.blogspot.com #bloggerphotos.l.google.com
-2404:6800:4005:c00::84 bloggertemplatespreview.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::bf www.blogspot.com #blogger.l.google.com
+2001:4860:4001:801::bf blogger.l.google.com
+2001:4860:4001:801::bf blogspot.com
+2001:4860:4001:801::100c blogsofnote.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a knownissues.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::1009 1.bp.blogspot.com #bloggerphotos.l.google.com
+2001:4860:4001:801::1009 2.bp.blogspot.com #bloggerphotos.l.google.com
+2001:4860:4001:801::1004 3.bp.blogspot.com #bloggerphotos.l.google.com
+2001:4860:4001:801::1000 4.bp.blogspot.com #bloggerphotos.l.google.com
+2001:4860:4001:801::100a bloggertemplatespreview.blogspot.com #blogspot.l.google.com
 #Google 官方博客群
-2404:6800:4005:c00::84 adwordsapi.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 adsense-zhs.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 android-developers.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 apacdeveloper.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 booksearch.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 chrome.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 doubleclickpublishersapi.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 emeadev.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 gearsblog.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 google-code-featured.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 google-entertainment-it.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 google-opensource.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googleajaxsearchapi.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googleappengine.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googleappsdeveloper.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googleblog.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlecheckout.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlecheckoutapi.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlechinablog.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlechromereleases.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlecode.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlecustomsearch.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googleenterprise.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlegeodevelopers.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlemashupeditor.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlemobile.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googleplusplatform.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googleresearch.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googletalk.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlewebmaster-cn.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlewebmastercentral.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 googlewebtoolkit.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 golangblog.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 gmailblog.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 igoogledeveloper.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 webmproject.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 youtube-global.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::84 *.blogspot.com #blogspot.l.google.com #可以添加你自己的博客地址到这里
-2404:6800:4005:c00::84 blogspot.l.google.com
+2001:4860:4001:801::100a adwordsapi.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c adsense-zhs.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c android-developers.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a apacdeveloper.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100b booksearch.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a chrome.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100b doubleclickpublishersapi.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a emeadev.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c gearsblog.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100b google-code-featured.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100b google-entertainment-it.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c google-opensource.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a googleajaxsearchapi.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a googleappengine.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a googleappsdeveloper.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100b googleblog.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a googlecheckout.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a googlecheckoutapi.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a googlechinablog.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a googlechromereleases.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100b googlecode.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c googlecustomsearch.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c googleenterprise.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c googlegeodevelopers.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c googlemashupeditor.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c googlemobile.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a googleplusplatform.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a googleresearch.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c googletalk.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a googlewebmaster-cn.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c googlewebmastercentral.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100b googlewebtoolkit.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a golangblog.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c gmailblog.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a igoogledeveloper.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a webmproject.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100a youtube-global.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::100c *.blogspot.com #blogspot.l.google.com #可以添加你自己的博客地址到这里
+2001:4860:4001:801::100b blogspot.l.google.com
 
 #Books 图书
-2404:6800:4005:c00::64 books.google.com #www3.l.google.com
-2404:6800:4005:c00::8b books.google.com.hk #www3.l.google.com
-2404:6800:4005:c00::a0 books.google.cn #www.google.cn
-2404:6800:4005:c00::8b bks0.books.google.com #www3.l.google.com
-2404:6800:4005:c00::8b bks1.books.google.com #www3.l.google.com
-2404:6800:4005:c00::8a bks2.books.google.com #www3.l.google.com
-2404:6800:4005:c00::8b bks3.books.google.com #www3.l.google.com
-2404:6800:4005:c00::64 bks4.books.google.com #www3.l.google.com
-2404:6800:4005:c00::71 bks5.books.google.com #www3.l.google.com
-2404:6800:4005:c00::65 bks6.books.google.com #www3.l.google.com
-2404:6800:4005:c00::64 bks7.books.google.com #www3.l.google.com
-2404:6800:4005:c00::8b bks8.books.google.com #www3.l.google.com
-2404:6800:4005:c00::64 bks9.books.google.com #www3.l.google.com
-2404:6800:4005:c00::8b bks10.books.google.com #www3.l.google.com
-2404:6800:4005:c00::64 bks0.books.google.com.hk #books.google.com
-2404:6800:4005:c00::64 bks1.books.google.com.hk #books.google.com
-2404:6800:4005:c00::64 bks2.books.google.com.hk #books.google.com
-2404:6800:4005:c00::64 bks3.books.google.com.hk #books.google.com
-2404:6800:4005:c00::65 bks4.books.google.com.hk #books.google.com
-2404:6800:4005:c00::8b bks5.books.google.com.hk #books.google.com
-2404:6800:4005:c00::8a bks6.books.google.com.hk #books.google.com
-2404:6800:4005:c00::8a bks7.books.google.com.hk #books.google.com
-2404:6800:4005:c00::65 bks8.books.google.com.hk #books.google.com
-2404:6800:4005:c00::65 bks9.books.google.com.hk #books.google.com
-2404:6800:4005:c00::64 bks10.books.google.com.hk #books.google.com
-2404:6800:4005:c00::8b buzz.google.com #www3.l.google.com
+2001:4860:4001:801::1003 books.google.com #www3.l.google.com
+2001:4860:4001:801::1007 books.google.com.hk #www3.l.google.com
+2001:4860:4001:801::a0 books.google.cn #www.google.cn
+2001:4860:4001:801::1000 bks0.books.google.com #www3.l.google.com
+2001:4860:4001:801::1005 bks1.books.google.com #www3.l.google.com
+2001:4860:4001:801::1009 bks2.books.google.com #www3.l.google.com
+2001:4860:4001:801::1001 bks3.books.google.com #www3.l.google.com
+2001:4860:4001:801::1006 bks4.books.google.com #www3.l.google.com
+2001:4860:4001:801::100e bks5.books.google.com #www3.l.google.com
+2001:4860:4001:801::1000 bks6.books.google.com #www3.l.google.com
+2001:4860:4001:801::100e bks7.books.google.com #www3.l.google.com
+2001:4860:4001:801::1002 bks8.books.google.com #www3.l.google.com
+2001:4860:4001:801::1009 bks9.books.google.com #www3.l.google.com
+2001:4860:4001:801::1003 bks10.books.google.com #www3.l.google.com
+2001:4860:4001:801::1005 bks0.books.google.com.hk #books.google.com
+2001:4860:4001:801::100e bks1.books.google.com.hk #books.google.com
+2001:4860:4001:801::1009 bks2.books.google.com.hk #books.google.com
+2001:4860:4001:801::1005 bks3.books.google.com.hk #books.google.com
+2001:4860:4001:801::1000 bks4.books.google.com.hk #books.google.com
+2001:4860:4001:801::1004 bks5.books.google.com.hk #books.google.com
+2001:4860:4001:801::1007 bks6.books.google.com.hk #books.google.com
+2001:4860:4001:801::1001 bks7.books.google.com.hk #books.google.com
+2001:4860:4001:801::100e bks8.books.google.com.hk #books.google.com
+2001:4860:4001:801::1000 bks9.books.google.com.hk #books.google.com
+2001:4860:4001:801::1002 bks10.books.google.com.hk #books.google.com
+2001:4860:4001:801::100e buzz.google.com #www3.l.google.com
 
 #Calendar 日历
-2404:6800:4005:c00::66 calendar.google.com #www3.l.google.com
+2001:4860:4001:801::1009 calendar.google.com #www3.l.google.com
 
 #Checkout 买家
-2404:6800:4005:c00::73 checkout.google.com #checkout.l.google.com
-2404:6800:4005:c00::73 checkout.l.google.com
-2404:6800:4005:c00::64 wallet.google.com #www3.l.google.com
+2001:4860:4001:801::73 checkout.google.com #checkout.l.google.com
+2001:4860:4001:801::73 checkout.l.google.com
+2001:4860:4001:801::1009 wallet.google.com #www3.l.google.com
 
 #Chrome 谷歌浏览器
-2404:6800:4005:c00::8a chrome.google.com #www3.l.google.com
-2404:6800:4005:c00::66 browsersync.google.com #browsersync.l.google.com
-2404:6800:4005:c00::66 browsersync.l.google.com
-2404:6800:4005:c00::68 toolbarqueries.google.com #toolbarqueries.l.google.com
-2404:6800:4005:c00::68 toolbarqueries.google.com.hk #toolbarqueries.l.google.com
-2404:6800:4005:c00::65 toolbarqueries.clients.google.com #clients.l.google.com
-2404:6800:4005:c00::68 toolbarqueries.l.google.com
-2404:6800:4005:c00::79 chrome.angrybirds.com #ghs.l.google.com
+2001:4860:4001:801::1001 chrome.google.com #www3.l.google.com
+2001:4860:4001:801::66 browsersync.google.com #browsersync.l.google.com
+2001:4860:4001:801::66 browsersync.l.google.com
+2001:4860:4001:801::68 toolbarqueries.google.com #toolbarqueries.l.google.com
+2001:4860:4001:801::68 toolbarqueries.google.com.hk #toolbarqueries.l.google.com
+2001:4860:4001:801::1009 toolbarqueries.clients.google.com #clients.l.google.com
+2001:4860:4001:801::68 toolbarqueries.l.google.com
+2001:4860:4001:801::79 chrome.angrybirds.com #ghs.l.google.com
 
 #Chromium Chromium 项目
-2404:6800:4005:c00::8b chromium.org
-2404:6800:4005:c00::79 www.chromium.org #ghs.l.google.com
-2404:6800:4005:c00::79 dev.chromium.org #ghs.l.google.com
-2404:6800:4005:c00::79 blog.chromium.org #ghs.l.google.com
-#2404:6800:4005:c00::62 build.chromium.org #planet.chromium.org
-2404:6800:4005:c00::79 codereview.chromium.org #ghs.l.google.com
+2001:4860:4001:801::1000 chromium.org
+2001:4860:4001:801::79 www.chromium.org #ghs.l.google.com
+2001:4860:4001:801::79 dev.chromium.org #ghs.l.google.com
+2001:4860:4001:801::79 blog.chromium.org #ghs.l.google.com
+2001:4860:4001:801::62 build.chromium.org #planet.chromium.org
+2001:4860:4001:801::79 codereview.chromium.org #ghs.l.google.com
 
 #Chromium OS Chromium 操作系统
-2404:6800:4005:c00::79 goto.ext.google.com #ghs.l.google.com
-2404:6800:4005:c00::8d welcome-cros.appspot.com #appspot.l.google.com
+2001:4860:4001:801::79 goto.ext.google.com #ghs.l.google.com
+2001:4860:4001:801::8d welcome-cros.appspot.com #appspot.l.google.com
 
 #Code 代码
-2404:6800:4005:c00::66 code.google.com #code.l.google.com
-2404:6800:4005:c00::8a code.l.google.com
-2404:6800:4005:c00::52 *.googlecode.com #googlecode.l.google.com
-2404:6800:4005:c00::52 googlecode.l.google.com
-2404:6800:4005:c00::52 chromium.googlecode.com #googlecode.l.google.com
-2404:6800:4005:c00::52 closure-library.googlecode.com #googlecode.l.google.com
-2404:6800:4005:c00::52 earth-api-samples.googlecode.com #googlecode.l.google.com
-2404:6800:4005:c00::52 gmaps-samples-flash.googlecode.com #googlecode.l.google.com
-2404:6800:4005:c00::52 googleappengine.googlecode.com #googlecode.l.google.com
-2404:6800:4005:c00::52 google-code-feed-gadget.googlecode.com #googlecode.l.google.com
-2404:6800:4005:c00::52 www.googlesource.com #googlecode.l.google.com
-2404:6800:4005:c00::52 android.googlesource.com #googlecode.l.google.com
+2001:4860:4001:801::1009 code.google.com #code.l.google.com
+2001:4860:4001:801::1009 code.l.google.com
+2001:4860:4001:801::52 *.googlecode.com #googlecode.l.google.com
+2001:4860:4001:801::52 googlecode.l.google.com
+2001:4860:4001:801::52 chromium.googlecode.com #googlecode.l.google.com
+2001:4860:4001:801::52 closure-library.googlecode.com #googlecode.l.google.com
+2001:4860:4001:801::52 earth-api-samples.googlecode.com #googlecode.l.google.com
+2001:4860:4001:801::52 gmaps-samples-flash.googlecode.com #googlecode.l.google.com
+2001:4860:4001:801::52 googleappengine.googlecode.com #googlecode.l.google.com
+2001:4860:4001:801::52 google-code-feed-gadget.googlecode.com #googlecode.l.google.com
+2001:4860:4001:801::52 www.googlesource.com #googlecode.l.google.com
+2001:4860:4001:801::52 android.googlesource.com #googlecode.l.google.com
 
 #Desktop 桌面
-2404:6800:4005:c00::68 desktop.google.com #desktop.l.google.com
-2404:6800:4005:c00::68 desktop.l.google.com
+2001:4860:4001:801::68 desktop.google.com #desktop.l.google.com
+2001:4860:4001:801::68 desktop.l.google.com
 
 #Directory 网页目录
-2404:6800:4005:c00::8a directory.google.com #www3.l.google.com
-2404:6800:4005:c00::64 dir.google.com #www3.l.google.com
+2001:4860:4001:801::1003 directory.google.com #www3.l.google.com
+2001:4860:4001:801::100e dir.google.com #www3.l.google.com
 
 #Docs 文档
-2404:6800:4005:c00::8b docs.google.com
-2404:6800:4005:c00::66 drive.google.com
-2404:6800:4005:c00::64 docs0.google.com
-2404:6800:4005:c00::8b docs1.google.com
-2404:6800:4005:c00::64 docs2.google.com
-2404:6800:4005:c00::64 docs3.google.com
-2404:6800:4005:c00::64 docs4.google.com
-2404:6800:4005:c00::65 docs5.google.com
-2404:6800:4005:c00::66 docs6.google.com
-2404:6800:4005:c00::71 docs7.google.com
-2404:6800:4005:c00::71 docs8.google.com
-2404:6800:4005:c00::66 docs9.google.com
-2404:6800:4005:c00::bd 0.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 1.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 2.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 3.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 4.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 5.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 6.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 7.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 8.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 9.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 10.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 11.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 12.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 13.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 14.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 15.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 16.docs.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd 0.drive.google.com
-2404:6800:4005:c00::bd 1.drive.google.com
-2404:6800:4005:c00::bd 2.drive.google.com
-2404:6800:4005:c00::bd 3.drive.google.com
-2404:6800:4005:c00::bd 4.drive.google.com
-2404:6800:4005:c00::bd 5.drive.google.com
-2404:6800:4005:c00::bd 6.drive.google.com
-2404:6800:4005:c00::bd 7.drive.google.com
-2404:6800:4005:c00::bd 8.drive.google.com
-2404:6800:4005:c00::bd 9.drive.google.com
-2404:6800:4005:c00::bd 10.drive.google.com
-2404:6800:4005:c00::bd 11.drive.google.com
-2404:6800:4005:c00::bd 12.drive.google.com
-2404:6800:4005:c00::bd 13.drive.google.com
-2404:6800:4005:c00::bd 14.drive.google.com
-2404:6800:4005:c00::bd 15.drive.google.com
-2404:6800:4005:c00::bd 16.drive.google.com
-2404:6800:4005:c00::bd *.docs.google.com #browserchannel-docs.l.google.com #按需要同时打开的文档个数自行添加
-2404:6800:4005:c00::bd *.drive.google.com #browserchannel-docs.l.google.com
-2404:6800:4005:c00::bd browserchannel-docs.l.google.com
-2404:6800:4005:c00::8b spreadsheet.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::65 spreadsheets.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::64 spreadsheets0.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::64 spreadsheets1.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::66 spreadsheets2.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::64 spreadsheets3.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::64 spreadsheets4.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::64 spreadsheets5.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::8b spreadsheets6.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::64 spreadsheets7.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::64 spreadsheets8.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::64 spreadsheets9.google.com #spreadsheets.l.google.com
-2404:6800:4005:c00::8b spreadsheets.l.google.com
-2404:6800:4005:c00::64 spreadsheets-china.l.google.com
-2404:6800:4005:c00::8a writely.google.com
-2404:6800:4005:c00::8b writely.l.google.com
-###2404:6800:4005:c00::62 writely-com.l.google.com
-2404:6800:4005:c00::8b writely-china.l.google.com
-2404:6800:4005:c00::74 upload.docs.google.com #large-uploads.l.google.com
+2001:4860:4001:801::100e docs.google.com
+2001:4860:4001:801::1005 drive.google.com
+2001:4860:4001:801::1008 docs0.google.com
+2001:4860:4001:801::1009 docs1.google.com
+2001:4860:4001:801::1001 docs2.google.com
+2001:4860:4001:801::1003 docs3.google.com
+2001:4860:4001:801::1006 docs4.google.com
+2001:4860:4001:801::1003 docs5.google.com
+2001:4860:4001:801::1004 docs6.google.com
+2001:4860:4001:801::1005 docs7.google.com
+2001:4860:4001:801::1003 docs8.google.com
+2001:4860:4001:801::1005 docs9.google.com
+2001:4860:4001:801::bd 0.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 1.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 2.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 3.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 4.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 5.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 6.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 7.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 8.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 9.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 10.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 11.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 12.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 13.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 14.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 15.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 16.docs.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd 0.drive.google.com
+2001:4860:4001:801::bd 1.drive.google.com
+2001:4860:4001:801::bd 2.drive.google.com
+2001:4860:4001:801::bd 3.drive.google.com
+2001:4860:4001:801::bd 4.drive.google.com
+2001:4860:4001:801::bd 5.drive.google.com
+2001:4860:4001:801::bd 6.drive.google.com
+2001:4860:4001:801::bd 7.drive.google.com
+2001:4860:4001:801::bd 8.drive.google.com
+2001:4860:4001:801::bd 9.drive.google.com
+2001:4860:4001:801::bd 10.drive.google.com
+2001:4860:4001:801::bd 11.drive.google.com
+2001:4860:4001:801::bd 12.drive.google.com
+2001:4860:4001:801::bd 13.drive.google.com
+2001:4860:4001:801::bd 14.drive.google.com
+2001:4860:4001:801::bd 15.drive.google.com
+2001:4860:4001:801::bd 16.drive.google.com
+2001:4860:4001:801::bd *.docs.google.com #browserchannel-docs.l.google.com #按需要同时打开的文档个数自行添加
+2001:4860:4001:801::bd *.drive.google.com #browserchannel-docs.l.google.com
+2001:4860:4001:801::bd browserchannel-docs.l.google.com
+2001:4860:4001:801::100e spreadsheet.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1002 spreadsheets.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1003 spreadsheets0.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1000 spreadsheets1.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1000 spreadsheets2.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1001 spreadsheets3.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1003 spreadsheets4.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1009 spreadsheets5.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1000 spreadsheets6.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1001 spreadsheets7.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1003 spreadsheets8.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1007 spreadsheets9.google.com #spreadsheets.l.google.com
+2001:4860:4001:801::1004 spreadsheets.l.google.com
+2001:4860:4001:801::1000 spreadsheets-china.l.google.com
+2001:4860:4001:801::100e writely.google.com
+2001:4860:4001:801::100e writely.l.google.com
+##2001:4860:4001:801::62 writely-com.l.google.com
+2001:4860:4001:801::1006 writely-china.l.google.com
+2001:4860:4001:801::74 upload.docs.google.com #large-uploads.l.google.com
 
 #Download 下载
-2404:6800:4005:c00::5d dl.google.com #dl.l.google.com
-2404:6800:4005:c00::be dl.l.google.com
-2404:6800:4005:c00::5d dl-ssl.google.com #dl-ssl.l.google.com
+2001:4860:4001:801::5d dl.google.com #dl.l.google.com
+2001:4860:4001:801::be dl.l.google.com
+2001:4860:4001:801::5d dl-ssl.google.com #dl-ssl.l.google.com
 
 #Google Earth 地球
-2404:6800:4005:c00::71 earth.google.com #www3.l.google.com
-2404:6800:4005:c00::8b auth.keyhole.com #www3.l.google.com
-2404:6800:4005:c00::66 geoauth.google.com #www3.l.google.com
+2001:4860:4001:801::1003 earth.google.com #www3.l.google.com
+2001:4860:4001:801::1009 auth.keyhole.com #www3.l.google.com
+2001:4860:4001:801::1005 geoauth.google.com #www3.l.google.com
 
 #Finance 财经
-2404:6800:4005:c00::64 finance.google.com #www3.l.google.com
+2001:4860:4001:801::1009 finance.google.com #www3.l.google.com
 
 #Fusion RSS 聚合指南
-2404:6800:4005:c00::6a fusion.google.com #www2.l.google.com
+2001:4860:4001:801::1012 fusion.google.com #www2.l.google.com
 
 #Gmail 邮箱
-2404:6800:4005:c00::12 mail.google.com #googlemail.l.google.com
-2404:6800:4005:c00::11 googlemail.l.google.com
-2404:6800:4005:c00::bd chatenabled.mail.google.com #b.googlemail.l.google.com #Gmail 中 Gtalk 聊天服务
-2404:6800:4005:c00::bd filetransferenabled.mail.google.com #b.googlemail.l.google.com #可能会造成 GTalk 客户端异常
-2404:6800:4005:c00::bd b.googlemail.l.google.com
-###2404:6800:4005:c00::62 talk.gmail.com #Gmail中Gtalk聊天服务
-2404:6800:4005:c00::64 gmail.google.com #www3.l.google.com
-2404:6800:4005:c00::13 www.gmail.com #googlemail.l.google.com
-2404:6800:4005:c00::12 gmail.com
-2404:6800:4005:c00::12 m.gmail.com #googlemail.l.google.com
-2404:6800:4005:c00::13 m.googlemail.com #googlemail.l.google.com
-2607:f8b0:400e:c00::6d pop.gmail.com #gmail-pop.l.google.com #Foxmail 等客户端不支持 ipv6 连接，参阅 Issue 33
-2607:f8b0:400e:c00::6d gmail-pop.l.google.com
-2607:f8b0:400e:c00::10 pop.googlemail.com #googlemail-pop.l.google.com
-2607:f8b0:400e:c00::10 googlemail-pop.l.google.com
-2607:f8b0:400e:c00::6d smtp.gmail.com #gmail-smtp-msa.l.google.com #Foxmail 暂不支持
-2607:f8b0:400e:c00::6d gmail-smtp-msa.l.google.com
-2404:6800:4005:c00::62 smtp1.google.com
-###2404:6800:4005:c00::62 smtp2.google.com
-2404:6800:4005:c00::62 smtp3.google.com
-2404:6800:4005:c00::62 smtp-out.google.com
-2404:6800:4005:c00::62 smtp-out3.google.com
-2001:4860:8002::6d gmail-smtp.l.google.com
-2001:4860:8002::62 gmail-smtp-in.l.google.com
-2404:6800:4005:c00::62 gmr-smtp-in.l.google.com
-2607:f8b0:400e:c00::10 smtp.googlemail.com #googlemail-smtp.l.google.com
-2607:f8b0:400e:c00::10 googlemail-smtp.l.google.com
-2607:f8b0:400e:c03::6d imap.gmail.com #gmail-imap.l.google.com #Foxmail 暂不支持
-2607:f8b0:400e:c03::6d gmail-imap.l.google.com
-2607:f8b0:400e:c01::10 imap.googlemail.com #googlemail-imap.l.google.com
-2607:f8b0:400e:c01::10 googlemail-imap.l.google.com
-
-#Group 论坛
-2404:6800:4005:c00::71 groups.google.com #groups.l.google.com
+2001:4860:4001:801::1016 mail.google.com #googlemail.l.google.com
+2001:4860:4001:801::1015 googlemail.l.google.com
+2001:4860:4001:801::101d chatenabled.mail.google.com #b.googlemail.l.google.com #Gmail 中 Gtalk 聊天服务
+2001:4860:4001:801::101d filetransferenabled.mail.google.com #b.googlemail.l.google.com #可能会造成 GTalk 客户端异常
+2001:4860:4001:801::101d b.googlemail.l.google.com
+##2001:4860:4001:801::62 talk.gmail.com #Gmail中Gtalk聊天服务
+2001:4860:4001:801::1007 gmail.google.com #www3.l.google.com
+2001:4860:4001:801::1016 www.gmail.com #googlemail.l.google.com
+2001:4860:4001:801::1015 gmail.com
+2001:4860:4001:801::1015 m.gmail.com #googlemail.l.google.com
+2001:4860:4001:801::1016 m.googlemail.com #googlemail.l.google.com
+#2607:f8b0:400e:c00::6d pop.gmail.com #gmail-pop.l.google.com #Foxmail 等客户端不支持 ipv6 连接，参阅 Issue 33
+#2607:f8b0:400e:c00::6d gmail-pop.l.google.com
+#2607:f8b0:400e:c00::10 pop.googlemail.com #googlemail-pop.l.google.com
+#2607:f8b0:400e:c00::10 googlemail-pop.l.google.com
+#2607:f8b0:400e:c00::6d smtp.gmail.com #gmail-smtp-msa.l.google.com #Foxmail 暂不支持
+#2607:f8b0:400e:c00::6d gmail-smtp-msa.l.google.com
+2#001:4860:8002::62 smtp1.google.com
+##2001:4860:4001:801::62 smtp2.google.com
+2001:4860:4001:801::62 smtp3.google.com
+2001:4860:4001:801::62 smtp-out.google.com
+2001:4860:4001:801::62 smtp-out3.google.com
+2001:4860:4001:801::6d gmail-smtp.l.google.com
+2001:4860:4001:801::62 gmail-smtp-in.l.google.com
+2001:4860:4001:801::62 gmr-smtp-in.l.google.com
+#2607:f8b0:400e:c00::10 smtp.googlemail.com #googlemail-smtp.l.google.com
+#2607:f8b0:400e:c00::10 googlemail-smtp.l.google.com
+#2607:f8b0:400e:c03::6d imap.gmail.com #gmail-imap.l.google.com #Foxmail 暂不支持
+#2607:f8b0:400e:c03::6d gmail-imap.l.google.com
+#2607:f8b0:400e:c01::10 imap.googlemail.com #googlemail-imap.l.google.com
+#2607:f8b0:400e:c01::10 googlemail-imap.l.google.com#Group 论坛
+2001:4860:4001:801::71 groups.google.com #groups.l.google.com
 ###2401:3800:c001::68 groups.google.cn
-2404:6800:4005:c00::71 groups.google.com.hk #groups.l.google.com
-2404:6800:4005:c00::71 groups-beta.google.com #groups.l.google.com
-2404:6800:4005:c00::71 groups.l.google.com
-2404:6800:4005:c00::66 productforums.google.com #groups.l.google.com
-2404:6800:4005:c00::89 blob-s-docs.googlegroups.com #googlegroups.l.google.com
-2404:6800:4005:c00::89 *.googlegroups.com #googlegroups.l.google.com
+2001:4860:4001:801::71 groups.google.com.hk #groups.l.google.com
+2001:4860:4001:801::71 groups-beta.google.com #groups.l.google.com
+2001:4860:4001:801::71 groups.l.google.com
+2001:4860:4001:801::66 productforums.google.com #groups.l.google.com
+2001:4860:4001:801::89 blob-s-docs.googlegroups.com #googlegroups.l.google.com
+2001:4860:4001:801::89 *.googlegroups.com #googlegroups.l.google.com
 
 #Health 健康
-2404:6800:4005:c00::65 health.google.com #www3.l.google.com
+2001:4860:4001:801::100e health.google.com #www3.l.google.com
 
 #Images 图片
-2404:6800:4005:c00::64 images.google.com #images.l.google.com
-2404:6800:4005:c00::64 images.google.com.hk #images.l.google.com
-2404:6800:4005:c00::64 images.l.google.com
-2404:6800:4005:c00::93 tbn0.google.com #tbn.l.google.com
-2404:6800:4005:c00::93 tbn1.google.com #tbn.l.google.com
-2404:6800:4005:c00::67 tbn2.google.com #tbn.l.google.com
-2404:6800:4005:c00::6a tbn3.google.com #tbn.l.google.com
-###2404:6800:4005:c00::62 tbn4.google.com
-###2404:6800:4005:c00::62 tbn5.google.com
-###2404:6800:4005:c00::62 tbn6.google.com
+2001:4860:4001:801::1002 images.google.com #images.l.google.com
+2001:4860:4001:801::1007 images.google.com.hk #images.l.google.com
+2001:4860:4001:801::1002 images.l.google.com
+2001:4860:4001:801::1010 tbn0.google.com #tbn.l.google.com
+2001:4860:4001:801::101 tbn1.google.com #tbn.l.google.com
+2001:4860:4001:801::1013 tbn2.google.com #tbn.l.google.com
+2001:4860:4001:801::1011 tbn3.google.com #tbn.l.google.com
+##2001:4860:4001:801::62 tbn4.google.com
+##2001:4860:4001:801::62 tbn5.google.com
+##2001:4860:4001:801::62 tbn6.google.com
 
 #Knol 在线百科全书
-2404:6800:4005:c00::71 knol.google.com #www3.l.google.com
+2001:4860:4001:801::1001 knol.google.com #www3.l.google.com
 
 #Labs 实验室
-2404:6800:4005:c00::64 labs.google.com #www3.l.google.com
-2404:6800:4005:c00::65 labs.google.cn #www3.l.google.com
-2404:6800:4005:c00::8d www.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d browsersize.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d bodybrowser.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d citytours.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d correlate.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d datawiki.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d earthengine.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d fastflip.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d followfinder.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d guru.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d image-swirl.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d juliamap.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d listen.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d livingstories.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d newstimeline.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d ngrams.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d pagespeed.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d relatedlinks.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d scribe.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d scriptconv.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d similar-images.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d storegadget.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d swiffy.googlelabs.com #appspot.l.google.com
-2404:6800:4005:c00::8d tables.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::1004 labs.google.com #www3.l.google.com
+2001:4860:4001:801::1006 labs.google.cn #www3.l.google.com
+2001:4860:4001:801::8d www.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d browsersize.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d bodybrowser.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d citytours.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d correlate.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d datawiki.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d earthengine.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d fastflip.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d followfinder.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d guru.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d image-swirl.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d juliamap.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d listen.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d livingstories.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d newstimeline.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d ngrams.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d pagespeed.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d relatedlinks.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d scribe.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d scriptconv.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d similar-images.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d storegadget.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d swiffy.googlelabs.com #appspot.l.google.com
+2001:4860:4001:801::8d tables.googlelabs.com #appspot.l.google.com
 
 #Google Mars 火星地图
-2404:6800:4005:c00::8b mars.google.com #www3.l.google.com
+2001:4860:4001:801::1000 mars.google.com #www3.l.google.com
 
 #Maps 地图
-2404:6800:4005:c00::8b maps.google.com #maps.l.google.com
-2404:6800:4005:c00::8b maps.google.com.hk #maps.l.google.com
-2404:6800:4005:c00::66 maps.google.com.tw #maps.l.google.com
-2404:6800:4005:c00::71 local.google.com #maps.l.google.com
-2404:6800:4005:c00::64 ditu.google.com #maps.l.google.com
-2404:6800:4005:c00::71 maps-api-ssl.google.com #clients.l.google.com
-2404:6800:4005:c00::65 map.google.com #maps.l.google.com
-2404:6800:4005:c00::65 maps.l.google.com
-2404:6800:4005:c00::88 kh.google.com #kh.l.google.com
-2404:6800:4005:c00::88 kh.l.google.com
-2404:6800:4005:c00::8b khmdb.google.com #khmdb.l.google.com
-2404:6800:4005:c00::8b khm.google.com #khm.l.google.com
-2404:6800:4005:c00::8b khm.l.google.com
-2404:6800:4005:c00::8b khm0.google.com #khm.l.google.com
-2404:6800:4005:c00::8b khm1.google.com #khm.l.google.com
-2404:6800:4005:c00::71 khm2.google.com #khm.l.google.com
-2404:6800:4005:c00::71 khm3.google.com #khm.l.google.com
-2404:6800:4005:c00::64 cbk0.google.com #cbk.l.google.com
-2404:6800:4005:c00::64 cbk1.google.com #cbk.l.google.com
-2404:6800:4005:c00::64 cbk2.google.com #cbk.l.google.com
-2404:6800:4005:c00::64 cbk3.google.com #cbk.l.google.com
-2404:6800:4005:c00::8a khms.google.com #khms.l.google.com
-2404:6800:4005:c00::8b khms0.google.com #khms.l.google.com
-2404:6800:4005:c00::66 khms1.google.com #khms.l.google.com
-2404:6800:4005:c00::8b khms2.google.com #khms.l.google.com
-2404:6800:4005:c00::71 khms3.google.com #khms.l.google.com
-2404:6800:4005:c00::64 cbks0.google.com #khms.l.google.com
-2404:6800:4005:c00::66 cbks1.google.com #khms.l.google.com
-2404:6800:4005:c00::8b cbks2.google.com #khms.l.google.com
-2404:6800:4005:c00::64 cbks3.google.com #khms.l.google.com
-2404:6800:4005:c00::71 khms.l.google.com
-2404:6800:4005:c00::76 mw1.google.com #mw-small.l.google.com
-2404:6800:4005:c00::76 mw2.google.com #mw-medium.l.google.com
-2404:6800:4005:c00::8a mt.l.google.com
-2404:6800:4005:c00::64 mt.google.com #mt.l.google.com
-2404:6800:4005:c00::71 mt0.google.com #mt.l.google.com
-2404:6800:4005:c00::8b mt1.google.com #mt.l.google.com
-2404:6800:4005:c00::64 mt2.google.com #mt.l.google.com
-2404:6800:4005:c00::8b mt3.google.com #mt.l.google.com
-2404:6800:4005:c00::66 gg.google.com
-2404:6800:4005:c00::8b gg.google.cn
-2404:6800:4005:c00::78 csi.l.google.com
-2404:6800:4005:c00::5e id.google.com #id.l.google.com
-2404:6800:4005:c00::5e id.google.cn #id.l.google.com
-2404:6800:4005:c00::5e id.l.google.com
-2404:6800:4005:c00::a0 ditu.google.cn
-2404:6800:4005:c00::a0 mt.google.cn #ditu.google.cn
-2404:6800:4005:c00::a0 mt0.google.cn #ditu.google.cn
-2404:6800:4005:c00::a0 mt1.google.cn #ditu.google.cn
-2404:6800:4005:c00::a0 mt2.google.cn #ditu.google.cn
-2404:6800:4005:c00::a0 mt3.google.cn #ditu.google.cn
-2404:6800:4005:c00::8b mts.google.com #mts.l.google.com
-2404:6800:4005:c00::8b mts0.google.com #mts.l.google.com
-2404:6800:4005:c00::64 mts1.google.com #mts.l.google.com
-2404:6800:4005:c00::71 mts2.google.com #mts.l.google.com
-2404:6800:4005:c00::8b mts3.google.com #mts.l.google.com
-2404:6800:4005:c00::64 mts.l.google.com
-2404:6800:4005:c00::a0 maps.gstatic.cn #www.gstatic.cn
-2404:6800:4005:c00::64 mobilemaps.clients.google.com #clients.l.google.com
+2001:4860:4001:801::1009 maps.google.com #maps.l.google.com
+2001:4860:4001:801::1017 maps.google.com.hk #maps.l.google.com
+2001:4860:4001:801::1018 maps.google.com.tw #maps.l.google.com
+2001:4860:4001:801::1000 local.google.com #maps.l.google.com
+2001:4860:4001:801::1009 ditu.google.com #maps.l.google.com
+2001:4860:4001:801::1000 maps-api-ssl.google.com #clients.l.google.com
+2001:4860:4001:801::1000 map.google.com #maps.l.google.com
+2001:4860:4001:801::1002 maps.l.google.com
+2001:4860:4001:801::88 kh.google.com #kh.l.google.com
+2001:4860:4001:801::88 kh.l.google.com
+2001:4860:4001:801::1000 khmdb.google.com #khmdb.l.google.com
+2001:4860:4001:801::100e khm.google.com #khm.l.google.com
+2001:4860:4001:801::1002 khm.l.google.com
+2001:4860:4001:801::1008 khm0.google.com #khm.l.google.com
+2001:4860:4001:801::100e khm1.google.com #khm.l.google.com
+2001:4860:4001:801::1003 khm2.google.com #khm.l.google.com
+2001:4860:4001:801::1001 khm3.google.com #khm.l.google.com
+2001:4860:4001:801::64 cbk0.google.com #cbk.l.google.com
+2001:4860:4001:801::1008 cbk1.google.com #cbk.l.google.com
+2001:4860:4001:801::1009 cbk2.google.com #cbk.l.google.com
+2001:4860:4001:801::1009 cbk3.google.com #cbk.l.google.com
+2001:4860:4001:801::1009 khms.google.com #khms.l.google.com
+2001:4860:4001:801::1005 khms0.google.com #khms.l.google.com
+2001:4860:4001:801::1008 khms1.google.com #khms.l.google.com
+2001:4860:4001:801::100e khms2.google.com #khms.l.google.com
+2001:4860:4001:801::100e khms3.google.com #khms.l.google.com
+2001:4860:4001:801::1000 cbks0.google.com #khms.l.google.com
+2001:4860:4001:801::1003 cbks1.google.com #khms.l.google.com
+2001:4860:4001:801::1004 cbks2.google.com #khms.l.google.com
+2001:4860:4001:801::1005 cbks3.google.com #khms.l.google.com
+2001:4860:4001:801::100e khms.l.google.com
+2001:4860:4001:801::1006 mw1.google.com #mw-small.l.google.com
+2001:4860:4001:801::100e mw2.google.com #mw-medium.l.google.com
+2001:4860:4001:801::1003 mt.l.google.com
+2001:4860:4001:801::100e mt.google.com #mt.l.google.com
+2001:4860:4001:801::1004 mt0.google.com #mt.l.google.com
+2001:4860:4001:801::1000 mt1.google.com #mt.l.google.com
+2001:4860:4001:801::1000 mt2.google.com #mt.l.google.com
+2001:4860:4001:801::1001 mt3.google.com #mt.l.google.com
+2001:4860:4001:801::1003 gg.google.com
+2001:4860:4001:801::1004 gg.google.cn
+2607:f8b0:4007:800::100f csi.l.google.com
+2001:4860:4007:800::101f id.google.com #id.l.google.com
+2001:4860:4007:800::101f id.google.cn #id.l.google.com
+2001:4860:4007:800::1017 id.l.google.com
+2001:4860:4001:801::a0 ditu.google.cn
+2001:4860:4001:801::a0 mt.google.cn #ditu.google.cn
+2001:4860:4001:801::a0 mt0.google.cn #ditu.google.cn
+2001:4860:4001:801::a0 mt1.google.cn #ditu.google.cn
+2001:4860:4001:801::a0 mt2.google.cn #ditu.google.cn
+2001:4860:4001:801::a0 mt3.google.cn #ditu.google.cn
+2001:4860:4007:800::1001 mts.google.com #mts.l.google.com
+2001:4860:4007:800::1005 mts0.google.com #mts.l.google.com
+2001:4860:4007:800::1001 mts1.google.com #mts.l.google.com
+2001:4860:4007:800::1009 mts2.google.com #mts.l.google.com
+2001:4860:4007:800::1009 mts3.google.com #mts.l.google.com
+2001:4860:4007:800::100e mts.l.google.com
+2001:4860:4001:801::a0 maps.gstatic.cn #www.gstatic.cn
+2001:4860:4007:800::1001 mobilemaps.clients.google.com #clients.l.google.com
 
 #Music Beta by Google 云音乐服务
-2404:6800:4005:c00::8b music.google.com #www3.l.google.com
-2404:6800:4005:c00::75 t.doc-0-0-sj.sj.googleusercontent.com #music-streaming.l.google.com
-2404:6800:8003::74 music-streaming.l.google.com
-2404:6800:4005:c00::84 music.googleusercontent.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::75 uploadsj.clients.google.com #large-uploads.l.google.com
-2404:6800:4005:c00::74 large-uploads.l.google.com
+2001:4860:4007:800::1009 music.google.com #www3.l.google.com
+2001:4860:4001:801::75 t.doc-0-0-sj.sj.googleusercontent.com #music-streaming.l.google.com
+#2404:6800:8003::74 music-streaming.l.google.com
+2001:4860:4001:801::100c music.googleusercontent.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::75 uploadsj.clients.google.com #large-uploads.l.google.com
+2001:4860:4001:801::74 large-uploads.l.google.com
 
 #News 资讯
-2404:6800:4005:c00::71 news.google.com #news.l.google.com
-2404:6800:4005:c00::5e news.google.com.hk #news-cctld.l.google.com
-2404:6800:4005:c00::5e news.google.com.tw #news-cctld.l.google.com
-2404:6800:4005:c00::64 news.l.google.com
-2404:6800:4005:c00::84 nt0.ggpht.com #photos-ugc.l.google.com
-2404:6800:4005:c00::84 nt1.ggpht.com #photos-ugc.l.google.com
-2404:6800:4005:c00::84 nt2.ggpht.com #photos-ugc.l.google.com
-2404:6800:4005:c00::84 nt3.ggpht.com #photos-ugc.l.google.com
-###2404:6800:4005:c00::62 nt4.ggpht.com
-###2404:6800:4005:c00::62 nt5.ggpht.com
+2001:4860:4001:801::1001 news.google.com #news.l.google.com
+2001:4860:4001:801::1017 news.google.com.hk #news-cctld.l.google.com
+2001:4860:4001:801::101f news.google.com.tw #news-cctld.l.google.com
+2001:4860:4001:801::1003 news.l.google.com
+2001:4860:4001:801::100a nt0.ggpht.com #photos-ugc.l.google.com
+2001:4860:4001:801::100c nt1.ggpht.com #photos-ugc.l.google.com
+2001:4860:4001:801::100c nt2.ggpht.com #photos-ugc.l.google.com
+2001:4860:4001:801::100c nt3.ggpht.com #photos-ugc.l.google.com
+##2001:4860:4001:801::62 nt4.ggpht.com
+##2001:4860:4001:801::62 nt5.ggpht.com
 
 #Orkut 网络社区
-2404:6800:4005:c00::57 www.orkut.com #orkut-fe.l.google.com
-2404:6800:4005:c00::56 orkut-fe.l.google.com
-2404:6800:4005:c00::56 www.orkut.gmodules.com #orkut-opensocial.l.google.com
-2404:6800:4005:c00::57 *.a.orkut.gmodules.com #orkut-opensocial.l.google.com
-2404:6800:4005:c00::56 orkut-opensocial.l.google.com
-2404:6800:4005:c00::55 img1.orkut.com #orkut-images.l.google.com
-2404:6800:4005:c00::56 img2.orkut.com #orkut-images.l.google.com
-2404:6800:4005:c00::56 img3.orkut.com #orkut-images.l.google.com
-2404:6800:4005:c00::56 img4.orkut.com #orkut-images.l.google.com
-2404:6800:4005:c00::55 img5.orkut.com #orkut-images.l.google.com
-2404:6800:4005:c00::57 img6.orkut.com #orkut-images.l.google.com
-2404:6800:4005:c00::55 img7.orkut.com #orkut-images.l.google.com
-2404:6800:4005:c00::55 img8.orkut.com #orkut-images.l.google.com
-2404:6800:4005:c00::56 img9.orkut.com #orkut-images.l.google.com
-2404:6800:4005:c00::55 orkut-images.l.google.com
-2404:6800:4005:c00::57 static1.orkut.com #orkut-static.l.google.com
-2404:6800:4005:c00::55 static2.orkut.com #orkut-static.l.google.com
-2404:6800:4005:c00::56 static3.orkut.com #orkut-static.l.google.com
-2404:6800:4005:c00::57 static4.orkut.com #orkut-static.l.google.com
-2404:6800:4005:c00::55 orkut-static.l.google.com
-2404:6800:4005:c00::57 promote.orkut.com #orkut-promote.l.google.com
-2404:6800:4005:c00::55 orkut-promote.l.google.com
-2404:6800:4005:c00::63 help.orkut.com #www2.l.google.com
-2404:6800:4005:c00::84 officialorkutblog.blogspot.com #blogspot.l.google.com
-2404:6800:4005:c00::79 blog.orkut.com #ghs.l.google.com
-2404:6800:4005:c00::79 en.blog.orkut.com #ghs.l.google.com
+2001:4860:4001:801::57 www.orkut.com #orkut-fe.l.google.com
+2001:4860:4001:801::56 orkut-fe.l.google.com
+2001:4860:4001:801::56 www.orkut.gmodules.com #orkut-opensocial.l.google.com
+2001:4860:4001:801::57 *.a.orkut.gmodules.com #orkut-opensocial.l.google.com
+2001:4860:4001:801::56 orkut-opensocial.l.google.com
+2001:4860:4001:801::55 img1.orkut.com #orkut-images.l.google.com
+2001:4860:4001:801::56 img2.orkut.com #orkut-images.l.google.com
+2001:4860:4001:801::56 img3.orkut.com #orkut-images.l.google.com
+2001:4860:4001:801::56 img4.orkut.com #orkut-images.l.google.com
+2001:4860:4001:801::55 img5.orkut.com #orkut-images.l.google.com
+2001:4860:4001:801::57 img6.orkut.com #orkut-images.l.google.com
+2001:4860:4001:801::55 img7.orkut.com #orkut-images.l.google.com
+2001:4860:4001:801::55 img8.orkut.com #orkut-images.l.google.com
+2001:4860:4001:801::56 img9.orkut.com #orkut-images.l.google.com
+2001:4860:4001:801::55 orkut-images.l.google.com
+2001:4860:4001:801::57 static1.orkut.com #orkut-static.l.google.com
+2001:4860:4001:801::55 static2.orkut.com #orkut-static.l.google.com
+2001:4860:4001:801::56 static3.orkut.com #orkut-static.l.google.com
+2001:4860:4001:801::57 static4.orkut.com #orkut-static.l.google.com
+2001:4860:4001:801::55 orkut-static.l.google.com
+2001:4860:4001:801::57 promote.orkut.com #orkut-promote.l.google.com
+2001:4860:4001:801::55 orkut-promote.l.google.com
+2001:4860:4001:801::1010 help.orkut.com #www2.l.google.com
+2001:4860:4001:801::100c officialorkutblog.blogspot.com #blogspot.l.google.com
+2001:4860:4001:801::79 blog.orkut.com #ghs.l.google.com
+2001:4860:4001:801::79 en.blog.orkut.com #ghs.l.google.com
 
 #Pack 软件精选
-2404:6800:4005:c00::67 pack.google.com #www2.l.google.com
-2404:6800:4005:c00::66 cache.pack.google.com #redirector.c.youtube.com
-2404:6800:4005:6::6 cache.l.google.com
-2404:6800:4005:c00::67 pack.google.cn #www2.l.google.com
+2001:4860:4001:801::1012 pack.google.com #www2.l.google.com
+2001:4860:4001:801::1004 cache.pack.google.com #redirector.c.youtube.com
+#2404:6800:4005:6::6 cache.l.google.com
+2001:4860:4001:801::1013 pack.google.cn #www2.l.google.com
 
 #Photo/Picasa 照片/网络相册
-2404:6800:4005:c00::5b photos.google.com #picasaweb.l.google.com
-2404:6800:4005:c00::5b picasaweb.l.google.com
-2404:6800:4005:c00::93 picasa.google.com #www2.l.google.com
-2404:6800:4005:c00::be picasaweb.google.com #picasaweb.l.google.com
-2404:6800:4005:c00::84 lh3.ggpht.com #photos-ugc.l.google.com
-2404:6800:4005:c00::84 lh4.ggpht.com #photos-ugc.l.google.com
-2404:6800:4005:c00::84 lh5.ggpht.com #photos-ugc.l.google.com
-2404:6800:4005:c00::84 lh6.ggpht.com #photos-ugc.l.google.com
-2404:6800:4005:c00::84 photos-ugc.l.google.com
-2404:6800:4005:c00::64 lh2.google.com #lh2.l.google.com
-2404:6800:4005:c00::64 lh3.google.com #lh2.l.google.com
-2404:6800:4005:c00::64 lh4.google.com #lh2.l.google.com
-2404:6800:4005:c00::71 lh5.google.com #lh2.l.google.com
-2404:6800:4005:c00::71 lh6.google.com #lh2.l.google.com
-2404:6800:4005:c00::66 lh2.l.google.com
+2001:4860:4001:801::5b photos.google.com #picasaweb.l.google.com
+2001:4860:4001:801::5b picasaweb.l.google.com
+2001:4860:4001:801::1013 picasa.google.com #www2.l.google.com
+2001:4860:4001:801::be picasaweb.google.com #picasaweb.l.google.com
+2001:4860:4001:801::100b lh3.ggpht.com #photos-ugc.l.google.com
+2001:4860:4001:801::100a lh4.ggpht.com #photos-ugc.l.google.com
+2001:4860:4001:801::100b lh5.ggpht.com #photos-ugc.l.google.com
+2001:4860:4001:801::100a lh6.ggpht.com #photos-ugc.l.google.com
+2001:4860:4001:801::100a photos-ugc.l.google.com
+2001:4860:4001:801::1003 lh2.google.com #lh2.l.google.com
+2001:4860:4001:801::1007 lh3.google.com #lh2.l.google.com
+2001:4860:4001:801::1002 lh4.google.com #lh2.l.google.com
+2001:4860:4001:801::1006 lh5.google.com #lh2.l.google.com
+2001:4860:4001:801::1004 lh6.google.com #lh2.l.google.com
+2001:4860:4001:801::1004 lh2.l.google.com
 
 #Profiles 个人主页
-2404:6800:4005:c00::66 profiles.google.com #plus.l.google.com
-2404:6800:4005:c00::64 plusone.google.com #plus.l.google.com
-2404:6800:4005:c00::8b plus.google.com
-###2404:6800:4005:c00::8a plus.google.com.hk # URL 重定向
-2404:6800:4005:c00::64 plus.url.google.com #www3.l.google.com
-#2404:6800:4005:c00::8a plus.url.google.com.hk #实际上不存在的域名
-2404:6800:4005:c00::71 developers.google.com #www3.l.google.com
+2001:4860:4001:801::1009 profiles.google.com #plus.l.google.com
+2607:f8b0:4007:800::1004 plusone.google.com #plus.l.google.com
+2001:4860:4001:801::1003 plus.google.com
+##2001:4860:4001:801::8a plus.google.com.hk # URL 重定向
+2001:4860:4001:801::1002 plus.url.google.com #www3.l.google.com
+2001:4860:4001:801::8a plus.url.google.com.hk #实际上不存在的域名
+
+#Developers 开发者论坛
+2001:4860:4001:801::100e developers.google.com #www3.l.google.com
 
 #Reader 阅读器
-2404:6800:4005:c00::93 reader.google.com #www2.l.google.com
+2001:4860:4001:801::1012 reader.google.com #www2.l.google.com
 
 #SafeBrowing 安全检测服务
-2404:6800:4005:c00::5d sb.google.com #sb.l.google.com #安全浏览检测 API
-2404:6800:4005:c00::be sb.l.google.com
-2404:6800:4005:c00::5b sb-ssl.google.com #sb-ssl.l.google.com
-2404:6800:4005:c00::5b sb-ssl.l.google.com
-2404:6800:4005:c00::be safebrowsing.google.com #sb.l.google.com
-2404:6800:4005:c00::71 safebrowsing.clients.google.com #clients.l.google.com
-2404:6800:4005:c00::71 safebrowsing-cache.google.com #safebrowsing.cache.l.google.com
-2404:6800:4005:c00::65 safebrowsing.cache.l.google.com
+2001:4860:4001:801::5d sb.google.com #sb.l.google.com #安全浏览检测 API
+2001:4860:4001:801::be sb.l.google.com
+2001:4860:4001:801::5b sb-ssl.google.com #sb-ssl.l.google.com
+2001:4860:4001:801::5b sb-ssl.l.google.com
+2001:4860:4001:801::1001 safebrowsing.google.com #sb.l.google.com
+2001:4860:4001:801::1001 safebrowsing.clients.google.com #clients.l.google.com
+2001:4860:4001:801::1001 safebrowsing-cache.google.com #safebrowsing.cache.l.google.com
+2001:4860:4001:801::1001 safebrowsing.cache.l.google.com
 
 #Sandbox 服务沙盒
-2404:6800:4005:c00::51 sandbox.google.com #sandbox.l.google.com
+2001:4860:4001:801::51 sandbox.google.com #sandbox.l.google.com
 
 #Scholar 学术搜索
-2404:6800:4005:c00::63 scholar.google.com
-2404:6800:4005:c00::63 scholar.google.com.hk
-2404:6800:4005:c00::63 scholar.google.com.tw
-2404:6800:4005:c00::63 scholar.l.google.com
-2404:6800:4005:c00::a0 scholar.google.cn
+2001:4860:4001:801::63 scholar.google.com
+2001:4860:4001:801::63 scholar.google.com.hk
+2001:4860:4001:801::63 scholar.google.com.tw
+2001:4860:4001:801::63 scholar.l.google.com
+2001:4860:4001:801::a0 scholar.google.cn
 
 #Sites 协作平台
-2404:6800:4005:c00::8b sites.google.com #www3.l.google.com
-2404:6800:4005:c00::71 gsamplemaps.googlepages.com #www3.l.google.com
+2001:4860:4001:801::1009 sites.google.com #www3.l.google.com
+2001:4860:4001:801::100c gsamplemaps.googlepages.com #www3.l.google.com
 
 #SketchUp 3D 建模工具
-2404:6800:4005:c00::66 sketchup.google.com
-2404:6800:4005:c00::66 sketchup.l.google.com
+2001:4860:4001:801::66 sketchup.google.com
+2001:4860:4001:801::66 sketchup.l.google.com
 
 #Google Store Google 商店（里面有很多谷歌自己的东西出售，像谷歌T恤、茶杯、小玩意等等）
-#2404:6800:4005:c00::62 www.googlestore.com
+2001:4860:4001:801::62 www.googlestore.com
 
 #Google Talk/Chat 聊天
-#2404:6800:4005:c00::7d talk.google.com
-#2404:6800:4005:c00::7d talk.l.google.com
-###2404:6800:4005:c00::62 default.talk.google.com
-2404:6800:4005:c00::64 talkgadget.google.com #talkgadget.l.google.com
-###2404:6800:4005:c00::62 rtmp0.google.com
-###2404:6800:4005:c00::62 users.talk.google.com
-2404:6800:4005:c00::bc mtalk.google.com #mobile-gtalk.l.google.com
-2404:6800:4005:c00::bc mobile-gtalk.l.google.com
+2001:4860:4001:801::7d talk.google.com
+2001:4860:4001:801::7d talk.l.google.com
+##2001:4860:4001:801::62 default.talk.google.com
+2001:4860:4001:801::100e talkgadget.google.com #talkgadget.l.google.com
+##2001:4860:4001:801::62 rtmp0.google.com
+##2001:4860:4001:801::62 users.talk.google.com
+2001:4860:4001:801::bc mtalk.google.com #mobile-gtalk.l.google.com
+2001:4860:4001:801::bc mobile-gtalk.l.google.com
 
 #Tools 工具
-2404:6800:8003::65 tools.google.com #tools.l.google.com
-2404:6800:8003::65 toolbar.google.com #tools.l.google.com
-2404:6800:4005:c00::8b toolbar.google.com.hk #tools.l.google.com
-2404:6800:8003::65 tools.l.google.com
+2001:4860:4001:801::1009 tools.google.com #tools.l.google.com
+2001:4860:4001:801::100e toolbar.google.com #tools.l.google.com
+2001:4860:4001:801::1003 toolbar.google.com.hk #tools.l.google.com
+2001:4860:4001:801::1004 tools.l.google.com
 
 #Translate 翻译
-2404:6800:4005:c00::8b translate.google.com #www3.l.google.com
-2404:6800:4005:c00::8b translate.google.com.hk #www3.l.google.com
-2404:6800:4005:c00::8b translate.google.com.tw #www3.l.google.com
-2404:6800:4005:c00::a0 translate.google.cn #www.google.cn
+2001:4860:4001:801::1001 translate.google.com #www3.l.google.com
+2001:4860:4001:801::1002 translate.google.com.hk #www3.l.google.com
+2001:4860:4001:801::1004 translate.google.com.tw #www3.l.google.com
+2001:4860:4001:801::a0 translate.google.cn #www.google.cn
 
 #Trends 趋势
-2404:6800:4005:c00::67 trends.google.com #www2.l.google.com
+2001:4860:4001:801::1012 trends.google.com #www2.l.google.com
 
 #Video 视频
-2404:6800:4005:c00::65 video.google.com #video.l.google.com
-2404:6800:4005:c00::8b video.google.com.hk #video.l.google.com
-2404:6800:4005:c00::8a video.google.com.tw #video.l.google.com
-2404:6800:4005:c00::65 video.l.google.com
-2404:6800:4005:c00::8b 0.gvt0.com #video-thumbnails.l.google.com
-2404:6800:4005:c00::64 1.gvt0.com #video-thumbnails.l.google.com
-2404:6800:4005:c00::64 2.gvt0.com #video-thumbnails.l.google.com
-2404:6800:4005:c00::8b 3.gvt0.com #video-thumbnails.l.google.com
-2404:6800:4005:c00::8b 4.gvt0.com #video-thumbnails.l.google.com
-2404:6800:4005:c00::71 5.gvt0.com #video-thumbnails.l.google.com
-2404:6800:4005:c00::8b video-stats.video.google.com #video-stats.l.google.com
-2404:6800:4005:c00::74 upload.video.google.com #sslvideo-upload.l.google.com
-2404:6800:4005:c00::75 sslvideo-upload.l.google.com
-2404:6800:4005:c00::b0 vp.video.google.com #vp.video.l.google.com
-2404:6800:4005:c00::b0 vp.video.l.google.com
-2404:6800:4005:c00::b0 qwqy.vp.video.l.google.com
-###2404:6800:4005:c00::62 nz.vp.video.l.google.com
-###2404:6800:4005:c00::62 nztdug.vp.video.l.google.com
-2404:6800:4005:c00::b0 pr.vp.video.l.google.com
-###2404:6800:4005:c00::62 ug.vp.video.l.google.com
-###2404:6800:4005:c00::62 vp01.video.l.google.com
-###2404:6800:4005:c00::62 vp02.video.l.google.com
-###2404:6800:4005:c00::62 vp03.video.l.google.com
-###2404:6800:4005:c00::62 vp04.video.l.google.com
-###2404:6800:4005:c00::62 vp05.video.l.google.com
-###2404:6800:4005:c00::62 vp06.video.l.google.com
-###2404:6800:4005:c00::62 vp07.video.l.google.com
-###2404:6800:4005:c00::62 vp08.video.l.google.com
-###2404:6800:4005:c00::62 vp09.video.l.google.com
-###2404:6800:4005:c00::62 vp10.video.l.google.com
-###2404:6800:4005:c00::62 vp11.video.l.google.com
-###2404:6800:4005:c00::62 vp12.video.l.google.com
-###2404:6800:4005:c00::62 vp13.video.l.google.com
-###2404:6800:4005:c00::62 vp14.video.l.google.com
-###2404:6800:4005:c00::62 vp15.video.l.google.com
-###2404:6800:4005:c00::62 vp16.video.l.google.com
-###2404:6800:4005:c00::62 vp17.video.l.google.com
-###2404:6800:4005:c00::62 vp18.video.l.google.com
-###2404:6800:4005:c00::62 vp19.video.l.google.com
-###2404:6800:4005:c00::62 vp20.video.l.google.com
+2001:4860:4001:801::1005 video.google.com #video.l.google.com
+2001:4860:4001:801::1000 video.google.com.hk #video.l.google.com
+2001:4860:4001:801::1000 video.google.com.tw #video.l.google.com
+2001:4860:4001:801::1001 video.l.google.com
+2001:4860:4001:801::1007 0.gvt0.com #video-thumbnails.l.google.com
+2001:4860:4001:801::1000 1.gvt0.com #video-thumbnails.l.google.com
+2001:4860:4001:801::1000 2.gvt0.com #video-thumbnails.l.google.com
+2001:4860:4001:801::1000 3.gvt0.com #video-thumbnails.l.google.com
+2001:4860:4001:801::100e 4.gvt0.com #video-thumbnails.l.google.com
+2001:4860:4001:801::1009 5.gvt0.com #video-thumbnails.l.google.com
+2001:4860:4001:801::1009 video-stats.video.google.com #video-stats.l.google.com
+2001:4860:4001:801::74 upload.video.google.com #sslvideo-upload.l.google.com
+2001:4860:4001:801::75 sslvideo-upload.l.google.com
+2001:4860:4001:801::b0 vp.video.google.com #vp.video.l.google.com
+2001:4860:4001:801::b0 vp.video.l.google.com
+2001:4860:4001:801::b0 qwqy.vp.video.l.google.com
+##2001:4860:4001:801::62 nz.vp.video.l.google.com
+##2001:4860:4001:801::62 nztdug.vp.video.l.google.com
+2001:4860:4001:801::b0 pr.vp.video.l.google.com
+##2001:4860:4001:801::62 ug.vp.video.l.google.com
+##2001:4860:4001:801::62 vp01.video.l.google.com
+##2001:4860:4001:801::62 vp02.video.l.google.com
+##2001:4860:4001:801::62 vp03.video.l.google.com
+##2001:4860:4001:801::62 vp04.video.l.google.com
+##2001:4860:4001:801::62 vp05.video.l.google.com
+##2001:4860:4001:801::62 vp06.video.l.google.com
+##2001:4860:4001:801::62 vp07.video.l.google.com
+##2001:4860:4001:801::62 vp08.video.l.google.com
+##2001:4860:4001:801::62 vp09.video.l.google.com
+##2001:4860:4001:801::62 vp10.video.l.google.com
+##2001:4860:4001:801::62 vp11.video.l.google.com
+##2001:4860:4001:801::62 vp12.video.l.google.com
+##2001:4860:4001:801::62 vp13.video.l.google.com
+##2001:4860:4001:801::62 vp14.video.l.google.com
+##2001:4860:4001:801::62 vp15.video.l.google.com
+##2001:4860:4001:801::62 vp16.video.l.google.com
+##2001:4860:4001:801::62 vp17.video.l.google.com
+##2001:4860:4001:801::62 vp18.video.l.google.com
+##2001:4860:4001:801::62 vp19.video.l.google.com
+##2001:4860:4001:801::62 vp20.video.l.google.com
 2404:6800:4005::6 v1.lscache1.googlevideo.com
 2404:6800:4005:4::6 v1.lscache2.googlevideo.com
 2404:6800:4005:1::6 v1.lscache3.googlevideo.com
@@ -1752,96 +1752,96 @@
 2404:6800:4007:1::18 r19.maa03s09.googlevideo.com
 2404:6800:4007::19 r20.maa03s08.googlevideo.com
 2404:6800:4007:1::19 r20.maa03s09.googlevideo.com
-2404:6800:4005:c00::a0 www.gvt0.cn
-2404:6800:4005:c00::a0 0.gvt0.cn #www.gvt0.cn
-2404:6800:4005:c00::a0 1.gvt0.cn #www.gvt0.cn
-2404:6800:4005:c00::a0 2.gvt0.cn #www.gvt0.cn
-2404:6800:4005:c00::a0 3.gvt0.cn #www.gvt0.cn
+2001:4860:4001:801::a0 www.gvt0.cn
+2001:4860:4001:801::a0 0.gvt0.cn #www.gvt0.cn
+2001:4860:4001:801::a0 1.gvt0.cn #www.gvt0.cn
+2001:4860:4001:801::a0 2.gvt0.cn #www.gvt0.cn
+2001:4860:4001:801::a0 3.gvt0.cn #www.gvt0.cn
 
 #Wave 波浪
-2404:6800:4005:c00::76 wave.google.com #www4.l.google.com
-###2404:6800:4005:c00::76 wave0.google.com
-2404:6800:4005:c00::76 wave1.google.com #www4.l.google.com
-2404:6800:4005:c00::68 googlewave.com
+2001:4860:4001:801::1004 wave.google.com #www4.l.google.com
+##2001:4860:4001:801::76 wave0.google.com
+2001:4860:4001:801::1009 wave1.google.com #www4.l.google.com
+2001:4860:4001:801::1012 googlewave.com
 
 #WiFi
-2404:6800:4005:c00::7b wifi.google.com
-2404:6800:4005:c00::7b wifi.l.google.com
+2001:4860:4001:801::7b wifi.google.com
+2001:4860:4001:801::7b wifi.l.google.com
 
 #iGoogle Modules iGoogle 小工具
-2404:6800:4005:c00::63 gmodules.com
-2404:6800:4005:c00::84 www.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 www.ig.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 ig.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 ads.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 p.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 1.ig.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 2.ig.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 3.ig.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 4.ig.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 5.ig.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 6.ig.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 maps.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 img0.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 img1.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 img2.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 img3.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 skins.gmodules.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::85 friendconnect.gmodules.com #gadgets.l.google.com
-2404:6800:4005:c00::76 0.blogger.gmodules.com #gadgets.l.google.com
-2404:6800:4005:c00::76 gadgets.l.google.com
-2404:6800:4005:c00::69 partnerpage.google.com #www2.l.google.com
-2404:6800:4005:c00::84 *.ig.ig.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::1010 gmodules.com
+2001:4860:4001:801::100c www.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100b www.ig.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100c ig.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100b ads.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100b p.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100b 1.ig.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100a 2.ig.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100c 3.ig.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100a 4.ig.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100a 5.ig.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100a 6.ig.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100b maps.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100a img0.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100c img1.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100a img2.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100c img3.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100c skins.gmodules.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::1006 friendconnect.gmodules.com #gadgets.l.google.com
+2001:4860:4001:801::1009 0.blogger.gmodules.com #gadgets.l.google.com
+2001:4860:4001:801::1006 gadgets.l.google.com
+2001:4860:4001:801::1010 partnerpage.google.com #www2.l.google.com
+2001:4860:4001:801::100a *.ig.ig.gmodules.com #googlehosted.l.googleusercontent.com
 
 #GStatic Google 静态文件存储
-2404:6800:4005:c00::78 www.gstatic.com
-2404:6800:4005:c00::78 csi.gstatic.com
-2404:6800:4005:c00::78 maps.gstatic.com
-2404:6800:4005:c00::78 ssl.gstatic.com
-2404:6800:4005:c00::67 t0.gstatic.com
-2404:6800:4005:c00::63 t1.gstatic.com
-2404:6800:4005:c00::93 t2.gstatic.com
-2404:6800:4005:c00::63 t3.gstatic.com
-2404:6800:4005:c00::78 g0.gstatic.com
-2404:6800:4005:c00::78 g1.gstatic.com
-2404:6800:4005:c00::78 g2.gstatic.com
-2404:6800:4005:c00::78 g3.gstatic.com
-2404:6800:4005:c00::64 mt0.gstatic.com
-2404:6800:4005:c00::71 mt1.gstatic.com
-2404:6800:4005:c00::64 mt2.gstatic.com
-2404:6800:4005:c00::8a mt3.gstatic.com
-2404:6800:4005:c00::64 mt4.gstatic.com
-2404:6800:4005:c00::64 mt5.gstatic.com
-2404:6800:4005:c00::8b mt6.gstatic.com
-2404:6800:4005:c00::71 mt7.gstatic.com
-2404:6800:4005:c00::a0 www.gstatic.cn
+2001:4860:4001:801::100f www.gstatic.com
+2001:4860:4001:801::100f csi.gstatic.com
+2001:4860:4001:801::100f maps.gstatic.com
+2001:4860:4001:801::100f ssl.gstatic.com
+2001:4860:4001:801::1014 t0.gstatic.com
+2001:4860:4001:801::1013 t1.gstatic.com
+2001:4860:4001:801::1013 t2.gstatic.com
+2001:4860:4001:801::1013 t3.gstatic.com
+2001:4860:4001:801::100f g0.gstatic.com
+2001:4860:4001:801::100f g1.gstatic.com
+2001:4860:4001:801::100f g2.gstatic.com
+2001:4860:4001:801::100f g3.gstatic.com
+2001:4860:4001:801::1000 mt0.gstatic.com
+2001:4860:4001:801::1005 mt1.gstatic.com
+2001:4860:4001:801::1009 mt2.gstatic.com
+2001:4860:4001:801::1001 mt3.gstatic.com
+2001:4860:4001:801::1003 mt4.gstatic.com
+2001:4860:4001:801::1000 mt5.gstatic.com
+2001:4860:4001:801::1006 mt6.gstatic.com
+2001:4860:4001:801::1005 mt7.gstatic.com
+2001:4860:4001:801::a0 www.gstatic.cn
 
 #Google APIs 开发接口服务
-2404:6800:4005:c00::8b apis.google.com #plus.l.google.com
-2404:6800:4005:c00::64 chart.apis.google.com #clients.l.google.com
-2404:6800:4005:c00::5f www.googleapis.com #googleapis.l.google.com
-2404:6800:4005:c00::5f *.googleapis.com #googleapis.l.google.com
-2404:6800:4005:c00::5f googleapis.l.google.com
-2404:6800:4005:c00::5f ajax.googleapis.com #googleapis.l.google.com
-2404:6800:4005:c00::5f chart.googleapis.com #googleapis.l.google.com
-2404:6800:4005:c00::5f fonts.googleapis.com #googleapis.l.google.com
-2404:6800:4005:c00::5f maps.googleapis.com #googleapis.l.google.com
-2404:6800:4005:c00::5f redirector-bigcache.googleapis.com #googleapis.l.google.com
-2404:6800:4005:c00::5f translate.googleapis.com #googleapis.l.google.com
-###2404:6800:4005:c00::5f googleapis-ajax.google.com
-###2404:6800:4005:c00::5f googleapis-ajax.l.google.com
-2404:6800:4005:c00::64 mt0.googleapis.com #mt.l.google.com
-2404:6800:4005:c00::64 mt1.googleapis.com #mt.l.google.com
-2404:6800:4005:c00::64 mt2.googleapis.com #mt.l.google.com
-2404:6800:4005:c00::64 mt3.googleapis.com #mt.l.google.com
+2607:f8b0:4007:800::1002 apis.google.com #plus.l.google.com
+2001:4860:4001:801::1006 chart.apis.google.com #clients.l.google.com
+2001:4860:4001:801::5f www.googleapis.com #googleapis.l.google.com
+2001:4860:4001:801::5f *.googleapis.com #googleapis.l.google.com
+2001:4860:4001:801::5f googleapis.l.google.com
+2001:4860:4001:801::5f ajax.googleapis.com #googleapis.l.google.com
+2001:4860:4001:801::5f chart.googleapis.com #googleapis.l.google.com
+2001:4860:4001:801::5f fonts.googleapis.com #googleapis.l.google.com
+2001:4860:4001:801::5f maps.googleapis.com #googleapis.l.google.com
+2001:4860:4001:801::5f redirector-bigcache.googleapis.com #googleapis.l.google.com
+2001:4860:4001:801::5f translate.googleapis.com #googleapis.l.google.com
+##2001:4860:4001:801::5f googleapis-ajax.google.com
+##2001:4860:4001:801::5f googleapis-ajax.l.google.com
+2001:4860:4001:801::100e mt0.googleapis.com #mt.l.google.com
+2001:4860:4001:801::1006 mt1.googleapis.com #mt.l.google.com
+2001:4860:4001:801::1002 mt2.googleapis.com #mt.l.google.com
+2001:4860:4001:801::1001 mt3.googleapis.com #mt.l.google.com
 
 #BigCache (Google Storage)
-2404:6800:4005:c00::65 redirector.c.youtube.com
-2404:6800:4005::6 v1.lscache1.c.bigcache.googleapis.com
-2404:6800:4005:4::6 v1.lscache2.c.bigcache.googleapis.com
-2404:6800:4005:1::6 v1.lscache3.c.bigcache.googleapis.com
-2404:6800:4005:5::6 v1.lscache4.c.bigcache.googleapis.com
-2404:6800:4005:2::6 v1.lscache5.c.bigcache.googleapis.com
+2001:4860:4001:801::1008 redirector.c.youtube.com
+2607:f8b0:4007:2::6 v1.lscache1.c.bigcache.googleapis.com
+2001:4860:4007:6::6 v1.lscache2.c.bigcache.googleapis.com
+2607:f8b0:4007:14::6 v1.lscache3.c.bigcache.googleapis.com
+2001:4860:4007:7::6 v1.lscache4.c.bigcache.googleapis.com
+2607:f8b0:4007:6::6 v1.lscache5.c.bigcache.googleapis.com
 2404:6800:4005:6::6 v1.lscache6.c.bigcache.googleapis.com
 2404:6800:4005:3::6 v1.lscache7.c.bigcache.googleapis.com
 2404:6800:4005:7::6 v1.lscache8.c.bigcache.googleapis.com
@@ -2383,241 +2383,243 @@
 2404:6800:4005:3::19 r20.hkg05s04.c.bigcache.googleapis.com
 
 #Google Hosted 托管服务
-2404:6800:4005:c00::84 commondatastorage.googleapis.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 bucket.commondatastorage.googleapis.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 chromium-browser-symbols.commondatastorage.googleapis.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::80 c.commondatastorage.googleapis.com #storage.l.googleusercontent.com
-2404:6800:4005:c00::80 storage.l.googleusercontent.com
-2404:6800:4005:c00::84 www.googlehosted.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 googlehosted.l.google.com
-2404:6800:4005:c00::6a base.googlehosted.com #www2.l.google.com
-2404:6800:4005:c00::63 base0.googlehosted.com #www2.l.google.com
-2404:6800:4005:c00::6a base1.googlehosted.com #www2.l.google.com
-2404:6800:4005:c00::67 base2.googlehosted.com #www2.l.google.com
-2404:6800:4005:c00::67 base3.googlehosted.com #www2.l.google.com
-2404:6800:4005:c00::84 base4.googlehosted.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 base5.googlehosted.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100a commondatastorage.googleapis.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100c googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100a bucket.commondatastorage.googleapis.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100c chromium-browser-symbols.commondatastorage.googleapis.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::80 c.commondatastorage.googleapis.com #storage.l.googleusercontent.com
+2001:4860:4001:801::80 storage.l.googleusercontent.com
+2001:4860:4001:801::100b www.googlehosted.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100c googlehosted.l.google.com
+2001:4860:4001:801::1012 base.googlehosted.com #www2.l.google.com
+2001:4860:4001:801::1011 base0.googlehosted.com #www2.l.google.com
+2001:4860:4001:801::1011 base1.googlehosted.com #www2.l.google.com
+2001:4860:4001:801::1012 base2.googlehosted.com #www2.l.google.com
+2001:4860:4001:801::1010 base3.googlehosted.com #www2.l.google.com
+2001:4860:4001:801::100a base4.googlehosted.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::101b base5.googlehosted.com #googlehosted.l.googleusercontent.com
 
 #GoogleUserContent 用户自定义的Google服务
-2404:6800:4005:c00::84 www.googleusercontent.com #googlehosted.l.googleusercontent.com
-2404:6800:4005:c00::84 androidmarket.googleusercontent.com
-2404:6800:4005:c00::84 blogger.googleusercontent.com
-2404:6800:4005:c00::84 www-blogger-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 clients1.googleusercontent.com
-2404:6800:4005:c00::84 clients2.googleusercontent.com
-2404:6800:4005:c00::84 doc-00-1k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-00-1o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-04-1o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-08-1o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0c-1o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0g-1o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0k-1o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0o-1o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0s-1o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-10-1o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-14-1o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-10-2c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0k-38-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-00-6c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-04-6c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-08-6c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0c-6c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0g-6c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0k-6c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0o-6c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0s-6c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-10-6c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-14-6c-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0o-74-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-14-74-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-00-7o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-04-7o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-08-7o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0c-7o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0g-7o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0k-7o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0o-7o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0s-7o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-10-7o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-14-7o-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-00-8k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-04-8k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-08-8k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0c-8k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0g-8k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0k-8k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0o-8k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0s-8k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-10-8k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-14-8k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-00-9k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-04-9k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-08-9k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0c-9k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0g-9k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0k-9k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0o-9k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0s-9k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-10-9k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-14-9k-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-00-as-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-04-as-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-08-as-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0c-as-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0g-as-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0k-as-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0o-as-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-0s-as-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-10-as-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-14-as-docs.googleusercontent.com
-2404:6800:4005:c00::84 doc-00-2g-3dwarehouse.googleusercontent.com
-2404:6800:4005:c00::84 doc-04-2g-3dwarehouse.googleusercontent.com
-2404:6800:4005:c00::84 doc-08-2g-3dwarehouse.googleusercontent.com
-2404:6800:4005:c00::84 doc-0c-2g-3dwarehouse.googleusercontent.com
-2404:6800:4005:c00::84 doc-0g-2g-3dwarehouse.googleusercontent.com
-2404:6800:4005:c00::84 doc-0k-2g-3dwarehouse.googleusercontent.com
-2404:6800:4005:c00::84 doc-0o-2g-3dwarehouse.googleusercontent.com
-2404:6800:4005:c00::84 doc-0s-2g-3dwarehouse.googleusercontent.com
-2404:6800:4005:c00::84 doc-10-2g-3dwarehouse.googleusercontent.com
-2404:6800:4005:c00::84 doc-14-2g-3dwarehouse.googleusercontent.com
-2404:6800:4005:c00::84 feedback.googleusercontent.com
-2404:6800:4005:c00::84 mail-attachment.googleusercontent.com
-2404:6800:4005:c00::84 lh0.googleusercontent.com
-2404:6800:4005:c00::84 lh1.googleusercontent.com
-2404:6800:4005:c00::84 lh2.googleusercontent.com
-2404:6800:4005:c00::84 lh3.googleusercontent.com
-2404:6800:4005:c00::84 lh4.googleusercontent.com
-2404:6800:4005:c00::84 lh5.googleusercontent.com
-2404:6800:4005:c00::84 lh6.googleusercontent.com
-2404:6800:4005:c00::84 music-onebox.googleusercontent.com
-2404:6800:4005:c00::84 oauth.googleusercontent.com
-2404:6800:4005:c00::84 reader.googleusercontent.com
-2404:6800:4005:c00::84 static.googleusercontent.com
-2404:6800:4005:c00::84 s2.googleusercontent.com
-2404:6800:4005:c00::84 themes.googleusercontent.com
-2404:6800:4005:c00::84 translate.googleusercontent.com
-2404:6800:4005:c00::84 wave.googleusercontent.com
-2404:6800:4005:c00::84 webcache.googleusercontent.com
-2404:6800:4005:c00::84 ytimg.googleusercontent.com
-2404:6800:4005:c00::84 code-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 spreadsheets-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images-docs-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-gm-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 4lam9a1ki27mb9p1h5q3furvvf58ss02-a-gm-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 nl3atn8402ncgahndqn8rb6qi2ld2g5a-a-gm-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-opensocial-sandbox.googleusercontent.com
-2404:6800:4005:c00::84 www-fc-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 *-a-fc-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 8fkcem1ves287v3g5lu9gep1j91p3kk1-a-fc-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 r1rk9np7bpcsfoeekl0khkd2juj27q3o-a-fc-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images0-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images1-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images2-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images3-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images4-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images5-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images6-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images7-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images8-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images9-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images*-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 0-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 1-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 2-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 3-focus-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-fusiontables-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-kix-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images-lso-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-onepick-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images-onepick-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-open-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 0-open-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 1-open-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 2-open-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 3-open-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 4fjvqid3r3oq66t548clrdj52df15coc-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 53rd6p0catml6vat6qra84rs0del836d-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 59cbv4l9s05pbaks9v77vc3mengeqors-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 8kubpeu8314p2efdd7jlv09an9i2ljdo-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 adstvca8k2ooaknjjmv89j22n9t676ve-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 bt26mravu2qpe56n8gnmjnpv2inl84bf-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 debh8vg7vd93bco3prdajidmm7dhql3f-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 hsco54a20sh11q9jkmb51ad2n3hmkmrg-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 i8brh95qor6r54nkl52hidj2ggcs4jgm-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 k6v18tjr24doa89b55o3na41kn4v73eb-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 ob7f2qc0i50kbjnc81vkhgmb5hsv7a8l-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 qhie5b8u979rnch1q0hqbrmbkn9estf7-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 r70rmsn4s0rhk6cehcbbcbfbs31pu0va-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 rbjhe237k979f79d87gmenp3gejfonu9-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 u807isd5egseeabjccgcns005p2miucq-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 upt14k1i2veesusrda9nfotcrbp9d7p5-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 4098j3r7bdqqvlggmhbnlu6u5i8d08jq-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 *-a-oz-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 images-pos-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-trixcopysheet-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 www-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 0-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 1-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 2-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 3-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 4-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 5-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 6-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 7-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 8-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 9-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 10-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 11-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 12-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 13-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 14-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 15-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 16-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 17-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 18-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 19-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 20-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 21-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 22-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 23-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 24-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 25-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 26-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 27-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 28-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 29-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 30-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 31-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 32-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 33-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 34-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 35-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 36-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 37-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 38-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 39-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 40-wave-opensocial.googleusercontent.com
-2404:6800:4005:c00::84 *-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100c www.googleusercontent.com #googlehosted.l.googleusercontent.com
+2001:4860:4001:801::100b androidmarket.googleusercontent.com
+2001:4860:4001:801::100a blogger.googleusercontent.com
+2001:4860:4001:801::100b www-blogger-opensocial.googleusercontent.com
+2001:4860:4001:801::100c clients1.googleusercontent.com
+2001:4860:4001:801::100a clients2.googleusercontent.com
+2001:4860:4001:801::100c doc-00-1k-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-00-1o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-04-1o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-08-1o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0c-1o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0g-1o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0k-1o-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0o-1o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0s-1o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-10-1o-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-14-1o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-10-2c-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0k-38-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-00-6c-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-04-6c-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-08-6c-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0c-6c-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0g-6c-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-0k-6c-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0o-6c-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0s-6c-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-10-6c-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-14-6c-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-0o-74-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-14-74-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-00-7o-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-04-7o-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-08-7o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0c-7o-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-0g-7o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0k-7o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0o-7o-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0s-7o-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-10-7o-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-14-7o-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-00-8k-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-04-8k-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-08-8k-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0c-8k-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-0g-8k-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0k-8k-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0o-8k-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0s-8k-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-10-8k-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-14-8k-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-00-9k-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-04-9k-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-08-9k-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0c-9k-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0g-9k-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0k-9k-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0o-9k-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-0s-9k-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-10-9k-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-14-9k-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-00-as-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-04-as-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-08-as-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0c-as-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0g-as-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0k-as-docs.googleusercontent.com
+2001:4860:4001:801::100c doc-0o-as-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-0s-as-docs.googleusercontent.com
+2001:4860:4001:801::100b doc-10-as-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-14-as-docs.googleusercontent.com
+2001:4860:4001:801::100a doc-00-2g-3dwarehouse.googleusercontent.com
+2001:4860:4001:801::100b doc-04-2g-3dwarehouse.googleusercontent.com
+2001:4860:4001:801::100b doc-08-2g-3dwarehouse.googleusercontent.com
+2001:4860:4001:801::100b doc-0c-2g-3dwarehouse.googleusercontent.com
+2001:4860:4001:801::100c doc-0g-2g-3dwarehouse.googleusercontent.com
+2001:4860:4001:801::100b doc-0k-2g-3dwarehouse.googleusercontent.com
+2001:4860:4001:801::100c doc-0o-2g-3dwarehouse.googleusercontent.com
+2001:4860:4001:801::100b doc-0s-2g-3dwarehouse.googleusercontent.com
+2001:4860:4001:801::100a doc-10-2g-3dwarehouse.googleusercontent.com
+2001:4860:4001:801::100a doc-14-2g-3dwarehouse.googleusercontent.com
+2001:4860:4001:801::100c feedback.googleusercontent.com
+2001:4860:4001:801::100c mail-attachment.googleusercontent.com
+2001:4860:4001:801::100a lh0.googleusercontent.com
+2001:4860:4001:801::100c lh1.googleusercontent.com
+2001:4860:4001:801::100c lh2.googleusercontent.com
+2001:4860:4001:801::100b lh3.googleusercontent.com
+2001:4860:4001:801::100b lh4.googleusercontent.com
+2001:4860:4001:801::100b lh5.googleusercontent.com
+2001:4860:4001:801::100a lh6.googleusercontent.com
+2001:4860:4001:801::100a music-onebox.googleusercontent.com
+2001:4860:4001:801::100a oauth.googleusercontent.com
+2001:4860:4001:801::100a reader.googleusercontent.com
+2001:4860:4001:801::100b static.googleusercontent.com
+2001:4860:4001:801::100a s2.googleusercontent.com
+2001:4860:4001:801::100c themes.googleusercontent.com
+2001:4860:4001:801::100c translate.googleusercontent.com
+2001:4860:4001:801::100a wave.googleusercontent.com
+2001:4860:4001:801::100c webcache.googleusercontent.com
+2001:4860:4001:801::100c ytimg.googleusercontent.com
+2001:4860:4001:801::100b code-opensocial.googleusercontent.com
+2001:4860:4001:801::100c spreadsheets-opensocial.googleusercontent.com
+2001:4860:4001:801::100a www-opensocial.googleusercontent.com
+2001:4860:4001:801::100a images-docs-opensocial.googleusercontent.com
+2001:4860:4001:801::100c www-gm-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 4lam9a1ki27mb9p1h5q3furvvf58ss02-a-gm-opensocial.googleusercontent.com
+2001:4860:4001:801::100c nl3atn8402ncgahndqn8rb6qi2ld2g5a-a-gm-opensocial.googleusercontent.com
+2001:4860:4001:801::100c www-opensocial-sandbox.googleusercontent.com
+2001:4860:4001:801::100a www-fc-opensocial.googleusercontent.com
+2001:4860:4001:801::100b *-a-fc-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 8fkcem1ves287v3g5lu9gep1j91p3kk1-a-fc-opensocial.googleusercontent.com
+2001:4860:4001:801::100a r1rk9np7bpcsfoeekl0khkd2juj27q3o-a-fc-opensocial.googleusercontent.com
+2001:4860:4001:801::100a www-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100c images0-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100c images1-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100a images2-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100b images3-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100a images4-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100c images5-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100c images6-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100a images7-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100a images8-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100a images9-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100b images*-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100a www-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 0-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 1-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 2-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 3-focus-opensocial.googleusercontent.com
+2001:4860:4001:801::100b www-fusiontables-opensocial.googleusercontent.com
+2001:4860:4001:801::100b www-kix-opensocial.googleusercontent.com
+2001:4860:4001:801::100b images-lso-opensocial.googleusercontent.com
+2001:4860:4001:801::100b www-onepick-opensocial.googleusercontent.com
+2001:4860:4001:801::100b images-onepick-opensocial.googleusercontent.com
+2001:4860:4001:801::100a www-open-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 0-open-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 1-open-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 2-open-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 3-open-opensocial.googleusercontent.com
+2001:4860:4001:801::100c www-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::100b images-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 4fjvqid3r3oq66t548clrdj52df15coc-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 53rd6p0catml6vat6qra84rs0del836d-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 59cbv4l9s05pbaks9v77vc3mengeqors-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 8kubpeu8314p2efdd7jlv09an9i2ljdo-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 adstvca8k2ooaknjjmv89j22n9t676ve-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 bt26mravu2qpe56n8gnmjnpv2inl84bf-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 debh8vg7vd93bco3prdajidmm7dhql3f-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 hsco54a20sh11q9jkmb51ad2n3hmkmrg-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 i8brh95qor6r54nkl52hidj2ggcs4jgm-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 k6v18tjr24doa89b55o3na41kn4v73eb-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 ob7f2qc0i50kbjnc81vkhgmb5hsv7a8l-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 qhie5b8u979rnch1q0hqbrmbkn9estf7-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 r70rmsn4s0rhk6cehcbbcbfbs31pu0va-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 rbjhe237k979f79d87gmenp3gejfonu9-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 u807isd5egseeabjccgcns005p2miucq-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::84 upt14k1i2veesusrda9nfotcrbp9d7p5-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::100b 4098j3r7bdqqvlggmhbnlu6u5i8d08jq-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::100c *-a-oz-opensocial.googleusercontent.com
+2001:4860:4001:801::100c images-pos-opensocial.googleusercontent.com
+2001:4860:4001:801::100a www-trixcopysheet-opensocial.googleusercontent.com
+2001:4860:4001:801::100b www-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100b wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100b 0-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 1-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 2-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 3-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 4-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 5-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 6-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 7-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 8-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100b 9-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 10-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100a 11-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100c 12-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 13-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 14-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 15-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 16-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 17-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 18-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 19-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 20-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 21-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 22-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 23-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 24-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 25-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 26-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 27-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 28-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 29-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 30-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 31-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 32-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 33-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 34-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 35-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 36-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 37-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 38-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 39-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::84 40-wave-opensocial.googleusercontent.com
+2001:4860:4001:801::100a *-wave-opensocial.googleusercontent.com
+
+##Google其他服务
 
 #AdWords/AdSense 广告服务
-###2404:6800:4005:c00::62 www.googlesyndication.com
-2404:6800:4005:c00::9a www.googleadservices.com #pagead.l.doubleclick.net
-2404:6800:4005:c00::9a pagead2.googlesyndication.com #pagead.l.doubleclick.net
-###2404:6800:4005:c00::62 pagead.google.com
-2404:6800:4005:c00::9a pagead2.googleadservices.com #pagead.l.doubleclick.net
-2404:6800:4005:c00::9a pagead.l.google.com
-2404:6800:4005:c00::67 buttons.googlesyndication.com #www.google.com
-2404:6800:4005:c00::9a domains.googlesyndication.com #pagead.l.doubleclick.net
-###2404:6800:4005:c00::62 afd.l.google.com
-2404:6800:4005:c00::84 tpc.googlesyndication.com #pagead-tpc.l.google.com
-2404:6800:4005:c00::84 pagead-tpc.l.google.com
+##2001:4860:4001:801::62 www.googlesyndication.com
+2001:4860:4001:801::9a www.googleadservices.com #pagead.l.doubleclick.net
+2001:4860:4001:801::9a pagead2.googlesyndication.com #pagead.l.doubleclick.net
+##2001:4860:4001:801::62 pagead.google.com
+2001:4860:4001:801::9a pagead2.googleadservices.com #pagead.l.doubleclick.net
+2001:4860:4001:801::9a pagead.l.google.com
+2001:4860:4001:801::67 buttons.googlesyndication.com #www.google.com
+2001:4860:4001:801::9a domains.googlesyndication.com #pagead.l.doubleclick.net
+##2001:4860:4001:801::62 afd.l.google.com
+2001:4860:4001:801::84 tpc.googlesyndication.com #pagead-tpc.l.google.com
+2001:4860:4001:801::84 pagead-tpc.l.google.com
 2404:6800:4005::6 v1.cache1.c.googlesyndication.com
 2404:6800:4005:4::6 v1.cache2.c.googlesyndication.com
 2404:6800:4005:1::6 v1.cache3.c.googlesyndication.com
@@ -3002,53 +3004,54 @@
 2404:6800:4005:6::12 v24.lscache6.c.googlesyndication.com
 2404:6800:4005:3::12 v24.lscache7.c.googlesyndication.com
 2404:6800:4005:7::12 v24.lscache8.c.googlesyndication.com
-2404:6800:4005:c00::70 adwords.google.com
-2404:6800:4005:c00::70 adwords.google.sk #adwords.l.google.com
-2404:6800:4005:c00::9a partner.googleadservices.com #partnerad.l.doubleclick.net
-2404:6800:4005:c00::9a partnerad.l.google.com
+2001:4860:4001:801::70 adwords.google.com
+2001:4860:4001:801::70 adwords.google.sk #adwords.l.google.com
+2001:4860:4001:801::9a partner.googleadservices.com #partnerad.l.doubleclick.net
+2001:4860:4001:801::9a partnerad.l.google.com
+
 #DoubleClick
-2404:6800:4005:c00::94 ad.doubleclick.net #dart.l.doubleclick.net
-2404:6800:4005:c00::95 ad-g.doubleclick.net #dart.l.doubleclick.net
-2404:6800:4005:c00::95 ad-apac.doubleclick.net #dart.l.doubleclick.net
-2404:6800:4005:c00::95 dart-apac.l.doubleclick.net
-2404:6800:4005:c00::95 dart.l.doubleclick.net
-2404:6800:4005:c00::95 n4061ad.hk.doubleclick.net #dart.l.doubleclick.net
-2404:6800:4005:c00::95 fls.doubleclick.net #dart.l.doubleclick.net
-2404:6800:4005:c00::9a googleads.g.doubleclick.net #pagead.l.doubleclick.net
-2404:6800:4005:c00::9a feedads.g.doubleclick.net #pagead.l.doubleclick.net
-2404:6800:4005:c00::9b pubads.g.doubleclick.net #partnerad.l.doubleclick.net
-2404:6800:4005:c00::9b www.googletagservices.com #partnerad.l.doubleclick.net
-2404:6800:4005:c00::9b partnerad.l.doubleclick.net
-2404:6800:4005:c00::9d static.googleadsserving.cn #pagead46.l.doubleclick.net
-2404:6800:4005:c00::95 s0.2mdn.net #s0-2mdn-net.l.google.com
-2404:6800:4005:c00::95 s1.2mdn.net #s0-2mdn-net.l.google.com
-2404:6800:4005:c00::95 fls.uk.doubleclick.net #dart.l.doubleclick.net
-2404:6800:4005:c00::95 *.au.doubleclick.net #dart.l.doubleclick.net
-2404:6800:4005:c00::95 *.de.doubleclick.net #dart.l.doubleclick.net
-2404:6800:4005:c00::95 *.uk.doubleclick.net #dart.l.doubleclick.net
-2404:6800:4005:c00::95 *.fr.doubleclick.net #dart.l.doubleclick.net
-2404:6800:4005:c00::95 *.jp.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::94 ad.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::95 ad-g.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::95 ad-apac.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::95 dart-apac.l.doubleclick.net
+2001:4860:4001:801::95 dart.l.doubleclick.net
+2001:4860:4001:801::95 n4061ad.hk.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::95 fls.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::9a googleads.g.doubleclick.net #pagead.l.doubleclick.net
+2001:4860:4001:801::9a feedads.g.doubleclick.net #pagead.l.doubleclick.net
+2001:4860:4001:801::9b pubads.g.doubleclick.net #partnerad.l.doubleclick.net
+2001:4860:4001:801::1019 www.googletagservices.com #partnerad.l.doubleclick.net
+2001:4860:4001:801::9b partnerad.l.doubleclick.net
+2001:4860:4001:801::1019 static.googleadsserving.cn #pagead46.l.doubleclick.net
+2001:4860:4001:801::95 s0.2mdn.net #s0-2mdn-net.l.google.com
+2001:4860:4001:801::95 s1.2mdn.net #s0-2mdn-net.l.google.com
+2001:4860:4001:801::95 fls.uk.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::95 *.au.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::95 *.de.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::95 *.uk.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::95 *.fr.doubleclick.net #dart.l.doubleclick.net
+2001:4860:4001:801::95 *.jp.doubleclick.net #dart.l.doubleclick.net
 
 #Analytics 分析
-2404:6800:4005:c00::71 www.google-analytics.com #www-google-analytics.l.google.com
-2404:6800:4005:c00::61 ssl.google-analytics.com #ssl-google-analytics.l.google.com
-2404:6800:4005:c00::61 *.google-analytics.com
-2404:6800:4005:c00::8a service.urchin.com #www-google-analytics.l.google.com
-2404:6800:4005:c00::64 www-google-analytics.l.google.com
-2404:6800:4005:c00::61 ssl-google-analytics.l.google.com
-2404:6800:4005:c00::63 analytics.google.com #www2.l.google.com
+2001:4860:4001:801::1004 www.google-analytics.com #www-google-analytics.l.google.com
+2607:f8b0:4007:801::101e ssl.google-analytics.com #ssl-google-analytics.l.google.com
+2001:4860:4001:801::61 *.google-analytics.com
+2001:4860:4001:801::1003 service.urchin.com #www-google-analytics.l.google.com
+2001:4860:4001:801::1002 www-google-analytics.l.google.com
+2001:4860:4007:800::101e ssl-google-analytics.l.google.com
+2001:4860:4001:801::1010 analytics.google.com #www2.l.google.com
 
 #Android Google 移动操作系统
-2404:6800:4005:c00::64 www.android.com #www3.l.google.com
-2404:6800:4005:c00::69 android.com
-2404:6800:4005:c00::64 developer.android.com #www3.l.google.com
-2404:6800:4005:c00::64 source.android.com #www3.l.google.com
-2404:6800:4005:c00::85 market.android.com #android-market.l.google.com
-2404:6800:4005:c00::64 android.clients.google.com #android.l.google.com
-2404:6800:4005:c00::64 android.l.google.com
-2404:6800:4005:c00::64 android-china.l.google.com
-2404:6800:4005:c00::8b play.google.com #www3.l.google.com
-2404:6800:4005::6 v1.lscache1.c.android.clients.google.com
+2001:4860:4001:801::1001 www.android.com #www3.l.google.com
+2001:4860:4001:801::1013 android.com
+2001:4860:4001:801::1004 developer.android.com #www3.l.google.com
+2001:4860:4001:801::1000 source.android.com #www3.l.google.com
+2001:4860:4001:801::1003 market.android.com #android-market.l.google.com
+2001:4860:4001:801::64 android.clients.google.com #android.l.google.com
+2001:4860:4001:801::64 android.l.google.com
+2001:4860:4001:801::64 android-china.l.google.com
+2001:4860:4001:801::1000 play.google.com #www3.l.google.com
+2607:f8b0:4007:2::6 v1.lscache1.c.android.clients.google.com
 2404:6800:4005:4::6 v1.lscache2.c.android.clients.google.com
 2404:6800:4005:1::6 v1.lscache3.c.android.clients.google.com
 2404:6800:4005:5::6 v1.lscache4.c.android.clients.google.com
@@ -3434,87 +3437,114 @@
 2404:6800:4005:7::12 v24.nonxt8.c.android.clients.google.com
 
 #Google Art Project
-2404:6800:4005:c00::71 www.googleartproject.com #www3.l.google.com
-2404:6800:4005:c00::8d art-project-media.appspot.com #appspot.l.google.com
+2001:4860:4001:801::1001 www.googleartproject.com #www3.l.google.com
+2001:4860:4001:801::8d art-project-media.appspot.com #appspot.l.google.com
 
 #FeedBurner
-2404:6800:4005:c00::8b feedburner.google.com #www3.l.google.com
-2404:6800:4005:c00::8b www.feedburner.com #www3.l.google.com
-2404:6800:4005:c00::76 feeds.feedburner.com #www4.l.google.com
-2404:6800:4005:c00::85 feeds2.feedburner.com #www4.l.google.com
-2404:6800:4005:c00::76 feedproxy.google.com #www4.l.google.com #Feed 跳转代理
+2001:4860:4001:801::1005 feedburner.google.com #www3.l.google.com
+2001:4860:4001:801::1000 www.feedburner.com #www3.l.google.com
+2001:4860:4001:801::100e feeds.feedburner.com #www4.l.google.com
+2001:4860:4001:801::1007 feeds2.feedburner.com #www4.l.google.com
+2001:4860:4001:801::1009 feedproxy.google.com #www4.l.google.com #Feed 跳转代理
 
 #The Go Programming Language Go 编程语言
-2404:6800:4005:c00::8d golang.org
-2404:6800:4005:c00::8d www.golang.org #golang.org
-2404:6800:4005:c00::79 blog.golang.org #ghs.l.google.com
-2404:6800:4005:c00::8d play.golang.org
-2404:6800:4005:c00::8d tour.golang.org
+2001:4860:4001:801::8d golang.org
+2001:4860:4001:801::8d www.golang.org #golang.org
+2001:4860:4001:801::79 blog.golang.org #ghs.l.google.com
+2001:4860:4001:801::8d play.golang.org
+2001:4860:4001:801::8d tour.golang.org
 
 #Goo.gl Google短网址服务
-2404:6800:4005:c00::64 goo.gl
-2404:6800:4005:c00::66 g.co
+2001:4860:4001:801::1001 goo.gl
+2001:4860:4001:801::1006 g.co
 
 #html5rocks HTML5 推广专题网站
-2404:6800:4005:c00::79 www.html5rocks.com #ghs.l.google.com
-2404:6800:4005:c00::79 slides.html5rocks.com #ghs.l.google.com
-2404:6800:4005:c00::79 playground.html5rocks.com #ghs.l.google.com
-2404:6800:4005:c00::79 studio.html5rocks.com #ghs.l.google.com
+2001:4860:4001:801::79 www.html5rocks.com #ghs.l.google.com
+2001:4860:4001:801::79 slides.html5rocks.com #ghs.l.google.com
+2001:4860:4001:801::79 playground.html5rocks.com #ghs.l.google.com
+2001:4860:4001:801::79 studio.html5rocks.com #ghs.l.google.com
 
 #Google.org Google 公益
-2404:6800:4005:c00::79 blog.google.org #ghs.l.google.com
+2001:4860:4001:801::79 blog.google.org #ghs.l.google.com
 
 #Panoramio
-2404:6800:4005:c00::8d www.panoramio.com #appspot.l.google.com
-2404:6800:4005:c00::80 static.panoramio.com #storage.l.googleusercontent.com
-2404:6800:4005:c00::79 blog.panoramio.com #ghs.l.google.com
+2001:4860:4001:801::8d www.panoramio.com #appspot.l.google.com
+2001:4860:4001:801::80 static.panoramio.com #storage.l.googleusercontent.com
+2001:4860:4001:801::79 blog.panoramio.com #ghs.l.google.com
 
 #Recaptcha 验证码服务
-2404:6800:4005:c00::63 www.recaptcha.net #www.l.google.com
-2404:6800:4005:c00::93 api.recaptcha.net #www.l.google.com
-2404:6800:4005:c00::67 api-secure.recaptcha.net #www.l.google.com
-2404:6800:4005:c00::67 mailhide.recaptcha.net #www.l.google.com
+2001:4860:4001:801::1011 www.recaptcha.net #www.l.google.com
+2001:4860:4001:801::1010 api.recaptcha.net #www.l.google.com
+2001:4860:4001:801::1014 api-secure.recaptcha.net #www.l.google.com
+2001:4860:4001:801::1010 mailhide.recaptcha.net #www.l.google.com
 
 #Google Wave Federation Protocol · GWave 协议开源计划
-2404:6800:4005:c00::79 www.waveprotocol.org #ghs.l.google.com
+2001:4860:4001:801::79 www.waveprotocol.org #ghs.l.google.com
 
 #The WebM Project WebM 开放多媒体项目
-2404:6800:4005:c00::93 webmproject.org
-2404:6800:4005:c00::64 www.webmproject.org #www3.l.google.com
-2404:6800:4005:c00::79 lists.webmproject.org #ghs.l.google.com
-2404:6800:4005:c00::79 blog.webmproject.org #ghs.l.google.com
-2404:6800:4005:c00::79 www.webm-ccl.org #ghs.l.google.com
+2001:4860:4001:801::1011 webmproject.org
+2001:4860:4001:801::1001 www.webmproject.org #www3.l.google.com
+2001:4860:4001:801::79 lists.webmproject.org #ghs.l.google.com
+2001:4860:4001:801::79 blog.webmproject.org #ghs.l.google.com
+2001:4860:4001:801::79 www.webm-ccl.org #ghs.l.google.com
 
 #Chrome 相关专题网站
-2404:6800:4005:c00::71 www.chromercise.com #www3.l.google.com
-2404:6800:4005:c00::79 www.chromeexperiments.com #ghs.l.google.com
-2404:6800:4005:c00::79 www.20thingsilearned.com #ghs.l.google.com
+2001:4860:4001:801::1009 www.chromercise.com #www3.l.google.com
+2001:4860:4001:801::79 www.chromeexperiments.com #ghs.l.google.com
+2001:4860:4001:801::79 www.20thingsilearned.com #ghs.l.google.com
 
 #IPv6 专题
-2404:6800:4005:c00::63 ipv6test.google.com #ipv6test.l.google.com
-2404:6800:4005:c00::63 ipv4.google.com #ipv4.l.google.com
-#2404:6800:4005:c00::63 ??????.ds.ipv6test.google.com #四级域名为随机六位数字
-#2404:6800:4005:c00::63 p2.*.*.??????.i2.ds.ipv6-exp.l.google.com
-2404:6800:4005:c00::63 ds.ipv6test.l.google.com
-2001:4860:b007::97 chrome.googleechotest.com #chromeecho.l.google.com
-2001:4860:b007::97 chromeecho.l.google.com
+2001:4860:4001:801::63 ipv6test.google.com #ipv6test.l.google.com
+2001:4860:4001:801::63 ipv4.google.com #ipv4.l.google.com
+2001:4860:4001:801::63 ??????.ds.ipv6test.google.com #四级域名为随机六位数字
+2001:4860:4001:801::63 p2.*.*.??????.i2.ds.ipv6-exp.l.google.com
+2001:4860:4001:801::63 ds.ipv6test.l.google.com
+#2001:4860:b007::97 chrome.googleechotest.com #chromeecho.l.google.com
+#2001:4860:b007::97 chromeecho.l.google.com
 
 #其他专题站
-2404:6800:4005:c00::8b www.data-vocabulary.org #www3.l.google.com
-2404:6800:4005:c00::8a www.googleinsidesearch.com #www3.l.google.com
-2404:6800:4005:c00::79 www.teachparentstech.org #ghs.l.google.com
-2404:6800:4005:c00::85 www.agoogleaday.com #www4.l.google.com
-2404:6800:4005:c00::79 www.gosetsuden.jp #ghs.l.google.com
-2404:6800:4005:c00::79 www.emailintervention.com #ghs.l.google.com
-2404:6800:4005:c00::79 www.thegooglepuzzle.com #ghs.l.google.com
-2404:6800:4005:c00::79 www.thegobridgeoglepuzzle.com #ghs.l.google.com
-2404:6800:4005:c00::66 www.oneworldmanystories.com #www3.l.google.com
-2404:6800:4005:c00::79 www.googlezeitgeist.com #ghs.l.google.com
-2404:6800:4005:c00::8a www.googleinsidesearch.com #www3.l.google.com
-2404:6800:4005:c00::79 www.dartlang.org #ghs.l.google.com
-2404:6800:4005:c00::79 try.dartlang.org #ghs.l.google.com
-2404:6800:4005:c00::79 news.dartlang.org #ghs.l.google.com
+2001:4860:4001:801::1002 www.data-vocabulary.org #www3.l.google.com
+2001:4860:4001:801::1007 www.googleinsidesearch.com #www3.l.google.com
+2001:4860:4001:801::79 www.teachparentstech.org #ghs.l.google.com
+2001:4860:4001:801::1002 www.agoogleaday.com #www4.l.google.com
+2001:4860:4001:801::79 www.gosetsuden.jp #ghs.l.google.com
+2001:4860:4001:801::79 www.emailintervention.com #ghs.l.google.com
+2001:4860:4001:801::79 www.thegooglepuzzle.com #ghs.l.google.com
+2001:4860:4001:801::79 www.thegobridgeoglepuzzle.com #ghs.l.google.com
+2001:4860:4001:801::1001 www.oneworldmanystories.com #www3.l.google.com
+2001:4860:4001:801::79 www.googlezeitgeist.com #ghs.l.google.com
+2001:4860:4001:801::79 www.dartlang.org #ghs.l.google.com
+2001:4860:4001:801::79 try.dartlang.org #ghs.l.google.com
+2001:4860:4001:801::79 news.dartlang.org #ghs.l.google.com
 
+#其他托管在 Google 的服务
+#BlogSpot 上的其他常用博客 #blogspot.l.google.com
+2001:4860:4001:801::84 googlesystem.blogspot.com #Google Operating System
+2001:4860:4001:801::84 ipv6-or-no-ipv6.blogspot.com #IPv6 Related Stuff
+2001:4860:4001:801::84 gfwrev.blogspot.com #GFW 技术评论
+2001:4860:4001:801::84 kamonka.blogspot.com #NHK 纪录片精选
+
+#Google Code 上的其他常用项目 #googlecode.l.google.com
+2001:4860:4001:801::52 ipv6-hosts.googlecode.com
+2001:4860:4001:801::52 kibbles.googlecode.com
+
+# GAE 上的常用应用 #appspot.l.google.com
+2001:4860:4001:801::8d gsdview.appspot.com
+2001:4860:4001:801::8d wave-api.appspot.com #Google Wave API
+2001:4860:4001:801::8d wave-skynet.appspot.com #SkyNet
+2001:4860:4001:801::8d mytracks.appspot.com #My Tracks for Android
+2001:4860:4001:801::8d autoproxy2pac.appspot.com #自动代理配置脚本生成器
+2001:4860:4001:801::8d fakegdict.appspot.com #Fake Google Dictionary
+
+# 托管在 Google 上的其他常用域名 #ghs.l.google.com
+2001:4860:4001:801::79 www.akb48plus.com
+2001:4860:4001:801::79 wdyl.com
+2001:4860:4001:801::79 www.wdyl.com
+2001:4860:4001:801::79 advertising.twitter.com
+2001:4860:4001:801::79 blog.twitter.com
+2001:4860:4001:801::79 blog.opensocial.org
+2001:4860:4001:801::79 blog.xmarks.com
+2001:4860:4001:801::79 www.miraisearch.jp
 
 #Google Plus
 2001:778:0:ffff:64:0:1faa:a606 plus.url.google.com.hk #非官方，有错误请汇报
