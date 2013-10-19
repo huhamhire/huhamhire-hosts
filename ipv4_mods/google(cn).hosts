@@ -253,7 +253,7 @@
 203.208.46.204 toolbarqueries.l.google.com
 203.208.46.206 tools.google.com
 203.208.46.207 tools.l.google.com
-203.208.46.203 translate.google.com
+203.208.46.200 translate.google.com
 203.208.46.202 trends.google.com
 203.208.46.203 upload.docs.google.com
 203.208.46.204 upload.drive.google.com
@@ -352,7 +352,7 @@
 203.208.46.217 spreadsheets-opensocial.googleusercontent.com
 203.208.46.210 t.doc-0-0-sj.sj.googleusercontent.com
 203.208.46.210 themes.googleusercontent.com
-203.208.46.210 translate.googleusercontent.com
+203.208.46.202 translate.googleusercontent.com
 203.208.46.211 u807isd5egseeabjccgcns005p2miucq-a-oz-opensocial.googleusercontent.com
 203.208.46.212 upt14k1i2veesusrda9nfotcrbp9d7p5-a-oz-opensocial.googleusercontent.com
 203.208.46.210 webcache.googleusercontent.com
@@ -427,7 +427,7 @@
 203.208.46.202 mt2.googleapis.com
 203.208.46.203 mt3.googleapis.com
 203.208.46.201 redirector-bigcache.googleapis.com
-203.208.46.201 translate.googleapis.com
+203.208.46.200 translate.googleapis.com
 203.208.46.201 www.googleapis.com
 203.208.46.201 autoproxy-gfwlist.googlecode.com
 203.208.46.201 chromium.googlecode.com
@@ -449,7 +449,7 @@
 203.208.46.203 mt3.google.cn
 203.208.46.206 news.google.cn
 203.208.46.205 scholar.google.cn
-203.208.46.203 translate.google.cn
+203.208.46.200 translate.google.cn
 203.208.46.201 www.google.cn
 203.208.46.201 www.gstatic.cn
 
@@ -471,7 +471,7 @@
 203.208.46.207 scholar.google.com.hk
 203.208.46.201 toolbar.google.com.hk
 203.208.46.202 toolbarqueries.google.com.hk
-203.208.46.203 translate.google.com.hk
+203.208.46.200 translate.google.com.hk
 203.208.46.205 wenda.google.com.hk
 203.208.46.206 www.google.com.hk
 
