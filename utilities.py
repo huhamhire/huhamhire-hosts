@@ -14,7 +14,7 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "0.8"
+__version__ = "0.9"
 __revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
@@ -142,6 +142,7 @@ class Utilities(object):
         for sec in conf.sections():
             mirror = {}
             mirror["tag"] = sec
+            mirror["label"] = conf.get(sec, "label")
             mirror["test_url"] = conf.get(sec, "server")
             mirror["update"] = conf.get(sec, "update")
             mirrors.append(mirror)
