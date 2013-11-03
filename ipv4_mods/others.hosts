@@ -100,42 +100,9 @@
 85.17.76.195 www49.multiupload.com
 85.17.76.195 www50.multiupload.com
 
-#Gravatar
-93.184.220.20 s.gravatar.com
-93.184.220.20 0.gravatar.com
-93.184.220.20 1.gravatar.com
-93.184.220.20 2.gravatar.com
-
 #Foursquare
 50.16.194.30 foursquare.com
 50.16.194.30 www.foursquare.com
-
-#Wordpress
-72.233.119.209 i.polldaddy.com
-72.233.119.209 i0.poll.fm
-74.200.247.60 wordpress.com
-93.184.220.20 s0.wp.com
-93.184.220.20 s1.wp.com
-93.184.220.20 s2.wp.com
-93.184.220.20 s.wordpress.org
-93.184.220.20 s.wordpress.com
-93.184.220.20 s1.wordpress.com
-93.184.220.20 s2.wordpress.com
-93.184.220.20 s3.wordpress.com
-93.184.220.20 s.stats.wordpress.com
-74.200.244.59 lb.wordpress.com
-74.200.244.59 zh.wordpress.com
-74.200.244.59 zh-sg.wordpress.com
-74.200.244.59 dashboard.wordpress.com
-74.200.244.59 forums.wordpress.com
-74.200.244.59 en.forums.wordpress.com
-74.200.244.59 en.blog.wordpress.com
-74.200.244.59 stats.wordpress.com
-74.200.244.59 wpcom.wordpress.com
-72.233.69.6 botd2.wordpress.com
-72.233.69.6 botd.wordpress.com
-74.200.244.59 lucifr.wordpress.com
-74.200.244.59 *.wordpress.com
 
 ######## IPv4 HOSTS END ########
 
