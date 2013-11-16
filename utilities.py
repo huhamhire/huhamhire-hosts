@@ -106,7 +106,7 @@ class Utilities(object):
             username (str): A string indicating username of the user running
                 current session.
             flag (bool): A bool flag indicating whether the current session
-                has root privileges or not.
+                has write privileges to the hosts file or not.
         """
         if os.name == 'nt':
             try:
@@ -119,13 +119,15 @@ class Utilities(object):
             else:
                 return (os.environ['USERNAME'], True)
         else:
-            if 'SUDO_USER' in os.environ and os.geteuid() == 0:
-                return (os.environ['SUDO_USER'], True)
+            # Check wirte privileges to the hosts file for current user
+            if oct(os.stat("/etc/hosts").st_mode)[-3:-2] >= "6":
+                w_flag = True
             else:
-                try:
-                    return (os.environ['USERNAME'], False)
-                except KeyError:
-                    return (os.environ['USER'], False)
+                w_flag = False
+            try:
+                return (os.environ['USERNAME'], w_flag)
+            except KeyError:
+                return (os.environ['USER'], w_flag)
 
     @classmethod
     def set_network(cls, conf_file="network.conf"):
