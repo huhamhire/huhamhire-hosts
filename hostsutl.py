@@ -599,6 +599,12 @@ class MainDialog(QtGui.QDialog):
             font = QtGui.QFont()
             font.setFamily(_fromUtf8("Courier"))
             self.setFont(font)
+
+            app = QtGui.QApplication.instance()
+            #app.setStyle(QtGui.QStyleFactory.create("Cleanlooks"))
+            with open("./darkorange.qss", "r") as qss:
+                app.setStyleSheet(qss.read())
+
         elif system == "Linux":
             font = QtGui.QFont()
             font.setFamily(_fromUtf8("Sans"))
