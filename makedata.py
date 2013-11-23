@@ -14,7 +14,7 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
@@ -127,7 +127,7 @@ class MakeData(object):
             items = line.split()
             if len(items) < 2:
                 continue
-            index = hashlib.md5(items[1]).hexdigest()[:8]
+            index = hashlib.md5(items[1] + str(category)).hexdigest()[:8]
             index = int(index, 16)
             host = (index, category, items[0], items[1])
             try:
