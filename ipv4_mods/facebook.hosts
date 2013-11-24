@@ -1,54 +1,54 @@
 # region facebook
 
 #facebook
-118.215.189.177 s-static.ak.facebook.net
-118.215.189.177 s-static.ak.facebook.com
-208.46.163.41 profile.ak.facebook.com
-63.110.246.49 static.ak.facebook.com
-165.254.42.83 b.static.ak.facebook.com
-31.13.70.33 graph.facebook.com
-31.13.70.33 ssl.facebook.com
+# 118.215.189.177 s-static.ak.facebook.net
+23.42.82.110 s-static.ak.facebook.com
+# 208.46.163.41 profile.ak.facebook.com
+
+165.254.42.75 static.ak.facebook.com
+165.254.42.75 b.static.ak.facebook.com
+31.13.75.1 graph.facebook.com
+31.13.75.1 ssl.facebook.com
 31.13.75.1 api.facebook.com
 173.252.103.11 secure-profile.facebook.com
-31.13.70.33 secure.facebook.com
-31.13.70.33 zh-cn.facebook.com
-31.13.71.1 login.facebook.com
-31.13.71.2 m.facebook.com
-184.106.71.238 messages-facebook.com
-31.13.70.33 attachments.facebook.com
+31.13.75.1 secure.facebook.com
+31.13.75.1 zh-cn.facebook.com
+31.13.77.81 login.facebook.com
+31.13.75.1 m.facebook.com
+50.57.69.167 messages-facebook.com
+31.13.75.1 attachments.facebook.com
 31.13.75.1 touch.facebook.com
-31.13.70.33 facebook.com
-31.13.70.33 www.facebook.com
-31.13.70.33 apps.facebook.com
-198.87.182.145 profile.ak.fbcdn.net
+31.13.75.1 facebook.com
+31.13.75.1 www.facebook.com
+31.13.75.1 apps.facebook.com
+198.87.182.217 profile.ak.fbcdn.net
 173.252.71.184 vpn.tfbnw.net
-64.212.100.99 vthumb.ak.fbcdn.net
-198.87.182.224 photos-a.ak.fbcdn.net
-198.87.182.152 photos-b.ak.fbcdn.net
-198.87.182.217 photos-c.ak.fbcdn.net
-198.87.182.161 photos-d.ak.fbcdn.net
-198.87.182.201 photos-e.ak.fbcdn.net
-63.110.246.24 photos-f.ak.fbcdn.net
-64.212.100.107 photos-g.ak.fbcdn.net
-63.110.246.8 photos-h.ak.fbcdn.net
-96.7.54.89 creative.ak.fbcdn.net
+184.50.27.123 vthumb.ak.fbcdn.net
+198.87.182.232 photos-a.ak.fbcdn.net
+198.87.182.218 photos-b.ak.fbcdn.net
+198.87.182.232 photos-c.ak.fbcdn.net
+198.87.182.235 photos-d.ak.fbcdn.net
+23.59.189.8 photos-e.ak.fbcdn.net
+198.87.182.218 photos-f.ak.fbcdn.net
+198.87.182.232 photos-g.ak.fbcdn.net
+198.87.182.235 photos-h.ak.fbcdn.net
+165.254.42.91 creative.ak.fbcdn.net
 # 173.252.110.27 fbcdn.net
-96.7.54.115 external.ak.fbcdn.net
-125.56.201.120 b.static.ak.fbcdn.net
-125.56.201.112 static.ak.fbcdn.net
-31.13.70.33 upload.facebook.com
-31.13.70.33 developers.facebook.com
+165.254.42.82 external.ak.fbcdn.net
+165.254.42.75 b.static.ak.fbcdn.net
+165.254.42.104 static.ak.fbcdn.net
+31.13.77.65 upload.facebook.com
+31.13.74.49 developers.facebook.com
+165.254.42.75 fbstatic-a.akamaihd.net
 
-72.246.188.216 fbstatic-a.akamaihd.net
-
-69.171.246.16 act.channel.facebook.com
-69.171.246.16 0-act.channel.facebook.com
-69.171.246.16 1-act.channel.facebook.com
-69.171.246.16 2-act.channel.facebook.com
-69.171.246.16 3-act.channel.facebook.com
-69.171.246.16 4-act.channel.facebook.com
-69.171.246.16 5-act.channel.facebook.com
-69.171.246.16 6-act.channel.facebook.com
+# 69.171.246.16 act.channel.facebook.com
+# 69.171.246.16 0-act.channel.facebook.com
+# 69.171.246.16 1-act.channel.facebook.com
+# 69.171.246.16 2-act.channel.facebook.com
+# 69.171.246.16 3-act.channel.facebook.com
+# 69.171.246.16 4-act.channel.facebook.com
+# 69.171.246.16 5-act.channel.facebook.com
+# 69.171.246.16 6-act.channel.facebook.com
 
 69.171.246.7 beta-chat-01-05-ash3.facebook.com
 69.171.246.8 origincache-ai-01-05-ash3.fbcdn.net
