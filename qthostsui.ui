@@ -11,7 +11,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>360</height>
+    <height>400</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,13 +23,13 @@
   <property name="minimumSize">
    <size>
     <width>640</width>
-    <height>360</height>
+    <height>400</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>640</width>
-    <height>360</height>
+    <height>400</height>
    </size>
   </property>
   <property name="contextMenuPolicy">
@@ -55,7 +55,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>320</y>
+     <y>360</y>
      <width>500</width>
      <height>25</height>
     </rect>
@@ -74,7 +74,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>20</y>
+     <y>60</y>
      <width>240</width>
      <height>90</height>
     </rect>
@@ -92,7 +92,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>30</y>
+      <y>25</y>
       <width>221</width>
       <height>50</height>
      </rect>
@@ -142,7 +142,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>120</y>
+     <y>160</y>
      <width>240</width>
      <height>90</height>
     </rect>
@@ -213,7 +213,7 @@
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>20</y>
+     <y>60</y>
      <width>250</width>
      <height>290</height>
     </rect>
@@ -242,7 +242,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>30</y>
+     <y>70</y>
      <width>110</width>
      <height>280</height>
     </rect>
@@ -493,7 +493,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>220</y>
+     <y>260</y>
      <width>240</width>
      <height>90</height>
     </rect>
@@ -566,7 +566,7 @@
    <property name="geometry">
     <rect>
      <x>520</x>
-     <y>320</y>
+     <y>360</y>
      <width>108</width>
      <height>25</height>
     </rect>
@@ -596,6 +596,7 @@
  </tabstops>
  <resources>
   <include location="qthosts.qrc"/>
+  <include location="style.qrc"/>
  </resources>
  <connections>
   <connection>

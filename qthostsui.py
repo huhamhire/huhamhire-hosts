@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'qthostsui.ui'
 #
-# Created: Fri Aug 02 19:08:24 2013
+# Created: Sun Nov 24 14:32:53 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,14 +27,14 @@ class Ui_HostsUtlMain(object):
     def setupUi(self, HostsUtlMain):
         HostsUtlMain.setObjectName(_fromUtf8("HostsUtlMain"))
         HostsUtlMain.setEnabled(True)
-        HostsUtlMain.resize(640, 360)
+        HostsUtlMain.resize(640, 400)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(HostsUtlMain.sizePolicy().hasHeightForWidth())
         HostsUtlMain.setSizePolicy(sizePolicy)
-        HostsUtlMain.setMinimumSize(QtCore.QSize(640, 360))
-        HostsUtlMain.setMaximumSize(QtCore.QSize(640, 360))
+        HostsUtlMain.setMinimumSize(QtCore.QSize(640, 400))
+        HostsUtlMain.setMaximumSize(QtCore.QSize(640, 400))
         HostsUtlMain.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/icon/img/utl_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -43,13 +43,13 @@ class Ui_HostsUtlMain(object):
         HostsUtlMain.setSizeGripEnabled(False)
         HostsUtlMain.setModal(False)
         self.Prog = QtGui.QProgressBar(HostsUtlMain)
-        self.Prog.setGeometry(QtCore.QRect(10, 320, 500, 25))
+        self.Prog.setGeometry(QtCore.QRect(10, 360, 500, 25))
         self.Prog.setAlignment(QtCore.Qt.AlignCenter)
         self.Prog.setTextVisible(True)
         self.Prog.setInvertedAppearance(False)
         self.Prog.setObjectName(_fromUtf8("Prog"))
         self.ConfigBox = QtGui.QGroupBox(HostsUtlMain)
-        self.ConfigBox.setGeometry(QtCore.QRect(10, 20, 240, 90))
+        self.ConfigBox.setGeometry(QtCore.QRect(10, 60, 240, 90))
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -57,7 +57,7 @@ class Ui_HostsUtlMain(object):
         self.ConfigBox.setSizePolicy(sizePolicy)
         self.ConfigBox.setObjectName(_fromUtf8("ConfigBox"))
         self.layoutWidget = QtGui.QWidget(self.ConfigBox)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 30, 221, 50))
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 25, 221, 50))
         self.layoutWidget.setObjectName(_fromUtf8("layoutWidget"))
         self.configLayout = QtGui.QGridLayout(self.layoutWidget)
         self.configLayout.setMargin(0)
@@ -79,7 +79,7 @@ class Ui_HostsUtlMain(object):
         self.SelectIP.setItemText(1, _fromUtf8("IPv6"))
         self.configLayout.addWidget(self.SelectIP, 1, 1, 1, 1)
         self.StatusBox = QtGui.QGroupBox(HostsUtlMain)
-        self.StatusBox.setGeometry(QtCore.QRect(10, 120, 240, 90))
+        self.StatusBox.setGeometry(QtCore.QRect(10, 160, 240, 90))
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -113,7 +113,7 @@ class Ui_HostsUtlMain(object):
         self.labelOSStat.setObjectName(_fromUtf8("labelOSStat"))
         self.StatusLayout.addWidget(self.labelOSStat, 1, 1, 1, 1)
         self.FunctionsBox = QtGui.QGroupBox(HostsUtlMain)
-        self.FunctionsBox.setGeometry(QtCore.QRect(260, 20, 250, 290))
+        self.FunctionsBox.setGeometry(QtCore.QRect(260, 60, 250, 290))
         self.FunctionsBox.setObjectName(_fromUtf8("FunctionsBox"))
         self.Functionlist = QtGui.QListWidget(self.FunctionsBox)
         self.Functionlist.setGeometry(QtCore.QRect(10, 20, 230, 260))
@@ -124,7 +124,7 @@ class Ui_HostsUtlMain(object):
         self.Functionlist.setSizePolicy(sizePolicy)
         self.Functionlist.setObjectName(_fromUtf8("Functionlist"))
         self.frame = QtGui.QFrame(HostsUtlMain)
-        self.frame.setGeometry(QtCore.QRect(520, 30, 110, 280))
+        self.frame.setGeometry(QtCore.QRect(520, 70, 110, 280))
         self.frame.setFrameShape(QtGui.QFrame.NoFrame)
         self.frame.setFrameShadow(QtGui.QFrame.Raised)
         self.frame.setLineWidth(0)
@@ -194,7 +194,7 @@ class Ui_HostsUtlMain(object):
         self.ButtonUTF.setIconSize(QtCore.QSize(32, 32))
         self.ButtonUTF.setObjectName(_fromUtf8("ButtonUTF"))
         self.InfoBox = QtGui.QGroupBox(HostsUtlMain)
-        self.InfoBox.setGeometry(QtCore.QRect(10, 220, 240, 90))
+        self.InfoBox.setGeometry(QtCore.QRect(10, 260, 240, 90))
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -226,7 +226,7 @@ class Ui_HostsUtlMain(object):
         self.labelLatestData.setObjectName(_fromUtf8("labelLatestData"))
         self.InfoLayout.addWidget(self.labelLatestData, 2, 1, 1, 1)
         self.SelectLang = QtGui.QComboBox(HostsUtlMain)
-        self.SelectLang.setGeometry(QtCore.QRect(520, 320, 108, 25))
+        self.SelectLang.setGeometry(QtCore.QRect(520, 360, 108, 25))
         self.SelectLang.setObjectName(_fromUtf8("SelectLang"))
         self.labelIP.setBuddy(self.SelectMirror)
         self.labelMirror.setBuddy(self.SelectIP)
@@ -253,6 +253,9 @@ class Ui_HostsUtlMain(object):
         HostsUtlMain.setTabOrder(self.ButtonCheck, self.ButtonUpdate)
         HostsUtlMain.setTabOrder(self.ButtonUpdate, self.ButtonBackup)
         HostsUtlMain.setTabOrder(self.ButtonBackup, self.ButtonRestore)
+        HostsUtlMain.setTabOrder(self.ButtonRestore, self.ButtonANSI)
+        HostsUtlMain.setTabOrder(self.ButtonANSI, self.ButtonUTF)
+        HostsUtlMain.setTabOrder(self.ButtonUTF, self.SelectLang)
 
     def retranslateUi(self, HostsUtlMain):
         HostsUtlMain.setWindowTitle(_translate("HostsUtlMain", "Hosts Setup Utility", None))
@@ -290,6 +293,7 @@ class Ui_HostsUtlMain(object):
         self.labelLatestData.setText(_translate("HostsUtlMain", "N/A", None))
 
 import qthosts_rc
+import style_rc
 
 if __name__ == "__main__":
     import sys
