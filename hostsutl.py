@@ -600,6 +600,7 @@ class MainDialog(QtGui.QDialog):
             font.setFamily(_fromUtf8("Courier"))
             self.setFont(font)
 
+            self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
             app = QtGui.QApplication.instance()
             #app.setStyle(QtGui.QStyleFactory.create("Cleanlooks"))
             with open("./darkorange.qss", "r") as qss:
@@ -614,6 +615,16 @@ class MainDialog(QtGui.QDialog):
                 QtGui.QStyleFactory.create("Cleanlooks"))
         elif system == "OS X":
             pass
+
+    def mouseMoveEvent(self, e):
+        if e.buttons() & QtCore.Qt.LeftButton:
+            self.move(e.globalPos() - self.dragPos)
+            e.accept()
+    def mousePressEvent(self, e):
+        if e.button() == QtCore.Qt.LeftButton:
+            self.dragPos = e.globalPos() - self.frameGeometry().topLeft()
+            e.accept()
+
 
     def set_label_color(self, label, color):
         """Set the color of a label - Public Method

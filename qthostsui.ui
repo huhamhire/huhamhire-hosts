@@ -51,534 +51,543 @@
   <property name="modal">
    <bool>false</bool>
   </property>
-  <widget class="QProgressBar" name="Prog">
+  <widget class="QFrame" name="mainFrame">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>360</y>
-     <width>500</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-   <property name="textVisible">
-    <bool>true</bool>
-   </property>
-   <property name="invertedAppearance">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QGroupBox" name="ConfigBox">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>60</y>
-     <width>240</width>
-     <height>90</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="title">
-    <string>Config</string>
-   </property>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>25</y>
-      <width>221</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="configLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelIP">
-       <property name="text">
-        <string>Server</string>
-       </property>
-       <property name="buddy">
-        <cstring>SelectMirror</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QComboBox" name="SelectMirror"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelMirror">
-       <property name="text">
-        <string>IP Version</string>
-       </property>
-       <property name="buddy">
-        <cstring>SelectIP</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="SelectIP">
-       <item>
-        <property name="text">
-         <string notr="true">IPv4</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string notr="true">IPv6</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QGroupBox" name="StatusBox">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>160</y>
-     <width>240</width>
-     <height>90</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="title">
-    <string>Status</string>
-   </property>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>221</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="StatusLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelConn">
-       <property name="text">
-        <string>Connection</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="labelConnStat">
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelOS">
-       <property name="text">
-        <string>OS</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="labelOSStat">
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>N/A</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-  </widget>
-  <widget class="QGroupBox" name="FunctionsBox">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>60</y>
-     <width>250</width>
-     <height>290</height>
-    </rect>
-   </property>
-   <property name="title">
-    <string>Functions</string>
-   </property>
-   <widget class="QListWidget" name="Functionlist">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>230</width>
-      <height>260</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QFrame" name="frame">
-   <property name="geometry">
-    <rect>
-     <x>520</x>
-     <y>70</y>
-     <width>110</width>
-     <height>280</height>
+     <x>0</x>
+     <y>40</y>
+     <width>640</width>
+     <height>360</height>
     </rect>
    </property>
    <property name="frameShape">
-    <enum>QFrame::NoFrame</enum>
+    <enum>QFrame::StyledPanel</enum>
    </property>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <property name="lineWidth">
-    <number>0</number>
-   </property>
-   <widget class="QPushButton" name="ButtonBackup">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>10</y>
-      <width>48</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Backup hosts</string>
-    </property>
-    <property name="whatsThis">
-     <string>Backup the hosts file of current system.</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="qthosts.qrc">
-      <normaloff>:/buttons/img/icon_backup.png</normaloff>:/buttons/img/icon_backup.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ButtonUpdate">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>70</y>
-      <width>48</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Download data file</string>
-    </property>
-    <property name="whatsThis">
-     <string>Download the latest data file.</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="qthosts.qrc">
-      <normaloff>:/buttons/img/icon_fetch.png</normaloff>:/buttons/img/icon_fetch.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ButtonRestore">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>10</y>
-      <width>48</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Restore backup</string>
-    </property>
-    <property name="whatsThis">
-     <string>Restore a previous backup of hosts file.</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="qthosts.qrc">
-      <normaloff>:/buttons/img/icon_restore.png</normaloff>:/buttons/img/icon_restore.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ButtonApply">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>220</y>
-      <width>48</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Apply hosts</string>
-    </property>
-    <property name="whatsThis">
-     <string>Apply changes to the hosts file.</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="qthosts.qrc">
-      <normaloff>:/buttons/img/icon_apply.png</normaloff>:/buttons/img/icon_apply.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ButtonExit">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>220</y>
-      <width>48</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Exit</string>
-    </property>
-    <property name="whatsThis">
-     <string>Close this tool.</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="qthosts.qrc">
-      <normaloff>:/buttons/img/icon_exit.png</normaloff>:/buttons/img/icon_exit.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ButtonCheck">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>70</y>
-      <width>48</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Check update / Refresh</string>
-    </property>
-    <property name="whatsThis">
-     <string>Check the latest version of hosts data file.</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="qthosts.qrc">
-      <normaloff>:/buttons/img/icon_update.png</normaloff>:/buttons/img/icon_update.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ButtonANSI">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>160</y>
-      <width>48</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Save with ANSI</string>
-    </property>
-    <property name="whatsThis">
-     <string>Export to hosts file encoding by ANSI.</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="qthosts.qrc">
-      <normaloff>:/buttons/img/icon_ansi.png</normaloff>:/buttons/img/icon_ansi.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ButtonUTF">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>160</y>
-      <width>48</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Save with UTF-8</string>
-    </property>
-    <property name="whatsThis">
-     <string>Export to hosts file encoding by UTF-8.</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="qthosts.qrc">
-      <normaloff>:/buttons/img/icon_utf.png</normaloff>:/buttons/img/icon_utf.png</iconset>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QGroupBox" name="InfoBox">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>260</y>
-     <width>240</width>
-     <height>90</height>
-    </rect>
-   </property>
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="title">
-    <string>Hosts Info</string>
-   </property>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QGroupBox" name="ConfigBox">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>20</y>
-      <width>221</width>
-      <height>59</height>
+      <width>240</width>
+      <height>90</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="InfoLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelVersion">
-       <property name="text">
-        <string>Version</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="labelVersionData">
-       <property name="text">
-        <string>N/A</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelRelease">
-       <property name="text">
-        <string>Release</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="labelReleaseData">
-       <property name="text">
-        <string>N/A</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelLatest">
-       <property name="text">
-        <string>Latest</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="labelLatestData">
-       <property name="text">
-        <string>N/A</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="title">
+     <string>Config</string>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>25</y>
+       <width>221</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="configLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelIP">
+        <property name="text">
+         <string>Server</string>
+        </property>
+        <property name="buddy">
+         <cstring>SelectMirror</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="SelectMirror"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelMirror">
+        <property name="text">
+         <string>IP Version</string>
+        </property>
+        <property name="buddy">
+         <cstring>SelectIP</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="SelectIP">
+        <item>
+         <property name="text">
+          <string notr="true">IPv4</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">IPv6</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="StatusBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>240</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="title">
+     <string>Status</string>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>221</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="StatusLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelConn">
+        <property name="text">
+         <string>Connection</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelConnStat">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelOS">
+        <property name="text">
+         <string>OS</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="labelOSStat">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="InfoBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>240</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="title">
+     <string>Hosts Info</string>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>221</width>
+       <height>59</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="InfoLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelVersion">
+        <property name="text">
+         <string>Version</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelVersionData">
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelRelease">
+        <property name="text">
+         <string>Release</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="labelReleaseData">
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelLatest">
+        <property name="text">
+         <string>Latest</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelLatestData">
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="FunctionsBox">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>20</y>
+      <width>250</width>
+      <height>290</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Functions</string>
+    </property>
+    <widget class="QListWidget" name="Functionlist">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>230</width>
+       <height>260</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>30</y>
+      <width>110</width>
+      <height>280</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <widget class="QPushButton" name="ButtonBackup">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Backup hosts</string>
+     </property>
+     <property name="whatsThis">
+      <string>Backup the hosts file of current system.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="qthosts.qrc">
+       <normaloff>:/buttons/img/icon_backup.png</normaloff>:/buttons/img/icon_backup.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonUpdate">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>70</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Download data file</string>
+     </property>
+     <property name="whatsThis">
+      <string>Download the latest data file.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="qthosts.qrc">
+       <normaloff>:/buttons/img/icon_fetch.png</normaloff>:/buttons/img/icon_fetch.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonRestore">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>10</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Restore backup</string>
+     </property>
+     <property name="whatsThis">
+      <string>Restore a previous backup of hosts file.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="qthosts.qrc">
+       <normaloff>:/buttons/img/icon_restore.png</normaloff>:/buttons/img/icon_restore.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonApply">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>220</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Apply hosts</string>
+     </property>
+     <property name="whatsThis">
+      <string>Apply changes to the hosts file.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="qthosts.qrc">
+       <normaloff>:/buttons/img/icon_apply.png</normaloff>:/buttons/img/icon_apply.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonExit">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>220</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Exit</string>
+     </property>
+     <property name="whatsThis">
+      <string>Close this tool.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="qthosts.qrc">
+       <normaloff>:/buttons/img/icon_exit.png</normaloff>:/buttons/img/icon_exit.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonCheck">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>70</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Check update / Refresh</string>
+     </property>
+     <property name="whatsThis">
+      <string>Check the latest version of hosts data file.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="qthosts.qrc">
+       <normaloff>:/buttons/img/icon_update.png</normaloff>:/buttons/img/icon_update.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonANSI">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>160</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Save with ANSI</string>
+     </property>
+     <property name="whatsThis">
+      <string>Export to hosts file encoding by ANSI.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="qthosts.qrc">
+       <normaloff>:/buttons/img/icon_ansi.png</normaloff>:/buttons/img/icon_ansi.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonUTF">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>160</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Save with UTF-8</string>
+     </property>
+     <property name="whatsThis">
+      <string>Export to hosts file encoding by UTF-8.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="qthosts.qrc">
+       <normaloff>:/buttons/img/icon_utf.png</normaloff>:/buttons/img/icon_utf.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QComboBox" name="SelectLang">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>320</y>
+      <width>108</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="Prog">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>320</y>
+      <width>500</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="textVisible">
+     <bool>true</bool>
+    </property>
+    <property name="invertedAppearance">
+     <bool>false</bool>
+    </property>
    </widget>
   </widget>
-  <widget class="QComboBox" name="SelectLang">
-   <property name="geometry">
-    <rect>
-     <x>520</x>
-     <y>360</y>
-     <width>108</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <zorder>StatusBox</zorder>
-  <zorder>ConfigBox</zorder>
-  <zorder>FunctionsBox</zorder>
-  <zorder>InfoBox</zorder>
-  <zorder>frame</zorder>
-  <zorder>Prog</zorder>
-  <zorder>SelectLang</zorder>
  </widget>
  <tabstops>
   <tabstop>SelectMirror</tabstop>

@@ -26,6 +26,11 @@ QWidget:item:selected
     color: #ffffff;
 }
 
+QFrame
+{
+    background-color: #3c3f41;
+}
+
 QMenuBar::item
 {
     background: transparent;
