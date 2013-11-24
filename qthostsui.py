@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'qthostsui.ui'
 #
-# Created: Sun Nov 24 15:07:14 2013
+# Created: Sun Nov 24 16:44:07 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -233,6 +233,9 @@ class Ui_HostsUtlMain(object):
         self.Prog.setTextVisible(True)
         self.Prog.setInvertedAppearance(False)
         self.Prog.setObjectName(_fromUtf8("Prog"))
+        self.TitleLabel = QtGui.QLabel(HostsUtlMain)
+        self.TitleLabel.setGeometry(QtCore.QRect(20, 20, 250, 25))
+        self.TitleLabel.setObjectName(_fromUtf8("TitleLabel"))
         self.labelIP.setBuddy(self.SelectMirror)
         self.labelMirror.setBuddy(self.SelectIP)
 
@@ -296,6 +299,7 @@ class Ui_HostsUtlMain(object):
         self.ButtonANSI.setWhatsThis(_translate("HostsUtlMain", "Export to hosts file encoding by ANSI.", None))
         self.ButtonUTF.setToolTip(_translate("HostsUtlMain", "Save with UTF-8", None))
         self.ButtonUTF.setWhatsThis(_translate("HostsUtlMain", "Export to hosts file encoding by UTF-8.", None))
+        self.TitleLabel.setText(_translate("HostsUtlMain", "Hosts Setup Utility", None))
 
 import qthosts_rc
 import style_rc

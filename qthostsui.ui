@@ -557,6 +557,15 @@
       </size>
      </property>
     </widget>
+    <zorder>ButtonBackup</zorder>
+    <zorder>ButtonUpdate</zorder>
+    <zorder>ButtonRestore</zorder>
+    <zorder>ButtonApply</zorder>
+    <zorder>ButtonExit</zorder>
+    <zorder>ButtonCheck</zorder>
+    <zorder>ButtonANSI</zorder>
+    <zorder>ButtonUTF</zorder>
+    <zorder>SelectLang</zorder>
    </widget>
    <widget class="QComboBox" name="SelectLang">
     <property name="geometry">
@@ -588,6 +597,19 @@
     </property>
    </widget>
   </widget>
+  <widget class="QLabel" name="TitleLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>250</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Hosts Setup Utility</string>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>SelectMirror</tabstop>
@@ -616,7 +638,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>590</x>
-     <y>281</y>
+     <y>321</y>
     </hint>
     <hint type="destinationlabel">
      <x>627</x>
@@ -631,8 +653,8 @@
    <slot>on_IPVersion_changed(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>231</x>
-     <y>89</y>
+     <x>239</x>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
      <x>253</x>
@@ -647,8 +669,8 @@
    <slot>on_Mirror_changed(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>203</x>
-     <y>59</y>
+     <x>239</x>
+     <y>95</y>
     </hint>
     <hint type="destinationlabel">
      <x>255</x>
@@ -680,7 +702,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>551</x>
-     <y>276</y>
+     <y>316</y>
     </hint>
     <hint type="destinationlabel">
      <x>516</x>
@@ -696,7 +718,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>547</x>
-     <y>53</y>
+     <y>93</y>
     </hint>
     <hint type="destinationlabel">
      <x>519</x>
@@ -712,7 +734,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>603</x>
-     <y>43</y>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
      <x>629</x>
@@ -728,7 +750,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>547</x>
-     <y>119</y>
+     <y>159</y>
     </hint>
     <hint type="destinationlabel">
      <x>519</x>
@@ -744,7 +766,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>606</x>
-     <y>115</y>
+     <y>155</y>
     </hint>
     <hint type="destinationlabel">
      <x>631</x>
@@ -760,7 +782,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>572</x>
-     <y>333</y>
+     <y>373</y>
     </hint>
     <hint type="destinationlabel">
      <x>541</x>
@@ -776,7 +798,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>549</x>
-     <y>203</y>
+     <y>243</y>
     </hint>
     <hint type="destinationlabel">
      <x>517</x>
@@ -792,7 +814,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>607</x>
-     <y>208</y>
+     <y>248</y>
     </hint>
     <hint type="destinationlabel">
      <x>634</x>

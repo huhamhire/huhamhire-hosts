@@ -14,7 +14,7 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "1.9.6"
+__version__ = "1.9.7"
 __revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
@@ -86,6 +86,8 @@ class MainDialog(QtGui.QDialog):
         platform (str): A string indicating the platform of current operating
             system. The value could be "Windows", "Linux", "Unix", "OS X", and
             of course "Unkown".
+        plat_flag (bool): A boolean flag indicating whether the current os is
+            supported or not.
         hostname (str): A string indicating the hostname of current operating
             system. This attribute would be used for linux clients.
         hostspath (str): A string indicating the absolute path of the hosts
@@ -122,6 +124,7 @@ class MainDialog(QtGui.QDialog):
     Ui = None
     # OS related configuration
     platform = ''
+    plat_flag = True
     hostname = ''
     hostspath = ''
     # Mirror related configuration
@@ -155,6 +158,9 @@ class MainDialog(QtGui.QDialog):
         super(MainDialog, self).__init__()
         self.Ui = Ui
         self._trans = trans
+        self.set_platform()
+        self.set_font()
+        self.set_stylesheet()
 
     def on_Mirror_changed(self, mirr_id):
         """Change the current mirror setting - Public Method
@@ -369,8 +375,7 @@ class MainDialog(QtGui.QDialog):
             self.Ui.SelectMirror.addItem(_fromUtf8(""))
             self.Ui.SelectMirror.setItemText(
                 i, _translate("HostsUtlMain", mirror["tag"], None))
-        self.set_platform()
-        self.set_font()
+        self.set_platform_label()
         # Read data file and set function list
         try:
             RetrieveData.unpack()
@@ -577,16 +582,25 @@ class MainDialog(QtGui.QDialog):
         Set the information of current operating system platform.
         """
         system, hostname, path, encode, flag = Utilities.check_platform()
-        color = "GREEN" if flag else "RED"
-        self.set_label_color(self.Ui.labelOSStat, color)
-        self.set_label_text(self.Ui.labelOSStat, "[%s]" % system)
         self.platform = system
         self.hostname = hostname
         self.hostspath = path
+        self.plat_flag = flag
         if encode == "win_ansi":
             self._sys_eol = "\r\n"
         else:
             self._sys_eol = "\n"
+
+    def set_platform_label(self):
+        """Set label of OS info - Public Method
+
+        Set the information of the label indicating current operating system
+        platform.
+        """
+        color = "GREEN" if self.plat_flag else "RED"
+        self.set_label_color(self.Ui.labelOSStat, color)
+        self.set_label_text(self.Ui.labelOSStat, "[%s]" % self.platform)
+
 
     def set_font(self):
         """Set font and window style - Public Method
@@ -597,18 +611,11 @@ class MainDialog(QtGui.QDialog):
         system = self.platform
         if system == "Windows":
             font = QtGui.QFont()
-            font.setFamily(_fromUtf8("Courier"))
+            font.setFamily("Courier")
             self.setFont(font)
-
-            self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-            app = QtGui.QApplication.instance()
-            #app.setStyle(QtGui.QStyleFactory.create("Cleanlooks"))
-            with open("./darkorange.qss", "r") as qss:
-                app.setStyleSheet(qss.read())
-
         elif system == "Linux":
             font = QtGui.QFont()
-            font.setFamily(_fromUtf8("Sans"))
+            font.setFamily("Sans")
             self.setFont(font)
             # Set window style for sudo users.
             QtGui.QApplication.setStyle(
@@ -616,11 +623,40 @@ class MainDialog(QtGui.QDialog):
         elif system == "OS X":
             pass
 
+    def set_stylesheet(self):
+        """Set Stylesheet for main frame - Public Method
+
+        Define the style sheet of main dialog.
+        """
+        app = QtGui.QApplication.instance()
+        with open("./theme/darkdefault.qss", "r") as qss:
+            app.setStyleSheet(qss.read())
+
     def mouseMoveEvent(self, e):
+        """Set mouse drag event - Public Method
+
+        Allow drag operations to set the new position for current dialog.
+
+        Args:
+            e (QMouseEvent): A QMouseEvent object indicating current mouse
+                event.
+        """
         if e.buttons() & QtCore.Qt.LeftButton:
-            self.move(e.globalPos() - self.dragPos)
+            try:
+                self.move(e.globalPos() - self.dragPos)
+            except AttributeError:
+                pass
             e.accept()
+
     def mousePressEvent(self, e):
+        """Set mouse press event - Public Method
+
+        Allow drag operations to set the new position for current dialog.
+
+        Args:
+            e (QMouseEvent): A QMouseEvent object indicating current mouse
+                event.
+        """
         if e.button() == QtCore.Qt.LeftButton:
             self.dragPos = e.globalPos() - self.frameGeometry().topLeft()
             e.accept()
@@ -1504,6 +1540,7 @@ def qt_main():
     app.installTranslator(trans)
     ui = Ui_HostsUtlMain()
     HostsUtlMain = MainDialog(ui, trans)
+    HostsUtlMain.setWindowFlags(QtCore.Qt.FramelessWindowHint)
     ui.setupUi(HostsUtlMain)
     HostsUtlMain.set_languages()
     if not HostsUtlMain.initd:
