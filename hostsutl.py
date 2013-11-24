@@ -134,12 +134,17 @@ class MainDialog(QtGui.QDialog):
     __list_trans = [
         _translate("HostsUtlMain", "google(cn)", None),
         _translate("HostsUtlMain", "google(us)", None),
+        _translate("HostsUtlMain", "google-apis(cn)", None),
+        _translate("HostsUtlMain", "google-apis(us)", None),
         _translate("HostsUtlMain", "activation-helper", None),
+        _translate("HostsUtlMain", "wikipedia", None),
+        _translate("HostsUtlMain", "steam", None),
         _translate("HostsUtlMain", "others", None),
         _translate("HostsUtlMain", "adblock-hostsx", None),
         _translate("HostsUtlMain", "adblock-mvps", None),
         _translate("HostsUtlMain", "adblock-mwsl", None),
-        _translate("HostsUtlMain", "adblock-yoyo", None), ]
+        _translate("HostsUtlMain", "adblock-yoyo", None),
+        ]
     # Data file related configuration
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
