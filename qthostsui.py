@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'qthostsui.ui'
 #
-# Created: Sun Nov 24 16:44:07 2013
+# Created: Sun Nov 24 19:34:21 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,14 +27,14 @@ class Ui_HostsUtlMain(object):
     def setupUi(self, HostsUtlMain):
         HostsUtlMain.setObjectName(_fromUtf8("HostsUtlMain"))
         HostsUtlMain.setEnabled(True)
-        HostsUtlMain.resize(640, 400)
+        HostsUtlMain.resize(640, 420)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(HostsUtlMain.sizePolicy().hasHeightForWidth())
         HostsUtlMain.setSizePolicy(sizePolicy)
-        HostsUtlMain.setMinimumSize(QtCore.QSize(640, 400))
-        HostsUtlMain.setMaximumSize(QtCore.QSize(640, 400))
+        HostsUtlMain.setMinimumSize(QtCore.QSize(640, 420))
+        HostsUtlMain.setMaximumSize(QtCore.QSize(640, 420))
         HostsUtlMain.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/icon/img/utl_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -236,6 +236,13 @@ class Ui_HostsUtlMain(object):
         self.TitleLabel = QtGui.QLabel(HostsUtlMain)
         self.TitleLabel.setGeometry(QtCore.QRect(20, 20, 250, 25))
         self.TitleLabel.setObjectName(_fromUtf8("TitleLabel"))
+        self.Copyright = QtGui.QLabel(HostsUtlMain)
+        self.Copyright.setGeometry(QtCore.QRect(330, 390, 300, 16))
+        self.Copyright.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.Copyright.setObjectName(_fromUtf8("Copyright"))
+        self.label = QtGui.QLabel(HostsUtlMain)
+        self.label.setGeometry(QtCore.QRect(10, 390, 150, 16))
+        self.label.setObjectName(_fromUtf8("label"))
         self.labelIP.setBuddy(self.SelectMirror)
         self.labelMirror.setBuddy(self.SelectIP)
 
@@ -252,6 +259,7 @@ class Ui_HostsUtlMain(object):
         QtCore.QObject.connect(self.SelectLang, QtCore.SIGNAL(_fromUtf8("currentIndexChanged(QString)")), HostsUtlMain.on_Lang_changed)
         QtCore.QObject.connect(self.ButtonANSI, QtCore.SIGNAL(_fromUtf8("clicked()")), HostsUtlMain.on_MakeANSI_clicked)
         QtCore.QObject.connect(self.ButtonUTF, QtCore.SIGNAL(_fromUtf8("clicked()")), HostsUtlMain.on_MakeUTF8_clicked)
+        QtCore.QObject.connect(self.Copyright, QtCore.SIGNAL(_fromUtf8("linkActivated(QString)")), HostsUtlMain.on_LinkActivated)
         QtCore.QMetaObject.connectSlotsByName(HostsUtlMain)
         HostsUtlMain.setTabOrder(self.SelectMirror, self.SelectIP)
         HostsUtlMain.setTabOrder(self.SelectIP, self.Functionlist)
@@ -300,6 +308,8 @@ class Ui_HostsUtlMain(object):
         self.ButtonUTF.setToolTip(_translate("HostsUtlMain", "Save with UTF-8", None))
         self.ButtonUTF.setWhatsThis(_translate("HostsUtlMain", "Export to hosts file encoding by UTF-8.", None))
         self.TitleLabel.setText(_translate("HostsUtlMain", "Hosts Setup Utility", None))
+        self.Copyright.setText(_translate("HostsUtlMain", "Copyleft (C) 2011-2014 <a href=\"https://hosts.huhamhire.com/\"><span style=\"text-decoration: none;color: #b1b1b1;\">huhamhire-hosts</span></a>", None))
+        self.label.setText(_translate("HostsUtlMain", "Powered by PyQT", None))
 
 import qthosts_rc
 import style_rc

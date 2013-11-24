@@ -1,11 +1,11 @@
 QToolTip
 {
-     border: 1px solid black;
-     color: #b1b1b1;
-     background-color: #3c3f41;
-     padding: 1px;
-     border-radius: 0px;
-     opacity: 100;
+    border: 1px solid black;
+    color: #b1b1b1;
+    background-color: #3c3f41;
+    padding: 1px;
+    border-radius: 0px;
+    opacity: 100;
 }
 
 QWidget
@@ -88,21 +88,21 @@ QComboBox:on
 
 QComboBox QAbstractItemView
 {
-    border: 2px solid darkgray;
+    border: 0;
     selection-background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);
 }
 
 QComboBox::drop-down
 {
-     subcontrol-origin: padding;
-     subcontrol-position: top right;
-     width: 15px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
 
-     border-left-width: 0px;
-     border-left-color: darkgray;
-     border-left-style: solid; /* just a single line */
-     border-top-right-radius: 3px; /* same radius as the QComboBox */
-     border-bottom-right-radius: 3px;
+    border-left-width: 0px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
  }
 
 QComboBox::down-arrow
@@ -142,81 +142,81 @@ QLabel#TitleLabel
 }
 
 QScrollBar:horizontal {
-     background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0.0 #1c1c1c, stop: 0.2 #222222, stop: 1 #323232);
-     height: 9px;
-     margin: 0px 16px 0 16px;
+    background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0.0 #1c1c1c, stop: 0.2 #222222, stop: 1 #323232);
+    height: 9px;
+    margin: 0px 16px 0 16px;
 }
 
 QScrollBar::handle:horizontal
 {
-      background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #585858, stop: 0.5 #474747, stop: 1 #404040);
-      min-height: 20px;
-      border: 1px solid #222222;
-      border-radius: 4px;
+    background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #585858, stop: 0.5 #474747, stop: 1 #404040);
+    min-height: 20px;
+    border: 1px solid #222222;
+    border-radius: 4px;
 }
 
 QScrollBar::add-line:horizontal {
-      border: 1px solid #222222;
-      border-radius: 2px;
-      background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #585858, stop: 1 #474747);
-      width: 14px;
-      subcontrol-position: right;
-      subcontrol-origin: margin;
+    border: 1px solid #222222;
+    border-radius: 2px;
+    background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #585858, stop: 1 #474747);
+    width: 14px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
 }
 
 QScrollBar::sub-line:horizontal {
-      border: 1px solid #222222;
-      border-radius: 2px;
-      background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #585858, stop: 1 #474747);
-      width: 14px;
-      subcontrol-position: left;
-      subcontrol-origin: margin;
+    border: 1px solid #222222;
+    border-radius: 2px;
+    background: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #585858, stop: 1 #474747);
+    width: 14px;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
 }
 
 QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
 {
-      background: none;
+    background: none;
 }
 
 QScrollBar:vertical
 {
-      background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0.0 #1c1c1c, stop: 0.2 #222222, stop: 1 #323232);
-      width: 9px;
-      margin: 16px 0 16px 0;
+    background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0.0 #1c1c1c, stop: 0.2 #222222, stop: 1 #323232);
+    width: 9px;
+    margin: 16px 0 16px 0;
 }
 
 QScrollBar::handle:vertical
 {
-      background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #585858, stop: 0.5 #474747, stop: 1 #404040);
-      min-height: 20px;
-      border: 1px solid #222222;
-      border-radius: 4px;
+    background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #585858, stop: 0.5 #474747, stop: 1 #404040);
+    min-height: 20px;
+    border: 1px solid #222222;
+    border-radius: 4px;
 }
 
 QScrollBar::add-line:vertical
 {
-      border: 1px solid #222222;
-      border-radius: 2px;
-      background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #585858, stop: 1 #474747);
-      height: 14px;
-      subcontrol-position: bottom;
-      subcontrol-origin: margin;
+    border: 1px solid #222222;
+    border-radius: 2px;
+    background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #585858, stop: 1 #474747);
+    height: 14px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
 }
 
 QScrollBar::sub-line:vertical
 {
-      border: 1px solid #222222;
-      border-radius: 2px;
-      background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #585858, stop: 1 #474747);
-      height: 14px;
-      subcontrol-position: top;
-      subcontrol-origin: margin;
+    border: 1px solid #222222;
+    border-radius: 2px;
+    background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #585858, stop: 1 #474747);
+    height: 14px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
 }
 
 
 QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical
 {
-      background: none;
+    background: none;
 }
 
 QHeaderView::section

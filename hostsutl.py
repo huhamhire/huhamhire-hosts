@@ -367,6 +367,14 @@ class MainDialog(QtGui.QDialog):
             self.info_uptodate()
             self.finish_fetch()
 
+    def on_LinkActivated(self, url):
+        """Open external link in browser - Public Method
+
+        The slot response to the signal from Label widget while the text with
+        a hyperlink is clicked by user.
+        """
+        QtGui.QDesktopServices.openUrl(QtCore.QUrl(url))
+
     def init_main(self):
         """Initialize the main dialog - Public Method
 

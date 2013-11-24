@@ -11,7 +11,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>400</height>
+    <height>420</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -23,13 +23,13 @@
   <property name="minimumSize">
    <size>
     <width>640</width>
-    <height>400</height>
+    <height>420</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>640</width>
-    <height>400</height>
+    <height>420</height>
    </size>
   </property>
   <property name="contextMenuPolicy">
@@ -557,15 +557,6 @@
       </size>
      </property>
     </widget>
-    <zorder>ButtonBackup</zorder>
-    <zorder>ButtonUpdate</zorder>
-    <zorder>ButtonRestore</zorder>
-    <zorder>ButtonApply</zorder>
-    <zorder>ButtonExit</zorder>
-    <zorder>ButtonCheck</zorder>
-    <zorder>ButtonANSI</zorder>
-    <zorder>ButtonUTF</zorder>
-    <zorder>SelectLang</zorder>
    </widget>
    <widget class="QComboBox" name="SelectLang">
     <property name="geometry">
@@ -608,6 +599,35 @@
    </property>
    <property name="text">
     <string>Hosts Setup Utility</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Copyright">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>390</y>
+     <width>300</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Copyleft (C) 2011-2014 &lt;a href=&quot;https://hosts.huhamhire.com/&quot;&gt;&lt;span style=&quot;text-decoration: none;color: #b1b1b1;&quot;&gt;huhamhire-hosts&lt;/span&gt;&lt;/a&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>390</y>
+     <width>150</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Powered by PyQT</string>
    </property>
   </widget>
  </widget>
@@ -822,6 +842,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>Copyright</sender>
+   <signal>linkActivated(QString)</signal>
+   <receiver>HostsUtlMain</receiver>
+   <slot>on_LinkActivated(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>459</x>
+     <y>406</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>405</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_Mirror_changed(int)</slot>
@@ -835,5 +871,6 @@
   <slot>on_Lang_changed(QString)</slot>
   <slot>on_MakeANSI_clicked()</slot>
   <slot>on_MakeUTF8_clicked()</slot>
+  <slot>on_LinkActivated(QString)</slot>
  </slots>
 </ui>
