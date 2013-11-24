@@ -688,25 +688,12 @@ class MainDialog(QtGui.QDialog):
                 lable.
         """
         if color == "GREEN":
-            rgb = [0, 170, 0]
+            rgb = "#37b158"
         elif color == "RED":
-            rgb = [255, 0, 0]
+            rgb = "#e27867"
         elif color == "BLACK":
-            rgb = [0, 0, 0]
-        palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(*rgb))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(
-            QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(*rgb))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(
-            QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
-        brush = QtGui.QBrush(QtGui.QColor(120, 120, 120))
-        brush.setStyle(QtCore.Qt.SolidPattern)
-        palette.setBrush(
-            QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
-        label.setPalette(palette)
+            rgb = "#b1b1b1"
+        label.setStyleSheet("QLabel {color: %s}" % rgb)
 
     def set_label_text(self, label, text):
         """Set the text of a label - Public Method

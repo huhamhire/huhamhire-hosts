@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'qthostsui.ui'
 #
-# Created: Sun Nov 24 19:34:21 2013
+# Created: Sun Nov 24 19:38:26 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -43,7 +43,7 @@ class Ui_HostsUtlMain(object):
         HostsUtlMain.setSizeGripEnabled(False)
         HostsUtlMain.setModal(False)
         self.mainFrame = QtGui.QFrame(HostsUtlMain)
-        self.mainFrame.setGeometry(QtCore.QRect(0, 40, 640, 360))
+        self.mainFrame.setGeometry(QtCore.QRect(0, 40, 640, 351))
         self.mainFrame.setFrameShape(QtGui.QFrame.StyledPanel)
         self.mainFrame.setFrameShadow(QtGui.QFrame.Raised)
         self.mainFrame.setObjectName(_fromUtf8("mainFrame"))
