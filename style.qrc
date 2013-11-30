@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="qss">
+    <file>img/style/checkbox.png</file>
+    <file>img/style/down_arrow.png</file>
+  </qresource>
+</RCC>

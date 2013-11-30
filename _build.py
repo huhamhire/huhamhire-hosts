@@ -14,7 +14,7 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "0.8.0"
+__version__ = "0.9.0"
 __author__ = "huhamhire <me@huhamhire.com>"
 
 import os
@@ -34,7 +34,7 @@ DESCRIPTION = "HostsUtl - Hosts Setup Utility"
 AUTHOR = "Hamhire Hu"
 AUTHOR_EMAIL ="develop@huhamhire.com",
 LICENSE = "Public Domain, Python, BSD, GPLv3 (see LICENSE)",
-URL = "http://hosts.huhamhire.com",
+URL = "https://hosts.huhamhire.com",
 CLASSIFIERS =  [
     "Development Status :: 4 - Beta",
     "Environment :: MacOS X",
@@ -67,6 +67,10 @@ DATA_FILES = [
         "lang/en_US.qm",
         "lang/zh_CN.qm",
         "lang/zh_TW.qm",
+        ]
+    ),
+    ("theme", [
+        "theme/darkdefault.qss",
         ]
     ),
     "LICENSE",

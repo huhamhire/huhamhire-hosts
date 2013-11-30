@@ -4,136 +4,136 @@
 <context>
     <name>HostsUtlMain</name>
     <message>
-        <location filename="hostsutl.py" line="142"/>
+        <location filename="hostsutl.py" line="135"/>
         <source>google(cn)</source>
-        <translation>Google 大陸</translation>
+        <translation>Google Web服務（大陸）</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="143"/>
+        <location filename="hostsutl.py" line="136"/>
         <source>google(us)</source>
-        <translation>Google 美國</translation>
+        <translation>Google Web服務（美國）</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="144"/>
+        <location filename="hostsutl.py" line="139"/>
         <source>activation-helper</source>
         <translation>遮罩部分破解軟體啟動伺服器</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="145"/>
+        <location filename="hostsutl.py" line="142"/>
         <source>others</source>
         <translation>其他網站</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="146"/>
+        <location filename="hostsutl.py" line="143"/>
         <source>adblock-hostsx</source>
         <translation>廣告攔截-hostsx 清單</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="147"/>
+        <location filename="hostsutl.py" line="144"/>
         <source>adblock-mvps</source>
         <translation>廣告攔截-mvps 清單</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="148"/>
+        <location filename="hostsutl.py" line="145"/>
         <source>adblock-mwsl</source>
         <translation>廣告攔截-mwsl 清單</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="149"/>
+        <location filename="hostsutl.py" line="146"/>
         <source>adblock-yoyo</source>
         <translation>廣告攔截-yoyo 清單</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="519"/>
+        <location filename="hostsutl.py" line="524"/>
         <source>Building hosts file...</source>
         <translation>正在創建 hosts 檔...</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="268"/>
+        <location filename="qthostsui.py" line="294"/>
         <source>Backup hosts</source>
         <translation>備份 hosts 檔</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="321"/>
+        <location filename="hostsutl.py" line="322"/>
         <source>Backup File(*.bak)</source>
         <translation>備份檔(*.bak)</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="321"/>
+        <location filename="hostsutl.py" line="322"/>
         <source>Restore hosts</source>
         <translation>還原 hosts</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1482"/>
+        <location filename="hostsutl.py" line="1535"/>
         <source>[Error]</source>
         <translation>[錯誤]</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="674"/>
+        <location filename="hostsutl.py" line="727"/>
         <source>Checking...</source>
         <translation>正在連接伺服器...</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="538"/>
+        <location filename="hostsutl.py" line="543"/>
         <source>Copying new hosts file to
   %s</source>
         <translation>將新的 hosts 檔案複製到
  %s</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="543"/>
+        <location filename="hostsutl.py" line="548"/>
         <source>Remove temporary file</source>
         <translation>刪除暫存檔案</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1107"/>
+        <location filename="hostsutl.py" line="1160"/>
         <source>Operation completed</source>
         <translation>作業完成</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="678"/>
+        <location filename="hostsutl.py" line="731"/>
         <source>[OK]</source>
         <translation>[好]</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="681"/>
+        <location filename="hostsutl.py" line="734"/>
         <source>[Failed]</source>
         <translation>[失敗]</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="267"/>
+        <location filename="qthostsui.py" line="293"/>
         <source>Functions</source>
         <translation>功能清單</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="862"/>
+        <location filename="hostsutl.py" line="915"/>
         <source>Applying module: %s(%s/%s)</source>
         <translation>應用選定的模組: %s(%s/%s)</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="882"/>
+        <location filename="hostsutl.py" line="935"/>
         <source>Progress</source>
         <translation>作業進度</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="912"/>
+        <location filename="hostsutl.py" line="965"/>
         <source>Notice: %i hosts entries has 
   been applied in %ssecs.</source>
         <translation>消息：共有 %i 条 hosts 条目在
   %s秒内被插入到 hosts 文件中。</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="916"/>
+        <location filename="hostsutl.py" line="969"/>
         <source>Operation Completed Successfully!</source>
         <translation>作業已成功完成 ！</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="961"/>
+        <location filename="hostsutl.py" line="1014"/>
         <source>Error</source>
         <translation>錯誤</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1045"/>
+        <location filename="hostsutl.py" line="1098"/>
         <source>Incorrect Data file!
 Please use the &quot;Download&quot; key to 
 fetch a new data file.</source>
@@ -142,17 +142,17 @@ fetch a new data file.</source>
 一個新的資料檔案。</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="981"/>
+        <location filename="hostsutl.py" line="1034"/>
         <source>Download Complete</source>
         <translation>下載已完成</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1033"/>
+        <location filename="hostsutl.py" line="1086"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1019"/>
+        <location filename="hostsutl.py" line="1072"/>
         <source>You do not have permissions to change the 
 hosts file.
 Please run this program as Administrator/root
@@ -162,14 +162,14 @@ so it can modify your hosts file.</source>
 程式。</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1033"/>
+        <location filename="hostsutl.py" line="1086"/>
         <source>Error retrieving data from the server.
 Please try another server.</source>
         <translation>從伺服器中檢索資料時出錯。
 請嘗試使用另一台伺服器。</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1060"/>
+        <location filename="hostsutl.py" line="1113"/>
         <source>Data file not found!
 Please use the &quot;Download&quot; key to 
 fetch a new data file.</source>
@@ -178,147 +178,147 @@ fetch a new data file.</source>
 一個新的資料檔案。</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1098"/>
+        <location filename="hostsutl.py" line="1151"/>
         <source>Notice</source>
         <translation>消息</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1098"/>
+        <location filename="hostsutl.py" line="1151"/>
         <source>Data file is up-to-date.</source>
         <translation>當前的資料檔案是最新的。</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1107"/>
+        <location filename="hostsutl.py" line="1160"/>
         <source>Complete</source>
         <translation>完成</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1202"/>
+        <location filename="hostsutl.py" line="1255"/>
         <source>Connecting...</source>
         <translation>正在連接...</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1242"/>
+        <location filename="hostsutl.py" line="1295"/>
         <source>Downloading: %s / %s</source>
         <translation>正在下載: %s / %s</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="258"/>
+        <location filename="qthostsui.py" line="310"/>
         <source>Hosts Setup Utility</source>
         <translation>hosts 設置實用程式</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="259"/>
+        <location filename="qthostsui.py" line="278"/>
         <source>Config</source>
         <translation>配置</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="260"/>
+        <location filename="qthostsui.py" line="279"/>
         <source>Server</source>
         <translation>伺服器</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="261"/>
+        <location filename="qthostsui.py" line="280"/>
         <source>IP Version</source>
         <translation>IP 協定版本</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="262"/>
+        <location filename="qthostsui.py" line="281"/>
         <source>Status</source>
         <translation>狀態</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="263"/>
+        <location filename="qthostsui.py" line="282"/>
         <source>Connection</source>
         <translation>連接狀態</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="290"/>
+        <location filename="qthostsui.py" line="292"/>
         <source>N/A</source>
         <translation>不適用</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="265"/>
+        <location filename="qthostsui.py" line="284"/>
         <source>OS</source>
         <translation>作業系統</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="269"/>
+        <location filename="qthostsui.py" line="295"/>
         <source>Backup the hosts file of current system.</source>
         <translation>備份當前系統的 hosts 檔。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="270"/>
+        <location filename="qthostsui.py" line="296"/>
         <source>Download data file</source>
         <translation>下載資料檔案</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="271"/>
+        <location filename="qthostsui.py" line="297"/>
         <source>Download the latest data file.</source>
         <translation>下載最新的資料檔案。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="272"/>
+        <location filename="qthostsui.py" line="298"/>
         <source>Restore backup</source>
         <translation>還原備份</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="273"/>
+        <location filename="qthostsui.py" line="299"/>
         <source>Restore a previous backup of hosts file.</source>
         <translation>還原以前的備份的 hosts 檔。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="274"/>
+        <location filename="qthostsui.py" line="300"/>
         <source>Apply hosts</source>
         <translation>更改 hosts 檔</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="275"/>
+        <location filename="qthostsui.py" line="301"/>
         <source>Apply changes to the hosts file.</source>
         <translation>將更改應用到主 hosts 檔。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="276"/>
+        <location filename="qthostsui.py" line="302"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="277"/>
+        <location filename="qthostsui.py" line="303"/>
         <source>Close this tool.</source>
         <translation>關閉此程式。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="278"/>
+        <location filename="qthostsui.py" line="304"/>
         <source>Check update / Refresh</source>
         <translation>檢查更新 / 刷新</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="279"/>
+        <location filename="qthostsui.py" line="305"/>
         <source>Check the latest version of hosts data file.</source>
         <translation>檢查 hosts 檔案的最新版本。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="284"/>
+        <location filename="qthostsui.py" line="286"/>
         <source>Hosts Info</source>
         <translation>資料檔案狀態</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="285"/>
+        <location filename="qthostsui.py" line="287"/>
         <source>Version</source>
         <translation>當前版本</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="287"/>
+        <location filename="qthostsui.py" line="289"/>
         <source>Release</source>
         <translation>發佈日期</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="289"/>
+        <location filename="qthostsui.py" line="291"/>
         <source>Latest</source>
         <translation>最新版本</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="1079"/>
+        <location filename="hostsutl.py" line="1132"/>
         <source>Are you sure you want to apply changes 
 to the hosts file on your system?
 
@@ -332,34 +332,64 @@ current hosts file.</source>
 不可逆轉。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="280"/>
+        <location filename="qthostsui.py" line="306"/>
         <source>Save with ANSI</source>
         <translation>保存為 ANSI 格式</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="281"/>
+        <location filename="qthostsui.py" line="307"/>
         <source>Export to hosts file encoding by ANSI.</source>
         <translation>匯出由 ANSI 編碼的 hosts 檔。</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="282"/>
+        <location filename="qthostsui.py" line="308"/>
         <source>Save with UTF-8</source>
         <translation>保存為 UTF-8 格式</translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="283"/>
+        <location filename="qthostsui.py" line="309"/>
         <source>Export to hosts file encoding by UTF-8.</source>
         <translation>匯出由 UTF-8 編碼的 hosts 檔。</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="496"/>
+        <location filename="hostsutl.py" line="501"/>
         <source>Export hosts</source>
         <translation>匯出 hosts 檔</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="496"/>
+        <location filename="hostsutl.py" line="501"/>
         <source>hosts File</source>
         <translation>hosts 檔</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="137"/>
+        <source>google-apis(cn)</source>
+        <translation>Google API服務（大陸）</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="138"/>
+        <source>google-apis(us)</source>
+        <translation>Google API服務（美國）</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="140"/>
+        <source>wikipedia</source>
+        <translation>維基百科</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="141"/>
+        <source>steam</source>
+        <translation>Steam 遊戲平台</translation>
+    </message>
+    <message>
+        <location filename="qthostsui.py" line="311"/>
+        <source>Copyleft (C) 2011-2014 &lt;a href=&quot;https://hosts.huhamhire.com/&quot;&gt;&lt;span style=&quot;text-decoration: none;color: #b1b1b1;&quot;&gt;huhamhire-hosts&lt;/span&gt;&lt;/a&gt;</source>
+        <translation>公共版權 (C) 2011-2014 &lt;a href=&quot;https://hosts.huhamhire.com/&quot;&gt;&lt;span style=&quot;text-decoration: none;color: #b1b1b1;&quot;&gt;huhamhire-hosts&lt;/span&gt;&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <location filename="qthostsui.py" line="312"/>
+        <source>Powered by PyQT</source>
+        <translation></translation>
     </message>
 </context>
 </TS>
