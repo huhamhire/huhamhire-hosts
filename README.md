@@ -125,6 +125,10 @@ The Rest of the Distribution
         The files in this directory would on be included source code package
         for developers.
 
+* theme/ - This directory contains QT stylesheet files of the program.
+        The stylesheet files (*.qss) are used to create the user interface of
+        Hosts Setup Utility.
+
 * hostsutl.pro - Project file for QT.
 
 * qthosts.qrc - Resource file for main dialog designed by QT.
