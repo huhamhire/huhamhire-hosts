@@ -345,7 +345,8 @@
      </property>
      <property name="icon">
       <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/icon_backup.png</normaloff>:/buttons/img/icon_backup.png</iconset>
+       <normaloff>:/buttons/img/buttons/button_backup.png</normaloff>
+       <disabledoff>:/buttons/img/buttons/button_backup_disabled.png</disabledoff>:/buttons/img/buttons/button_backup.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -374,7 +375,8 @@
      </property>
      <property name="icon">
       <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/icon_fetch.png</normaloff>:/buttons/img/icon_fetch.png</iconset>
+       <normaloff>:/buttons/img/buttons/button_download.png</normaloff>
+       <disabledoff>:/buttons/img/buttons/button_download_disabled.png</disabledoff>:/buttons/img/buttons/button_download.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -403,7 +405,8 @@
      </property>
      <property name="icon">
       <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/icon_restore.png</normaloff>:/buttons/img/icon_restore.png</iconset>
+       <normaloff>:/buttons/img/buttons/button_restore.png</normaloff>
+       <disabledoff>:/buttons/img/buttons/button_restore_disabled.png</disabledoff>:/buttons/img/buttons/button_restore.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -432,7 +435,8 @@
      </property>
      <property name="icon">
       <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/icon_apply.png</normaloff>:/buttons/img/icon_apply.png</iconset>
+       <normaloff>:/buttons/img/buttons/button_apply.png</normaloff>
+       <disabledoff>:/buttons/img/buttons/button_apply_disabled.png</disabledoff>:/buttons/img/buttons/button_apply.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -461,7 +465,8 @@
      </property>
      <property name="icon">
       <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/icon_exit.png</normaloff>:/buttons/img/icon_exit.png</iconset>
+       <normaloff>:/buttons/img/buttons/button_exit.png</normaloff>
+       <disabledoff>:/buttons/img/buttons/button_exit_disabled.png</disabledoff>:/buttons/img/buttons/button_exit.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -490,7 +495,8 @@
      </property>
      <property name="icon">
       <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/icon_update.png</normaloff>:/buttons/img/icon_update.png</iconset>
+       <normaloff>:/buttons/img/buttons/button_update.png</normaloff>
+       <disabledoff>:/buttons/img/buttons/button_update_disabled.png</disabledoff>:/buttons/img/buttons/button_update.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -519,7 +525,8 @@
      </property>
      <property name="icon">
       <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/icon_ansi.png</normaloff>:/buttons/img/icon_ansi.png</iconset>
+       <normaloff>:/buttons/img/buttons/button_ansi.png</normaloff>
+       <disabledoff>:/buttons/img/buttons/button_ansi_disabled.png</disabledoff>:/buttons/img/buttons/button_ansi.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -548,7 +555,8 @@
      </property>
      <property name="icon">
       <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/icon_utf.png</normaloff>:/buttons/img/icon_utf.png</iconset>
+       <normaloff>:/buttons/img/buttons/button_utf8.png</normaloff>
+       <disabledoff>:/buttons/img/buttons/button_utf8_disabled.png</disabledoff>:/buttons/img/buttons/button_utf8.png</iconset>
      </property>
      <property name="iconSize">
       <size>

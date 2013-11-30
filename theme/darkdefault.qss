@@ -8,6 +8,11 @@ QToolTip
     opacity: 100;
 }
 
+QDialog#HostsUtlMain
+{
+    border: 1px solid black;
+}
+
 QWidget
 {
     color: #b1b1b1;
@@ -28,7 +33,7 @@ QWidget:item:selected
 
 QFrame
 {
-    background-color: #3c3f41;
+    background-color: transparent;
 }
 
 QWidget:disabled
@@ -74,6 +79,7 @@ QComboBox
 
 QComboBox:hover,QPushButton:hover
 {
+    background-color: #5b5d5f;
     border: 2px solid QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);
 }
 

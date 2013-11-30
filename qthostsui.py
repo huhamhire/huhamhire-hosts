@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'qthostsui.ui'
 #
-# Created: Sun Nov 24 19:38:26 2013
+# Created: Sat Nov 30 15:06:56 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -164,7 +164,8 @@ class Ui_HostsUtlMain(object):
         self.ButtonBackup.setGeometry(QtCore.QRect(0, 10, 48, 48))
         self.ButtonBackup.setText(_fromUtf8(""))
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/icon_backup.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_backup.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_backup_disabled.png")), QtGui.QIcon.Disabled, QtGui.QIcon.Off)
         self.ButtonBackup.setIcon(icon1)
         self.ButtonBackup.setIconSize(QtCore.QSize(32, 32))
         self.ButtonBackup.setObjectName(_fromUtf8("ButtonBackup"))
@@ -172,7 +173,8 @@ class Ui_HostsUtlMain(object):
         self.ButtonUpdate.setGeometry(QtCore.QRect(60, 70, 48, 48))
         self.ButtonUpdate.setText(_fromUtf8(""))
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/icon_fetch.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_download.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_download_disabled.png")), QtGui.QIcon.Disabled, QtGui.QIcon.Off)
         self.ButtonUpdate.setIcon(icon2)
         self.ButtonUpdate.setIconSize(QtCore.QSize(32, 32))
         self.ButtonUpdate.setObjectName(_fromUtf8("ButtonUpdate"))
@@ -180,7 +182,8 @@ class Ui_HostsUtlMain(object):
         self.ButtonRestore.setGeometry(QtCore.QRect(60, 10, 48, 48))
         self.ButtonRestore.setText(_fromUtf8(""))
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/icon_restore.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_restore.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_restore_disabled.png")), QtGui.QIcon.Disabled, QtGui.QIcon.Off)
         self.ButtonRestore.setIcon(icon3)
         self.ButtonRestore.setIconSize(QtCore.QSize(32, 32))
         self.ButtonRestore.setObjectName(_fromUtf8("ButtonRestore"))
@@ -188,7 +191,8 @@ class Ui_HostsUtlMain(object):
         self.ButtonApply.setGeometry(QtCore.QRect(0, 220, 48, 48))
         self.ButtonApply.setText(_fromUtf8(""))
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/icon_apply.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_apply.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_apply_disabled.png")), QtGui.QIcon.Disabled, QtGui.QIcon.Off)
         self.ButtonApply.setIcon(icon4)
         self.ButtonApply.setIconSize(QtCore.QSize(32, 32))
         self.ButtonApply.setObjectName(_fromUtf8("ButtonApply"))
@@ -196,7 +200,8 @@ class Ui_HostsUtlMain(object):
         self.ButtonExit.setGeometry(QtCore.QRect(60, 220, 48, 48))
         self.ButtonExit.setText(_fromUtf8(""))
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/icon_exit.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_exit.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_exit_disabled.png")), QtGui.QIcon.Disabled, QtGui.QIcon.Off)
         self.ButtonExit.setIcon(icon5)
         self.ButtonExit.setIconSize(QtCore.QSize(32, 32))
         self.ButtonExit.setObjectName(_fromUtf8("ButtonExit"))
@@ -204,7 +209,8 @@ class Ui_HostsUtlMain(object):
         self.ButtonCheck.setGeometry(QtCore.QRect(0, 70, 48, 48))
         self.ButtonCheck.setText(_fromUtf8(""))
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/icon_update.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_update.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_update_disabled.png")), QtGui.QIcon.Disabled, QtGui.QIcon.Off)
         self.ButtonCheck.setIcon(icon6)
         self.ButtonCheck.setIconSize(QtCore.QSize(32, 32))
         self.ButtonCheck.setObjectName(_fromUtf8("ButtonCheck"))
@@ -212,7 +218,8 @@ class Ui_HostsUtlMain(object):
         self.ButtonANSI.setGeometry(QtCore.QRect(0, 160, 48, 48))
         self.ButtonANSI.setText(_fromUtf8(""))
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/icon_ansi.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_ansi.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_ansi_disabled.png")), QtGui.QIcon.Disabled, QtGui.QIcon.Off)
         self.ButtonANSI.setIcon(icon7)
         self.ButtonANSI.setIconSize(QtCore.QSize(32, 32))
         self.ButtonANSI.setObjectName(_fromUtf8("ButtonANSI"))
@@ -220,7 +227,8 @@ class Ui_HostsUtlMain(object):
         self.ButtonUTF.setGeometry(QtCore.QRect(60, 160, 48, 48))
         self.ButtonUTF.setText(_fromUtf8(""))
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/icon_utf.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_utf8.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/buttons/img/buttons/button_utf8_disabled.png")), QtGui.QIcon.Disabled, QtGui.QIcon.Off)
         self.ButtonUTF.setIcon(icon8)
         self.ButtonUTF.setIconSize(QtCore.QSize(32, 32))
         self.ButtonUTF.setObjectName(_fromUtf8("ButtonUTF"))

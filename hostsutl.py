@@ -623,9 +623,7 @@ class MainDialog(QtGui.QDialog):
         """
         system = self.platform
         if system == "Windows":
-            font = QtGui.QFont()
-            font.setFamily("Courier")
-            self.setFont(font)
+            pass
         elif system == "Linux":
             font = QtGui.QFont()
             font.setFamily("Sans")
