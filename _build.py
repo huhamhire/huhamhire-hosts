@@ -69,8 +69,8 @@ DATA_FILES = [
         "lang/zh_TW.qm",
         ]
     ),
-    ("style", [
-        "style/darkdefault.qss",
+    ("theme", [
+        "theme/darkdefault.qss",
         ]
     ),
     "LICENSE",
