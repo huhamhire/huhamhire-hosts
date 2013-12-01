@@ -164,7 +164,7 @@ class MainDialog(QtGui.QDialog):
         self.Ui = Ui
         self._trans = trans
         self.set_platform()
-        self.set_font()
+        self.set_style()
         self.set_stylesheet()
 
     def on_Mirror_changed(self, mirr_id):
@@ -615,19 +615,16 @@ class MainDialog(QtGui.QDialog):
         self.set_label_text(self.Ui.labelOSStat, "[%s]" % self.platform)
 
 
-    def set_font(self):
-        """Set font and window style - Public Method
+    def set_style(self):
+        """Set window style - Public Method
 
-        Set the font of the elements on the main dialog with a windows style
-        depending on this program.
+        Set the main dialog with a window style depending on the os platform.
         """
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         system = self.platform
         if system == "Windows":
             pass
         elif system == "Linux":
-            font = QtGui.QFont()
-            font.setFamily("Sans")
-            self.setFont(font)
             # Set window style for sudo users.
             QtGui.QApplication.setStyle(
                 QtGui.QStyleFactory.create("Cleanlooks"))
@@ -1538,7 +1535,6 @@ def qt_main():
     app.installTranslator(trans)
     ui = Ui_HostsUtlMain()
     HostsUtlMain = MainDialog(ui, trans)
-    HostsUtlMain.setWindowFlags(QtCore.Qt.FramelessWindowHint)
     ui.setupUi(HostsUtlMain)
     HostsUtlMain.set_languages()
     if not HostsUtlMain.initd:
