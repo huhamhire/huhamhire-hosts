@@ -33,6 +33,7 @@ QWidget:item:selected
 
 QFrame
 {
+    border: 0px;
     background-color: transparent;
 }
 
