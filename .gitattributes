@@ -1,6 +1,7 @@
 # Set default behaviour, in case users don't have core.autocrlf set.
 * text eol=lf
 *.py text eol=lf
+windows* text eol=crlf
 
 *.zip   binary
 *.dmg   binary
