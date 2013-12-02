@@ -192,9 +192,12 @@ class MainDialog(QtGui.QDialog):
                 represents IPv4.
         """
         if self._ipv_id != ipv_id:
-            self._ipv_id = ipv_id
-            self.set_func_list(0)
-            self.refresh_func_list()
+            if not RetrieveData.db_exists():
+                self.warning_no_datafile()
+            else:
+                self._ipv_id = ipv_id
+                self.set_func_list(0)
+                self.refresh_func_list()
 
     def on_Selection_changed(self, item):
         """Change the function selection setting - Public Method
