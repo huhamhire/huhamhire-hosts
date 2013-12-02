@@ -1,130 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="en_US" sourcelanguage="en_US">
+<!DOCTYPE TS><TS version="2.0" language="en_US" sourcelanguage="en_US">
 <context>
     <name>HostsUtlMain</name>
     <message>
-        <location filename="qthostsui.py" line="294"/>
+        <location filename="qthostsui.py" line="302"/>
         <source>Backup hosts</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="293"/>
+        <location filename="qthostsui.py" line="301"/>
         <source>Functions</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="310"/>
+        <location filename="qthostsui.py" line="318"/>
         <source>Hosts Setup Utility</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="278"/>
+        <location filename="qthostsui.py" line="286"/>
         <source>Config</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="279"/>
+        <location filename="qthostsui.py" line="287"/>
         <source>Server</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="280"/>
+        <location filename="qthostsui.py" line="288"/>
         <source>IP Version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="281"/>
+        <location filename="qthostsui.py" line="289"/>
         <source>Status</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="282"/>
+        <location filename="qthostsui.py" line="290"/>
         <source>Connection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="292"/>
+        <location filename="qthostsui.py" line="300"/>
         <source>N/A</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="284"/>
+        <location filename="qthostsui.py" line="292"/>
         <source>OS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="295"/>
+        <location filename="qthostsui.py" line="303"/>
         <source>Backup the hosts file of current system.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="296"/>
+        <location filename="qthostsui.py" line="304"/>
         <source>Download data file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="297"/>
+        <location filename="qthostsui.py" line="305"/>
         <source>Download the latest data file.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="298"/>
+        <location filename="qthostsui.py" line="306"/>
         <source>Restore backup</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="299"/>
+        <location filename="qthostsui.py" line="307"/>
         <source>Restore a previous backup of hosts file.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="300"/>
+        <location filename="qthostsui.py" line="308"/>
         <source>Apply hosts</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="301"/>
+        <location filename="qthostsui.py" line="309"/>
         <source>Apply changes to the hosts file.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="302"/>
+        <location filename="qthostsui.py" line="310"/>
         <source>Exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="303"/>
+        <location filename="qthostsui.py" line="311"/>
         <source>Close this tool.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="304"/>
+        <location filename="qthostsui.py" line="312"/>
         <source>Check update / Refresh</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="305"/>
+        <location filename="qthostsui.py" line="313"/>
         <source>Check the latest version of hosts data file.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="286"/>
+        <location filename="qthostsui.py" line="294"/>
         <source>Hosts Info</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="287"/>
+        <location filename="qthostsui.py" line="295"/>
         <source>Version</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="289"/>
+        <location filename="qthostsui.py" line="297"/>
         <source>Release</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="291"/>
+        <location filename="qthostsui.py" line="299"/>
         <source>Latest</source>
         <translation></translation>
     </message>
@@ -134,52 +133,52 @@
         <translation>Google Web Service (CN)</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="136"/>
+        <location filename="hostsutl.py" line="137"/>
         <source>google(us)</source>
         <translation>Google Web Service (US)</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="139"/>
+        <location filename="hostsutl.py" line="140"/>
         <source>activation-helper</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="142"/>
+        <location filename="hostsutl.py" line="147"/>
         <source>others</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="143"/>
+        <location filename="hostsutl.py" line="148"/>
         <source>adblock-hostsx</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="144"/>
+        <location filename="hostsutl.py" line="149"/>
         <source>adblock-mvps</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="145"/>
+        <location filename="hostsutl.py" line="150"/>
         <source>adblock-mwsl</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="146"/>
+        <location filename="hostsutl.py" line="151"/>
         <source>adblock-yoyo</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="524"/>
+        <location filename="hostsutl.py" line="537"/>
         <source>Building hosts file...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="322"/>
+        <location filename="hostsutl.py" line="330"/>
         <source>Backup File(*.bak)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="322"/>
+        <location filename="hostsutl.py" line="330"/>
         <source>Restore hosts</source>
         <translation></translation>
     </message>
@@ -194,13 +193,13 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="543"/>
+        <location filename="hostsutl.py" line="556"/>
         <source>Copying new hosts file to
   %s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="548"/>
+        <location filename="hostsutl.py" line="566"/>
         <source>Remove temporary file</source>
         <translation></translation>
     </message>
@@ -319,64 +318,89 @@ current hosts file.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="306"/>
+        <location filename="qthostsui.py" line="314"/>
         <source>Save with ANSI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="307"/>
+        <location filename="qthostsui.py" line="315"/>
         <source>Export to hosts file encoding by ANSI.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="308"/>
+        <location filename="qthostsui.py" line="316"/>
         <source>Save with UTF-8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="309"/>
+        <location filename="qthostsui.py" line="317"/>
         <source>Export to hosts file encoding by UTF-8.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="501"/>
+        <location filename="hostsutl.py" line="514"/>
         <source>Export hosts</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="501"/>
+        <location filename="hostsutl.py" line="514"/>
         <source>hosts File</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="137"/>
+        <location filename="hostsutl.py" line="138"/>
         <source>google-apis(cn)</source>
         <translation>Google API Service (CN)</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="138"/>
+        <location filename="hostsutl.py" line="139"/>
         <source>google-apis(us)</source>
         <translation>Google API Service (US)</translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="140"/>
+        <location filename="hostsutl.py" line="144"/>
         <source>wikipedia</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="hostsutl.py" line="141"/>
+        <location filename="hostsutl.py" line="146"/>
         <source>steam</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="311"/>
+        <location filename="qthostsui.py" line="319"/>
         <source>Copyleft (C) 2011-2014 &lt;a href=&quot;https://hosts.huhamhire.com/&quot;&gt;&lt;span style=&quot;text-decoration: none;color: #b1b1b1;&quot;&gt;huhamhire-hosts&lt;/span&gt;&lt;/a&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="qthostsui.py" line="312"/>
+        <location filename="qthostsui.py" line="320"/>
         <source>Powered by PyQT</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="136"/>
+        <source>google(hk)</source>
+        <translation>Google Web Service (HK)</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="141"/>
+        <source>facebook</source>
+        <translation>Facebook</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="142"/>
+        <source>twitter</source>
+        <translation>twitter</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="143"/>
+        <source>youtube</source>
+        <translation>YouTube</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="145"/>
+        <source>institutions</source>
+        <translation>Academy and Research institutions</translation>
     </message>
 </context>
 </TS>

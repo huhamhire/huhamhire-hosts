@@ -1,6 +1,7 @@
 SOURCES = hostsutl.py \
           qthostsui.py
-TRANSLATIONS = lang/en_US.ts \
+TRANSLATIONS = lang/de_DE.ts \
+               lang/en_US.ts \
                lang/zh_CN.ts \
                lang/zh_TW.ts
 INTERFACES = qthostsui.ui

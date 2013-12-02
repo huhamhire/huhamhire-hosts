@@ -133,11 +133,16 @@ class MainDialog(QtGui.QDialog):
     # Name of items from the function list to be localized
     __list_trans = [
         _translate("HostsUtlMain", "google(cn)", None),
+        _translate("HostsUtlMain", "google(hk)", None),
         _translate("HostsUtlMain", "google(us)", None),
         _translate("HostsUtlMain", "google-apis(cn)", None),
         _translate("HostsUtlMain", "google-apis(us)", None),
         _translate("HostsUtlMain", "activation-helper", None),
+        _translate("HostsUtlMain", "facebook", None),
+        _translate("HostsUtlMain", "twitter", None),
+        _translate("HostsUtlMain", "youtube", None),
         _translate("HostsUtlMain", "wikipedia", None),
+        _translate("HostsUtlMain", "institutions", None),
         _translate("HostsUtlMain", "steam", None),
         _translate("HostsUtlMain", "others", None),
         _translate("HostsUtlMain", "adblock-hostsx", None),
@@ -192,10 +197,10 @@ class MainDialog(QtGui.QDialog):
                 represents IPv4.
         """
         if self._ipv_id != ipv_id:
+            self._ipv_id = ipv_id
             if not RetrieveData.db_exists():
                 self.warning_no_datafile()
             else:
-                self._ipv_id = ipv_id
                 self.set_func_list(0)
                 self.refresh_func_list()
 
