@@ -14,7 +14,7 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "0.8.0"
+__version__ = "0.9.0"
 __author__ = "huhamhire <me@huhamhire.com>"
 
 import os
@@ -34,7 +34,7 @@ DESCRIPTION = "HostsUtl - Hosts Setup Utility"
 AUTHOR = "Hamhire Hu"
 AUTHOR_EMAIL ="develop@huhamhire.com",
 LICENSE = "Public Domain, Python, BSD, GPLv3 (see LICENSE)",
-URL = "http://hosts.huhamhire.com",
+URL = "https://hosts.huhamhire.com",
 CLASSIFIERS =  [
     "Development Status :: 4 - Beta",
     "Environment :: MacOS X",
@@ -69,6 +69,10 @@ DATA_FILES = [
         "lang/zh_TW.qm",
         ]
     ),
+    ("theme", [
+        "theme/darkdefault.qss",
+        ]
+    ),
     "LICENSE",
     "README.md",
     "network.conf",
@@ -80,7 +84,8 @@ if sys.argv > 1:
         # Pack up script package for Linux users
         file_path = lambda rel_path: SCRIPT_DIR + rel_path
         includes = [
-            "*.py", "lang/*.qm", "LICENSE", "README.md", "network.conf"]
+            "*.py", "lang/*.qm", "theme/*.qss", "LICENSE", "README.md",
+            "network.conf"]
         excludes = ["_*.py", ".gitattributes"]
         ex_files = []
         prefix = "HostsUtl-x11-gpl-"
@@ -112,7 +117,8 @@ if sys.argv > 1:
             files = glob.glob(file_path(name_format))
             for src_file in files:
                 if src_file not in ex_files:
-                    tar.add(src_file, src_file[rel_len:])
+                    tar_path = os.path.join(prefix + VERSION, src_file[rel_len:])
+                    tar.add(src_file, tar_path)
                     print src_file
         tar.close()
         exit(1)
@@ -169,7 +175,8 @@ if system == "Windows":
         PLAT = "x64"
     elif struct.calcsize("P") * 8 == 32:
         PLAT = "x86"
-    ZIP_NAME = DIR_NAME + '-win-gpl-' + VERSION + '-' + PLAT + ".zip"
+    DIR_NAME = DIR_NAME + '-win-gpl-' + VERSION + '-' + PLAT
+    ZIP_NAME = DIR_NAME + ".zip"
     ZIP_FILE = WORK_DIR + ZIP_NAME
     compressed = zipfile.ZipFile(ZIP_FILE, 'w', zipfile.ZIP_DEFLATED)
     for root, dirs, files in os.walk(DIST_DIR):
@@ -178,7 +185,7 @@ if system == "Windows":
             print "compressing: %s" % os.path.join(root, name)
             compressed.write(
                 os.path.join(root, name),
-                os.path.join(rel_path, name))
+                os.path.join(DIR_NAME, rel_path, name))
     compressed.close()
     # Move ZIP file to release directory
     RELEASE_PATH = RELEASE_DIR + ZIP_NAME
