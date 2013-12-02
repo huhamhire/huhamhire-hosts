@@ -173,7 +173,7 @@
         <location filename="hostsutl.py" line="965"/>
         <source>Notice: %i hosts entries has
   been applied in %ssecs.</source>
-        <translation>注意：共有 %i 条 hosts 条目在
+        <translation type="obsolete">注意：共有 %i 条 hosts 条目在
   %s秒内被插入到 hosts 文件中。</translation>
     </message>
     <message>
@@ -191,7 +191,7 @@
         <source>Incorrect Data file!
 Please use the &quot;Download&quot; key to
 fetch a new data file.</source>
-        <translation>数据文件错误！
+        <translation type="obsolete">数据文件错误！
 请点击“下载”按钮来获取
 新的数据文件。</translation>
     </message>
@@ -211,7 +211,7 @@ fetch a new data file.</source>
 hosts file.
 Please run this program as Administrator/root
 so it can modify your hosts file.</source>
-        <translation>您未获取修改系统 hosts 文件的
+        <translation type="obsolete">您未获取修改系统 hosts 文件的
 相关权限。
 请以管理员方式或者根用户运行本
 工具。</translation>
@@ -228,7 +228,7 @@ Please try another server.</source>
         <source>Data file not found!
 Please use the &quot;Download&quot; key to
 fetch a new data file.</source>
-        <translation>未找到数据文件！
+        <translation type="obsolete">未找到数据文件！
 请点击“下载”按钮来获取
 新的数据文件。</translation>
     </message>
@@ -245,7 +245,7 @@ to the hosts file on your system?
 This operation could not be reverted if
 you have not made a backup of your
 current hosts file.</source>
-        <translation>您确认继续执行当前操作以修改系统 hosts
+        <translation type="obsolete">您确认继续执行当前操作以修改系统 hosts
 文件吗？
 
 若先前未对 hosts 文件进行备份，该操作将
@@ -415,6 +415,56 @@ current hosts file.</source>
         <location filename="qthostsui.py" line="320"/>
         <source>Powered by PyQT</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="965"/>
+        <source>Notice: %i hosts entries has 
+  been applied in %ssecs.</source>
+        <translation>注意：共有 %i 条 hosts 条目在
+  %s秒内被插入到 hosts 文件中。</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="1098"/>
+        <source>Incorrect Data file!
+Please use the &quot;Download&quot; key to 
+fetch a new data file.</source>
+        <translation>数据文件错误！
+请点击“下载”按钮来获取
+新的数据文件。</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="1072"/>
+        <source>You do not have permissions to change the 
+hosts file.
+Please run this program as Administrator/root
+so it can modify your hosts file.</source>
+        <translation>您未获取修改系统 hosts 文件的
+相关权限。
+请以管理员方式或者根用户运行本
+工具。</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="1113"/>
+        <source>Data file not found!
+Please use the &quot;Download&quot; key to 
+fetch a new data file.</source>
+        <translation>未找到数据文件！
+请点击“下载”按钮来获取
+新的数据文件。</translation>
+    </message>
+    <message>
+        <location filename="hostsutl.py" line="1132"/>
+        <source>Are you sure you want to apply changes 
+to the hosts file on your system?
+
+This operation could not be reverted if 
+you have not made a backup of your 
+current hosts file.</source>
+        <translation>您确认继续执行当前操作以修改系统 hosts
+文件吗？
+
+若先前未对 hosts 文件进行备份，该操作将
+不可逆转。</translation>
     </message>
 </context>
 </TS>
