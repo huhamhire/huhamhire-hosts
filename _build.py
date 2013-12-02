@@ -117,7 +117,7 @@ if sys.argv > 1:
             files = glob.glob(file_path(name_format))
             for src_file in files:
                 if src_file not in ex_files:
-                    tar_path = os.path.join(prefix[:-1], src_file[rel_len:])
+                    tar_path = os.path.join(prefix + VERSION, src_file[rel_len:])
                     tar.add(src_file, tar_path)
                     print src_file
         tar.close()

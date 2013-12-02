@@ -549,7 +549,12 @@ class MainDialog(QtGui.QDialog):
             "Copying new hosts file to\n"
             "  %s", None)) % self.hostspath
         self.set_makemsg(msg)
-        shutil.copy2(filepath, self.hostspath)
+        try:
+            shutil.copy2(filepath, self.hostspath)
+        except IOError:
+            self.warning_permission()
+            os.remove(filepath)
+            return
         msg = unicode(_translate("HostsUtlMain",
             "Remove temporary file", None))
         self.set_makemsg(msg)
