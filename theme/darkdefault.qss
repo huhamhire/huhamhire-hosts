@@ -33,6 +33,7 @@ QWidget:item:selected
 
 QFrame
 {
+    border: 0px;
     background-color: transparent;
 }
 
@@ -77,12 +78,11 @@ QComboBox
     border-radius: 5;
 }
 
-QComboBox:hover,QPushButton:hover
+QComboBox:hover, QPushButton:hover
 {
     background-color: #5b5d5f;
     border: 2px solid QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #ffa02f, stop: 1 #d7801a);
 }
-
 
 QComboBox:on
 {

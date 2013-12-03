@@ -45,6 +45,21 @@ class RetrieveData(object):
     _database = None
 
     @classmethod
+    def db_exists(cls, database="hostslist.s3db"):
+        """Check if database exists - Class Method
+
+        Check whether the database file exists or not.
+
+        Args:
+            database (str): A string indicating the SQLite database file.
+                "hostslist.s3db" by default.
+
+        Returns:
+            A boolean indicating if the database file exists.
+        """
+        return os.path.isfile(database)
+
+    @classmethod
     def connect_db(cls, database="hostslist.s3db"):
         """Connect to database - Class Method
 

@@ -133,11 +133,16 @@ class MainDialog(QtGui.QDialog):
     # Name of items from the function list to be localized
     __list_trans = [
         _translate("HostsUtlMain", "google(cn)", None),
+        _translate("HostsUtlMain", "google(hk)", None),
         _translate("HostsUtlMain", "google(us)", None),
         _translate("HostsUtlMain", "google-apis(cn)", None),
         _translate("HostsUtlMain", "google-apis(us)", None),
         _translate("HostsUtlMain", "activation-helper", None),
+        _translate("HostsUtlMain", "facebook", None),
+        _translate("HostsUtlMain", "twitter", None),
+        _translate("HostsUtlMain", "youtube", None),
         _translate("HostsUtlMain", "wikipedia", None),
+        _translate("HostsUtlMain", "institutions", None),
         _translate("HostsUtlMain", "steam", None),
         _translate("HostsUtlMain", "others", None),
         _translate("HostsUtlMain", "adblock-hostsx", None),
@@ -164,7 +169,7 @@ class MainDialog(QtGui.QDialog):
         self.Ui = Ui
         self._trans = trans
         self.set_platform()
-        self.set_font()
+        self.set_style()
         self.set_stylesheet()
 
     def on_Mirror_changed(self, mirr_id):
@@ -193,8 +198,11 @@ class MainDialog(QtGui.QDialog):
         """
         if self._ipv_id != ipv_id:
             self._ipv_id = ipv_id
-            self.set_func_list(0)
-            self.refresh_func_list()
+            if not RetrieveData.db_exists():
+                self.warning_no_datafile()
+            else:
+                self.set_func_list(0)
+                self.refresh_func_list()
 
     def on_Selection_changed(self, item):
         """Change the function selection setting - Public Method
@@ -549,7 +557,12 @@ class MainDialog(QtGui.QDialog):
             "Copying new hosts file to\n"
             "  %s", None)) % self.hostspath
         self.set_makemsg(msg)
-        shutil.copy2(filepath, self.hostspath)
+        try:
+            shutil.copy2(filepath, self.hostspath)
+        except IOError:
+            self.warning_permission()
+            os.remove(filepath)
+            return
         msg = unicode(_translate("HostsUtlMain",
             "Remove temporary file", None))
         self.set_makemsg(msg)
@@ -615,19 +628,16 @@ class MainDialog(QtGui.QDialog):
         self.set_label_text(self.Ui.labelOSStat, "[%s]" % self.platform)
 
 
-    def set_font(self):
-        """Set font and window style - Public Method
+    def set_style(self):
+        """Set window style - Public Method
 
-        Set the font of the elements on the main dialog with a windows style
-        depending on this program.
+        Set the main dialog with a window style depending on the os platform.
         """
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
         system = self.platform
         if system == "Windows":
             pass
         elif system == "Linux":
-            font = QtGui.QFont()
-            font.setFamily("Sans")
-            self.setFont(font)
             # Set window style for sudo users.
             QtGui.QApplication.setStyle(
                 QtGui.QStyleFactory.create("Cleanlooks"))
@@ -1538,7 +1548,6 @@ def qt_main():
     app.installTranslator(trans)
     ui = Ui_HostsUtlMain()
     HostsUtlMain = MainDialog(ui, trans)
-    HostsUtlMain.setWindowFlags(QtCore.Qt.FramelessWindowHint)
     ui.setupUi(HostsUtlMain)
     HostsUtlMain.set_languages()
     if not HostsUtlMain.initd:
