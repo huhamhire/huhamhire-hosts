@@ -155,7 +155,7 @@ if system == "Windows":
         options = {"py2exe": WIN_OPTIONS},
         windows = [
             {"script": SCRIPT,
-             "icon_resources": [(1, "img/hosts_utl.ico")]
+             "icon_resources": [(1, "img/icons/hosts_utl.ico")]
             },
         ],
         description = DESCRIPTION,
@@ -208,7 +208,7 @@ elif system == "OS X":
     DIST_DIR = APP_PATH + "/Contents/"
     # Set build configuration
     MAC_OPTIONS = {
-        "iconfile": "img/hosts_utl.icns",
+        "iconfile": "img/icons/hosts_utl.icns",
         "includes": ["sip", "PyQt4.QtCore", "PyQt4.QtGui"],
         "excludes": [
             "PyQt4.QtDBus",
@@ -263,7 +263,7 @@ elif system == "OS X":
     # Clean work directory after build
     os.remove(DIST_DIR + "Resources/applet.icns")
     shutil.copy2(
-        SCRIPT_DIR + "img/hosts_utl.icns",
+        SCRIPT_DIR + "img/icons/hosts_utl.icns",
         DIST_DIR + "Resources/applet.icns")
     shutil.copy2(RES_DIR + "Info.plist", DIST_DIR + "Info.plist")
     shutil.rmtree(SCRIPT_DIR + "build/")
