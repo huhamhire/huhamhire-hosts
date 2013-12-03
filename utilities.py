@@ -78,8 +78,7 @@ class Utilities(object):
         hostname = socket.gethostname()
         if os.name == "nt":
             system = "Windows"
-            path = ''.join([os.getenv("WINDIR"),
-                "\\System32\\drivers\\etc\\hosts"])
+            path = os.getenv("WINDIR") + "\\System32\\drivers\\etc\\hosts"
             encode = "win_ansi"
         elif os.name == "posix":
             path = "/etc/hosts"
@@ -120,10 +119,7 @@ class Utilities(object):
                 return (os.environ['USERNAME'], True)
         else:
             # Check wirte privileges to the hosts file for current user
-            if oct(os.stat("/etc/hosts").st_mode)[-3:-2] >= "6":
-                w_flag = True
-            else:
-                w_flag = False
+            w_flag = os.access("/etc/hosts", os.W_OK)
             try:
                 return (os.environ['USERNAME'], w_flag)
             except KeyError:
