@@ -77,13 +77,6 @@ class HostsCursesUI(object):
         for i, color in enumerate(self.colorpairs):
             curses.init_pair(i + 1, *color)
 
-    def __del__(self):
-        # Clear up datafile
-        try:
-            RetrieveData.clear()
-        except:
-            pass
-
     def banner(self):
         screen = self.__stdscr.subwin(2, 80, 0, 0)
         screen.bkgd(' ', curses.color_pair(1))
@@ -158,12 +151,6 @@ class HostsCursesUI(object):
         screen.refresh()
 
     def select_func(self, pos=None, key_in=None):
-        screen = self.__stdscr.subwin(18, 26, 2, 26)
-        screen.bkgd(' ', curses.color_pair(4))
-        # Set local variable
-        normal = curses.A_NORMAL
-        select = curses.color_pair(5)
-        select += curses.A_BOLD
         list_height = 15
         ip = self.settings[1][1]
         # Key Press Operations
@@ -208,6 +195,22 @@ class HostsCursesUI(object):
                 item_inf = list_height - 1
             else:
                 item_inf = item_len
+        self.item_sup, self.item_inf = item_sup, item_inf
+
+        return self.show_funclist(pos)
+
+    def show_funclist(self, pos):
+        # Set UI variable
+        screen = self.__stdscr.subwin(18, 26, 2, 26)
+        screen.bkgd(' ', curses.color_pair(4))
+        normal = curses.A_NORMAL
+        select = curses.color_pair(5)
+        select += curses.A_BOLD
+        list_height = 15
+        # Set local variable
+        ip = self.settings[1][1]
+        item_len = len(self.func_items[ip])
+        item_sup, item_inf = self.item_sup, self.item_inf
         # Function list
         items_show = self.func_items[ip][item_sup:item_inf]
         items_selec = self.func_selec[ip][item_sup:item_inf]

@@ -24,7 +24,7 @@ from zipfile import BadZipfile
 
 class HostsCurses(object):
     _ipv_id = 0
-    _is_root = 0
+    _writable = 0
     _down_flag = 0
     _funcs = [[], []]
     _hostsinfo = []
@@ -48,7 +48,7 @@ class HostsCurses(object):
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
 
-    def init_main(self):
+    def __init__(self):
         # Set mirrors
         self.mirrors = Utilities.set_network("network.conf")
         self.set_platform()
@@ -63,7 +63,7 @@ class HostsCurses(object):
         except BadZipfile:
             pass
         # Check if current session have root privileges
-        self.check_root()
+        self.check_writable()
 
     def opt_session(self):
         window = HostsCursesUI()
@@ -74,6 +74,12 @@ class HostsCurses(object):
         window.settings[0][2] = self.mirrors
 
         window.section_daemon()
+
+        # Clear up datafile
+        try:
+            RetrieveData.clear()
+        except:
+            pass
 
     def set_platform(self):
         """Set OS info - Public Method
@@ -114,14 +120,14 @@ class HostsCurses(object):
         build = Utilities.timestamp_to_date(build)
         self.hostsinfo = [ver, build]
 
-    def check_root(self):
-        """Check root privileges - Public Method
+    def check_writable(self):
+        """Check write privileges - Public Method
 
-        Check if current session is ran with root privileges.
+        Check if current session has write privileges for the hosts file.
         """
-        is_root = Utilities.check_privileges()[1]
-        self._is_root = is_root
-        if not is_root:
+        writable = Utilities.check_privileges()[1]
+        self._writable = writable
+        if not writable:
             #self.warning_permission()
             pass
 
@@ -134,5 +140,4 @@ class HostsDownload(object):
 
 if __name__ == "__main__":
     main = HostsCurses()
-    main.init_main()
     main.opt_session()
