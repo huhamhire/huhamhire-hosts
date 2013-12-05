@@ -325,6 +325,11 @@ class HostsCursesUI(object):
                     confirm = self.confirm_win(i)
                 else:
                     self.check_update()
+        # Clear up datafile
+        try:
+            RetrieveData.clear()
+        except:
+            pass
 
     def sub_selection(self, pos):
         i_len = len(self.settings[pos][2])
