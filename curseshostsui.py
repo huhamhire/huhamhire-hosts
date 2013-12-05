@@ -58,14 +58,17 @@ class HostsCursesUI(object):
     statusinfo = [["Connection", "N/A", "GREEN"], ["OS", "N/A", "GREEN"]]
     hostsinfo = {"Version": "N/A", "Release": "N/A", "Latest": "N/A"}
     platform = []
+    update = {}
 
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
 
     item_sup = 0
     item_inf = 0
+    entry = None
 
-    def __init__(self):
+    def __init__(self, entry=None):
+        self.entry = entry
         locale.setlocale(locale.LC_ALL, '')
         self.__stdscr = curses.initscr()
         curses.start_color()
@@ -196,7 +199,6 @@ class HostsCursesUI(object):
             else:
                 item_inf = item_len
         self.item_sup, self.item_inf = item_sup, item_inf
-
         return self.show_funclist(pos)
 
     def show_funclist(self, pos):
@@ -331,8 +333,21 @@ class HostsCursesUI(object):
                 i = self.ops_keys.index(key_in)
                 if i > 1:
                     confirm = self.confirm_win(i)
+                elif i == 0:
+                    self.update = self.check_update()
+                elif i == 1:
+                    if self.update == {}:
+                        self.update = self.check_update()
+                    fetch_d = CursesFetchUpdate(self)
+                    fetch_d.get_file()
+                    try:
+                        RetrieveData.clear()
+                    except Exception, e:
+                        pass
+                    self.entry.__init__()
+                    self.entry.opt_session()
                 else:
-                    self.check_update()
+                    pass
 
     def sub_selection(self, pos):
         i_len = len(self.settings[pos][2])
@@ -500,3 +515,31 @@ class HostsCursesUI(object):
         self.hostsinfo["Latest"] = info["version"]
         self.status()
         return info
+
+class CursesFetchUpdate(object):
+    def __init__(self, parent):
+        mirror_id = parent.settings[0][1]
+        mirror = parent.settings[0][2][mirror_id]
+        self.url = mirror["update"] + parent.filename
+        self.path = "./" + parent.filename
+        self.tmp_path = self.path + ".download"
+        self.filesize = parent.update["size"]
+        self.parent = parent
+
+    def get_file(self):
+        socket.setdefaulttimeout(10)
+        try:
+            urllib.urlretrieve(self.url, self.tmp_path,
+                self.parent.process_bar)
+            self.replace_old()
+        except Exception, e:
+            raise e
+
+    def replace_old(self):
+        """Replace the old data file - Public Method
+
+        Overwrite the old hosts data file with the new one.
+        """
+        if os.path.isfile(self.path):
+            os.remove(self.path)
+        os.rename(self.tmp_path, self.path)

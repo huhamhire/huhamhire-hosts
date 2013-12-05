@@ -66,7 +66,7 @@ class HostsCurses(object):
         self.check_writable()
 
     def opt_session(self):
-        window = HostsCursesUI()
+        window = HostsCursesUI(self)
         window.func_items = self.choice
         window.func_selec = self._funcs
         window.hostsinfo["Version"] = self.hostsinfo[0]
@@ -130,13 +130,6 @@ class HostsCurses(object):
         if not writable:
             #self.warning_permission()
             pass
-
-
-class HostsDownload(object):
-    def get_file(self, url, path, ui_class):
-        socket.setdefaulttimeout(10)
-        urllib.urlretrieve(url, path, ui_class.process_bar)
-
 
 if __name__ == "__main__":
     main = HostsCurses()

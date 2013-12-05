@@ -1254,9 +1254,9 @@ class QSubFetchUpdate(QtCore.QThread):
         """
         self.prog_trigger.emit(0, unicode(_translate(
             "HostsUtlMain", "Connecting...", None)))
-        self.fetch_file(self.url, self.path)
+        self.fetch_file()
 
-    def fetch_file(self, url, path):
+    def fetch_file(self):
         """Fetch the data file - Public Method
 
         Retrieve the latest data file to a specified path ({path}) by url
@@ -1270,7 +1270,7 @@ class QSubFetchUpdate(QtCore.QThread):
         """
         socket.setdefaulttimeout(10)
         try:
-            urllib.urlretrieve(url, self.tmp_path, self.set_progress)
+            urllib.urlretrieve(self.url, self.tmp_path, self.set_progress)
             self.replace_old()
             self.finish_trigger.emit(1, 0)
         except:
