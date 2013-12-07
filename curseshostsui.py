@@ -19,11 +19,10 @@ __all__ = [ 'HostsCursesUI' ]
 import curses
 import locale
 
-import os, sys
+import os
 import socket
 import time
 
-import math
 import urllib
 import json
 
@@ -35,9 +34,13 @@ class HostsCursesUI(object):
     __title = "HOSTS SETUP UTILITY"
     __copyleft = "v%s Copyleft 2011-2013, Huhamhire-hosts Team" % __version__
 
+    _writable = 0
     _make_cfg = {}
     _make_path = "./hosts"
     _sys_eol = ""
+    _funcs = [[], []]
+    choice = [[], []]
+    slices = [[], []]
 
     colorpairs = [(curses.COLOR_WHITE, curses.COLOR_BLUE),
                   (curses.COLOR_WHITE, curses.COLOR_RED),
@@ -50,9 +53,7 @@ class HostsCursesUI(object):
                   (curses.COLOR_RED, curses.COLOR_WHITE),]
     ops_keys = [curses.KEY_F5, curses.KEY_F6, curses.KEY_F10]
     hotkeys = [curses.KEY_UP, curses.KEY_DOWN, 10, 32]
-    func_items = [[], []]
-    func_selec = [[], []]
-    slices = [[], []]
+
     settings = [["Server", 0, []],
                 ["IP Version", 0, ["IPv4", "IPv6"]]]
     funckeys = [["", "Select Item"], ["Tab", "Select Field"],
@@ -85,6 +86,16 @@ class HostsCursesUI(object):
         curses.use_default_colors()
         for i, color in enumerate(self.colorpairs):
             curses.init_pair(i + 1, *color)
+
+    def check_writable(self):
+        """Check write privileges - Public Method
+
+        Check if current session has write privileges for the hosts file.
+        """
+        self._writable = Utilities.check_privileges()[1]
+        if not self._writable:
+            self.confirm_win(3)
+            exit()
 
     def banner(self):
         screen = self.__stdscr.subwin(2, 80, 0, 0)
@@ -163,7 +174,7 @@ class HostsCursesUI(object):
         list_height = 15
         ip = self.settings[1][1]
         # Key Press Operations
-        item_len = len(self.func_items[ip])
+        item_len = len(self.choice[ip])
         item_sup, item_inf = self.item_sup, self.item_inf
         if pos != None:
             if item_len > list_height:
@@ -191,12 +202,12 @@ class HostsCursesUI(object):
                     item_inf -= 2 if item_inf == item_len else 1
                     item_sup -= 1
             elif key_in in [10, 32]:
-                self.func_selec[ip][pos] = not self.func_selec[ip][pos]
-                mutex = RetrieveData.get_ids(self.func_items[ip][pos][2])
-                for c_id, c in enumerate(self.func_items[ip]):
-                    if c[0] == self.func_items[ip][pos][0]:
-                        if c[1] in mutex and self.func_selec[ip][c_id] == 1:
-                            self.func_selec[ip][c_id] = 0
+                self._funcs[ip][pos] = not self._funcs[ip][pos]
+                mutex = RetrieveData.get_ids(self.choice[ip][pos][2])
+                for c_id, c in enumerate(self.choice[ip]):
+                    if c[0] == self.choice[ip][pos][0]:
+                        if c[1] in mutex and self._funcs[ip][c_id] == 1:
+                            self._funcs[ip][c_id] = 0
             self.info(pos, 1)
         else:
             item_sup = 0
@@ -217,11 +228,11 @@ class HostsCursesUI(object):
         list_height = 15
         # Set local variable
         ip = self.settings[1][1]
-        item_len = len(self.func_items[ip])
+        item_len = len(self.choice[ip])
         item_sup, item_inf = self.item_sup, self.item_inf
         # Function list
-        items_show = self.func_items[ip][item_sup:item_inf]
-        items_selec = self.func_selec[ip][item_sup:item_inf]
+        items_show = self.choice[ip][item_sup:item_inf]
+        items_selec = self._funcs[ip][item_sup:item_inf]
         for p, item in enumerate(items_show):
             sel_ch = '+' if items_selec[p] else ' '
             item_str = ("[%s] %s" % (sel_ch, item[3])).ljust(23)
@@ -262,7 +273,7 @@ class HostsCursesUI(object):
         normal = curses.A_NORMAL
         if tab:
             ip = self.settings[1][1]
-            info_str = self.func_items[ip][pos][3]
+            info_str = self.choice[ip][pos][3]
         else:
             info_str = self.settings[pos][0]
         # Clear Expired Infomotion
@@ -306,6 +317,8 @@ class HostsCursesUI(object):
 
     def section_daemon(self):
         screen = self.__stdscr.subwin(0, 0, 0, 0)
+        # Check if current session have root privileges
+        self.check_writable()
         screen.keypad(1)
         # Draw Menu
         self.banner()
@@ -328,7 +341,7 @@ class HostsCursesUI(object):
                 self.check_connection(test)
             key_in = screen.getch()
             if key_in == 9:
-                if self.func_items == [[], []]:
+                if self.choice == [[], []]:
                     tab = 0
                 else:
                     tab = not tab
@@ -368,7 +381,7 @@ class HostsCursesUI(object):
         ch_parts = (0x08, 0x20 if ip_flag else 0x10, 0x40)
         slices = self.slices[ip_flag]
         for i, part in enumerate(ch_parts):
-            part_cfg = self.func_selec[ip_flag][slices[i]:slices[i + 1]]
+            part_cfg = self._funcs[ip_flag][slices[i]:slices[i + 1]]
             part_word = 0
             for i, cfg in enumerate(part_cfg):
                 part_word += cfg << i
@@ -454,9 +467,11 @@ class HostsCursesUI(object):
         # Set local variable
         normal = curses.A_NORMAL
         select = curses.A_REVERSE
+        choices = ["OK", "Cancel"]
         if op == 2:
             message = "Apply Changes to hosts file?"
-            choices = ["OK", "Cancel"]
+        elif op == 3:
+            message = "Please check your privilege!"
         # Draw subwindow frame
         screen.addstr(1, 2, message.center(36), normal)
         screen.hline(2, 1, curses.ACS_HLINE, 38)

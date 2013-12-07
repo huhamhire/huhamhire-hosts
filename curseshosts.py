@@ -62,13 +62,11 @@ class HostsCurses(object):
             pass
         except BadZipfile:
             pass
-        # Check if current session have root privileges
-        self.check_writable()
 
     def opt_session(self):
         window = HostsCursesUI(self)
-        window.func_items = self.choice
-        window.func_selec = self._funcs
+        window._funcs = self._funcs
+        window.choice = self.choice
         window.slices = self.slices
         window._sys_eol = self._sys_eol
         window.hostsinfo["Version"] = self.hostsinfo[0]
@@ -121,17 +119,6 @@ class HostsCurses(object):
         build = info["Buildtime"]
         build = Utilities.timestamp_to_date(build)
         self.hostsinfo = [ver, build]
-
-    def check_writable(self):
-        """Check write privileges - Public Method
-
-        Check if current session has write privileges for the hosts file.
-        """
-        writable = Utilities.check_privileges()[1]
-        self._writable = writable
-        if not writable:
-            #self.warning_permission()
-            pass
 
 if __name__ == "__main__":
     main = HostsCurses()
