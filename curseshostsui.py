@@ -333,6 +333,8 @@ class HostsCursesUI(object):
                 i = self.ops_keys.index(key_in)
                 if i > 1:
                     confirm = self.confirm_win(i)
+                    if confirm:
+                        pass
                 elif i == 0:
                     self.update = self.check_update()
                 elif i == 1:
@@ -346,6 +348,7 @@ class HostsCursesUI(object):
                         pass
                     self.entry.__init__()
                     self.entry.opt_session()
+                    return
                 else:
                     pass
 
@@ -450,8 +453,8 @@ class HostsCursesUI(object):
                 tab = [1, 0][tab]
             if key_in in [ord('a'), ord('c')]:
                 key_in -= (ord('a') - ord('A'))
-            if key_in in [ord('A'), ord('C')]:
-                return [ord('A'), ord('C')].index(key_in)
+            if key_in in [ord('O'), ord('C')]:
+                return [ord('O'), ord('C')].index(key_in)
             if key_in in [10, 32]:
                 return tab
 
@@ -543,3 +546,115 @@ class CursesFetchUpdate(object):
         if os.path.isfile(self.path):
             os.remove(self.path)
         os.rename(self.tmp_path, self.path)
+
+class CursesMakeHosts(object):
+    mod_num = 0
+    make_cfg = {}
+    eol = ""
+
+    def __init__(self, parent=None):
+        """Initialize a new instance of this class - Private Method
+
+        Fetch settings from the main dialog to make a new hosts file.
+
+        Args:
+            parent (obj): An instance of MainDialog object to get settings
+                from.
+        """
+        self.make_cfg = parent._make_cfg
+        make_path = parent._make_path
+        self.hostname = parent.hostname
+        self.eol = parent._sys_eol
+        self.hosts_file = open("hosts", "wb")
+
+    def run(self):
+        """Make new hosts file - Public Method
+
+        Operations to retrieve data from the data file and make the new hosts
+        file for current system.
+        """
+        RetrieveData.connect_db()
+        start_time = time.time()
+        self.write_head()
+        self.write_info()
+        self.get_hosts(self.make_cfg)
+        self.hosts_file.close()
+        RetrieveData.disconnect_db()
+
+    def get_hosts(self, make_cfg):
+        """Make hosts by user config - Public Method
+
+        Make the new hosts file by the configuration ({make_cfg}) from
+        function list on the main dialog.
+
+        Args:
+            make_cfg (dict): A dictionary containing module settings in byte
+                word format.
+        """
+        for part_id in sorted(make_cfg.keys()):
+            mod_cfg = make_cfg[part_id]
+            if not RetrieveData.chk_mutex(part_id, mod_cfg):
+                return
+            mods = RetrieveData.get_ids(mod_cfg)
+            for mod_id in mods:
+                self.mod_num += 1
+                if part_id == 0x02:
+                    self.write_localhost_mod(part_id, mod_id)
+                else:
+                    self.write_common_mod(part_id, mod_id)
+
+    def write_info(self):
+        """Write info section - Public Method
+
+        Write the information part of new hosts file.
+        """
+        info = RetrieveData.get_info()
+        info_lines = ["#"]
+        info_lines.append("# %s: %s" % ("Version", info["Version"]))
+        info_lines.append("# %s: %s" % ("Buildtime", info["Buildtime"]))
+        info_lines.append("# %s: %s" % ("Applytime", int(self.maketime)))
+        info_lines.append("#")
+        for line in info_lines:
+            self.hosts_file.write("%s%s" % (line, self.eol))
+
+    def write_common_mod(self, part_id, mod_id):
+        """Write module section - Public Method
+
+        Write hosts entries in a specified module ({mod_id}) from a specified
+        part ({part_id}) of the data file to the new hosts file.
+
+        Args:
+            part_id (int): An integer indicating the index number of a part
+                in the data file.
+            mod_id (int): An integer indicating the index number of a module
+                in the data file.
+        """
+        hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
+        self.info_trigger.emit(mod_name, self.mod_num)
+        self.hosts_file.write(
+            "%s# Section Start: %s%s" % (self.eol, mod_name, self.eol))
+        for host in hosts:
+            self.hosts_file.write("%s %s%s" % (host[0], host[1], self.eol))
+        self.hosts_file.write("# Section End: %s%s" % (mod_name, self.eol))
+
+    def write_localhost_mod(self, part_id, mod_id):
+        """Write localhost section - Public Method
+
+        Write hosts entries in a localhost module ({mod_id}) from a specified
+        part ({part_id}) of the data file to the new hosts file.
+
+        Args:
+            part_id (int): An integer indicating the index number of a part
+                in the data file.
+            mod_id (int): An integer indicating the index number of a module
+                in the data file.
+        """
+        hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
+        self.info_trigger.emit(mod_name, self.mod_num)
+        self.hosts_file.write(
+            "%s# Section Start: Localhost%s" % (self.eol, self.eol))
+        for host in hosts:
+            if "#Replace" in host[1]:
+                host = (host[0], self.hostname)
+            self.hosts_file.write("%s %s%s" % (host[0], host[1], self.eol))
+        self.hosts_file.write("# Section End: Localhost%s" % (self.eol))
