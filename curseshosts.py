@@ -69,6 +69,8 @@ class HostsCurses(object):
         window = HostsCursesUI(self)
         window.func_items = self.choice
         window.func_selec = self._funcs
+        window.slices = self.slices
+        window._sys_eol = self._sys_eol
         window.hostsinfo["Version"] = self.hostsinfo[0]
         window.hostsinfo["Release"] = self.hostsinfo[1]
         window.settings[0][2] = self.mirrors

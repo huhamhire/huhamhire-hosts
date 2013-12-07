@@ -21,6 +21,7 @@ import locale
 
 import os, sys
 import socket
+import time
 
 import math
 import urllib
@@ -33,6 +34,10 @@ class HostsCursesUI(object):
     __stdscr = ''
     __title = "HOSTS SETUP UTILITY"
     __copyleft = "v%s Copyleft 2011-2013, Huhamhire-hosts Team" % __version__
+
+    _make_cfg = {}
+    _make_path = "./hosts"
+    _sys_eol = ""
 
     colorpairs = [(curses.COLOR_WHITE, curses.COLOR_BLUE),
                   (curses.COLOR_WHITE, curses.COLOR_RED),
@@ -47,6 +52,7 @@ class HostsCursesUI(object):
     hotkeys = [curses.KEY_UP, curses.KEY_DOWN, 10, 32]
     func_items = [[], []]
     func_selec = [[], []]
+    slices = [[], []]
     settings = [["Server", 0, []],
                 ["IP Version", 0, ["IPv4", "IPv6"]]]
     funckeys = [["", "Select Item"], ["Tab", "Select Field"],
@@ -334,23 +340,40 @@ class HostsCursesUI(object):
                 if i > 1:
                     confirm = self.confirm_win(i)
                     if confirm:
-                        pass
+                        self.set_cfgbytes()
+                        maker = CursesMakeHosts(self)
+                        maker.make()
                 elif i == 0:
                     self.update = self.check_update()
                 elif i == 1:
                     if self.update == {}:
                         self.update = self.check_update()
-                    fetch_d = CursesFetchUpdate(self)
-                    fetch_d.get_file()
-                    try:
-                        RetrieveData.clear()
-                    except Exception, e:
-                        pass
-                    self.entry.__init__()
-                    self.entry.opt_session()
+                    self.fetch_update()
                     return
                 else:
                     pass
+
+    def set_cfgbytes(self):
+        """Set configuration byte words - Public Method
+
+        Calculate the module configuration byte words by the selection from
+        function list on the main dialog.
+        """
+        ip_flag = self.settings[1][1]
+        selection = {}
+        localhost_word = {
+            "Windows": 0x0001, "Linux": 0x0002,
+            "Unix": 0x0002, "OS X": 0x0004}[self.platform[0]]
+        selection[0x02] = localhost_word
+        ch_parts = (0x08, 0x20 if ip_flag else 0x10, 0x40)
+        slices = self.slices[ip_flag]
+        for i, part in enumerate(ch_parts):
+            part_cfg = self.func_selec[ip_flag][slices[i]:slices[i + 1]]
+            part_word = 0
+            for i, cfg in enumerate(part_cfg):
+                part_word += cfg << i
+            selection[part] = part_word
+        self._make_cfg = selection
 
     def sub_selection(self, pos):
         i_len = len(self.settings[pos][2])
@@ -453,10 +476,10 @@ class HostsCursesUI(object):
                 tab = [1, 0][tab]
             if key_in in [ord('a'), ord('c')]:
                 key_in -= (ord('a') - ord('A'))
-            if key_in in [ord('O'), ord('C')]:
-                return [ord('O'), ord('C')].index(key_in)
+            if key_in in [ord('C'), ord('O')]:
+                return [ord('C'), ord('O')].index(key_in)
             if key_in in [10, 32]:
-                return tab
+                return not tab
 
     def check_connection(self, url):
         # Draw Shadow
@@ -492,11 +515,11 @@ class HostsCursesUI(object):
 
     def check_update(self):
         # Draw Shadow
-        shadow = curses.newwin(3, 30, 11, 21)
+        shadow = curses.newwin(3, 30, 11, 24)
         shadow.bkgd(' ', curses.color_pair(8))
         shadow.refresh()
         # Draw Subwindow
-        screen = curses.newwin(3, 30, 10, 20)
+        screen = curses.newwin(3, 30, 10, 23)
         screen.box()
         screen.bkgd(' ', curses.color_pair(2))
         screen.keypad(1)
@@ -518,6 +541,30 @@ class HostsCursesUI(object):
         self.hostsinfo["Latest"] = info["version"]
         self.status()
         return info
+
+    def fetch_update(self):
+        # Draw Shadow
+        shadow = curses.newwin(3, 30, 11, 24)
+        shadow.bkgd(' ', curses.color_pair(8))
+        shadow.refresh()
+        # Draw Subwindow
+        screen = curses.newwin(3, 30, 10, 23)
+        screen.box()
+        screen.bkgd(' ', curses.color_pair(2))
+        screen.keypad(1)
+
+        normal = curses.A_NORMAL
+        screen.addstr(1, 9, "Downloading...", normal)
+        screen.refresh()
+
+        fetch_d = CursesFetchUpdate(self)
+        fetch_d.get_file()
+        try:
+            RetrieveData.clear()
+        except Exception, e:
+            pass
+        self.entry.__init__()
+        self.entry.opt_session()
 
 class CursesFetchUpdate(object):
     def __init__(self, parent):
@@ -563,18 +610,18 @@ class CursesMakeHosts(object):
         """
         self.make_cfg = parent._make_cfg
         make_path = parent._make_path
-        self.hostname = parent.hostname
+        self.hostname = parent.platform[1]
         self.eol = parent._sys_eol
         self.hosts_file = open("hosts", "wb")
 
-    def run(self):
+    def make(self):
         """Make new hosts file - Public Method
 
         Operations to retrieve data from the data file and make the new hosts
         file for current system.
         """
         RetrieveData.connect_db()
-        start_time = time.time()
+        self.maketime = time.time()
         self.write_head()
         self.write_info()
         self.get_hosts(self.make_cfg)
@@ -603,6 +650,14 @@ class CursesMakeHosts(object):
                 else:
                     self.write_common_mod(part_id, mod_id)
 
+    def write_head(self):
+        """Write head section - Public Method
+
+        Write the head part of new hosts file.
+        """
+        for head_str in RetrieveData.get_head():
+            self.hosts_file.write("%s%s" % (head_str[0], self.eol))
+
     def write_info(self):
         """Write info section - Public Method
 
@@ -630,7 +685,6 @@ class CursesMakeHosts(object):
                 in the data file.
         """
         hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
-        self.info_trigger.emit(mod_name, self.mod_num)
         self.hosts_file.write(
             "%s# Section Start: %s%s" % (self.eol, mod_name, self.eol))
         for host in hosts:
@@ -650,7 +704,6 @@ class CursesMakeHosts(object):
                 in the data file.
         """
         hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
-        self.info_trigger.emit(mod_name, self.mod_num)
         self.hosts_file.write(
             "%s# Section Start: Localhost%s" % (self.eol, self.eol))
         for host in hosts:
