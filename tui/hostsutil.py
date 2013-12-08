@@ -18,63 +18,25 @@ from curses_d import CursesDeamon
 from retrievedata import RetrieveData
 from utilities import Utilities
 
-class HostsCurses(object):
-    _ipv_id = 0
-    _writable = 0
+class HostsUtil(CursesDeamon):
     _down_flag = 0
-    _funcs = [[], []]
     _hostsinfo = []
-    _make_cfg = {}
-    _make_mode = ""
-    _make_path = "./hosts"
-    _sys_eol = ""
     _update = {}
-    hostsinfo = ["N/A", "N/A"]
-
-    choice = [[], []]
-    slices = [[], []]
-    # OS related configuration
-    platform = ''
-    hostname = ''
-    hostspath = ''
-    # Mirror related configuration
-    _mirr_id = 0
-    mirrors = []
-    # Data file related configuration
-    filename = "hostslist.data"
-    infofile = "hostsinfo.json"
 
     def __init__(self):
+        super(HostsUtil, self).__init__()
         # Set mirrors
-        self.mirrors = Utilities.set_network("network.conf")
-        self.set_platform()
+        self.settings[0][2] = Utilities.set_network("network.conf")
         # Read data file and set function list
         try:
             RetrieveData.unpack()
             RetrieveData.connect_db()
+            self.set_platform()
             self.set_func_list()
             self.set_info()
         except IOError:
             pass
         except BadZipfile:
-            pass
-
-    def opt_session(self):
-        window = CursesDeamon(self)
-        window._funcs = self._funcs
-        window.choice = self.choice
-        window.slices = self.slices
-        window._sys_eol = self._sys_eol
-        window.hostsinfo["Version"] = self.hostsinfo[0]
-        window.hostsinfo["Release"] = self.hostsinfo[1]
-        window.settings[0][2] = self.mirrors
-
-        window.section_daemon()
-
-        # Clear up datafile
-        try:
-            RetrieveData.clear()
-        except:
             pass
 
     def set_platform(self):
@@ -85,12 +47,22 @@ class HostsCurses(object):
         system, hostname, path, encode, flag = Utilities.check_platform()
         color = "GREEN" if flag else "RED"
         self.platform = system
+        self.statusinfo[1][1] = system
         self.hostname = hostname
         self.hostspath = path
+        self.statusinfo[1][2] = color
         if encode == "win_ansi":
             self._sys_eol = "\r\n"
         else:
             self._sys_eol = "\n"
+
+    def startutil(self):
+        self.session_daemon()
+        # Clear up datafile
+        try:
+            RetrieveData.clear()
+        except:
+            pass
 
     def set_func_list(self):
         for ip in range(2):
@@ -111,11 +83,10 @@ class HostsCurses(object):
         Set the information of the current local data file.
         """
         info = RetrieveData.get_info()
-        ver = info["Version"]
         build = info["Buildtime"]
-        build = Utilities.timestamp_to_date(build)
-        self.hostsinfo = [ver, build]
+        self.hostsinfo["Version"] = info["Version"]
+        self.hostsinfo["Release"] = Utilities.timestamp_to_date(build)
 
 if __name__ == "__main__":
-    main = HostsCurses()
-    main.opt_session()
+    main = HostsUtil()
+    main.startutil()

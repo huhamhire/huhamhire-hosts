@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from tui.curseshosts import HostsCurses
+from tui.hostsutil import HostsUtil
 
 if __name__ == "__main__":
-    main = HostsCurses()
-    main.opt_session()
+    main = HostsUtil()
+    main.startutil()

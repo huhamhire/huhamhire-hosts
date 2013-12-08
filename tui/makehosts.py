@@ -33,7 +33,7 @@ class MakeHosts(object):
                 from.
         """
         self.make_cfg = parent._make_cfg
-        self.hostname = parent.platform[1]
+        self.hostname = parent.hostname
         self.eol = parent._sys_eol
         self.hosts_file = open("hosts", "wb")
 

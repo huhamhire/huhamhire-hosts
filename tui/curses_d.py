@@ -29,11 +29,19 @@ from retrievedata import RetrieveData
 from utilities import Utilities
 
 class CursesDeamon(CursesUI):
-    entry = None
+    _writable = 0
+    # OS related configuration
+    platform = ''
+    hostname = ''
+    hostspath = ''
 
-    def __init__(self, entry=None):
-        self.entry = entry
+    _ops_keys = [curses.KEY_F5, curses.KEY_F6, curses.KEY_F10]
+    _hot_keys = [curses.KEY_UP, curses.KEY_DOWN, 10, 32]
+
+    def __init__(self):
         super(CursesDeamon, self).__init__()
+        # Check if current session have root privileges
+        self.check_writable()
 
     def check_writable(self):
         """Check write privileges - Public Method
@@ -45,10 +53,8 @@ class CursesDeamon(CursesUI):
             self.confirm_dialog("Please check your privilege!")
             exit()
 
-    def section_daemon(self):
+    def session_daemon(self):
         screen = self._stdscr.subwin(0, 0, 0, 0)
-        # Check if current session have root privileges
-        self.check_writable()
         screen.keypad(1)
         # Draw Menu
         self.banner()
@@ -57,7 +63,7 @@ class CursesDeamon(CursesUI):
         key_in = None
         tab = 0
         pos = 0
-        hot_keys = self.hotkeys
+        hot_keys = self._hot_keys
         tab_entry = [self.configure_settings, self.select_func]
         while key_in != 27:
             self.setup_menu()
@@ -66,7 +72,6 @@ class CursesDeamon(CursesUI):
             for i, sec in enumerate(tab_entry):
                 tab_entry[i](pos if i == tab else None)
             if key_in == None:
-                self.platform = self.check_platform()
                 test = self.settings[0][2][0]["test_url"]
                 self.check_connection(test)
             key_in = screen.getch()
@@ -78,8 +83,8 @@ class CursesDeamon(CursesUI):
                 pos = 0
             elif key_in in hot_keys:
                 pos = tab_entry[tab](pos, key_in)
-            elif key_in in self.ops_keys:
-                i = self.ops_keys.index(key_in)
+            elif key_in in self._ops_keys:
+                i = self._ops_keys.index(key_in)
                 if i > 1:
                     msg = "Apply Changes to hosts file?"
                     confirm = self.confirm_dialog(msg)
@@ -146,12 +151,25 @@ class CursesDeamon(CursesUI):
         self._item_sup, self._item_inf = item_sup, item_inf
         return self.show_funclist(pos)
 
-    def check_platform(self):
-        plat = Utilities.check_platform()
-        self.statusinfo[1] = [self.statusinfo[1][0], plat[0],
-            "GREEN" if plat[4] else "RED"]
-        self.status()
-        return plat
+    def sub_selection(self, pos):
+        screen = self.sub_selection_dialog(pos)
+        i_pos = self.settings[pos][1]
+        # Key Press Operations
+        id_num = range(len(self.settings[pos][2]))
+        key_in = None
+        while key_in != 27:
+            self.sub_selection_dialog_items(pos, screen)
+            key_in = screen.getch()
+            if key_in == curses.KEY_DOWN:
+                i_pos = list(id_num[1:] + id_num[:1])[i_pos]
+            elif key_in == curses.KEY_UP:
+                i_pos = list(id_num[-1:] + id_num[:-1])[i_pos]
+            elif key_in in [10, 32]:
+                if pos == 0 and i_pos != self.settings[pos][1]:
+                    test = self.settings[pos][2][i_pos]["test_url"]
+                    self.check_connection(test)
+                self.settings[pos][1] = i_pos
+                return
 
     def check_connection(self, url):
         self.operation_message("Checking Server Status...")
@@ -190,7 +208,7 @@ class CursesDeamon(CursesUI):
         except Exception, e:
             pass
         self.entry.__init__()
-        self.entry.opt_session()
+        self.entry.startutil()
 
     def set_cfgbytes(self):
         """Set configuration byte words - Public Method
@@ -202,7 +220,7 @@ class CursesDeamon(CursesUI):
         selection = {}
         localhost_word = {
             "Windows": 0x0001, "Linux": 0x0002,
-            "Unix": 0x0002, "OS X": 0x0004}[self.platform[0]]
+            "Unix": 0x0002, "OS X": 0x0004}[self.platform]
         selection[0x02] = localhost_word
         ch_parts = (0x08, 0x20 if ip_flag else 0x10, 0x40)
         slices = self.slices[ip_flag]
@@ -221,9 +239,8 @@ class CursesDeamon(CursesUI):
         finished.
         """
         filepath = "hosts"
-        hostspath = self.platform[2]
         try:
-            shutil.copy2(filepath, hostspath)
+            shutil.copy2(filepath, self.hostspath)
         except IOError:
             os.remove(filepath)
             return

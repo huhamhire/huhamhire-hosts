@@ -23,13 +23,12 @@ from hostsutl import __version__
 
 class CursesUI(object):
     __title = "HOSTS SETUP UTILITY"
-    __copyleft = "v%s Copyleft 2011-2013, Huhamhire-hosts Team" % __version__
+    __copyleft = "v%s Copyleft 2011-2014, huhamhire-hosts Team" % __version__
 
     _stdscr = ''
     _item_sup = 0
     _item_inf = 0
 
-    _writable = 0
     _make_cfg = {}
     _make_path = "./hosts"
     _sys_eol = ""
@@ -46,8 +45,6 @@ class CursesUI(object):
                   (curses.COLOR_GREEN, curses.COLOR_WHITE),
                   (curses.COLOR_WHITE, curses.COLOR_BLACK),
                   (curses.COLOR_RED, curses.COLOR_WHITE),]
-    ops_keys = [curses.KEY_F5, curses.KEY_F6, curses.KEY_F10]
-    hotkeys = [curses.KEY_UP, curses.KEY_DOWN, 10, 32]
 
     settings = [["Server", 0, []],
                 ["IP Version", 0, ["IPv4", "IPv6"]]]
@@ -55,11 +52,8 @@ class CursesUI(object):
                 ["Enter", "Set Item"], ["F5", "Check Update"],
                 ["F6", "Get Update"], ["F10", "Apply Changes"],
                 ["Esc", "Exit"]]
-    subtitles = [["Configure Settings", (1, 2)], ["Status", (8, 2)],
-                 ["Hosts File", (13, 2)], ["Select Functions", (1, 28)]]
     statusinfo = [["Connection", "N/A", "GREEN"], ["OS", "N/A", "GREEN"]]
     hostsinfo = {"Version": "N/A", "Release": "N/A", "Latest": "N/A"}
-    platform = []
     update = {}
 
     filename = "hostslist.data"
@@ -247,9 +241,8 @@ class CursesUI(object):
         screen.addstr(1, 2, prog_bar, normal)
         screen.refresh()
 
-    def sub_selection(self, pos):
+    def sub_selection_dialog(self, pos):
         i_len = len(self.settings[pos][2])
-        i_pos = self.settings[pos][1]
         # Draw Shadow
         shadow = curses.newwin(i_len + 2, 18, 13 - i_len / 2, 31)
         shadow.bkgd(' ', curses.color_pair(8))
@@ -264,26 +257,17 @@ class CursesUI(object):
         select = normal + curses.A_BOLD
         # Title of Subwindow
         screen.addstr(0, 3, self.settings[pos][0].center(12), normal)
-        # Key Press Operations
-        id_num = range(len(self.settings[pos][2]))
-        key_in = None
-        while key_in != 27:
-            for p, item in enumerate(self.settings[pos][2]):
-                item_str = item if pos else item["tag"]
-                screen.addstr(1 + p, 2, item_str,
-                    select if p == i_pos else normal)
-            screen.refresh()
-            key_in = screen.getch()
-            if key_in == curses.KEY_DOWN:
-                i_pos = list(id_num[1:] + id_num[:1])[i_pos]
-            elif key_in == curses.KEY_UP:
-                i_pos = list(id_num[-1:] + id_num[:-1])[i_pos]
-            elif key_in in [10, 32]:
-                if pos == 0 and i_pos != self.settings[pos][1]:
-                    test = self.settings[pos][2][i_pos]["test_url"]
-                    self.check_connection(test)
-                self.settings[pos][1] = i_pos
-                return
+        return screen
+
+    def sub_selection_dialog_items(self, pos, screen):
+        # Set local variable
+        normal = curses.A_NORMAL
+        select = normal + curses.A_BOLD
+        for p, item in enumerate(self.settings[pos][2]):
+            item_str = item if pos else item["tag"]
+            screen.addstr(1 + p, 2, item_str,
+                select if p == i_pos else normal)
+        screen.refresh()
 
     def setup_menu(self):
         screen = self._stdscr.subwin(21, 80, 2, 0)
@@ -307,7 +291,9 @@ class CursesUI(object):
         screen.addch(18, 52, curses.ACS_SSBS)
         # Section Titles
         title = curses.color_pair(6)
-        for s_title in self.subtitles:
+        subtitles = [["Configure Settings", (1, 2)], ["Status", (8, 2)],
+                 ["Hosts File", (13, 2)], ["Select Functions", (1, 28)]]
+        for s_title in subtitles:
             cord = s_title[1]
             screen.addstr(cord[0], cord[1], s_title[0], title)
             screen.hline(cord[0] + 1, cord[1], curses.ACS_HLINE, 23)
