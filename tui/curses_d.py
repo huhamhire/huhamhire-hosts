@@ -3,7 +3,7 @@
 #
 #  curses_d.py:
 #
-# Copyleft (C) 2013 - huhamhire <me@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -20,8 +20,8 @@ import socket
 import urllib
 
 from curses_ui import CursesUI
-from fetchupdate import FetchUpdate
-from makehosts import MakeHosts
+from update import FetchUpdate
+from make import MakeHosts
 
 import sys
 sys.path.append("..")

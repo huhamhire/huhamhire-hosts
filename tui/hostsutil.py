@@ -3,7 +3,7 @@
 #
 #  hcurses.py:
 #
-# Copyleft (C) 2013 - huhamhire <me@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -14,6 +14,8 @@ __author__ = "huhamhire <me@huhamhire.com>"
 
 from zipfile import BadZipfile
 
+import sys
+sys.path.append("..")
 from curses_d import CursesDeamon
 from retrievedata import RetrieveData
 from utilities import Utilities

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  fetchupdate.py:
+#  update.py:
 #
 # Copyleft (C) 2013 - huhamhire <me@huhamhire.com>
 # =====================================================================

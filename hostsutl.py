@@ -563,6 +563,8 @@ class MainDialog(QtGui.QDialog):
             self.warning_permission()
             os.remove(filepath)
             return
+        except OSError:
+            pass
         msg = unicode(_translate("HostsUtlMain",
             "Remove temporary file", None))
         self.set_makemsg(msg)

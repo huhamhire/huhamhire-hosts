@@ -3,7 +3,7 @@
 #
 #  curses_ui.py:
 #
-# Copyleft (C) 2013 - huhamhire <me@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -321,7 +321,7 @@ class CursesUI(object):
         screen.addstr(1, 2, msg.center(36), normal)
         screen.hline(2, 1, curses.ACS_HLINE, 38)
         screen.addch(2, 0, curses.ACS_SSSB)
-        screen.addch(2, 39, curses.ACS_SBSS)
+        screen.addch(2, width - 1, curses.ACS_SBSS)
         # Apply or Cancel the Operation
         tab = 0
         key_in = None
