@@ -189,6 +189,38 @@ class Utilities(object):
             l_num = len(formats) - 1
         return ''.join([formats[l_num], ' ', units[l_unit]]) % (size)
 
+    @classmethod
+    def cut_message(cls, msg, cut):
+        """Cut message into lines - Class Method
+
+        Cut english message into lines with specified length ({length}).
+
+        Args:
+            msg (str): A string indicating the message to be cut.
+            cut (int): An integer indicating the length for each line.
+
+        Returns:
+            A list containing lines from the message.
+        """
+        delimiter = [" ", "\n"]
+        msgs = []
+        while len(msg) >= cut:
+            if ("\n" in msg[:cut-1]):
+                [line, msg] = msg.split("\n", 1)
+            else:
+                if (msg[cut-1] not in delimiter) \
+                    and (msg[cut] not in delimiter):
+                    cut_len = cut - 1
+                    hyphen = " " if msg[cut-2] in delimiter else "-"
+                else:
+                    cut_len = cut
+                    hyphen = " "
+                line = msg[:cut_len] + hyphen
+                msg = msg[cut_len:]
+            msgs.append(line)
+        msgs.append(msg)
+        return msgs
+
 
 class LangUtilities(object):
     """language tools for Hosts Setup Utility

@@ -50,7 +50,7 @@ class CursesUI(object):
                 ["IP Version", 0, ["IPv4", "IPv6"]]]
     funckeys = [["", "Select Item"], ["Tab", "Select Field"],
                 ["Enter", "Set Item"], ["F5", "Check Update"],
-                ["F6", "Get Update"], ["F10", "Apply Changes"],
+                ["F6", "Fetch Update"], ["F10", "Apply Changes"],
                 ["Esc", "Exit"]]
     statusinfo = [["Connection", "N/A", "GREEN"], ["OS", "N/A", "GREEN"]]
     hostsinfo = {"Version": "N/A", "Release": "N/A", "Latest": "N/A"}
@@ -259,7 +259,7 @@ class CursesUI(object):
         screen.addstr(0, 3, self.settings[pos][0].center(12), normal)
         return screen
 
-    def sub_selection_dialog_items(self, pos, screen):
+    def sub_selection_dialog_items(self, pos, i_pos, screen):
         # Set local variable
         normal = curses.A_NORMAL
         select = normal + curses.A_BOLD
@@ -299,11 +299,15 @@ class CursesUI(object):
             screen.hline(cord[0] + 1, cord[1], curses.ACS_HLINE, 23)
         screen.refresh()
 
-    def confirm_dialog(self, msg):
+    def messagebox(self, msg, mode=0):
         pos_x = 20
         pos_y = 10
         width = 40
-        height = 5
+        height = 2
+        messages = Utilities.cut_message(msg, width - 4)
+        height += len(messages)
+        if mode:
+            height += 2
         # Draw Shadow
         shadow = curses.newwin(height, width, pos_y + 1, pos_x + 1)
         shadow.bkgd(' ', curses.color_pair(8))
@@ -316,46 +320,43 @@ class CursesUI(object):
         # Set local variable
         normal = curses.A_NORMAL
         select = curses.A_REVERSE
-        choices = ["OK", "Cancel"]
-        # Draw subwindow frame
-        screen.addstr(1, 2, msg.center(36), normal)
-        screen.hline(2, 1, curses.ACS_HLINE, 38)
-        screen.addch(2, 0, curses.ACS_SSSB)
-        screen.addch(2, width - 1, curses.ACS_SBSS)
-        # Apply or Cancel the Operation
-        tab = 0
-        key_in = None
-        while key_in != 27:
-            for i, item in enumerate(choices):
-                item_str = ''.join(['[', item, ']'])
-                screen.addstr(3, 6 + 20 * i, item_str,
-                    select if i == tab else normal)
+        # Insert messages
+        for i in range(len(messages)):
+            screen.addstr(1 + i, 2, messages[i].center(36), normal)
+        if mode == 0:
             screen.refresh()
-            key_in = screen.getch()
-            if key_in in [9, curses.KEY_LEFT, curses.KEY_RIGHT]:
-                tab = [1, 0][tab]
-            if key_in in [ord('a'), ord('c')]:
-                key_in -= (ord('a') - ord('A'))
-            if key_in in [ord('C'), ord('O')]:
-                return [ord('C'), ord('O')].index(key_in)
-            if key_in in [10, 32]:
-                return not tab
+        else:
+            # Draw subwindow frame
+            line_height = 1 + len(messages)
+            screen.hline(line_height, 1, curses.ACS_HLINE, 38)
+            screen.addch(line_height, 0, curses.ACS_SSSB)
+            screen.addch(line_height, width - 1, curses.ACS_SBSS)
+            tab = 0
+            key_in = None
+            while key_in != 27:
+                if mode == 1:
+                    choices = ["OK"]
+                elif mode == 2:
+                    choices = ["OK", "Cancel"]
+                else:
+                    return 0
+                for i, item in enumerate(choices):
+                    item_str = ''.join(['[', item, ']'])
+                    tab_pos_x = 6 + 20 * i if mode == 2 else 18
+                    screen.addstr(line_height + 1, tab_pos_x, item_str,
+                        select if i == tab else normal)
+                screen.refresh()
+                key_in = screen.getch()
+                if mode == 2:
+                    # OK or Cancel
+                    if key_in in [9, curses.KEY_LEFT, curses.KEY_RIGHT]:
+                        tab = [1, 0][tab]
+                    if key_in in [ord('a'), ord('c')]:
+                        key_in -= (ord('a') - ord('A'))
+                    if key_in in [ord('C'), ord('O')]:
+                        return [ord('C'), ord('O')].index(key_in)
+                if key_in in [10, 32]:
+                    return not tab
+            return 0
 
-    def operation_message(self, msg):
-        pos_x = 23
-        pos_y = 10
-        width = 30
-        height = 3
-        # Draw Shadow
-        shadow = curses.newwin(height, width, pos_y + 1, pos_x + 1)
-        shadow.bkgd(' ', curses.color_pair(8))
-        shadow.refresh()
-        # Draw Subwindow
-        screen = curses.newwin(height, width, pos_y, pos_x)
-        screen.box()
-        screen.bkgd(' ', curses.color_pair(2))
-        screen.keypad(1)
-        # Message
-        normal = curses.A_NORMAL
-        screen.addstr(1, 1, msg.center(width - 2), normal)
-        screen.refresh()
+

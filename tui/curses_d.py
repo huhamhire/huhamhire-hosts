@@ -50,7 +50,8 @@ class CursesDeamon(CursesUI):
         """
         self._writable = Utilities.check_privileges()[1]
         if not self._writable:
-            self.confirm_dialog("Please check your privilege!")
+            self.messagebox("Please check if you have writing\n"
+                            "privileges to the hosts file!", 1)
             exit()
 
     def session_daemon(self):
@@ -87,7 +88,7 @@ class CursesDeamon(CursesUI):
                 i = self._ops_keys.index(key_in)
                 if i > 1:
                     msg = "Apply Changes to hosts file?"
-                    confirm = self.confirm_dialog(msg)
+                    confirm = self.messagebox(msg, 2)
                     if confirm:
                         self.set_cfgbytes()
                         maker = MakeHosts(self)
@@ -158,7 +159,7 @@ class CursesDeamon(CursesUI):
         id_num = range(len(self.settings[pos][2]))
         key_in = None
         while key_in != 27:
-            self.sub_selection_dialog_items(pos, screen)
+            self.sub_selection_dialog_items(pos, i_pos, screen)
             key_in = screen.getch()
             if key_in == curses.KEY_DOWN:
                 i_pos = list(id_num[1:] + id_num[:1])[i_pos]
@@ -172,7 +173,7 @@ class CursesDeamon(CursesUI):
                 return
 
     def check_connection(self, url):
-        self.operation_message("Checking Server Status...")
+        self.messagebox("Checking Server Status...")
         conn = Utilities.check_connection(url)
         if conn:
             self.statusinfo[0][1] = "OK"
@@ -184,7 +185,7 @@ class CursesDeamon(CursesUI):
         return conn
 
     def check_update(self):
-        self.operation_message("Checking Update...")
+        self.messagebox("Checking Update...")
         srv_id = self.settings[0][1]
         url = self.settings[0][2][srv_id]["update"] + self.infofile
         try:
@@ -200,7 +201,7 @@ class CursesDeamon(CursesUI):
         return info
 
     def fetch_update(self):
-        self.operation_message("Downloading...")
+        self.messagebox("Downloading...")
         fetch_d = FetchUpdate(self)
         fetch_d.get_file()
         try:
@@ -245,4 +246,4 @@ class CursesDeamon(CursesUI):
             os.remove(filepath)
             return
         os.remove(filepath)
-        self.confirm_dialog("Operation completed!")
+        self.messagebox("Operation completed!", 1)
