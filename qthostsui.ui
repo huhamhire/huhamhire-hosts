@@ -40,7 +40,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="qthosts.qrc">
-    <normaloff>:/icon/img/utl_icon.png</normaloff>:/icon/img/utl_icon.png</iconset>
+    <normaloff>:/icon/img/icons/utl_icon@256x256.png</normaloff>:/icon/img/icons/utl_icon@256x256.png</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>

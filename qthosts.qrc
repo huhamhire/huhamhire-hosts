@@ -1,6 +1,6 @@
 <RCC>
   <qresource prefix="icon">
-    <file>img/utl_icon.png</file>
+    <file>img/icons/utl_icon@256x256.png</file>
   </qresource>
   <qresource prefix="buttons">
     <file>img/buttons/button_ansi.png</file>

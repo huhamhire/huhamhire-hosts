@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'qthostsui.ui'
 #
-# Created: Sat Nov 30 15:06:56 2013
+# Created: Tue Dec 03 15:25:34 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -37,7 +37,7 @@ class Ui_HostsUtlMain(object):
         HostsUtlMain.setMaximumSize(QtCore.QSize(640, 420))
         HostsUtlMain.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/icon/img/utl_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/icon/img/icons/utl_icon@256x256.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         HostsUtlMain.setWindowIcon(icon)
         HostsUtlMain.setLocale(QtCore.QLocale(QtCore.QLocale.English, QtCore.QLocale.UnitedStates))
         HostsUtlMain.setSizeGripEnabled(False)

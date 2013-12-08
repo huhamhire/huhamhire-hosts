@@ -863,7 +863,7 @@ class MainDialog(QtGui.QDialog):
         else:
             localhost_word = 0x0008
         selection[0x02] = localhost_word
-        ch_parts = (0x08, 0x20 if self._ipv_id else 0x10, 0x40)
+        ch_parts = (0x08, 0x20 if ip_flag else 0x10, 0x40)
         slices = self.slices[ip_flag]
         for i, part in enumerate(ch_parts):
             part_cfg = self._funcs[ip_flag][slices[i]:slices[i + 1]]
@@ -1254,9 +1254,9 @@ class QSubFetchUpdate(QtCore.QThread):
         """
         self.prog_trigger.emit(0, unicode(_translate(
             "HostsUtlMain", "Connecting...", None)))
-        self.fetch_file(self.url, self.path)
+        self.fetch_file()
 
-    def fetch_file(self, url, path):
+    def fetch_file(self):
         """Fetch the data file - Public Method
 
         Retrieve the latest data file to a specified path ({path}) by url
@@ -1270,7 +1270,7 @@ class QSubFetchUpdate(QtCore.QThread):
         """
         socket.setdefaulttimeout(10)
         try:
-            urllib.urlretrieve(url, self.tmp_path, self.set_progress)
+            urllib.urlretrieve(self.url, self.tmp_path, self.set_progress)
             self.replace_old()
             self.finish_trigger.emit(1, 0)
         except:
