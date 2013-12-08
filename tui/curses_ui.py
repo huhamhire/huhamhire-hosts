@@ -19,14 +19,7 @@ import locale
 
 import os
 import shutil
-import socket
 import sys
-
-import urllib
-import json
-
-from makehosts import MakeHosts
-from fetchupdate import FetchUpdate
 
 sys.path.append("..")
 from retrievedata import RetrieveData
@@ -34,7 +27,7 @@ from utilities import Utilities
 from hostsutl import __version__
 
 class CursesUI(object):
-    __stdscr = ''
+    _stdscr = ''
     __title = "HOSTS SETUP UTILITY"
     __copyleft = "v%s Copyleft 2011-2013, Huhamhire-hosts Team" % __version__
 
@@ -81,7 +74,7 @@ class CursesUI(object):
     def __init__(self, entry=None):
         self.entry = entry
         locale.setlocale(locale.LC_ALL, '')
-        self.__stdscr = curses.initscr()
+        self._stdscr = curses.initscr()
         curses.start_color()
         curses.noecho()
         curses.cbreak()
@@ -91,18 +84,8 @@ class CursesUI(object):
         for i, color in enumerate(self.colorpairs):
             curses.init_pair(i + 1, *color)
 
-    def check_writable(self):
-        """Check write privileges - Public Method
-
-        Check if current session has write privileges for the hosts file.
-        """
-        self._writable = Utilities.check_privileges()[1]
-        if not self._writable:
-            self.confirm_win(3)
-            exit()
-
     def banner(self):
-        screen = self.__stdscr.subwin(2, 80, 0, 0)
+        screen = self._stdscr.subwin(2, 80, 0, 0)
         screen.bkgd(' ', curses.color_pair(1))
         # Set local variable
         title = curses.A_NORMAL
@@ -114,7 +97,7 @@ class CursesUI(object):
         screen.refresh()
 
     def footer(self):
-        screen = self.__stdscr.subwin(1, 80, 23, 0)
+        screen = self._stdscr.subwin(1, 80, 23, 0)
         screen.bkgd(' ', curses.color_pair(1))
         # Set local variable
         normal = curses.A_NORMAL
@@ -124,8 +107,8 @@ class CursesUI(object):
         screen.refresh()
 
     def configure_settings(self, pos=None, key_in=None):
-        self.__stdscr.keypad(1)
-        screen = self.__stdscr.subwin(8, 25, 2, 0)
+        self._stdscr.keypad(1)
+        screen = self._stdscr.subwin(8, 25, 2, 0)
         screen.bkgd(' ', curses.color_pair(4))
         # Set local variable
         normal = curses.A_NORMAL
@@ -154,7 +137,7 @@ class CursesUI(object):
         return pos
 
     def status(self):
-        screen = self.__stdscr.subwin(11, 25, 10, 0)
+        screen = self._stdscr.subwin(11, 25, 10, 0)
         screen.bkgd(' ', curses.color_pair(4))
         # Set local variable
         normal = curses.A_NORMAL
@@ -224,7 +207,7 @@ class CursesUI(object):
 
     def show_funclist(self, pos):
         # Set UI variable
-        screen = self.__stdscr.subwin(18, 26, 2, 26)
+        screen = self._stdscr.subwin(18, 26, 2, 26)
         screen.bkgd(' ', curses.color_pair(4))
         normal = curses.A_NORMAL
         select = curses.color_pair(5)
@@ -272,7 +255,7 @@ class CursesUI(object):
         return pos
 
     def info(self, pos, tab):
-        screen = self.__stdscr.subwin(18, 24, 2, 52)
+        screen = self._stdscr.subwin(18, 24, 2, 52)
         screen.bkgd(' ', curses.color_pair(4))
         normal = curses.A_NORMAL
         if tab:
@@ -298,7 +281,7 @@ class CursesUI(object):
         screen.refresh()
 
     def process_bar(self, done, block, total, mode=1):
-        screen = self.__stdscr.subwin(2, 80, 20, 0)
+        screen = self._stdscr.subwin(2, 80, 20, 0)
         screen.bkgd(' ', curses.color_pair(4))
         normal = curses.A_NORMAL
         line_width = 76
@@ -318,58 +301,6 @@ class CursesUI(object):
         prog_bar = "[%s] %s | %s" % (progress, done, total)
         screen.addstr(1, 2, prog_bar, normal)
         screen.refresh()
-
-    def section_daemon(self):
-        screen = self.__stdscr.subwin(0, 0, 0, 0)
-        # Check if current session have root privileges
-        self.check_writable()
-        screen.keypad(1)
-        # Draw Menu
-        self.banner()
-        self.footer()
-        # Key Press Operations
-        key_in = None
-        tab = 0
-        pos = 0
-        hot_keys = self.hotkeys
-        tab_entry = [self.configure_settings, self.select_func]
-        while key_in != 27:
-            self.setup_menu()
-            self.status()
-            self.process_bar(0, 0, 0, 0)
-            for i, sec in enumerate(tab_entry):
-                tab_entry[i](pos if i == tab else None)
-            if key_in == None:
-                self.platform = self.check_platform()
-                test = self.settings[0][2][0]["test_url"]
-                self.check_connection(test)
-            key_in = screen.getch()
-            if key_in == 9:
-                if self.choice == [[], []]:
-                    tab = 0
-                else:
-                    tab = not tab
-                pos = 0
-            elif key_in in hot_keys:
-                pos = tab_entry[tab](pos, key_in)
-            elif key_in in self.ops_keys:
-                i = self.ops_keys.index(key_in)
-                if i > 1:
-                    confirm = self.confirm_win(i)
-                    if confirm:
-                        self.set_cfgbytes()
-                        maker = MakeHosts(self)
-                        maker.make()
-                        self.move_hosts()
-                elif i == 0:
-                    self.update = self.check_update()
-                elif i == 1:
-                    if self.update == {}:
-                        self.update = self.check_update()
-                    self.fetch_update()
-                    return
-                else:
-                    pass
 
     def set_cfgbytes(self):
         """Set configuration byte words - Public Method
@@ -448,7 +379,7 @@ class CursesUI(object):
         #TODO info complete
 
     def setup_menu(self):
-        screen = self.__stdscr.subwin(21, 80, 2, 0)
+        screen = self._stdscr.subwin(21, 80, 2, 0)
         screen.box()
         screen.bkgd(' ', curses.color_pair(4))
         # Configuration Section
@@ -517,88 +448,22 @@ class CursesUI(object):
             if key_in in [10, 32]:
                 return not tab
 
-    def check_connection(self, url):
+    def operation_message(self, msg):
+        pos_x = 23
+        pos_y = 10
+        width = 30
+        height = 3
+        start = int((30 - len(msg))/2)
         # Draw Shadow
-        shadow = curses.newwin(3, 30, 11, 21)
+        shadow = curses.newwin(height, width, pos_y + 1, pos_x + 1)
         shadow.bkgd(' ', curses.color_pair(8))
         shadow.refresh()
         # Draw Subwindow
-        screen = curses.newwin(3, 30, 10, 20)
+        screen = curses.newwin(height, width, pos_y, pos_x)
         screen.box()
         screen.bkgd(' ', curses.color_pair(2))
         screen.keypad(1)
-
+        # Message
         normal = curses.A_NORMAL
-        screen.addstr(1, 3, "Checking Server Status...", normal)
+        screen.addstr(1, start, msg, normal)
         screen.refresh()
-
-        conn = Utilities.check_connection(url)
-        if conn:
-            self.statusinfo[0][1] = "OK"
-            self.statusinfo[0][2] = "GREEN"
-        else:
-            self.statusinfo[0][1] = "Error"
-            self.statusinfo[0][2] = "RED"
-        self.status()
-        return conn
-
-    def check_platform(self):
-        plat = Utilities.check_platform()
-        self.statusinfo[1] = [self.statusinfo[1][0], plat[0],
-            "GREEN" if plat[4] else "RED"]
-        self.status()
-        return plat
-
-    def check_update(self):
-        # Draw Shadow
-        shadow = curses.newwin(3, 30, 11, 24)
-        shadow.bkgd(' ', curses.color_pair(8))
-        shadow.refresh()
-        # Draw Subwindow
-        screen = curses.newwin(3, 30, 10, 23)
-        screen.box()
-        screen.bkgd(' ', curses.color_pair(2))
-        screen.keypad(1)
-
-        normal = curses.A_NORMAL
-        screen.addstr(1, 7, "Checking Update...", normal)
-        screen.refresh()
-
-        srv_id = self.settings[0][1]
-        url = self.settings[0][2][srv_id]["update"] + self.infofile
-        try:
-            socket.setdefaulttimeout(5)
-            urlobj = urllib.urlopen(url)
-            j_str = urlobj.read()
-            urlobj.close()
-            info = json.loads(j_str)
-        except:
-            info = {"version": "[Error]"}
-        self.hostsinfo["Latest"] = info["version"]
-        self.status()
-        return info
-
-    def fetch_update(self):
-        # Draw Shadow
-        shadow = curses.newwin(3, 30, 11, 24)
-        shadow.bkgd(' ', curses.color_pair(8))
-        shadow.refresh()
-        # Draw Subwindow
-        screen = curses.newwin(3, 30, 10, 23)
-        screen.box()
-        screen.bkgd(' ', curses.color_pair(2))
-        screen.keypad(1)
-
-        normal = curses.A_NORMAL
-        screen.addstr(1, 9, "Downloading...", normal)
-        screen.refresh()
-
-        fetch_d = FetchUpdate(self)
-        fetch_d.get_file()
-        try:
-            RetrieveData.clear()
-        except Exception, e:
-            pass
-        self.entry.__init__()
-        self.entry.opt_session()
-

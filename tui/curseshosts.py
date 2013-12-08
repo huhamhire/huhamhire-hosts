@@ -16,7 +16,7 @@ __all__ = [ 'HostsCurses' ]
 
 from zipfile import BadZipfile
 
-from cursesui import CursesUI
+from curses_d import CursesDeamon
 from retrievedata import RetrieveData
 from utilities import Utilities
 
@@ -48,7 +48,7 @@ class HostsCurses(object):
 
     def __init__(self):
         # Set mirrors
-        self.mirrors = Utilities.set_network("../" + "network.conf")
+        self.mirrors = Utilities.set_network("network.conf")
         self.set_platform()
         # Read data file and set function list
         try:
@@ -62,7 +62,7 @@ class HostsCurses(object):
             pass
 
     def opt_session(self):
-        window = CursesUI(self)
+        window = CursesDeamon(self)
         window._funcs = self._funcs
         window.choice = self.choice
         window.slices = self.slices

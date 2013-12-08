@@ -25,8 +25,8 @@ import sqlite3
 import time
 import zipfile
 
-DATAFILE = "../hostslist.data"
-DATABASE = "../hostslist.s3db"
+DATAFILE = "./hostslist.data"
+DATABASE = "./hostslist.s3db"
 
 class RetrieveData(object):
     """A class to fetch data from data file
