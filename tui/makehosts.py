@@ -12,8 +12,6 @@
 
 __author__ = "huhamhire <me@huhamhire.com>"
 
-__all__ = [ 'MakeHosts' ]
-
 import sys
 import time
 

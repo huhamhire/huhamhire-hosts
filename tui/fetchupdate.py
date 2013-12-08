@@ -12,8 +12,6 @@
 
 __author__ = "huhamhire <me@huhamhire.com>"
 
-__all__ = [ 'FetchUpdate' ]
-
 import os
 import socket
 import urllib

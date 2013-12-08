@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  hcurses.py:
+#  curses_ui.py:
 #
 # Copyleft (C) 2013 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -12,24 +12,22 @@
 
 __author__ = "huhamhire <me@huhamhire.com>"
 
-__all__ = [ 'CursesUI' ]
-
 import curses
 import locale
 
-import os
-import shutil
 import sys
-
 sys.path.append("..")
 from retrievedata import RetrieveData
 from utilities import Utilities
 from hostsutl import __version__
 
 class CursesUI(object):
-    _stdscr = ''
     __title = "HOSTS SETUP UTILITY"
     __copyleft = "v%s Copyleft 2011-2013, Huhamhire-hosts Team" % __version__
+
+    _stdscr = ''
+    _item_sup = 0
+    _item_inf = 0
 
     _writable = 0
     _make_cfg = {}
@@ -67,12 +65,7 @@ class CursesUI(object):
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
 
-    item_sup = 0
-    item_inf = 0
-    entry = None
-
-    def __init__(self, entry=None):
-        self.entry = entry
+    def __init__(self):
         locale.setlocale(locale.LC_ALL, '')
         self._stdscr = curses.initscr()
         curses.start_color()
@@ -157,54 +150,6 @@ class CursesUI(object):
             i += 1
         screen.refresh()
 
-    def select_func(self, pos=None, key_in=None):
-        list_height = 15
-        ip = self.settings[1][1]
-        # Key Press Operations
-        item_len = len(self.choice[ip])
-        item_sup, item_inf = self.item_sup, self.item_inf
-        if pos != None:
-            if item_len > list_height:
-                if pos <= 1:
-                    item_sup = 0
-                    item_inf = list_height - 1
-                elif pos >= item_len - 2:
-                    item_sup = item_len - list_height + 1
-                    item_inf = item_len
-            else:
-                item_sup = 0
-                item_inf = item_len
-            if key_in == curses.KEY_DOWN:
-                pos += 1
-                if pos >= item_len:
-                    pos = 0
-                if pos not in range(item_sup, item_inf):
-                    item_sup += 2 if item_sup == 0 else 1
-                    item_inf += 1
-            elif key_in == curses.KEY_UP:
-                pos -= 1
-                if pos < 0:
-                    pos = item_len - 1
-                if pos not in range(item_sup, item_inf):
-                    item_inf -= 2 if item_inf == item_len else 1
-                    item_sup -= 1
-            elif key_in in [10, 32]:
-                self._funcs[ip][pos] = not self._funcs[ip][pos]
-                mutex = RetrieveData.get_ids(self.choice[ip][pos][2])
-                for c_id, c in enumerate(self.choice[ip]):
-                    if c[0] == self.choice[ip][pos][0]:
-                        if c[1] in mutex and self._funcs[ip][c_id] == 1:
-                            self._funcs[ip][c_id] = 0
-            self.info(pos, 1)
-        else:
-            item_sup = 0
-            if item_len > list_height:
-                item_inf = list_height - 1
-            else:
-                item_inf = item_len
-        self.item_sup, self.item_inf = item_sup, item_inf
-        return self.show_funclist(pos)
-
     def show_funclist(self, pos):
         # Set UI variable
         screen = self._stdscr.subwin(18, 26, 2, 26)
@@ -216,7 +161,7 @@ class CursesUI(object):
         # Set local variable
         ip = self.settings[1][1]
         item_len = len(self.choice[ip])
-        item_sup, item_inf = self.item_sup, self.item_inf
+        item_sup, item_inf = self._item_sup, self._item_inf
         # Function list
         items_show = self.choice[ip][item_sup:item_inf]
         items_selec = self._funcs[ip][item_sup:item_inf]
@@ -251,7 +196,7 @@ class CursesUI(object):
                 screen.addstr(17 - line_i, 2, ' ' * 23, normal)
         screen.refresh()
 
-        self.item_sup, self.item_inf = item_sup, item_inf
+        self._item_sup, self._item_inf = item_sup, item_inf
         return pos
 
     def info(self, pos, tab):
@@ -302,28 +247,6 @@ class CursesUI(object):
         screen.addstr(1, 2, prog_bar, normal)
         screen.refresh()
 
-    def set_cfgbytes(self):
-        """Set configuration byte words - Public Method
-
-        Calculate the module configuration byte words by the selection from
-        function list on the main dialog.
-        """
-        ip_flag = self.settings[1][1]
-        selection = {}
-        localhost_word = {
-            "Windows": 0x0001, "Linux": 0x0002,
-            "Unix": 0x0002, "OS X": 0x0004}[self.platform[0]]
-        selection[0x02] = localhost_word
-        ch_parts = (0x08, 0x20 if ip_flag else 0x10, 0x40)
-        slices = self.slices[ip_flag]
-        for i, part in enumerate(ch_parts):
-            part_cfg = self._funcs[ip_flag][slices[i]:slices[i + 1]]
-            part_word = 0
-            for i, cfg in enumerate(part_cfg):
-                part_word += cfg << i
-            selection[part] = part_word
-        self._make_cfg = selection
-
     def sub_selection(self, pos):
         i_len = len(self.settings[pos][2])
         i_pos = self.settings[pos][1]
@@ -362,22 +285,6 @@ class CursesUI(object):
                 self.settings[pos][1] = i_pos
                 return
 
-    def move_hosts(self):
-        """Move hosts file to the system path after making - Public Method
-
-        Move hosts file to the system path after making operations are
-        finished.
-        """
-        filepath = "hosts"
-        hostspath = self.platform[2]
-        try:
-            shutil.copy2(filepath, hostspath)
-        except IOError:
-            os.remove(filepath)
-            return
-        os.remove(filepath)
-        #TODO info complete
-
     def setup_menu(self):
         screen = self._stdscr.subwin(21, 80, 2, 0)
         screen.box()
@@ -406,13 +313,17 @@ class CursesUI(object):
             screen.hline(cord[0] + 1, cord[1], curses.ACS_HLINE, 23)
         screen.refresh()
 
-    def confirm_win(self, op):
+    def confirm_dialog(self, msg):
+        pos_x = 20
+        pos_y = 10
+        width = 40
+        height = 5
         # Draw Shadow
-        shadow = curses.newwin(5, 40, 11, 21)
+        shadow = curses.newwin(height, width, pos_y + 1, pos_x + 1)
         shadow.bkgd(' ', curses.color_pair(8))
         shadow.refresh()
         # Draw Subwindow
-        screen = curses.newwin(5, 40, 10, 20)
+        screen = curses.newwin(height, width, pos_y, pos_x)
         screen.box()
         screen.bkgd(' ', curses.color_pair(2))
         screen.keypad(1)
@@ -420,12 +331,8 @@ class CursesUI(object):
         normal = curses.A_NORMAL
         select = curses.A_REVERSE
         choices = ["OK", "Cancel"]
-        if op == 2:
-            message = "Apply Changes to hosts file?"
-        elif op == 3:
-            message = "Please check your privilege!"
         # Draw subwindow frame
-        screen.addstr(1, 2, message.center(36), normal)
+        screen.addstr(1, 2, msg.center(36), normal)
         screen.hline(2, 1, curses.ACS_HLINE, 38)
         screen.addch(2, 0, curses.ACS_SSSB)
         screen.addch(2, 39, curses.ACS_SBSS)
@@ -453,7 +360,6 @@ class CursesUI(object):
         pos_y = 10
         width = 30
         height = 3
-        start = int((30 - len(msg))/2)
         # Draw Shadow
         shadow = curses.newwin(height, width, pos_y + 1, pos_x + 1)
         shadow.bkgd(' ', curses.color_pair(8))
@@ -465,5 +371,5 @@ class CursesUI(object):
         screen.keypad(1)
         # Message
         normal = curses.A_NORMAL
-        screen.addstr(1, start, msg, normal)
+        screen.addstr(1, 1, msg.center(width - 2), normal)
         screen.refresh()

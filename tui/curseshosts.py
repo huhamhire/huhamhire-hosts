@@ -12,8 +12,6 @@
 
 __author__ = "huhamhire <me@huhamhire.com>"
 
-__all__ = [ 'HostsCurses' ]
-
 from zipfile import BadZipfile
 
 from curses_d import CursesDeamon
