@@ -20,11 +20,15 @@ import curses
 import locale
 
 import os
+import shutil
 import socket
 import time
 
 import urllib
 import json
+
+import sys
+sys.path.append("..")
 
 from retrievedata import RetrieveData
 from utilities import Utilities
@@ -356,6 +360,7 @@ class HostsCursesUI(object):
                         self.set_cfgbytes()
                         maker = CursesMakeHosts(self)
                         maker.make()
+                        self.move_hosts()
                 elif i == 0:
                     self.update = self.check_update()
                 elif i == 1:
@@ -425,6 +430,22 @@ class HostsCursesUI(object):
                     self.check_connection(test)
                 self.settings[pos][1] = i_pos
                 return
+
+    def move_hosts(self):
+        """Move hosts file to the system path after making - Public Method
+
+        Move hosts file to the system path after making operations are
+        finished.
+        """
+        filepath = "hosts"
+        hostspath = self.platform[2]
+        try:
+            shutil.copy2(filepath, hostspath)
+        except IOError:
+            os.remove(filepath)
+            return
+        os.remove(filepath)
+        #TODO info complete
 
     def setup_menu(self):
         screen = self.__stdscr.subwin(21, 80, 2, 0)

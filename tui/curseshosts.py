@@ -16,11 +16,12 @@ __author__ = "huhamhire <me@huhamhire.com>"
 
 __all__ = [ 'HostsCurses' ]
 
+from zipfile import BadZipfile
+
 from curseshostsui import HostsCursesUI
-from retrievedata import RetrieveData, make_hosts
+from retrievedata import RetrieveData
 from utilities import Utilities
 
-from zipfile import BadZipfile
 
 class HostsCurses(object):
     _ipv_id = 0
@@ -50,7 +51,7 @@ class HostsCurses(object):
 
     def __init__(self):
         # Set mirrors
-        self.mirrors = Utilities.set_network("network.conf")
+        self.mirrors = Utilities.set_network("../" + "network.conf")
         self.set_platform()
         # Read data file and set function list
         try:

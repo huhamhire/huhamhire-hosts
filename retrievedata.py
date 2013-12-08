@@ -25,6 +25,9 @@ import sqlite3
 import time
 import zipfile
 
+DATAFILE = "../hostslist.data"
+DATABASE = "../hostslist.s3db"
+
 class RetrieveData(object):
     """A class to fetch data from data file
 
@@ -45,7 +48,7 @@ class RetrieveData(object):
     _database = None
 
     @classmethod
-    def db_exists(cls, database="hostslist.s3db"):
+    def db_exists(cls, database=DATABASE):
         """Check if database exists - Class Method
 
         Check whether the database file exists or not.
@@ -60,7 +63,7 @@ class RetrieveData(object):
         return os.path.isfile(database)
 
     @classmethod
-    def connect_db(cls, database="hostslist.s3db"):
+    def connect_db(cls, database=DATABASE):
         """Connect to database - Class Method
 
         Set up connection with a SQLite database.
@@ -228,14 +231,15 @@ class RetrieveData(object):
         return True
 
     @classmethod
-    def unpack(cls, packfile="hostslist.data", dbfile="hostslist.s3db"):
+    def unpack(cls, datafile=DATAFILE, database=DATABASE):
         """Unpack local data file - Class Method
 
         Unzip the zipped data file ({packfile}) to a SQLite database file
         ({dbfile}).
         """
-        datafile = zipfile.ZipFile(packfile, "r")
-        datafile.extract(dbfile)
+        datafile = zipfile.ZipFile(datafile, "r")
+        path, file = os.path.split(database)
+        datafile.extract(file, path)
 
     @classmethod
     def clear(cls):
