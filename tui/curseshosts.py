@@ -10,18 +10,15 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
 
-__version__ = '1.9.7'
-__revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
 __all__ = [ 'HostsCurses' ]
 
 from zipfile import BadZipfile
 
-from curseshostsui import HostsCursesUI
+from cursesui import CursesUI
 from retrievedata import RetrieveData
 from utilities import Utilities
-
 
 class HostsCurses(object):
     _ipv_id = 0
@@ -65,7 +62,7 @@ class HostsCurses(object):
             pass
 
     def opt_session(self):
-        window = HostsCursesUI(self)
+        window = CursesUI(self)
         window._funcs = self._funcs
         window.choice = self.choice
         window.slices = self.slices
