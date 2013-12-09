@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  makehosts.py:
+#  make.py:
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -16,7 +16,8 @@ import sys
 import time
 
 sys.path.append("..")
-from retrievedata import RetrieveData
+from util import RetrieveData
+
 
 class MakeHosts(object):
     mod_num = 0
@@ -133,4 +134,4 @@ class MakeHosts(object):
             if "#Replace" in host[1]:
                 host = (host[0], self.hostname)
             self.hosts_file.write("%s %s%s" % (host[0], host[1], self.eol))
-        self.hosts_file.write("# Section End: Localhost%s" % (self.eol))
+        self.hosts_file.write("# Section End: Localhost%s" % self.eol)

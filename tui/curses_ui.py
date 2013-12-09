@@ -3,7 +3,7 @@
 #
 #  curses_ui.py:
 #
-# Copyleft (C) 2013 - huhamhire <me@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -17,11 +17,28 @@ import locale
 
 import sys
 sys.path.append("..")
-from retrievedata import RetrieveData
-from utilities import Utilities
+from util.common import CommonUtil
 from hostsutl import __version__
 
+
 class CursesUI(object):
+    """
+    Attributes:
+        _make_path (str): A string indicating the path to store the hosts file
+            in export mode.
+        _sys_eol (str): A string indicating the End-Of-Line marker.
+        _funcs (list): A list containing two lists with the information of
+            function list for IPv4 and IPv6 environment.
+        choice (list): A list containing two lists with the selection of
+            functions for IPv4 and IPv6 environment.
+        slices (list): A list containing two lists with integers indicating
+            the number of function items from different parts listed in the
+            function list.
+        filename (str): A string indicating the filename of the data file
+            containing data to make a hosts file.
+        infofile (str): A string indicating the filename of the info file
+            containing metadata of the data file in JSON format.
+    """
     __title = "HOSTS SETUP UTILITY"
     __copyleft = "v%s Copyleft 2011-2014, huhamhire-hosts Team" % __version__
 
@@ -29,7 +46,6 @@ class CursesUI(object):
     _item_sup = 0
     _item_inf = 0
 
-    _make_cfg = {}
     _make_path = "./hosts"
     _sys_eol = ""
     _funcs = [[], []]
@@ -44,17 +60,16 @@ class CursesUI(object):
                   (curses.COLOR_BLACK, curses.COLOR_WHITE),
                   (curses.COLOR_GREEN, curses.COLOR_WHITE),
                   (curses.COLOR_WHITE, curses.COLOR_BLACK),
-                  (curses.COLOR_RED, curses.COLOR_WHITE),]
+                  (curses.COLOR_RED, curses.COLOR_WHITE), ]
 
     settings = [["Server", 0, []],
                 ["IP Version", 0, ["IPv4", "IPv6"]]]
     funckeys = [["", "Select Item"], ["Tab", "Select Field"],
                 ["Enter", "Set Item"], ["F5", "Check Update"],
-                ["F6", "Get Update"], ["F10", "Apply Changes"],
+                ["F6", "Fetch Update"], ["F10", "Apply Changes"],
                 ["Esc", "Exit"]]
     statusinfo = [["Connection", "N/A", "GREEN"], ["OS", "N/A", "GREEN"]]
     hostsinfo = {"Version": "N/A", "Release": "N/A", "Latest": "N/A"}
-    update = {}
 
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
@@ -93,7 +108,7 @@ class CursesUI(object):
         screen.addstr(0, 0, copyleft.center(79), normal)
         screen.refresh()
 
-    def configure_settings(self, pos=None, key_in=None):
+    def configure_settings_frame(self, pos=None):
         self._stdscr.keypad(1)
         screen = self._stdscr.subwin(8, 25, 2, 0)
         screen.bkgd(' ', curses.color_pair(4))
@@ -102,15 +117,6 @@ class CursesUI(object):
         select = curses.color_pair(5)
         select += curses.A_BOLD
 
-        id_num = range(len(self.settings))
-        if pos != None:
-            if key_in == curses.KEY_DOWN:
-                pos = list(id_num[1:] + id_num[:1])[pos]
-            elif key_in == curses.KEY_UP:
-                pos = list(id_num[-1:] + id_num[:-1])[pos]
-            elif key_in in [10, 32]:
-                self.sub_selection(pos)
-            self.info(pos, 0)
         for p, item in enumerate(self.settings):
             item_str = item[0].ljust(12)
             screen.addstr(3 + p, 2, item_str, select if p == pos else normal)
@@ -121,7 +127,6 @@ class CursesUI(object):
             screen.addstr(3 + p, 15, ''.ljust(10), normal)
             screen.addstr(3 + p, 15, choice, select if p == pos else normal)
         screen.refresh()
-        return pos
 
     def status(self):
         screen = self._stdscr.subwin(11, 25, 10, 0)
@@ -135,7 +140,7 @@ class CursesUI(object):
             screen.addstr(2 + i, 2, stat[0], normal)
             stat_str = ''.join(['[', stat[1], ']']).ljust(9)
             screen.addstr(2 + i, 15, stat_str,
-                green if stat[2] == "GREEN" else red)
+                          green if stat[2] == "GREEN" else red)
         # Hosts file info
         i = 0
         for key, info in self.hostsinfo.items():
@@ -144,7 +149,7 @@ class CursesUI(object):
             i += 1
         screen.refresh()
 
-    def show_funclist(self, pos):
+    def show_funclist(self, pos, item_sup, item_inf):
         # Set UI variable
         screen = self._stdscr.subwin(18, 26, 2, 26)
         screen.bkgd(' ', curses.color_pair(4))
@@ -155,14 +160,13 @@ class CursesUI(object):
         # Set local variable
         ip = self.settings[1][1]
         item_len = len(self.choice[ip])
-        item_sup, item_inf = self._item_sup, self._item_inf
         # Function list
         items_show = self.choice[ip][item_sup:item_inf]
         items_selec = self._funcs[ip][item_sup:item_inf]
         for p, item in enumerate(items_show):
             sel_ch = '+' if items_selec[p] else ' '
             item_str = ("[%s] %s" % (sel_ch, item[3])).ljust(23)
-            item_pos = pos - item_sup if pos != None else None
+            item_pos = pos - item_sup if pos is not None else None
             highlight = select if p == item_pos else normal
             if item_len > list_height:
                 if item_inf - item_sup == list_height - 2:
@@ -188,10 +192,10 @@ class CursesUI(object):
         else:
             for line_i in range(list_height - item_len):
                 screen.addstr(17 - line_i, 2, ' ' * 23, normal)
+        if not items_show:
+            screen.addstr(4, 2, "No data file!".center(23), normal)
         screen.refresh()
-
         self._item_sup, self._item_inf = item_sup, item_inf
-        return pos
 
     def info(self, pos, tab):
         screen = self._stdscr.subwin(18, 24, 2, 52)
@@ -231,8 +235,8 @@ class CursesUI(object):
             prog = prog_len * done / total
             progress = ''.join(['=' * int(prog), '-' * int(2 * prog % 2)])
             progress = progress.ljust(prog_len)
-            total = Utilities.convert_size(total).ljust(7)
-            done = Utilities.convert_size(done).rjust(7)
+            total = CommonUtil.convert_size(total).ljust(7)
+            done = CommonUtil.convert_size(done).rjust(7)
         else:
             progress = ' ' * prog_len
             done = total = 'N/A'.center(7)
@@ -254,19 +258,18 @@ class CursesUI(object):
         screen.keypad(1)
         # Set local variable
         normal = curses.A_NORMAL
-        select = normal + curses.A_BOLD
         # Title of Subwindow
         screen.addstr(0, 3, self.settings[pos][0].center(12), normal)
         return screen
 
-    def sub_selection_dialog_items(self, pos, screen):
+    def sub_selection_dialog_items(self, pos, i_pos, screen):
         # Set local variable
         normal = curses.A_NORMAL
         select = normal + curses.A_BOLD
         for p, item in enumerate(self.settings[pos][2]):
             item_str = item if pos else item["tag"]
             screen.addstr(1 + p, 2, item_str,
-                select if p == i_pos else normal)
+                          select if p == i_pos else normal)
         screen.refresh()
 
     def setup_menu(self):
@@ -292,18 +295,23 @@ class CursesUI(object):
         # Section Titles
         title = curses.color_pair(6)
         subtitles = [["Configure Settings", (1, 2)], ["Status", (8, 2)],
-                 ["Hosts File", (13, 2)], ["Select Functions", (1, 28)]]
+                     ["Hosts File", (13, 2)], ["Select Functions", (1, 28)]]
         for s_title in subtitles:
             cord = s_title[1]
             screen.addstr(cord[0], cord[1], s_title[0], title)
             screen.hline(cord[0] + 1, cord[1], curses.ACS_HLINE, 23)
         screen.refresh()
 
-    def confirm_dialog(self, msg):
-        pos_x = 20
+    @staticmethod
+    def messagebox(msg, mode=0):
+        pos_x = 24 if mode == 0 else 20
         pos_y = 10
-        width = 40
-        height = 5
+        width = 30 if mode == 0 else 40
+        height = 2
+        messages = CommonUtil.cut_message(msg, width - 4)
+        height += len(messages)
+        if mode:
+            height += 2
         # Draw Shadow
         shadow = curses.newwin(height, width, pos_y + 1, pos_x + 1)
         shadow.bkgd(' ', curses.color_pair(8))
@@ -316,46 +324,41 @@ class CursesUI(object):
         # Set local variable
         normal = curses.A_NORMAL
         select = curses.A_REVERSE
-        choices = ["OK", "Cancel"]
-        # Draw subwindow frame
-        screen.addstr(1, 2, msg.center(36), normal)
-        screen.hline(2, 1, curses.ACS_HLINE, 38)
-        screen.addch(2, 0, curses.ACS_SSSB)
-        screen.addch(2, 39, curses.ACS_SBSS)
-        # Apply or Cancel the Operation
-        tab = 0
-        key_in = None
-        while key_in != 27:
-            for i, item in enumerate(choices):
-                item_str = ''.join(['[', item, ']'])
-                screen.addstr(3, 6 + 20 * i, item_str,
-                    select if i == tab else normal)
+        # Insert messages
+        for i in range(len(messages)):
+            screen.addstr(1 + i, 2, messages[i].center(width - 4), normal)
+        if mode == 0:
             screen.refresh()
-            key_in = screen.getch()
-            if key_in in [9, curses.KEY_LEFT, curses.KEY_RIGHT]:
-                tab = [1, 0][tab]
-            if key_in in [ord('a'), ord('c')]:
-                key_in -= (ord('a') - ord('A'))
-            if key_in in [ord('C'), ord('O')]:
-                return [ord('C'), ord('O')].index(key_in)
-            if key_in in [10, 32]:
-                return not tab
-
-    def operation_message(self, msg):
-        pos_x = 23
-        pos_y = 10
-        width = 30
-        height = 3
-        # Draw Shadow
-        shadow = curses.newwin(height, width, pos_y + 1, pos_x + 1)
-        shadow.bkgd(' ', curses.color_pair(8))
-        shadow.refresh()
-        # Draw Subwindow
-        screen = curses.newwin(height, width, pos_y, pos_x)
-        screen.box()
-        screen.bkgd(' ', curses.color_pair(2))
-        screen.keypad(1)
-        # Message
-        normal = curses.A_NORMAL
-        screen.addstr(1, 1, msg.center(width - 2), normal)
-        screen.refresh()
+        else:
+            # Draw subwindow frame
+            line_height = 1 + len(messages)
+            screen.hline(line_height, 1, curses.ACS_HLINE, width - 2)
+            screen.addch(line_height, 0, curses.ACS_SSSB)
+            screen.addch(line_height, width - 1, curses.ACS_SBSS)
+            tab = 0
+            key_in = None
+            while key_in != 27:
+                if mode == 1:
+                    choices = ["OK"]
+                elif mode == 2:
+                    choices = ["OK", "Cancel"]
+                else:
+                    return 0
+                for i, item in enumerate(choices):
+                    item_str = ''.join(['[', item, ']'])
+                    tab_pos_x = 6 + 20 * i if mode == 2 else 18
+                    screen.addstr(line_height + 1, tab_pos_x, item_str,
+                                  select if i == tab else normal)
+                screen.refresh()
+                key_in = screen.getch()
+                if mode == 2:
+                    # OK or Cancel
+                    if key_in in [9, curses.KEY_LEFT, curses.KEY_RIGHT]:
+                        tab = [1, 0][tab]
+                    if key_in in [ord('a'), ord('c')]:
+                        key_in -= (ord('a') - ord('A'))
+                    if key_in in [ord('C'), ord('O')]:
+                        return [ord('C'), ord('O')].index(key_in)
+                if key_in in [10, 32]:
+                    return not tab
+            return 0

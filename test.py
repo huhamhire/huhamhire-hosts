@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from tui.hostsutil import HostsUtil
+import tui
 
 if __name__ == "__main__":
-    main = HostsUtil()
+    main = tui.HostsUtil()
     main.startutil()

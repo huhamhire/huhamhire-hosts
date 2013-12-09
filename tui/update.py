@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  fetchupdate.py:
+#  update.py:
 #
 # Copyleft (C) 2013 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -16,6 +16,7 @@ import os
 import socket
 import urllib
 
+
 class FetchUpdate(object):
     def __init__(self, parent):
         mirror_id = parent.settings[0][1]
@@ -23,14 +24,14 @@ class FetchUpdate(object):
         self.url = mirror["update"] + parent.filename
         self.path = "./" + parent.filename
         self.tmp_path = self.path + ".download"
-        self.filesize = parent.update["size"]
+        self.filesize = parent._update["size"]
         self.parent = parent
 
     def get_file(self):
         socket.setdefaulttimeout(10)
         try:
             urllib.urlretrieve(self.url, self.tmp_path,
-                self.parent.process_bar)
+                               self.parent.process_bar)
             self.replace_old()
         except Exception, e:
             raise e

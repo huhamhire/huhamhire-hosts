@@ -3,7 +3,7 @@
 #
 #  curses_d.py:
 #
-# Copyleft (C) 2013 - huhamhire <me@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -18,17 +18,36 @@ import os
 import shutil
 import socket
 import urllib
+import sys
 
 from curses_ui import CursesUI
-from fetchupdate import FetchUpdate
-from makehosts import MakeHosts
+from make import MakeHosts
+from update import FetchUpdate
 
-import sys
 sys.path.append("..")
-from retrievedata import RetrieveData
-from utilities import Utilities
+from util.retrievedata import RetrieveData
+from util import CommonUtil
+
 
 class CursesDeamon(CursesUI):
+    """
+    Attributes:
+        _make_cfg (dict): A dictionary containing the selection control bytes
+            to make a hosts file.
+        _update (dict): A dictionary containing the update information of the
+            current data file on server.
+        _writable (int): An integer indicating whether the program is run with
+            admin/root privileges. The value could be 1 or 0.
+        platform (str): A string indicating the platform of current operating
+            system. The value could be "Windows", "Linux", "Unix", "OS X", and
+            of course "Unkown".
+        hostname (str): A string indicating the hostname of current operating
+            system. This attribute would be used for linux clients.
+        hostspath (str): A string indicating the absolute path of the hosts
+            file on current operating system.
+    """
+    _make_cfg = {}
+    _update = {}
     _writable = 0
     # OS related configuration
     platform = ''
@@ -48,9 +67,10 @@ class CursesDeamon(CursesUI):
 
         Check if current session has write privileges for the hosts file.
         """
-        self._writable = Utilities.check_privileges()[1]
+        self._writable = CommonUtil.check_privileges()[1]
         if not self._writable:
-            self.confirm_dialog("Please check your privilege!")
+            self.messagebox("Please check if you have writing\n"
+                            "privileges to the hosts file!", 1)
             exit()
 
     def session_daemon(self):
@@ -63,7 +83,6 @@ class CursesDeamon(CursesUI):
         key_in = None
         tab = 0
         pos = 0
-        hot_keys = self._hot_keys
         tab_entry = [self.configure_settings, self.select_func]
         while key_in != 27:
             self.setup_menu()
@@ -71,7 +90,7 @@ class CursesDeamon(CursesUI):
             self.process_bar(0, 0, 0, 0)
             for i, sec in enumerate(tab_entry):
                 tab_entry[i](pos if i == tab else None)
-            if key_in == None:
+            if key_in is None:
                 test = self.settings[0][2][0]["test_url"]
                 self.check_connection(test)
             key_in = screen.getch()
@@ -81,27 +100,44 @@ class CursesDeamon(CursesUI):
                 else:
                     tab = not tab
                 pos = 0
-            elif key_in in hot_keys:
+            elif key_in in self._hot_keys:
                 pos = tab_entry[tab](pos, key_in)
             elif key_in in self._ops_keys:
-                i = self._ops_keys.index(key_in)
-                if i > 1:
-                    msg = "Apply Changes to hosts file?"
-                    confirm = self.confirm_dialog(msg)
-                    if confirm:
-                        self.set_cfgbytes()
-                        maker = MakeHosts(self)
-                        maker.make()
-                        self.move_hosts()
-                elif i == 0:
-                    self.update = self.check_update()
-                elif i == 1:
-                    if self.update == {}:
-                        self.update = self.check_update()
+                if key_in == curses.KEY_F10:
+                    if self._funcs == [[], []]:
+                        self.messagebox("No data file found! Press F6 to get "
+                                        "data file first.", 1)
+                    else:
+                        msg = "Apply Changes to hosts file?"
+                        confirm = self.messagebox(msg, 2)
+                        if confirm:
+                            self.set_cfgbytes()
+                            maker = MakeHosts(self)
+                            maker.make()
+                            self.move_hosts()
+                elif key_in == curses.KEY_F5:
+                    self._update = self.check_update()
+                elif key_in == curses.KEY_F6:
+                    if self._update == {}:
+                        self._update = self.check_update()
                     self.fetch_update()
-                    return
+                    return 1
                 else:
                     pass
+        return 0
+
+    def configure_settings(self, pos=None, key_in=None):
+        id_num = range(len(self.settings))
+        if pos is not None:
+            if key_in == curses.KEY_DOWN:
+                pos = list(id_num[1:] + id_num[:1])[pos]
+            elif key_in == curses.KEY_UP:
+                pos = list(id_num[-1:] + id_num[:-1])[pos]
+            elif key_in in [10, 32]:
+                self.sub_selection(pos)
+            self.info(pos, 0)
+        self.configure_settings_frame(pos)
+        return pos
 
     def select_func(self, pos=None, key_in=None):
         list_height = 15
@@ -109,7 +145,7 @@ class CursesDeamon(CursesUI):
         # Key Press Operations
         item_len = len(self.choice[ip])
         item_sup, item_inf = self._item_sup, self._item_inf
-        if pos != None:
+        if pos is not None:
             if item_len > list_height:
                 if pos <= 1:
                     item_sup = 0
@@ -148,8 +184,8 @@ class CursesDeamon(CursesUI):
                 item_inf = list_height - 1
             else:
                 item_inf = item_len
-        self._item_sup, self._item_inf = item_sup, item_inf
-        return self.show_funclist(pos)
+        self.show_funclist(pos, item_sup, item_inf)
+        return pos
 
     def sub_selection(self, pos):
         screen = self.sub_selection_dialog(pos)
@@ -158,7 +194,7 @@ class CursesDeamon(CursesUI):
         id_num = range(len(self.settings[pos][2]))
         key_in = None
         while key_in != 27:
-            self.sub_selection_dialog_items(pos, screen)
+            self.sub_selection_dialog_items(pos, i_pos, screen)
             key_in = screen.getch()
             if key_in == curses.KEY_DOWN:
                 i_pos = list(id_num[1:] + id_num[:1])[i_pos]
@@ -172,8 +208,8 @@ class CursesDeamon(CursesUI):
                 return
 
     def check_connection(self, url):
-        self.operation_message("Checking Server Status...")
-        conn = Utilities.check_connection(url)
+        self.messagebox("Checking Server Status...")
+        conn = CommonUtil.check_connection(url)
         if conn:
             self.statusinfo[0][1] = "OK"
             self.statusinfo[0][2] = "GREEN"
@@ -184,7 +220,7 @@ class CursesDeamon(CursesUI):
         return conn
 
     def check_update(self):
-        self.operation_message("Checking Update...")
+        self.messagebox("Checking Update...")
         srv_id = self.settings[0][1]
         url = self.settings[0][2][srv_id]["update"] + self.infofile
         try:
@@ -200,15 +236,9 @@ class CursesDeamon(CursesUI):
         return info
 
     def fetch_update(self):
-        self.operation_message("Downloading...")
+        self.messagebox("Downloading...")
         fetch_d = FetchUpdate(self)
         fetch_d.get_file()
-        try:
-            RetrieveData.clear()
-        except Exception, e:
-            pass
-        self.entry.__init__()
-        self.entry.startutil()
 
     def set_cfgbytes(self):
         """Set configuration byte words - Public Method
@@ -245,4 +275,4 @@ class CursesDeamon(CursesUI):
             os.remove(filepath)
             return
         os.remove(filepath)
-        self.confirm_dialog("Operation completed!")
+        self.messagebox("Operation completed!", 1)

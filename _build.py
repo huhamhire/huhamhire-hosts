@@ -14,7 +14,6 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "0.9.0"
 __author__ = "huhamhire <me@huhamhire.com>"
 
 import os
@@ -60,7 +59,7 @@ CLASSIFIERS =  [
     "Topic :: System :: Networking",
     "Topic :: Software Development :: Documentation",
     "Topic :: Text Processing",
-    "Topic :: Utilities",
+    "Topic :: CommonUtil",
 ]
 DATA_FILES = [
     ("lang", [
@@ -123,15 +122,14 @@ if sys.argv > 1:
         tar.close()
         exit(1)
 
-from utilities import Utilities
-system = Utilities.check_platform()[0]
+from util.common import CommonUtil
+system = CommonUtil.check_platform()[0]
 if system == "Windows":
     # Build binary executables for Windows
     import struct
     import zipfile
     from distutils.core import setup
 
-    import py2exe
     # Set working directories
     WORK_DIR = SCRIPT_DIR + "work/"
     DIR_NAME = "HostsUtl"
