@@ -18,15 +18,15 @@ import os
 import shutil
 import socket
 import urllib
+import sys
 
 from curses_ui import CursesUI
 from make import MakeHosts
 from update import FetchUpdate
 
-import sys
 sys.path.append("..")
-from retrievedata import RetrieveData
-from utilities import Utilities
+from util.retrievedata import RetrieveData
+from util import CommonUtil
 
 
 class CursesDeamon(CursesUI):
@@ -67,7 +67,7 @@ class CursesDeamon(CursesUI):
 
         Check if current session has write privileges for the hosts file.
         """
-        self._writable = Utilities.check_privileges()[1]
+        self._writable = CommonUtil.check_privileges()[1]
         if not self._writable:
             self.messagebox("Please check if you have writing\n"
                             "privileges to the hosts file!", 1)
@@ -108,8 +108,8 @@ class CursesDeamon(CursesUI):
                         self.messagebox("No data file found! Press F6 to get "
                                         "data file first.", 1)
                     else:
-                        confirm = self.messagebox("Apply Changes to hosts "
-                                                  "file?", 2)
+                        msg = "Apply Changes to hosts file?"
+                        confirm = self.messagebox(msg, 2)
                         if confirm:
                             self.set_cfgbytes()
                             maker = MakeHosts(self)
@@ -184,8 +184,8 @@ class CursesDeamon(CursesUI):
                 item_inf = list_height - 1
             else:
                 item_inf = item_len
-        self._item_sup, self._item_inf = item_sup, item_inf
-        return self.show_funclist(pos)
+        self.show_funclist(pos, item_sup, item_inf)
+        return pos
 
     def sub_selection(self, pos):
         screen = self.sub_selection_dialog(pos)
@@ -209,7 +209,7 @@ class CursesDeamon(CursesUI):
 
     def check_connection(self, url):
         self.messagebox("Checking Server Status...")
-        conn = Utilities.check_connection(url)
+        conn = CommonUtil.check_connection(url)
         if conn:
             self.statusinfo[0][1] = "OK"
             self.statusinfo[0][2] = "GREEN"

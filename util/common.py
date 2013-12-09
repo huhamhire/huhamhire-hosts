@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# utilities.py : Basic utilities used by Hosts Setup Utility
+# common.py : Basic utilities used by Hosts Setup Utility
 #
 # Copyleft (C) 2013 - huhamhire hosts team <develop@huhamhire.com>
 # =====================================================================
@@ -14,24 +14,20 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "0.9"
-__revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
-__all__ = ["Utilities", "LangUtilities"]
-
 import ConfigParser
-import locale
 import math
 import os
 import sys
 import socket
 import time
 
-class Utilities(object):
+
+class CommonUtil(object):
     """Basic tools for Hosts Setup Utility
 
-    Utilities class contains a set of basic tools for Hosts Setup Utility to
+    CommonUtil class contains a set of basic tools for Hosts Setup Utility to
     use.
     """
     @classmethod
@@ -111,19 +107,19 @@ class Utilities(object):
             try:
                 # Only windows users with admin privileges can read the
                 # C:\windows\temp
-                temp = os.listdir(os.sep.join([
+                os.listdir(os.sep.join([
                     os.environ.get('SystemRoot', 'C:\windows'), 'temp']))
             except:
-                return (os.environ['USERNAME'], False)
+                return os.environ['USERNAME'], False
             else:
-                return (os.environ['USERNAME'], True)
+                return os.environ['USERNAME'], True
         else:
             # Check wirte privileges to the hosts file for current user
             w_flag = os.access("/etc/hosts", os.W_OK)
             try:
-                return (os.environ['USERNAME'], w_flag)
+                return os.environ['USERNAME'], w_flag
             except KeyError:
-                return (os.environ['USER'], w_flag)
+                return os.environ['USER'], w_flag
 
     @classmethod
     def set_network(cls, conf_file="network.conf"):
@@ -138,11 +134,10 @@ class Utilities(object):
         conf.read(conf_file)
         mirrors = []
         for sec in conf.sections():
-            mirror = {}
-            mirror["tag"] = sec
-            mirror["label"] = conf.get(sec, "label")
-            mirror["test_url"] = conf.get(sec, "server")
-            mirror["update"] = conf.get(sec, "update")
+            mirror = {"tag": sec,
+                      "label": conf.get(sec, "label"),
+                      "test_url": conf.get(sec, "server"),
+                      "update": conf.get(sec, "update"), }
             mirrors.append(mirror)
         return mirrors
 
@@ -160,34 +155,34 @@ class Utilities(object):
         """
         l_time = time.localtime(float(timestamp))
         iso_format = "%Y-%m-%d"
-        date = time.strftime(iso_format , l_time)
+        date = time.strftime(iso_format, l_time)
         return date
 
     @classmethod
-    def convert_size(cls, bytes):
+    def convert_size(cls, bufferbytes):
         """Transform file size to readable string - Class Method
 
-        Convert byte size ({bytes}) of a file into a size string.
+        Convert byte size ({bufferbytes}) of a file into a size string.
 
         Args:
-            bytes (int): A integer indicating the size of a file counted by
-                byte.
+            bufferbytes (int): A integer indicating the size of a file counted
+                by byte.
 
         Returns:
             A readable size string.
         """
-        if bytes == 0:
+        if bufferbytes == 0:
             return "0 B"
-        l_unit = int(math.log(bytes, 0x400))
+        l_unit = int(math.log(bufferbytes, 0x400))
         units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
         formats = ['%.2f', '%.1f', '%d']
-        size = bytes / math.pow(0x400, l_unit)
+        size = bufferbytes / math.pow(0x400, l_unit)
         l_num = int(math.log(size, 10))
         if l_unit >= len(units):
             l_unit = len(units) - 1
         if l_num >= len(formats):
             l_num = len(formats) - 1
-        return ''.join([formats[l_num], ' ', units[l_unit]]) % (size)
+        return ''.join([formats[l_num], ' ', units[l_unit]]) % size
 
     @classmethod
     def cut_message(cls, msg, cut):
@@ -205,11 +200,11 @@ class Utilities(object):
         delimiter = [" ", "\n"]
         msgs = []
         while len(msg) >= cut:
-            if ("\n" in msg[:cut-1]):
+            if "\n" in msg[:cut-1]:
                 [line, msg] = msg.split("\n", 1)
             else:
-                if (msg[cut-1] not in delimiter) \
-                    and (msg[cut] not in delimiter):
+                if (msg[cut-1] not in delimiter) and \
+                        (msg[cut] not in delimiter):
                     cut_len = cut - 1
                     hyphen = " " if msg[cut-2] in delimiter else "-"
                 else:
@@ -220,75 +215,3 @@ class Utilities(object):
             msgs.append(line)
         msgs.append(msg)
         return msgs
-
-
-class LangUtilities(object):
-    """language tools for Hosts Setup Utility
-
-    LangUtilities contains a set of language tools for Hosts Setup Utility to
-    use.
-
-    Attributes:
-        language (dict): A dictionary containing supported localized language
-            name for a specified locale.
-    """
-    language = {"de_DE": u"Deutsch",
-                "en_US": u"English",
-                "ja_JP": u"日本語",
-                "ko_KR": u"한글",
-                "ru_RU": u"Русский",
-                "zh_CN": u"简体中文",
-                "zh_TW": u"正體中文", }
-
-    @classmethod
-    def get_locale(cls):
-        """Get locale string - Class Method
-
-        Get the default locale of current operating system.
-
-        Returns:
-            locale (str): A string indicating the locale of current operating
-                system. If the locale is not in cls.dictionary dictionary, it
-                will return "en_US" as default.
-        """
-        lc = locale.getdefaultlocale()[0]
-        if lc == None:
-            lc = "en_US"
-        return lc
-
-    @classmethod
-    def get_language_by_locale(cls, l_locale):
-        """Get language name by locale - Class Method
-
-        Return the name of a specified language by a locale string
-        ({l_locale}).
-
-        Args:
-            l_locale (str): A string indicating a specified locale.
-
-        Returns:
-            A string indicating the localized name of a language.
-        """
-        try:
-            return cls.language[l_locale]
-        except KeyError:
-            return cls.language["en_US"]
-
-    @classmethod
-    def get_locale_by_language(cls, l_lang):
-        """Get locale string by language name - Class Method
-
-        Return the locale string connecting with a specified language
-        ({l_lang}).
-
-        Args:
-            l_lang (str): A string indicating the localized name of a
-                language.
-
-        Returns:
-            A string indicating a specified locale.
-        """
-        for locl, lang in cls.language.items():
-            if l_lang == lang:
-                return locl
-        return "en_US"

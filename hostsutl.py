@@ -29,13 +29,14 @@ import socket
 import sys
 import time
 import urllib
-
-from PyQt4 import QtCore, QtGui
 from zipfile import BadZipfile
 
-from qthostsui import Ui_HostsUtlMain, _fromUtf8, _encoding, _translate
-from retrievedata import RetrieveData, make_hosts
-from utilities import Utilities, LangUtilities
+from PyQt4 import QtCore, QtGui
+
+from qthostsui import Ui_HostsUtlMain, _fromUtf8, _translate
+from util.retrievedata import RetrieveData
+from util import CommonUtil, LangUtil
+
 
 # Path to store language files
 LANG_DIR = "./lang/"
@@ -241,7 +242,7 @@ class MainDialog(QtGui.QDialog):
                 This string uses the for of IETF language tag. For example:
                 en_US, en_GB, etc.
         """
-        new_lang = LangUtilities.get_locale_by_language(unicode(lang))
+        new_lang = LangUtil.get_locale_by_language(unicode(lang))
         trans = QtCore.QTranslator()
         global LANG_DIR
         trans.load(LANG_DIR + new_lang)
@@ -391,7 +392,7 @@ class MainDialog(QtGui.QDialog):
         """
         self.Ui.SelectMirror.clear()
         # Set mirrors
-        self.mirrors = Utilities.set_network("network.conf")
+        self.mirrors = CommonUtil.set_network("network.conf")
         for i, mirror in enumerate(self.mirrors):
             self.Ui.SelectMirror.addItem(_fromUtf8(""))
             self.Ui.SelectMirror.setItemText(
@@ -438,7 +439,7 @@ class MainDialog(QtGui.QDialog):
 
         Check if current session is ran with root privileges.
         """
-        is_root = Utilities.check_privileges()[1]
+        is_root = CommonUtil.check_privileges()[1]
         self._is_root = is_root
         if not is_root:
             self.warning_permission()
@@ -580,19 +581,19 @@ class MainDialog(QtGui.QDialog):
         Set optional language selection items in the SelectLang widget.
         """
         self.Ui.SelectLang.clear()
-        langs = LangUtilities.language
+        langs = LangUtil.language
         langs_not_found = []
         for locale in langs:
             if not os.path.isfile(LANG_DIR + locale + ".qm"):
                 langs_not_found.append(locale)
         for locale in langs_not_found:
             langs.pop(locale)
-        LangUtilities.language = langs
+        LangUtil.language = langs
         if len(langs) <= 1:
             self.Ui.SelectLang.setEnabled(False)
         # Block the signal while set the language selecions.
         self.Ui.SelectLang.blockSignals(True)
-        sys_locale = LangUtilities.get_locale()
+        sys_locale = LangUtil.get_locale()
         if sys_locale not in langs.keys():
             sys_locale = "en_US"
         for i, locale in enumerate(sorted(langs.keys())):
@@ -609,7 +610,7 @@ class MainDialog(QtGui.QDialog):
 
         Set the information of current operating system platform.
         """
-        system, hostname, path, encode, flag = Utilities.check_platform()
+        system, hostname, path, encode, flag = CommonUtil.check_platform()
         self.platform = system
         self.hostname = hostname
         self.hostspath = path
@@ -813,7 +814,7 @@ class MainDialog(QtGui.QDialog):
         self._cur_ver = ver
         self.set_label_text(self.Ui.labelVersionData, ver)
         build = info["Buildtime"]
-        build = Utilities.timestamp_to_date(build)
+        build = CommonUtil.timestamp_to_date(build)
         self.set_label_text(self.Ui.labelReleaseData, build)
 
     def set_downprogbar(self, prog, msg):
@@ -1199,7 +1200,7 @@ class QSubChkConnection(QtCore.QThread):
         Operations to check the network connection with a specified mirror.
         """
         self.trigger.emit(-1)
-        status = Utilities.check_connection(self.link)
+        status = CommonUtil.check_connection(self.link)
         self.trigger.emit(status)
 
 class QSubFetchUpdate(QtCore.QThread):
@@ -1292,8 +1293,8 @@ class QSubFetchUpdate(QtCore.QThread):
         if total <= 0:
             total = self.filesize
         prog = 100 * done / total
-        done = Utilities.convert_size(done)
-        total = Utilities.convert_size(total)
+        done = CommonUtil.convert_size(done)
+        total = CommonUtil.convert_size(total)
         text = unicode(_translate(
             "HostsUtlMain", "Downloading: %s / %s", None)) % (done, total)
         self.prog_trigger.emit(prog, text)

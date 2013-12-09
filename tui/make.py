@@ -16,7 +16,7 @@ import sys
 import time
 
 sys.path.append("..")
-from retrievedata import RetrieveData
+from util import RetrieveData
 
 
 class MakeHosts(object):

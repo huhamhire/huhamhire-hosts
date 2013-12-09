@@ -14,15 +14,10 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "0.9"
-__revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
-
-__all__ = ["RetrieveData", "make_hosts"]
 
 import os
 import sqlite3
-import time
 import zipfile
 
 DATAFILE = "./hostslist.data"
@@ -185,18 +180,18 @@ class RetrieveData(object):
         """
         ch_parts = (0x08, 0x20 if flag_v6 else 0x10, 0x40)
         cls._cur.execute("SELECT * FROM modules "
-                "WHERE part_id IN (?, ?, ?)", ch_parts)
+                         "WHERE part_id IN (?, ?, ?)", ch_parts)
         modules = cls._cur.fetchall()
         cls._cur.execute("SELECT part_id, part_default FROM parts "
-                "WHERE part_id IN (?, ?, ?)", ch_parts)
+                         "WHERE part_id IN (?, ?, ?)", ch_parts)
         default_cfg = cls._cur.fetchall()
         defaults = {}
         for default in default_cfg:
             defaults[default[0]] = cls.get_ids(default[1])
         slices = [0]
         for ch_part in ch_parts:
-            cls._cur.execute("SELECT COUNT(mod_id) FROM modules "
-                    "WHERE part_id=?", (ch_part, ))
+            cls._cur.execute('SELECT COUNT(mod_id) FROM modules '
+                             'WHERE part_id=?', (ch_part, ))
             slices.append(cls._cur.fetchone()[0])
         for s in range(1, len(slices)):
             slices[s] = slices[s] + slices[s - 1]
@@ -220,7 +215,7 @@ class RetrieveData(object):
             True : Conflict, False: No conflicts.
         """
         cls._cur.execute("SELECT mod_id, mutex FROM modules "
-                "WHERE part_id=%s" % part_id)
+                         "WHERE part_id=%s" % part_id)
         mutex_tuple = dict(cls._cur.fetchall())
         mutex_info = []
         mod_info = cls.get_ids(mod_cfg)
@@ -251,66 +246,3 @@ class RetrieveData(object):
         """
         cls._conn.close()
         os.remove(cls._database)
-
-def make_hosts(cfgs, hostname):
-    """Operations to make a hosts filename
-
-    Make a new hosts file by data from the local data file.
-
-    Args:
-        cfgs (dict): A dictionary containing the hex config words for
-            different parts of the data file.
-        hostname (str): A string indicating the hostname of current operating
-            system.
-    """
-    # Operations start
-    start_time = time.time()
-    hosts_file = open("hosts", "w")
-    RetrieveData.unpack()
-    RetrieveData.connect_db()
-    # Fetches head section
-    for head_str in RetrieveData.get_head():
-        hosts_file.write("%s\n" % head_str[0])
-    # Fetches info section
-    info = RetrieveData.get_info()
-    info_lines = ["#"]
-    info_lines.append("# %s: %s" % ("Version", info["Version"]))
-    info_lines.append("# %s: %s" % ("Buildtime", info["Buildtime"]))
-    info_lines.append("# %s: %s" % ("Applytime", int(start_time)))
-    info_lines.append("#")
-    for line in info_lines:
-        hosts_file.write("%s\n" % line)
-    # Fetches hosts section
-    for part_id in sorted(cfgs.keys()):
-        mod_cfg = cfgs[part_id]
-        if not RetrieveData.chk_mutex(part_id, mod_cfg):
-            return
-        mods = RetrieveData.get_ids(mod_cfg)
-        if part_id == 0x02:
-            # Retrieve localhost module
-            for mod_id in mods:
-                hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
-                hosts_file.write("\n# Section Start: %s\n" % mod_name)
-                for host in hosts:
-                    if hosts[1] == "#Replace Your Device Name Here!":
-                        hosts[1] = hostname
-                    hosts_file.write("%s %s\n" % (host[0], host[1]))
-                hosts_file.write("# Section End: %s\n" % mod_name)
-        else:
-            # Retrieve common modules
-            for mod_id in mods:
-                hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
-                hosts_file.write("\n# Section Start: %s\n" % mod_name)
-                for host in hosts:
-                    hosts_file.write("%s %s\n" % (host[0], host[1]))
-                hosts_file.write("# Section End: %s\n" % mod_name)
-    hosts_file.close()
-    RetrieveData.clear()
-    # Operations end
-    end_time = time.time()
-    total_time = "%.4f" % (end_time - start_time)
-
-if __name__ == "__main__":
-    # Module Test
-    selection = {0x02: 0x0001, 0x08: 0x0001, 0x10: 0x003F, 0x40: 0x000F}
-    make_hosts(selection, "TEST-PC")

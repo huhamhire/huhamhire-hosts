@@ -17,8 +17,8 @@ from zipfile import BadZipfile
 import sys
 sys.path.append("..")
 from curses_d import CursesDeamon
-from retrievedata import RetrieveData
-from utilities import Utilities
+from util.retrievedata import RetrieveData
+from util import CommonUtil
 
 
 class HostsUtil(CursesDeamon):
@@ -28,7 +28,7 @@ class HostsUtil(CursesDeamon):
     def __init__(self):
         super(HostsUtil, self).__init__()
         # Set mirrors
-        self.settings[0][2] = Utilities.set_network("network.conf")
+        self.settings[0][2] = CommonUtil.set_network("network.conf")
         # Read data file and set function list
         try:
             self.set_platform()
@@ -64,7 +64,7 @@ class HostsUtil(CursesDeamon):
 
         Set the information of current operating system platform.
         """
-        system, hostname, path, encode, flag = Utilities.check_platform()
+        system, hostname, path, encode, flag = CommonUtil.check_platform()
         color = "GREEN" if flag else "RED"
         self.platform = system
         self.statusinfo[1][1] = system
@@ -97,7 +97,7 @@ class HostsUtil(CursesDeamon):
         info = RetrieveData.get_info()
         build = info["Buildtime"]
         self.hostsinfo["Version"] = info["Version"]
-        self.hostsinfo["Release"] = Utilities.timestamp_to_date(build)
+        self.hostsinfo["Release"] = CommonUtil.timestamp_to_date(build)
 
 if __name__ == "__main__":
     main = HostsUtil()

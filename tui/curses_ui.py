@@ -17,7 +17,7 @@ import locale
 
 import sys
 sys.path.append("..")
-from utilities import Utilities
+from util.common import CommonUtil
 from hostsutl import __version__
 
 
@@ -149,7 +149,7 @@ class CursesUI(object):
             i += 1
         screen.refresh()
 
-    def show_funclist(self, pos):
+    def show_funclist(self, pos, item_sup, item_inf):
         # Set UI variable
         screen = self._stdscr.subwin(18, 26, 2, 26)
         screen.bkgd(' ', curses.color_pair(4))
@@ -160,7 +160,6 @@ class CursesUI(object):
         # Set local variable
         ip = self.settings[1][1]
         item_len = len(self.choice[ip])
-        item_sup, item_inf = self._item_sup, self._item_inf
         # Function list
         items_show = self.choice[ip][item_sup:item_inf]
         items_selec = self._funcs[ip][item_sup:item_inf]
@@ -193,10 +192,10 @@ class CursesUI(object):
         else:
             for line_i in range(list_height - item_len):
                 screen.addstr(17 - line_i, 2, ' ' * 23, normal)
+        if not items_show:
+            screen.addstr(4, 2, "No data file!".center(23), normal)
         screen.refresh()
-
         self._item_sup, self._item_inf = item_sup, item_inf
-        return pos
 
     def info(self, pos, tab):
         screen = self._stdscr.subwin(18, 24, 2, 52)
@@ -236,8 +235,8 @@ class CursesUI(object):
             prog = prog_len * done / total
             progress = ''.join(['=' * int(prog), '-' * int(2 * prog % 2)])
             progress = progress.ljust(prog_len)
-            total = Utilities.convert_size(total).ljust(7)
-            done = Utilities.convert_size(done).rjust(7)
+            total = CommonUtil.convert_size(total).ljust(7)
+            done = CommonUtil.convert_size(done).rjust(7)
         else:
             progress = ' ' * prog_len
             done = total = 'N/A'.center(7)
@@ -309,7 +308,7 @@ class CursesUI(object):
         pos_y = 10
         width = 30 if mode == 0 else 40
         height = 2
-        messages = Utilities.cut_message(msg, width - 4)
+        messages = CommonUtil.cut_message(msg, width - 4)
         height += len(messages)
         if mode:
             height += 2
