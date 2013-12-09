@@ -27,7 +27,7 @@ class QSubMakeHosts(QtCore.QThread):
     methods to make a new hosts file for client.
 
     The instance of this class should be created in an individual thread. And
-    the object instance of MainDialog class should be set as parent here.
+    the object instance of HostsUtil class should be set as parent here.
 
     Attributes:
         info_trigger (obj): A PyQt4.QtCore.pyqtSignal object to emit message
@@ -75,7 +75,7 @@ class QSubMakeHosts(QtCore.QThread):
         Fetch settings from the main dialog to make a new hosts file.
 
         Args:
-            parent (obj): An instance of MainDialog object to get settings
+            parent (obj): An instance of HostsUtil object to get settings
                 from.
         """
         super(QSubMakeHosts, self).__init__(parent)

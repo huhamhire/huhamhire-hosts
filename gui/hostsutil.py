@@ -13,43 +13,42 @@
 # THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR
 # PURPOSE.
 # =====================================================================
+import os
+import shutil
+import time
+from zipfile import BadZipfile
+from _checkconn import QSubChkConnection
+from _checkupdate import QSubChkUpdate
+from _make import QSubMakeHosts
+from _update import QSubFetchUpdate
+from language import LangUtil
+from util_ui import _translate, _fromUtf8
+from util import RetrieveData, CommonUtil
 
 __version__ = "1.9.7"
 __revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
-import os
-import shutil
 import sys
-import time
-from zipfile import BadZipfile
 
 from PyQt4 import QtCore, QtGui
 
-from _checkconn import QSubChkConnection
-from _checkupdate import QSubChkUpdate
-from _make import QSubMakeHosts
-from _update import QSubFetchUpdate
-from util_ui import Ui_Util, _fromUtf8, _translate
-from language import LangUtil
-
-sys.path.append("..")
-from util import CommonUtil, RetrieveData
+from util_ui import Ui_Util
+from qdialog_ui import QDialogUI
 
 # Path to store language files
 LANG_DIR = "./gui/lang/"
 
-
-class MainDialog(QtGui.QDialog):
+class HostsUtil(QDialogUI):
     """A class to manage the operations and UI of Hosts Setup Utility
 
-    MainDialog class is a subclasse of PyQt4.QtGui.QDialog which is used to
+    HostsUtil class is a subclasse of PyQt4.QtGui.QDialog which is used to
     make the main dialog of this hosts setup utility.
     This class contains a set of tools used to manage the operations while
     modifying the hosts file of current operating system. Including methods
     to manage operations to update data file, download data file, configure
     hosts, make hosts file, backup hosts file, and restore backup.
-    The MainDialog class also provides QT slots to deal with the QT singles
+    The HostsUtil class also provides QT slots to deal with the QT singles
     emitted by the widgets on the main dialog operated by users. Extend
     methods dealing with the user interface is also given by this class.
 
@@ -132,29 +131,29 @@ class MainDialog(QtGui.QDialog):
     mirrors = []
     # Name of items from the function list to be localized
     __list_trans = [
-        _translate("HostsUtlMain", "google(cn)", None),
-        _translate("HostsUtlMain", "google(hk)", None),
-        _translate("HostsUtlMain", "google(us)", None),
-        _translate("HostsUtlMain", "google-apis(cn)", None),
-        _translate("HostsUtlMain", "google-apis(us)", None),
-        _translate("HostsUtlMain", "activation-helper", None),
-        _translate("HostsUtlMain", "facebook", None),
-        _translate("HostsUtlMain", "twitter", None),
-        _translate("HostsUtlMain", "youtube", None),
-        _translate("HostsUtlMain", "wikipedia", None),
-        _translate("HostsUtlMain", "institutions", None),
-        _translate("HostsUtlMain", "steam", None),
-        _translate("HostsUtlMain", "others", None),
-        _translate("HostsUtlMain", "adblock-hostsx", None),
-        _translate("HostsUtlMain", "adblock-mvps", None),
-        _translate("HostsUtlMain", "adblock-mwsl", None),
-        _translate("HostsUtlMain", "adblock-yoyo", None),
+        _translate("Util", "google(cn)", None),
+        _translate("Util", "google(hk)", None),
+        _translate("Util", "google(us)", None),
+        _translate("Util", "google-apis(cn)", None),
+        _translate("Util", "google-apis(us)", None),
+        _translate("Util", "activation-helper", None),
+        _translate("Util", "facebook", None),
+        _translate("Util", "twitter", None),
+        _translate("Util", "youtube", None),
+        _translate("Util", "wikipedia", None),
+        _translate("Util", "institutions", None),
+        _translate("Util", "steam", None),
+        _translate("Util", "others", None),
+        _translate("Util", "adblock-hostsx", None),
+        _translate("Util", "adblock-mvps", None),
+        _translate("Util", "adblock-mwsl", None),
+        _translate("Util", "adblock-yoyo", None),
         ]
     # Data file related configuration
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
 
-    def __init__(self, Ui, trans):
+    def __init__(self, trans):
         """Initialize a new instance of this class - Private Method
 
         Set the UI object and current translator of the main dialog.
@@ -165,8 +164,7 @@ class MainDialog(QtGui.QDialog):
             trans (obj): A PyQt4.QtCore.QTranslator object indicating the
                 current UI language setting.
         """
-        super(MainDialog, self).__init__()
-        self.Ui = Ui
+        super(HostsUtil, self).__init__()
         self._trans = trans
         self.set_platform()
         self.set_style()
@@ -305,9 +303,9 @@ class MainDialog(QtGui.QDialog):
         if self.platform == "OS X":
             filename = "/Users/" + filename
         filepath = QtGui.QFileDialog.getSaveFileName(
-            self, _translate("HostsUtlMain", "Backup hosts", None),
+            self, _translate("Util", "Backup hosts", None),
             QtCore.QString(filename),
-            _translate("HostsUtlMain", "Backup File(*.bak)", None))
+            _translate("Util", "Backup File(*.bak)", None))
         if unicode(filepath) != u'':
             shutil.copy2(self.hostspath, unicode(filepath))
             self.info_complete()
@@ -328,9 +326,9 @@ class MainDialog(QtGui.QDialog):
         if self.platform == "OS X":
             filename = "/Users/" + filename
         filepath = QtGui.QFileDialog.getOpenFileName(
-            self, _translate("HostsUtlMain", "Restore hosts", None),
+            self, _translate("Util", "Restore hosts", None),
             QtCore.QString(filename),
-            _translate("HostsUtlMain", "Backup File(*.bak)", None))
+            _translate("Util", "Backup File(*.bak)", None))
         if unicode(filepath) != u'':
             shutil.copy2(unicode(filepath), self.hostspath)
             self.info_complete()
@@ -344,11 +342,9 @@ class MainDialog(QtGui.QDialog):
         """
         if self.choice != [[], []]:
             self.refresh_func_list()
-            self.Ui.ButtonApply.setEnabled(True)
-            self.Ui.ButtonANSI.setEnabled(True)
-            self.Ui.ButtonUTF.setEnabled(True)
+            self.set_update_click_btns()
         if self._update == {} or self._update["version"] == \
-            unicode(_translate("HostsUtlMain", "[Error]", None)):
+            unicode(_translate("Util", "[Error]", None)):
             self.check_update()
 
     def on_FetchUpdate_clicked(self):
@@ -361,13 +357,10 @@ class MainDialog(QtGui.QDialog):
         check the update would be called.
         If the current data is up-to-date, no data file would be retrieved.
         """
+        self.set_fetch_click_btns()
         self._down_flag = 1
-        self.Ui.Functionlist.setEnabled(False)
-        self.Ui.ButtonApply.setEnabled(False)
-        self.Ui.ButtonANSI.setEnabled(False)
-        self.Ui.ButtonUTF.setEnabled(False)
         if self._update == {} or self._update["version"] == \
-            unicode(_translate("HostsUtlMain", "[Error]", None)):
+            unicode(_translate("Util", "[Error]", None)):
             self.check_update()
         elif self.new_version():
             self.fetch_update()
@@ -395,7 +388,7 @@ class MainDialog(QtGui.QDialog):
         for i, mirror in enumerate(self.mirrors):
             self.Ui.SelectMirror.addItem(_fromUtf8(""))
             self.Ui.SelectMirror.setItemText(
-                i, _translate("HostsUtlMain", mirror["tag"], None))
+                i, _translate("Util", mirror["tag"], None))
         self.set_platform_label()
         # Read data file and set function list
         try:
@@ -431,7 +424,7 @@ class MainDialog(QtGui.QDialog):
             RetrieveData.clear()
         except:
             pass
-        super(MainDialog, self).close()
+        super(HostsUtil, self).close()
 
     def check_root(self):
         """Check root privileges - Public Method
@@ -458,11 +451,9 @@ class MainDialog(QtGui.QDialog):
         Call operations to retrieve the metadata of the latest data file from
         a server.
         """
-        self.Ui.SelectMirror.setEnabled(False)
-        self.Ui.ButtonCheck.setEnabled(False)
-        self.Ui.ButtonUpdate.setEnabled(False)
+        self.set_update_start_btns()
         self.set_label_text(self.Ui.labelLatestData, unicode(
-            _translate("HostsUtlMain", "Checking...", None)))
+            _translate("Util", "Checking...", None)))
         thread = QSubChkUpdate(self)
         thread.trigger.connect(self.finish_update)
         thread.start()
@@ -472,13 +463,7 @@ class MainDialog(QtGui.QDialog):
 
         Call operations to retrieve a new hosts data file from a server.
         """
-        self.Ui.SelectMirror.setEnabled(False)
-        self.Ui.ButtonCheck.setEnabled(False)
-        self.Ui.ButtonUpdate.setEnabled(False)
-        self.Ui.ButtonApply.setEnabled(False)
-        self.Ui.ButtonANSI.setEnabled(False)
-        self.Ui.ButtonUTF.setEnabled(False)
-        self.Ui.ButtonExit.setEnabled(False)
+        self.set_fetch_start_btns()
         thread = QSubFetchUpdate(self)
         thread.prog_trigger.connect(self.set_downprogbar)
         thread.finish_trigger.connect(self.finish_fetch)
@@ -491,7 +476,7 @@ class MainDialog(QtGui.QDialog):
         checking update information from a mirror.
         """
         if self._update["version"] == \
-            unicode(_translate("HostsUtlMain", "[Error]", None)):
+            unicode(_translate("Util", "[Error]", None)):
             self.finish_fetch(error=1)
         elif self.new_version():
             self.fetch_update()
@@ -512,9 +497,9 @@ class MainDialog(QtGui.QDialog):
         if self.platform == "OS X":
             filename = "/Users/" + filename
         filepath = QtGui.QFileDialog.getSaveFileName(
-            self, _translate("HostsUtlMain", "Export hosts", None),
+            self, _translate("Util", "Export hosts", None),
             QtCore.QString(filename),
-            _translate("HostsUtlMain", "hosts File", None))
+            _translate("Util", "hosts File", None))
         return filepath
 
     def make_hosts(self, mode="system"):
@@ -526,16 +511,7 @@ class MainDialog(QtGui.QDialog):
             mode (str): A string indicating the operation mode for making
                 hosts file.
         """
-        self.Ui.Functionlist.setEnabled(False)
-        self.Ui.SelectIP.setEnabled(False)
-        self.Ui.ButtonCheck.setEnabled(False)
-        self.Ui.ButtonUpdate.setEnabled(False)
-        self.Ui.ButtonApply.setEnabled(False)
-        self.Ui.ButtonANSI.setEnabled(False)
-        self.Ui.ButtonUTF.setEnabled(False)
-        self.Ui.ButtonExit.setEnabled(False)
-        self.set_makemsg(unicode(_translate(
-            "HostsUtlMain", "Building hosts file...", None)), 1)
+        self.set_make_start_btns()
         # Avoid conflict while making hosts file
         RetrieveData.disconnect_db()
         self._make_mode = mode
@@ -553,7 +529,7 @@ class MainDialog(QtGui.QDialog):
         QSubMakeHosts class while making operations are finished.
         """
         filepath = "hosts"
-        msg = unicode(_translate("HostsUtlMain",
+        msg = unicode(_translate("Util",
             "Copying new hosts file to\n"
             "  %s", None)) % self.hostspath
         self.set_makemsg(msg)
@@ -565,44 +541,14 @@ class MainDialog(QtGui.QDialog):
             return
         except OSError:
             pass
-        msg = unicode(_translate("HostsUtlMain",
+        msg = unicode(_translate("Util",
             "Remove temporary file", None))
         self.set_makemsg(msg)
         os.remove(filepath)
-        msg = unicode(_translate("HostsUtlMain",
+        msg = unicode(_translate("Util",
             "Operation completed", None))
         self.set_makemsg(msg)
         self.info_complete()
-
-    def set_languages(self):
-        """Set items in SelectLang widget - Public Method
-
-        Set optional language selection items in the SelectLang widget.
-        """
-        self.Ui.SelectLang.clear()
-        langs = LangUtil.language
-        langs_not_found = []
-        for locale in langs:
-            if not os.path.isfile(LANG_DIR + locale + ".qm"):
-                langs_not_found.append(locale)
-        for locale in langs_not_found:
-            langs.pop(locale)
-        LangUtil.language = langs
-        if len(langs) <= 1:
-            self.Ui.SelectLang.setEnabled(False)
-        # Block the signal while set the language selecions.
-        self.Ui.SelectLang.blockSignals(True)
-        sys_locale = LangUtil.get_locale()
-        if sys_locale not in langs.keys():
-            sys_locale = "en_US"
-        for i, locale in enumerate(sorted(langs.keys())):
-            if sys_locale == locale:
-                select = i
-            lang = langs[locale]
-            self.Ui.SelectLang.addItem(_fromUtf8(""))
-            self.Ui.SelectLang.setItemText(i, lang)
-        self.Ui.SelectLang.blockSignals(False)
-        self.Ui.SelectLang.setCurrentIndex(select)
 
     def set_platform(self):
         """Set OS info - Public Method
@@ -618,42 +564,6 @@ class MainDialog(QtGui.QDialog):
             self._sys_eol = "\r\n"
         else:
             self._sys_eol = "\n"
-
-    def set_platform_label(self):
-        """Set label of OS info - Public Method
-
-        Set the information of the label indicating current operating system
-        platform.
-        """
-        color = "GREEN" if self.plat_flag else "RED"
-        self.set_label_color(self.Ui.labelOSStat, color)
-        self.set_label_text(self.Ui.labelOSStat, "[%s]" % self.platform)
-
-
-    def set_style(self):
-        """Set window style - Public Method
-
-        Set the main dialog with a window style depending on the os platform.
-        """
-        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-        system = self.platform
-        if system == "Windows":
-            pass
-        elif system == "Linux":
-            # Set window style for sudo users.
-            QtGui.QApplication.setStyle(
-                QtGui.QStyleFactory.create("Cleanlooks"))
-        elif system == "OS X":
-            pass
-
-    def set_stylesheet(self):
-        """Set Stylesheet for main frame - Public Method
-
-        Define the style sheet of main dialog.
-        """
-        app = QtGui.QApplication.instance()
-        with open("./gui/theme/darkdefault.qss", "r") as qss:
-            app.setStyleSheet(qss.read())
 
     def mouseMoveEvent(self, e):
         """Set mouse drag event - Public Method
@@ -683,168 +593,6 @@ class MainDialog(QtGui.QDialog):
         if e.button() == QtCore.Qt.LeftButton:
             self.dragPos = e.globalPos() - self.frameGeometry().topLeft()
             e.accept()
-
-
-    def set_label_color(self, label, color):
-        """Set the color of a label - Public Method
-
-        Set a specified label ({label}) to show with specified color
-        ({color}).
-
-        Args:
-            label (obj): An instance of PyQt4.QtGui.QLabel class on the main
-                dialog.
-            color (str): A string indicating the color to be shown on the
-                lable.
-        """
-        if color == "GREEN":
-            rgb = "#37b158"
-        elif color == "RED":
-            rgb = "#e27867"
-        elif color == "BLACK":
-            rgb = "#b1b1b1"
-        label.setStyleSheet("QLabel {color: %s}" % rgb)
-
-    def set_label_text(self, label, text):
-        """Set the text of a label - Public Method
-
-        Set a specified label ({label}) to show specified text ({text}).
-
-        Args:
-            label (obj): An instance of PyQt4.QtGui.QLabel class on the main
-                dialog.
-            text (str): A string indicating the message to be shown on the
-                lable.
-        """
-        label.setText(_translate("HostsUtlMain", text, None))
-
-    def set_conn_status(self, status):
-        """Set connection status info - Public Method
-
-        Set the information of connection status to the current server
-        selected.
-        """
-        if status == -1:
-            self.set_label_color(self.Ui.labelConnStat, "BLACK")
-            self.set_label_text(self.Ui.labelConnStat, unicode(
-                _translate("HostsUtlMain", "Checking...", None)))
-        elif status in [0, 1]:
-            if status:
-                color, stat = "GREEN", unicode(_translate(
-                    "HostsUtlMain", "[OK]", None))
-            else:
-                color, stat = "RED", unicode(_translate(
-                    "HostsUtlMain", "[Failed]", None))
-            self.set_label_color(self.Ui.labelConnStat, color)
-            self.set_label_text(self.Ui.labelConnStat, stat)
-
-    def set_func_list(self, new=0):
-        """Set the function list - Public Method
-
-        Draw the function list and decide whether to load the default
-        selection configuration or not.
-
-        Arg:
-            new (int): A flag integer indicating whether to load the default
-                selection configuration or not. 0 -> user user config,
-                1 -> use default config. Default by 0.
-        """
-        ip_flag = self._ipv_id
-        self.Ui.Functionlist.clear()
-        self.Ui.FunctionsBox.setTitle(_translate(
-            "HostsUtlMain", "Functions", None))
-        if new:
-            for ip in range(2):
-                choice, defaults, slices = RetrieveData.get_choice(ip)
-                self.choice[ip] = choice
-                self.slices[ip] = slices
-                funcs = []
-                for func in choice:
-                    item = QtGui.QListWidgetItem()
-                    if func[1] in defaults[func[0]]:
-                        funcs.append(1)
-                    else:
-                        funcs.append(0)
-                self._funcs[ip] = funcs
-
-    def refresh_func_list(self):
-        """Refresh the function list - Public Method
-
-        Refresh the items in the function list by user settings.
-        """
-        ip_flag = self._ipv_id
-        self.Ui.Functionlist.clear()
-        for f_id, func in enumerate(self.choice[self._ipv_id]):
-            item = QtGui.QListWidgetItem()
-            if self._funcs[ip_flag][f_id] == 1:
-                check = QtCore.Qt.Checked
-            else:
-                check = QtCore.Qt.Unchecked
-            item.setCheckState(check)
-            item.setText(_translate("HostsUtlMain", func[3], None))
-            self.Ui.Functionlist.addItem(item)
-
-    def set_message(self, title, msg):
-        """Set a message box - Public Method
-
-        Show a message box with a specified message ({msg}) with a specified
-        title ({title}).
-
-        Args:
-            title (str): A string indicating the title of the message box.
-            msg (str): A string indicating the message to be shown in the
-                message box.
-        """
-        self.Ui.FunctionsBox.setTitle(_translate(
-            "HostsUtlMain", title, None))
-        self.Ui.Functionlist.clear()
-        item = QtGui.QListWidgetItem()
-        item.setText(msg)
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.Ui.Functionlist.addItem(item)
-
-    def set_info(self):
-        """Set data file info - Public Method
-
-        Set the information of the current local data file.
-        """
-        info = RetrieveData.get_info()
-        ver = info["Version"]
-        self._cur_ver = ver
-        self.set_label_text(self.Ui.labelVersionData, ver)
-        build = info["Buildtime"]
-        build = CommonUtil.timestamp_to_date(build)
-        self.set_label_text(self.Ui.labelReleaseData, build)
-
-    def set_downprogbar(self, prog, msg):
-        """Set progress bar - Public Method
-
-        Set the progress bar to a specified progress position ({prog}) with a
-        specified message ({msg}).
-
-        Args:
-            prog (int): An integer indicating the progress to be set on the
-                progress bar.
-            msg (str): A string indicating the message to be shown on the
-                progress bar.
-        """
-        self.Ui.Prog.setProperty("value", prog)
-        self.set_conn_status(1)
-        self.Ui.Prog.setFormat(msg)
-
-    def set_listitemunchecked(self, item_id):
-        """Set list item to be unchecked - Public Method
-
-        Set a specified item ({item_id}) to become unchecked in the function
-        list.
-
-        Arg:
-            item_id (int): An integer indicating the id number of a specified
-                item in the function list.
-        """
-        self._funcs[self._ipv_id][item_id] = 0
-        item = self.Ui.Functionlist.item(item_id)
-        item.setCheckState(QtCore.Qt.Unchecked)
 
     def set_cfgbytes(self, mode):
         """Set configuration byte words - Public Method
@@ -898,50 +646,6 @@ class MainDialog(QtGui.QDialog):
         except (BadZipfile, IOError, OSError):
             self.warning_incorrect_datafile()
 
-    def set_makeprog(self, mod_name, mod_num):
-        """Operations to show progress while making hosts file - Public Method
-
-        The slot response to the info_trigger signal ({mod_name}, {mod_num})
-        from an instance of QSubMakeHosts class while making operations are
-        proceeded.
-
-        Args:
-            mod_name (str): A string indicating the name of a specified hosts
-                module in current progress.
-            mod_num (int): An integer indicating the number of current module
-                in the operation sequence.
-        """
-        total_mods_num = self._funcs[self._ipv_id].count(1) + 1
-        prog = 100 * mod_num / total_mods_num
-        self.Ui.Prog.setProperty("value", prog)
-        format = unicode(_translate(
-            "HostsUtlMain", "Applying module: %s(%s/%s)", None)) % (
-            mod_name, mod_num, total_mods_num)
-        self.Ui.Prog.setFormat(format)
-        self.set_makemsg(format)
-
-    def set_makemsg(self, msg, start=0):
-        """Operations to show making progress in function list - Public Method
-
-        List message for the current operating progress while making the new
-        hosts file.
-
-        Args:
-            msg (str): A string indicating the message to show in the function
-                list.
-            start (int): A flag integer indicating whether the message is the
-                first of the making progress or not. 1: first, 0: not the
-                first. Default by 0.
-        """
-        if start:
-            self.Ui.FunctionsBox.setTitle(_translate(
-                "HostsUtlMain", "Progress", None))
-            self.Ui.Functionlist.clear()
-        item = QtGui.QListWidgetItem()
-        item.setText("- " + msg)
-        item.setFlags(QtCore.Qt.ItemIsEnabled)
-        self.Ui.Functionlist.addItem(item)
-
     def set_makefina(self, time, count):
         """Operations after making new hosts file - Public Method
 
@@ -955,21 +659,14 @@ class MainDialog(QtGui.QDialog):
             count (int): An integer indicating the total number of hosts
                 entries inserted into the new hosts file.
         """
-        self.Ui.Functionlist.setEnabled(True)
-        self.Ui.SelectIP.setEnabled(True)
-        self.Ui.ButtonCheck.setEnabled(True)
-        self.Ui.ButtonUpdate.setEnabled(True)
-        self.Ui.ButtonApply.setEnabled(False)
-        self.Ui.ButtonANSI.setEnabled(False)
-        self.Ui.ButtonUTF.setEnabled(False)
-        self.Ui.ButtonExit.setEnabled(True)
+        self.set_make_finish_btns()
         RetrieveData.connect_db()
-        msg = unicode(_translate("HostsUtlMain",
+        msg = unicode(_translate("Util",
             "Notice: %i hosts entries has "
             "\n  been applied in %ssecs.", None)) % (count, time)
         self.set_makemsg(msg)
         self.set_downprogbar(100,
-            unicode(_translate("HostsUtlMain",
+            unicode(_translate("Util",
                 "Operation Completed Successfully!", None)))
 
     def finish_update(self, update):
@@ -985,16 +682,14 @@ class MainDialog(QtGui.QDialog):
         self._update = update
         self.set_label_text(self.Ui.labelLatestData, update["version"])
         if self._update["version"] == \
-                unicode(_translate("HostsUtlMain", "[Error]", None)):
+                unicode(_translate("Util", "[Error]", None)):
             self.set_conn_status(0)
         else:
             self.set_conn_status(1)
         if self._down_flag:
             self.fetch_update_aftercheck()
         else:
-            self.Ui.SelectMirror.setEnabled(True)
-            self.Ui.ButtonCheck.setEnabled(True)
-            self.Ui.ButtonUpdate.setEnabled(True)
+            self.set_update_finish_btns()
 
     def finish_fetch(self, refresh=1, error=0):
         """Operations after downloading data file - Public Method
@@ -1014,37 +709,26 @@ class MainDialog(QtGui.QDialog):
         if error:
             # Error occurred while downloading
             self.set_downprogbar(0,
-                unicode(_translate("HostsUtlMain",
-                    "Error", None)))
+                unicode(_translate("Util", "Error", None)))
             try:
                 os.remove(self.filename)
             except:
                 pass
             self.warning_download()
             msg_title = "Warning"
-            msg = unicode(_translate("HostsUtlMain",
+            msg = unicode(_translate("Util",
                 "Incorrect Data file!\n"
                 "Please use the \"Download\" key to \n"
                 "fetch a new data file.", None))
             self.set_message(msg_title, msg)
-            self.Ui.ButtonApply.setEnabled(False)
-            self.Ui.ButtonANSI.setEnabled(False)
-            self.Ui.ButtonUTF.setEnabled(False)
             self.set_conn_status(0)
         else:
             # Data file retrieved successfully
             self.set_downprogbar(100,
-                unicode(_translate("HostsUtlMain",
+                unicode(_translate("Util",
                     "Download Complete", None)))
             self.refresh_info(refresh)
-            self.Ui.ButtonApply.setEnabled(True)
-            self.Ui.ButtonANSI.setEnabled(True)
-            self.Ui.ButtonUTF.setEnabled(True)
-        self.Ui.Functionlist.setEnabled(True)
-        self.Ui.SelectMirror.setEnabled(True)
-        self.Ui.ButtonCheck.setEnabled(True)
-        self.Ui.ButtonUpdate.setEnabled(True)
-        self.Ui.ButtonExit.setEnabled(True)
+        self.set_fetch_finish_btns(error)
 
     def new_version(self):
         """Compare version of data file - Public Method
@@ -1066,116 +750,16 @@ class MainDialog(QtGui.QDialog):
                 return 1
         return 0
 
-    def warning_permission(self):
-        """Show permission error warning - Public Method
-
-        Draw permission error warning message box.
-        """
-        QtGui.QMessageBox.warning(
-            self, _translate("HostsUtlMain", "Warning", None),
-            _translate("HostsUtlMain",
-                "You do not have permissions to change the \n"
-                "hosts file.\n"
-                "Please run this program as Administrator/root\n"
-                "so it can modify your hosts file."
-                , None))
-
-    def warning_download(self):
-        """Show download error warning - Public Method
-
-        Draw download error warning message box.
-        """
-        QtGui.QMessageBox.warning(
-            self, _translate("HostsUtlMain", "Warning", None),
-            _translate("HostsUtlMain",
-                "Error retrieving data from the server.\n"
-                "Please try another server.", None))
-
-    def warning_incorrect_datafile(self):
-        """Show incorrect data file warning - Public Method
-
-        Draw incorrect data file warning message box.
-        """
-        msg_title = "Warning"
-        msg = unicode(_translate("HostsUtlMain",
-            "Incorrect Data file!\n"
-            "Please use the \"Download\" key to \n"
-            "fetch a new data file.", None))
-        self.set_message(msg_title, msg)
-        self.Ui.ButtonApply.setEnabled(False)
-        self.Ui.ButtonANSI.setEnabled(False)
-        self.Ui.ButtonUTF.setEnabled(False)
-
-    def warning_no_datafile(self):
-        """Show no data file warning - Public Method
-
-        Draw no data file warning message box.
-        """
-        msg_title = "Warning"
-        msg = unicode(_translate("HostsUtlMain",
-            "Data file not found!\n"
-            "Please use the \"Download\" key to \n"
-            "fetch a new data file.", None))
-        self.set_message(msg_title, msg)
-        self.Ui.ButtonApply.setEnabled(False)
-        self.Ui.ButtonANSI.setEnabled(False)
-        self.Ui.ButtonUTF.setEnabled(False)
-
-    def question_apply(self):
-        """Show confirm make question - Public Method
-
-        Draw confirm make question message box.
-
-        Returns:
-            A bool flag indicating whether user has accepted to continue the
-            operations or not. True: Continue, False: Cancel.
-        """
-        msg_title = unicode(_translate("HostsUtlMain", "Notice", None))
-        msg = unicode(_translate("HostsUtlMain",
-            "Are you sure you want to apply changes \n"
-            "to the hosts file on your system?\n\n"
-            "This operation could not be reverted if \n"
-            "you have not made a backup of your \n"
-            "current hosts file.", None))
-        choice = QtGui.QMessageBox.question(self, msg_title, msg,
-            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
-            QtGui.QMessageBox.No)
-        if choice == QtGui.QMessageBox.Yes:
-            return True
-        else:
-            return False
-
-    def info_uptodate(self):
-        """Show up-to-date message - Public Method
-
-        Draw data file is up-to-date message box.
-        """
-        QtGui.QMessageBox.information(
-            self, _translate("HostsUtlMain", "Notice", None),
-            _translate("HostsUtlMain", "Data file is up-to-date.", None))
-
-    def info_complete(self):
-        """Show complete message - Public Method
-
-        Draw operation complete message box.
-        """
-        QtGui.QMessageBox.information(
-            self, _translate("HostsUtlMain", "Complete", None),
-            _translate("HostsUtlMain", "Operation completed", None))
-
-
 def qt_main():
     """Load main dialog
 
     Start the main dialog of Hosts Setup Utility.
     """
     trans = QtCore.QTranslator()
-    trans.load("lang/en_US")
+    trans.load(LANG_DIR + "en_US")
     app = QtGui.QApplication(sys.argv)
     app.installTranslator(trans)
-    ui = Ui_Util()
-    HostsUtlMain = MainDialog(ui, trans)
-    ui.setupUi(HostsUtlMain)
+    HostsUtlMain = HostsUtil(trans)
     HostsUtlMain.set_languages()
     if not HostsUtlMain.initd:
         HostsUtlMain.init_main()

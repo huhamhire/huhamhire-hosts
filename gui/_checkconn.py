@@ -26,7 +26,7 @@ class QSubChkConnection(QtCore.QThread):
     contains methods to check the network connection with a specified mirror.
 
     The instance of this class should be created in an individual thread. And
-    the object instance of MainDialog class should be set as parent here.
+    the object instance of HostsUtil class should be set as parent here.
 
     Attribute:
         trigger (obj): A PyQt4.QtCore.pyqtSignal object to emit suatus signal
@@ -42,7 +42,7 @@ class QSubChkConnection(QtCore.QThread):
         Get mirror settings from the main dialog to check the connection.
 
         Args:
-            parent (obj): An instance of MainDialog object to get settings
+            parent (obj): An instance of HostsUtil object to get settings
                 from.
         """
         super(QSubChkConnection, self).__init__(parent)
