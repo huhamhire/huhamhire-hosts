@@ -18,6 +18,7 @@ import time
 sys.path.append("..")
 from retrievedata import RetrieveData
 
+
 class MakeHosts(object):
     mod_num = 0
     make_cfg = {}
@@ -133,4 +134,4 @@ class MakeHosts(object):
             if "#Replace" in host[1]:
                 host = (host[0], self.hostname)
             self.hosts_file.write("%s %s%s" % (host[0], host[1], self.eol))
-        self.hosts_file.write("# Section End: Localhost%s" % (self.eol))
+        self.hosts_file.write("# Section End: Localhost%s" % self.eol)

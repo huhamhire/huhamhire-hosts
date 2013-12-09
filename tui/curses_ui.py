@@ -22,6 +22,23 @@ from hostsutl import __version__
 
 
 class CursesUI(object):
+    """
+    Attributes:
+        _make_path (str): A string indicating the path to store the hosts file
+            in export mode.
+        _sys_eol (str): A string indicating the End-Of-Line marker.
+        _funcs (list): A list containing two lists with the information of
+            function list for IPv4 and IPv6 environment.
+        choice (list): A list containing two lists with the selection of
+            functions for IPv4 and IPv6 environment.
+        slices (list): A list containing two lists with integers indicating
+            the number of function items from different parts listed in the
+            function list.
+        filename (str): A string indicating the filename of the data file
+            containing data to make a hosts file.
+        infofile (str): A string indicating the filename of the info file
+            containing metadata of the data file in JSON format.
+    """
     __title = "HOSTS SETUP UTILITY"
     __copyleft = "v%s Copyleft 2011-2014, huhamhire-hosts Team" % __version__
 
@@ -91,7 +108,7 @@ class CursesUI(object):
         screen.addstr(0, 0, copyleft.center(79), normal)
         screen.refresh()
 
-    def configure_settings_frame(self, pos=None, key_in=None):
+    def configure_settings_frame(self, pos=None):
         self._stdscr.keypad(1)
         screen = self._stdscr.subwin(8, 25, 2, 0)
         screen.bkgd(' ', curses.color_pair(4))

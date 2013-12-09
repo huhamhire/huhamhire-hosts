@@ -14,7 +14,7 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "0.8"
+__version__ = "0.9"
 __revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
@@ -27,6 +27,7 @@ import zipfile
 
 DATAFILE = "./hostslist.data"
 DATABASE = "./hostslist.s3db"
+
 
 class RetrieveData(object):
     """A class to fetch data from data file
@@ -151,13 +152,14 @@ class RetrieveData(object):
                 module.
         """
         cls._cur.execute("SELECT part_name FROM parts "
-                "WHERE part_id=%s" % part_id)
+                         "WHERE part_id=%s" % part_id)
         part_name = cls._cur.fetchone()[0]
         cls._cur.execute("SELECT ip, host FROM %s "
-                "WHERE cate=%s" % (part_name, mod_id))
+                         "WHERE cate=%s" % (part_name, mod_id))
         hosts = cls._cur.fetchall()
         cls._cur.execute("SELECT mod_name FROM modules "
-                "WHERE part_id=%s AND mod_id = %s" % (part_id, mod_id))
+                         "WHERE part_id=%s AND mod_id = %s"
+                         % (part_id, mod_id))
         mod_name = cls._cur.fetchone()[0]
         return hosts, mod_name
 

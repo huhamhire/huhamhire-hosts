@@ -16,6 +16,7 @@ import os
 import socket
 import urllib
 
+
 class FetchUpdate(object):
     def __init__(self, parent):
         mirror_id = parent.settings[0][1]
@@ -30,7 +31,7 @@ class FetchUpdate(object):
         socket.setdefaulttimeout(10)
         try:
             urllib.urlretrieve(self.url, self.tmp_path,
-                self.parent.process_bar)
+                               self.parent.process_bar)
             self.replace_old()
         except Exception, e:
             raise e

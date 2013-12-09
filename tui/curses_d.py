@@ -30,6 +30,22 @@ from utilities import Utilities
 
 
 class CursesDeamon(CursesUI):
+    """
+    Attributes:
+        _make_cfg (dict): A dictionary containing the selection control bytes
+            to make a hosts file.
+        _update (dict): A dictionary containing the update information of the
+            current data file on server.
+        _writable (int): An integer indicating whether the program is run with
+            admin/root privileges. The value could be 1 or 0.
+        platform (str): A string indicating the platform of current operating
+            system. The value could be "Windows", "Linux", "Unix", "OS X", and
+            of course "Unkown".
+        hostname (str): A string indicating the hostname of current operating
+            system. This attribute would be used for linux clients.
+        hostspath (str): A string indicating the absolute path of the hosts
+            file on current operating system.
+    """
     _make_cfg = {}
     _update = {}
     _writable = 0
@@ -67,7 +83,6 @@ class CursesDeamon(CursesUI):
         key_in = None
         tab = 0
         pos = 0
-        hot_keys = self._hot_keys
         tab_entry = [self.configure_settings, self.select_func]
         while key_in != 27:
             self.setup_menu()
@@ -85,21 +100,24 @@ class CursesDeamon(CursesUI):
                 else:
                     tab = not tab
                 pos = 0
-            elif key_in in hot_keys:
+            elif key_in in self._hot_keys:
                 pos = tab_entry[tab](pos, key_in)
             elif key_in in self._ops_keys:
-                i = self._ops_keys.index(key_in)
-                if i > 1:
-                    msg = "Apply Changes to hosts file?"
-                    confirm = self.messagebox(msg, 2)
-                    if confirm:
-                        self.set_cfgbytes()
-                        maker = MakeHosts(self)
-                        maker.make()
-                        self.move_hosts()
-                elif i == 0:
+                if key_in == curses.KEY_F10:
+                    if self._funcs == [[], []]:
+                        self.messagebox("No data file found! Press F6 to get "
+                                        "data file first.", 1)
+                    else:
+                        confirm = self.messagebox("Apply Changes to hosts "
+                                                  "file?", 2)
+                        if confirm:
+                            self.set_cfgbytes()
+                            maker = MakeHosts(self)
+                            maker.make()
+                            self.move_hosts()
+                elif key_in == curses.KEY_F5:
                     self._update = self.check_update()
-                elif i == 1:
+                elif key_in == curses.KEY_F6:
                     if self._update == {}:
                         self._update = self.check_update()
                     self.fetch_update()
@@ -118,7 +136,7 @@ class CursesDeamon(CursesUI):
             elif key_in in [10, 32]:
                 self.sub_selection(pos)
             self.info(pos, 0)
-        self.configure_settings_frame(pos, key_in)
+        self.configure_settings_frame(pos)
         return pos
 
     def select_func(self, pos=None, key_in=None):

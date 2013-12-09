@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  hcurses.py:
+#  hostsutil.py:
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -31,15 +31,17 @@ class HostsUtil(CursesDeamon):
         self.settings[0][2] = Utilities.set_network("network.conf")
         # Read data file and set function list
         try:
+            self.set_platform()
             RetrieveData.unpack()
             RetrieveData.connect_db()
-            self.set_platform()
-            self.set_func_list()
             self.set_info()
+            self.set_func_list()
         except IOError:
-            pass
+            self.messagebox("No data file found! Press F6 to get data file "
+                            "first.", 1)
         except BadZipfile:
-            pass
+            self.messagebox("Incorrect Data file! Press F6 to get a new data "
+                            "file first.", 1)
 
     def __del__(self):
         # Clear up datafile
