@@ -77,7 +77,7 @@ class QSubFetchUpdate(QtCore.QThread):
         Operations to retrieve the new hosts data file.
         """
         self.prog_trigger.emit(0, unicode(_translate(
-            "HostsUtlMain", "Connecting...", None)))
+            "Util", "Connecting...", None)))
         self.fetch_file()
 
     def fetch_file(self):
@@ -117,7 +117,7 @@ class QSubFetchUpdate(QtCore.QThread):
         done = CommonUtil.convert_size(done)
         total = CommonUtil.convert_size(total)
         text = unicode(_translate(
-            "HostsUtlMain", "Downloading: %s / %s", None)) % (done, total)
+            "Util", "Downloading: %s / %s", None)) % (done, total)
         self.prog_trigger.emit(prog, text)
 
     def replace_old(self):

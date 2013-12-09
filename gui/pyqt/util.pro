@@ -1,4 +1,9 @@
 SOURCES = ../hostsutil.py \
+          ../_checkconn.py \
+          ../_checkupdate.py \
+          ../_make.py \
+          ../_update.py \
+          ../qdialog_ui.py \
           ../util_ui.py
 TRANSLATIONS = ../lang/de_DE.ts \
                ../lang/en_US.ts \

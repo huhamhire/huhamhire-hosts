@@ -63,6 +63,5 @@ class QSubChkUpdate(QtCore.QThread):
             info = json.loads(j_str)
             self.trigger.emit(info)
         except:
-            info = {"version": unicode(_translate("HostsUtlMain",
-                                    "[Error]", None))}
+            info = {"version": unicode(_translate("Util", "[Error]", None))}
             self.trigger.emit(info)
