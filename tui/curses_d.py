@@ -21,8 +21,8 @@ import urllib
 import sys
 
 from curses_ui import CursesUI
-from make import MakeHosts
-from update import FetchUpdate
+from _make import MakeHosts
+from _update import FetchUpdate
 
 sys.path.append("..")
 from util import CommonUtil, RetrieveData

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <author>huhamhire</author>
- <class>HostsUtlMain</class>
- <widget class="QDialog" name="HostsUtlMain">
+ <class>Util</class>
+ <widget class="QDialog" name="Util">
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -661,7 +661,7 @@
   <connection>
    <sender>ButtonExit</sender>
    <signal>clicked()</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -677,7 +677,7 @@
   <connection>
    <sender>SelectIP</sender>
    <signal>currentIndexChanged(int)</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_IPVersion_changed(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -693,7 +693,7 @@
   <connection>
    <sender>SelectMirror</sender>
    <signal>currentIndexChanged(int)</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_Mirror_changed(int)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -709,7 +709,7 @@
   <connection>
    <sender>Functionlist</sender>
    <signal>itemChanged(QListWidgetItem*)</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_Selection_changed(QListWidgetItem*)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -725,7 +725,7 @@
   <connection>
    <sender>ButtonApply</sender>
    <signal>clicked()</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_MakeHosts_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -741,7 +741,7 @@
   <connection>
    <sender>ButtonBackup</sender>
    <signal>clicked()</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_Backup_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -757,7 +757,7 @@
   <connection>
    <sender>ButtonRestore</sender>
    <signal>clicked()</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_Restore_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -773,7 +773,7 @@
   <connection>
    <sender>ButtonCheck</sender>
    <signal>clicked()</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_CheckUpdate_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -789,7 +789,7 @@
   <connection>
    <sender>ButtonUpdate</sender>
    <signal>clicked()</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_FetchUpdate_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -805,7 +805,7 @@
   <connection>
    <sender>SelectLang</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_Lang_changed(QString)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -821,7 +821,7 @@
   <connection>
    <sender>ButtonANSI</sender>
    <signal>clicked()</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_MakeANSI_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -837,7 +837,7 @@
   <connection>
    <sender>ButtonUTF</sender>
    <signal>clicked()</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_MakeUTF8_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -853,7 +853,7 @@
   <connection>
    <sender>Copyright</sender>
    <signal>linkActivated(QString)</signal>
-   <receiver>HostsUtlMain</receiver>
+   <receiver>Util</receiver>
    <slot>on_LinkActivated(QString)</slot>
    <hints>
     <hint type="sourcelabel">

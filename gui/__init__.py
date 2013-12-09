@@ -10,3 +10,7 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
 
+from hostsutil import MainDialog
+from hostsutil import qt_main
+
+__all__ = ["MainDialog", "qt_main"]

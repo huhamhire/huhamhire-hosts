@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  make.py:
+#  _make.py:
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -12,16 +12,61 @@
 
 __author__ = "huhamhire <me@huhamhire.com>"
 
-import sys
 import time
+from PyQt4 import QtCore
 
+import sys
 sys.path.append("..")
 from util import RetrieveData
 
 
-class MakeHosts(object):
+class QSubMakeHosts(QtCore.QThread):
+    """A class to make a new hosts file
+
+    QSubMakeHosts is a subclasse of PyQt4.QtCore.QThread. This class contains
+    methods to make a new hosts file for client.
+
+    The instance of this class should be created in an individual thread. And
+    the object instance of MainDialog class should be set as parent here.
+
+    Attributes:
+        info_trigger (obj): A PyQt4.QtCore.pyqtSignal object to emit message
+            signal to the main dialog indicating the current operation.The
+            meaning of the signal arguments is listed here:
+            (str, int) - (mod_name, mod_num)
+            mod_name (str): A string indicating the name of a specified hosts
+                module in current progress.
+            mod_num (int): An integer indicating the number of current module
+                in the operation sequence.
+        fina_trigger (obj): A PyQt4.QtCore.pyqtSignal object to emit message
+            signal to the main dialog indicating finish information. The
+            meaning of the signal arguments is listed here:
+            (str, int) - (time, count)
+            time (str): A string indicating the total time uesd to make the
+                new hosts file.
+            count (int): An integer indicating the total number of hosts
+                entries inserted into the new hosts file.
+        move_trigger (obj): A PyQt4.QtCore.pyqtSignal object to emit signal
+            to the main dialog while new hosts is being moved to specified
+            path on current system. This signal does not
+        count (int): An integer indicating id of the module being processed
+            currently.
+        mod_num (int): An integer indicating total number of modules being
+            operated while making hosts file.
+        make_cfg (dict): A dictionary containing the selection control bytes
+            to make a hosts file.
+        make_mode (str): A string indicating the operation mode for making
+            hosts file.
+        eol (str): A string indicating the End-Of-Line marker.
+    """
+    info_trigger = QtCore.pyqtSignal(str, int)
+    fina_trigger = QtCore.pyqtSignal(str, int)
+    move_trigger = QtCore.pyqtSignal()
+
+    count = 0
     mod_num = 0
     make_cfg = {}
+    make_mode = ""
     eol = ""
 
     def __init__(self, parent=None):
@@ -33,23 +78,40 @@ class MakeHosts(object):
             parent (obj): An instance of MainDialog object to get settings
                 from.
         """
+        super(QSubMakeHosts, self).__init__(parent)
+        self.count = 0
         self.make_cfg = parent._make_cfg
+        self.make_mode = parent._make_mode
+        make_path = parent._make_path
         self.hostname = parent.hostname
-        self.eol = parent._sys_eol
-        self.hosts_file = open("hosts", "wb")
+        if parent._make_mode == "system":
+            self.eol = parent._sys_eol
+            self.hosts_file = open("hosts", "wb")
+        elif parent._make_mode == "ansi":
+            self.eol = "\r\n"
+            self.hosts_file = open(unicode(make_path), "wb")
+        elif parent._make_mode == "utf-8":
+            self.eol = "\n"
+            self.hosts_file = open(unicode(make_path), "wb")
 
-    def make(self):
+    def run(self):
         """Make new hosts file - Public Method
 
         Operations to retrieve data from the data file and make the new hosts
         file for current system.
         """
         RetrieveData.connect_db()
-        self.maketime = time.time()
+        start_time = time.time()
+        self.maketime = start_time
         self.write_head()
         self.write_info()
         self.get_hosts(self.make_cfg)
         self.hosts_file.close()
+        end_time = time.time()
+        total_time = "%.4f" % (end_time - start_time)
+        self.fina_trigger.emit(total_time, self.count)
+        if self.make_mode == "system":
+            self.move_trigger.emit()
         RetrieveData.disconnect_db()
 
     def get_hosts(self, make_cfg):
@@ -109,10 +171,12 @@ class MakeHosts(object):
                 in the data file.
         """
         hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
+        self.info_trigger.emit(mod_name, self.mod_num)
         self.hosts_file.write(
             "%s# Section Start: %s%s" % (self.eol, mod_name, self.eol))
         for host in hosts:
             self.hosts_file.write("%s %s%s" % (host[0], host[1], self.eol))
+            self.count += 1
         self.hosts_file.write("# Section End: %s%s" % (mod_name, self.eol))
 
     def write_localhost_mod(self, part_id, mod_id):
@@ -128,10 +192,12 @@ class MakeHosts(object):
                 in the data file.
         """
         hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
+        self.info_trigger.emit(mod_name, self.mod_num)
         self.hosts_file.write(
             "%s# Section Start: Localhost%s" % (self.eol, self.eol))
         for host in hosts:
             if "#Replace" in host[1]:
                 host = (host[0], self.hostname)
             self.hosts_file.write("%s %s%s" % (host[0], host[1], self.eol))
-        self.hosts_file.write("# Section End: Localhost%s" % self.eol)
+            self.count += 1
+        self.hosts_file.write("# Section End: Localhost%s" % (self.eol))
