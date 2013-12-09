@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="buttons">
+    <file>../../res/img/buttons/button_ansi.png</file>
+    <file>../../res/img/buttons/button_ansi_disabled.png</file>
+    <file>../../res/img/buttons/button_apply.png</file>
+    <file>../../res/img/buttons/button_apply_disabled.png</file>
+    <file>../../res/img/buttons/button_backup.png</file>
+    <file>../../res/img/buttons/button_backup_disabled.png</file>
+    <file>../../res/img/buttons/button_download.png</file>
+    <file>../../res/img/buttons/button_download_disabled.png</file>
+    <file>../../res/img/buttons/button_exit.png</file>
+    <file>../../res/img/buttons/button_exit_disabled.png</file>
+    <file>../../res/img/buttons/button_restore.png</file>
+    <file>../../res/img/buttons/button_restore_disabled.png</file>
+    <file>../../res/img/buttons/button_update.png</file>
+    <file>../../res/img/buttons/button_update_disabled.png</file>
+    <file>../../res/img/buttons/button_utf8.png</file>
+    <file>../../res/img/buttons/button_utf8_disabled.png</file>
+  </qresource>
+  <qresource prefix="icon">
+    <file>../../res/img/icons/utl_icon@256x256.png</file>
+  </qresource>
+</RCC>

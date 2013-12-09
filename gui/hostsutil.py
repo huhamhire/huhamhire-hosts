@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  hostsutl.py : Main parts of Hosts Setup Utility
+#  hostsutil.py : Main parts of Hosts Setup Utility
 #
 # Copyleft (C) 2013 - huhamhire hosts team <develop@huhamhire.com>
 # =====================================================================
@@ -20,7 +20,7 @@ __author__ = "huhamhire <me@huhamhire.com>"
 
 __all__ = [
     "LANG_DIR", "MainDialog", "QSubChkConnection", "QSubFetchUpdate",
-    "QSubMakeHosts", "QSubChkUpdate",]
+    "QSubMakeHosts", "QSubChkUpdate", ]
 
 import json
 import os
@@ -34,12 +34,14 @@ from zipfile import BadZipfile
 from PyQt4 import QtCore, QtGui
 
 from qthostsui import Ui_HostsUtlMain, _fromUtf8, _translate
-from util.retrievedata import RetrieveData
-from util import CommonUtil, LangUtil
+from language import LangUtil
 
+sys.path.append("..")
+from util import CommonUtil, RetrieveData
 
 # Path to store language files
-LANG_DIR = "./lang/"
+LANG_DIR = "./gui/lang/"
+
 
 class MainDialog(QtGui.QDialog):
     """A class to manage the operations and UI of Hosts Setup Utility
@@ -653,7 +655,7 @@ class MainDialog(QtGui.QDialog):
         Define the style sheet of main dialog.
         """
         app = QtGui.QApplication.instance()
-        with open("./theme/darkdefault.qss", "r") as qss:
+        with open("./gui/theme/darkdefault.qss", "r") as qss:
             app.setStyleSheet(qss.read())
 
     def mouseMoveEvent(self, e):

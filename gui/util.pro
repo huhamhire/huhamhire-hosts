@@ -1,4 +1,4 @@
-SOURCES = hostsutl.py \
+SOURCES = hostsutil.py \
           qthostsui.py
 TRANSLATIONS = lang/de_DE.ts \
                lang/en_US.ts \

@@ -39,8 +39,8 @@
    <string>Hosts Setup Utility</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="qthosts.qrc">
-    <normaloff>:/icon/img/icons/utl_icon@256x256.png</normaloff>:/icon/img/icons/utl_icon@256x256.png</iconset>
+   <iconset resource="resource/util.qrc">
+    <normaloff>:/icon/res/img/icons/utl_icon@256x256.png</normaloff>:/icon/res/img/icons/utl_icon@256x256.png</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -344,9 +344,9 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/buttons/button_backup.png</normaloff>
-       <disabledoff>:/buttons/img/buttons/button_backup_disabled.png</disabledoff>:/buttons/img/buttons/button_backup.png</iconset>
+      <iconset resource="resource/util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_backup.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_backup_disabled.png</disabledoff>:/buttons/res/img/buttons/button_backup.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -374,9 +374,9 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/buttons/button_download.png</normaloff>
-       <disabledoff>:/buttons/img/buttons/button_download_disabled.png</disabledoff>:/buttons/img/buttons/button_download.png</iconset>
+      <iconset resource="resource/util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_download.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_download_disabled.png</disabledoff>:/buttons/res/img/buttons/button_download.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -404,9 +404,9 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/buttons/button_restore.png</normaloff>
-       <disabledoff>:/buttons/img/buttons/button_restore_disabled.png</disabledoff>:/buttons/img/buttons/button_restore.png</iconset>
+      <iconset resource="resource/util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_restore.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_restore_disabled.png</disabledoff>:/buttons/res/img/buttons/button_restore.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -434,9 +434,9 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/buttons/button_apply.png</normaloff>
-       <disabledoff>:/buttons/img/buttons/button_apply_disabled.png</disabledoff>:/buttons/img/buttons/button_apply.png</iconset>
+      <iconset resource="resource/util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_apply.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_apply_disabled.png</disabledoff>:/buttons/res/img/buttons/button_apply.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -464,9 +464,9 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/buttons/button_exit.png</normaloff>
-       <disabledoff>:/buttons/img/buttons/button_exit_disabled.png</disabledoff>:/buttons/img/buttons/button_exit.png</iconset>
+      <iconset resource="resource/util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_exit.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_exit_disabled.png</disabledoff>:/buttons/res/img/buttons/button_exit.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -494,9 +494,9 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/buttons/button_update.png</normaloff>
-       <disabledoff>:/buttons/img/buttons/button_update_disabled.png</disabledoff>:/buttons/img/buttons/button_update.png</iconset>
+      <iconset resource="resource/util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_update.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_update_disabled.png</disabledoff>:/buttons/res/img/buttons/button_update.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -524,9 +524,9 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/buttons/button_ansi.png</normaloff>
-       <disabledoff>:/buttons/img/buttons/button_ansi_disabled.png</disabledoff>:/buttons/img/buttons/button_ansi.png</iconset>
+      <iconset resource="resource/util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_ansi.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_ansi_disabled.png</disabledoff>:/buttons/res/img/buttons/button_ansi.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -554,9 +554,9 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="qthosts.qrc">
-       <normaloff>:/buttons/img/buttons/button_utf8.png</normaloff>
-       <disabledoff>:/buttons/img/buttons/button_utf8_disabled.png</disabledoff>:/buttons/img/buttons/button_utf8.png</iconset>
+      <iconset resource="resource/util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_utf8.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_utf8_disabled.png</disabledoff>:/buttons/res/img/buttons/button_utf8.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -654,8 +654,8 @@
   <tabstop>SelectLang</tabstop>
  </tabstops>
  <resources>
-  <include location="qthosts.qrc"/>
-  <include location="style.qrc"/>
+  <include location="resource/util.qrc"/>
+  <include location="resource/style.qrc"/>
  </resources>
  <connections>
   <connection>

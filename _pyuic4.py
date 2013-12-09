@@ -15,11 +15,18 @@
 # =====================================================================
 
 import os
-for root, dirs, files in os.walk('.'):
-    for file in files:
-        if file.endswith('.ui'):
-            os.system('pyuic4 -o %s.py -x %s' \
-                      % (file.rsplit('.', 1)[0], file))
-        elif file.endswith('.qrc'):
-            os.system('pyrcc4 -o %s_rc.py %s' \
-                      % (file.rsplit('.', 1)[0], file))
+
+GUI_DIR = './gui/'
+
+for root, dirs, files in os.walk(GUI_DIR):
+    for f in files:
+        file_path = os.path.join(root, f)
+        if f.endswith('.ui'):
+            os.system('pyuic4 -o %s.py -x %s'
+                      % (file_path.rsplit('.', 1)[0], file_path))
+        elif f.endswith('.qrc'):
+            os.system('pyrcc4 -o %s_rc.py %s'
+                      % (os.path.join(GUI_DIR, f.rsplit('.', 1)[0]),
+                         file_path))
+        else:
+            pass

@@ -25,8 +25,7 @@ from make import MakeHosts
 from update import FetchUpdate
 
 sys.path.append("..")
-from util.retrievedata import RetrieveData
-from util import CommonUtil
+from util import CommonUtil, RetrieveData
 
 
 class CursesDeamon(CursesUI):

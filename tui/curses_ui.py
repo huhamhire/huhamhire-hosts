@@ -17,8 +17,8 @@ import locale
 
 import sys
 sys.path.append("..")
-from util.common import CommonUtil
-from hostsutl import __version__
+from util import CommonUtil
+from gui.hostsutil import __version__
 
 
 class CursesUI(object):

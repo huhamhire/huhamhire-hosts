@@ -14,11 +14,11 @@ __author__ = "huhamhire <me@huhamhire.com>"
 
 from zipfile import BadZipfile
 
+from curses_d import CursesDeamon
+
 import sys
 sys.path.append("..")
-from curses_d import CursesDeamon
-from util.retrievedata import RetrieveData
-from util import CommonUtil
+from util import CommonUtil, RetrieveData
 
 
 class HostsUtil(CursesDeamon):
