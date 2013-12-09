@@ -23,7 +23,7 @@ class FetchUpdate(object):
         self.url = mirror["update"] + parent.filename
         self.path = "./" + parent.filename
         self.tmp_path = self.path + ".download"
-        self.filesize = parent.update["size"]
+        self.filesize = parent._update["size"]
         self.parent = parent
 
     def get_file(self):

@@ -20,15 +20,18 @@ import socket
 import urllib
 
 from curses_ui import CursesUI
-from update import FetchUpdate
 from make import MakeHosts
+from update import FetchUpdate
 
 import sys
 sys.path.append("..")
 from retrievedata import RetrieveData
 from utilities import Utilities
 
+
 class CursesDeamon(CursesUI):
+    _make_cfg = {}
+    _update = {}
     _writable = 0
     # OS related configuration
     platform = ''
@@ -72,7 +75,7 @@ class CursesDeamon(CursesUI):
             self.process_bar(0, 0, 0, 0)
             for i, sec in enumerate(tab_entry):
                 tab_entry[i](pos if i == tab else None)
-            if key_in == None:
+            if key_in is None:
                 test = self.settings[0][2][0]["test_url"]
                 self.check_connection(test)
             key_in = screen.getch()
@@ -95,14 +98,28 @@ class CursesDeamon(CursesUI):
                         maker.make()
                         self.move_hosts()
                 elif i == 0:
-                    self.update = self.check_update()
+                    self._update = self.check_update()
                 elif i == 1:
-                    if self.update == {}:
-                        self.update = self.check_update()
+                    if self._update == {}:
+                        self._update = self.check_update()
                     self.fetch_update()
-                    return
+                    return 1
                 else:
                     pass
+        return 0
+
+    def configure_settings(self, pos=None, key_in=None):
+        id_num = range(len(self.settings))
+        if pos is not None:
+            if key_in == curses.KEY_DOWN:
+                pos = list(id_num[1:] + id_num[:1])[pos]
+            elif key_in == curses.KEY_UP:
+                pos = list(id_num[-1:] + id_num[:-1])[pos]
+            elif key_in in [10, 32]:
+                self.sub_selection(pos)
+            self.info(pos, 0)
+        self.configure_settings_frame(pos, key_in)
+        return pos
 
     def select_func(self, pos=None, key_in=None):
         list_height = 15
@@ -110,7 +127,7 @@ class CursesDeamon(CursesUI):
         # Key Press Operations
         item_len = len(self.choice[ip])
         item_sup, item_inf = self._item_sup, self._item_inf
-        if pos != None:
+        if pos is not None:
             if item_len > list_height:
                 if pos <= 1:
                     item_sup = 0
@@ -204,12 +221,6 @@ class CursesDeamon(CursesUI):
         self.messagebox("Downloading...")
         fetch_d = FetchUpdate(self)
         fetch_d.get_file()
-        try:
-            RetrieveData.clear()
-        except Exception, e:
-            pass
-        self.entry.__init__()
-        self.entry.startutil()
 
     def set_cfgbytes(self):
         """Set configuration byte words - Public Method

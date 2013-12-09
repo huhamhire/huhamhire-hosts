@@ -20,10 +20,10 @@ from curses_d import CursesDeamon
 from retrievedata import RetrieveData
 from utilities import Utilities
 
+
 class HostsUtil(CursesDeamon):
     _down_flag = 0
     _hostsinfo = []
-    _update = {}
 
     def __init__(self):
         super(HostsUtil, self).__init__()
@@ -41,6 +41,22 @@ class HostsUtil(CursesDeamon):
         except BadZipfile:
             pass
 
+    def __del__(self):
+        # Clear up datafile
+        try:
+            RetrieveData.clear()
+        except:
+            pass
+
+    def startutil(self):
+        while True:
+            # Reload
+            if self.session_daemon():
+                self.__del__()
+                self.__init__()
+            else:
+                break
+
     def set_platform(self):
         """Set OS info - Public Method
 
@@ -57,14 +73,6 @@ class HostsUtil(CursesDeamon):
             self._sys_eol = "\r\n"
         else:
             self._sys_eol = "\n"
-
-    def startutil(self):
-        self.session_daemon()
-        # Clear up datafile
-        try:
-            RetrieveData.clear()
-        except:
-            pass
 
     def set_func_list(self):
         for ip in range(2):

@@ -17,9 +17,9 @@ import locale
 
 import sys
 sys.path.append("..")
-from retrievedata import RetrieveData
 from utilities import Utilities
 from hostsutl import __version__
+
 
 class CursesUI(object):
     __title = "HOSTS SETUP UTILITY"
@@ -29,7 +29,6 @@ class CursesUI(object):
     _item_sup = 0
     _item_inf = 0
 
-    _make_cfg = {}
     _make_path = "./hosts"
     _sys_eol = ""
     _funcs = [[], []]
@@ -44,7 +43,7 @@ class CursesUI(object):
                   (curses.COLOR_BLACK, curses.COLOR_WHITE),
                   (curses.COLOR_GREEN, curses.COLOR_WHITE),
                   (curses.COLOR_WHITE, curses.COLOR_BLACK),
-                  (curses.COLOR_RED, curses.COLOR_WHITE),]
+                  (curses.COLOR_RED, curses.COLOR_WHITE), ]
 
     settings = [["Server", 0, []],
                 ["IP Version", 0, ["IPv4", "IPv6"]]]
@@ -54,7 +53,6 @@ class CursesUI(object):
                 ["Esc", "Exit"]]
     statusinfo = [["Connection", "N/A", "GREEN"], ["OS", "N/A", "GREEN"]]
     hostsinfo = {"Version": "N/A", "Release": "N/A", "Latest": "N/A"}
-    update = {}
 
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
@@ -93,7 +91,7 @@ class CursesUI(object):
         screen.addstr(0, 0, copyleft.center(79), normal)
         screen.refresh()
 
-    def configure_settings(self, pos=None, key_in=None):
+    def configure_settings_frame(self, pos=None, key_in=None):
         self._stdscr.keypad(1)
         screen = self._stdscr.subwin(8, 25, 2, 0)
         screen.bkgd(' ', curses.color_pair(4))
@@ -102,15 +100,6 @@ class CursesUI(object):
         select = curses.color_pair(5)
         select += curses.A_BOLD
 
-        id_num = range(len(self.settings))
-        if pos != None:
-            if key_in == curses.KEY_DOWN:
-                pos = list(id_num[1:] + id_num[:1])[pos]
-            elif key_in == curses.KEY_UP:
-                pos = list(id_num[-1:] + id_num[:-1])[pos]
-            elif key_in in [10, 32]:
-                self.sub_selection(pos)
-            self.info(pos, 0)
         for p, item in enumerate(self.settings):
             item_str = item[0].ljust(12)
             screen.addstr(3 + p, 2, item_str, select if p == pos else normal)
@@ -121,7 +110,6 @@ class CursesUI(object):
             screen.addstr(3 + p, 15, ''.ljust(10), normal)
             screen.addstr(3 + p, 15, choice, select if p == pos else normal)
         screen.refresh()
-        return pos
 
     def status(self):
         screen = self._stdscr.subwin(11, 25, 10, 0)
@@ -135,7 +123,7 @@ class CursesUI(object):
             screen.addstr(2 + i, 2, stat[0], normal)
             stat_str = ''.join(['[', stat[1], ']']).ljust(9)
             screen.addstr(2 + i, 15, stat_str,
-                green if stat[2] == "GREEN" else red)
+                          green if stat[2] == "GREEN" else red)
         # Hosts file info
         i = 0
         for key, info in self.hostsinfo.items():
@@ -162,7 +150,7 @@ class CursesUI(object):
         for p, item in enumerate(items_show):
             sel_ch = '+' if items_selec[p] else ' '
             item_str = ("[%s] %s" % (sel_ch, item[3])).ljust(23)
-            item_pos = pos - item_sup if pos != None else None
+            item_pos = pos - item_sup if pos is not None else None
             highlight = select if p == item_pos else normal
             if item_len > list_height:
                 if item_inf - item_sup == list_height - 2:
@@ -254,7 +242,6 @@ class CursesUI(object):
         screen.keypad(1)
         # Set local variable
         normal = curses.A_NORMAL
-        select = normal + curses.A_BOLD
         # Title of Subwindow
         screen.addstr(0, 3, self.settings[pos][0].center(12), normal)
         return screen
@@ -266,7 +253,7 @@ class CursesUI(object):
         for p, item in enumerate(self.settings[pos][2]):
             item_str = item if pos else item["tag"]
             screen.addstr(1 + p, 2, item_str,
-                select if p == i_pos else normal)
+                          select if p == i_pos else normal)
         screen.refresh()
 
     def setup_menu(self):
@@ -292,17 +279,18 @@ class CursesUI(object):
         # Section Titles
         title = curses.color_pair(6)
         subtitles = [["Configure Settings", (1, 2)], ["Status", (8, 2)],
-                 ["Hosts File", (13, 2)], ["Select Functions", (1, 28)]]
+                     ["Hosts File", (13, 2)], ["Select Functions", (1, 28)]]
         for s_title in subtitles:
             cord = s_title[1]
             screen.addstr(cord[0], cord[1], s_title[0], title)
             screen.hline(cord[0] + 1, cord[1], curses.ACS_HLINE, 23)
         screen.refresh()
 
-    def messagebox(self, msg, mode=0):
-        pos_x = 20
+    @staticmethod
+    def messagebox(msg, mode=0):
+        pos_x = 24 if mode == 0 else 20
         pos_y = 10
-        width = 40
+        width = 30 if mode == 0 else 40
         height = 2
         messages = Utilities.cut_message(msg, width - 4)
         height += len(messages)
@@ -322,13 +310,13 @@ class CursesUI(object):
         select = curses.A_REVERSE
         # Insert messages
         for i in range(len(messages)):
-            screen.addstr(1 + i, 2, messages[i].center(36), normal)
+            screen.addstr(1 + i, 2, messages[i].center(width - 4), normal)
         if mode == 0:
             screen.refresh()
         else:
             # Draw subwindow frame
             line_height = 1 + len(messages)
-            screen.hline(line_height, 1, curses.ACS_HLINE, 38)
+            screen.hline(line_height, 1, curses.ACS_HLINE, width - 2)
             screen.addch(line_height, 0, curses.ACS_SSSB)
             screen.addch(line_height, width - 1, curses.ACS_SBSS)
             tab = 0
@@ -344,7 +332,7 @@ class CursesUI(object):
                     item_str = ''.join(['[', item, ']'])
                     tab_pos_x = 6 + 20 * i if mode == 2 else 18
                     screen.addstr(line_height + 1, tab_pos_x, item_str,
-                        select if i == tab else normal)
+                                  select if i == tab else normal)
                 screen.refresh()
                 key_in = screen.getch()
                 if mode == 2:
@@ -358,5 +346,3 @@ class CursesUI(object):
                 if key_in in [10, 32]:
                     return not tab
             return 0
-
-
