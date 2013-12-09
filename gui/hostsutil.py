@@ -33,7 +33,7 @@ from zipfile import BadZipfile
 
 from PyQt4 import QtCore, QtGui
 
-from qthostsui import Ui_HostsUtlMain, _fromUtf8, _translate
+from qtutil_ui import Ui_HostsUtlMain, _fromUtf8, _translate
 from language import LangUtil
 
 sys.path.append("..")

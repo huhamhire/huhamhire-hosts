@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './gui/qthostsui.ui'
+# Form implementation generated from reading ui file '../pyqt\qtutil_ui.ui'
 #
-# Created: Mon Dec 09 15:55:10 2013
+# Created: Mon Dec 09 16:11:00 2013
 #      by: PyQt4 UI code generator 4.10.2
 #
 # WARNING! All changes made in this file will be lost!

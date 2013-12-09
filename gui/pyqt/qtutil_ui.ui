@@ -39,7 +39,7 @@
    <string>Hosts Setup Utility</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resource/util.qrc">
+   <iconset resource="util.qrc">
     <normaloff>:/icon/res/img/icons/utl_icon@256x256.png</normaloff>:/icon/res/img/icons/utl_icon@256x256.png</iconset>
   </property>
   <property name="locale">
@@ -344,7 +344,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="resource/util.qrc">
+      <iconset resource="util.qrc">
        <normaloff>:/buttons/res/img/buttons/button_backup.png</normaloff>
        <disabledoff>:/buttons/res/img/buttons/button_backup_disabled.png</disabledoff>:/buttons/res/img/buttons/button_backup.png</iconset>
      </property>
@@ -374,7 +374,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="resource/util.qrc">
+      <iconset resource="util.qrc">
        <normaloff>:/buttons/res/img/buttons/button_download.png</normaloff>
        <disabledoff>:/buttons/res/img/buttons/button_download_disabled.png</disabledoff>:/buttons/res/img/buttons/button_download.png</iconset>
      </property>
@@ -404,7 +404,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="resource/util.qrc">
+      <iconset resource="util.qrc">
        <normaloff>:/buttons/res/img/buttons/button_restore.png</normaloff>
        <disabledoff>:/buttons/res/img/buttons/button_restore_disabled.png</disabledoff>:/buttons/res/img/buttons/button_restore.png</iconset>
      </property>
@@ -434,7 +434,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="resource/util.qrc">
+      <iconset resource="util.qrc">
        <normaloff>:/buttons/res/img/buttons/button_apply.png</normaloff>
        <disabledoff>:/buttons/res/img/buttons/button_apply_disabled.png</disabledoff>:/buttons/res/img/buttons/button_apply.png</iconset>
      </property>
@@ -464,7 +464,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="resource/util.qrc">
+      <iconset resource="util.qrc">
        <normaloff>:/buttons/res/img/buttons/button_exit.png</normaloff>
        <disabledoff>:/buttons/res/img/buttons/button_exit_disabled.png</disabledoff>:/buttons/res/img/buttons/button_exit.png</iconset>
      </property>
@@ -494,7 +494,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="resource/util.qrc">
+      <iconset resource="util.qrc">
        <normaloff>:/buttons/res/img/buttons/button_update.png</normaloff>
        <disabledoff>:/buttons/res/img/buttons/button_update_disabled.png</disabledoff>:/buttons/res/img/buttons/button_update.png</iconset>
      </property>
@@ -524,7 +524,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="resource/util.qrc">
+      <iconset resource="util.qrc">
        <normaloff>:/buttons/res/img/buttons/button_ansi.png</normaloff>
        <disabledoff>:/buttons/res/img/buttons/button_ansi_disabled.png</disabledoff>:/buttons/res/img/buttons/button_ansi.png</iconset>
      </property>
@@ -554,7 +554,7 @@
       <string/>
      </property>
      <property name="icon">
-      <iconset resource="resource/util.qrc">
+      <iconset resource="util.qrc">
        <normaloff>:/buttons/res/img/buttons/button_utf8.png</normaloff>
        <disabledoff>:/buttons/res/img/buttons/button_utf8_disabled.png</disabledoff>:/buttons/res/img/buttons/button_utf8.png</iconset>
      </property>
@@ -654,8 +654,8 @@
   <tabstop>SelectLang</tabstop>
  </tabstops>
  <resources>
-  <include location="resource/util.qrc"/>
-  <include location="resource/style.qrc"/>
+  <include location="util.qrc"/>
+  <include location="style.qrc"/>
  </resources>
  <connections>
   <connection>
