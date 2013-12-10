@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  qdialog_d.py : Main parts of Hosts Setup Utility
+#  qdialog_d.py :
 #
-# Copyleft (C) 2013 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <develop@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -39,6 +39,8 @@ class QDialogDaemon(QDialogUI):
     Attributes:
         _down_flag (int) An integer indicating the downloading status of
             current session. 1 represents data file is being downloaded.
+        _funcs (list): A list containing two lists with the information of
+            function list for IPv4 and IPv6 environment.
         _make_cfg (dict): A dictionary containing the selection control bytes
             to make a hosts file.
         _make_mode (str): A string indicating the operation mode for making
@@ -49,6 +51,11 @@ class QDialogDaemon(QDialogUI):
         _writable (int): An integer indicating whether the program is run with
             admin/root privileges. The value could be 1 or 0.
 
+        choice (list): A list containing two lists with the selection of
+            functions for IPv4 and IPv6 environment.
+        slices (list): A list containing two lists with integers indicating
+            the number of function items from different parts listed in the
+            function list.
         hostname (str): A string indicating the hostname of current operating
             system. This attribute would be used for linux clients.
         hosts_path (str): A string indicating the absolute path of the hosts
@@ -56,12 +63,15 @@ class QDialogDaemon(QDialogUI):
     """
 
     _down_flag = 0
+    _funcs = [[], []]
     _make_cfg = {}
     _make_mode = ""
     _sys_eol = ""
     _update = {}
     _writable = 0
 
+    choice = [[], []]
+    slices = [[], []]
     hostname = ''
     hosts_path = ''
 

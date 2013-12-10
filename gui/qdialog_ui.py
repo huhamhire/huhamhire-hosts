@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  hostsutil.py : Main parts of Hosts Setup Utility
+#  qdialog_ui.py :
 #
-# Copyleft (C) 2013 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <develop@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -34,6 +34,10 @@ LANG_DIR = "./gui/lang/"
 class QDialogUI(QtGui.QDialog, object):
     """
     Attributes:
+        _cur_ver (str): A string indicating the current version of hosts data
+            file.
+        _trans (obj): A QtCore.QTranslator object indicating the current UI
+            language setting.
         platform (str): A string indicating the platform of current operating
             system. The value could be "Windows", "Linux", "Unix", "OS X", and
             of course "Unkown".
@@ -42,6 +46,8 @@ class QDialogUI(QtGui.QDialog, object):
         Ui (str): A user interface object indicating the main dialog of this
             program.
     """
+    _cur_ver = ""
+    _trans = None
 
     # OS related configuration
     platform = ''

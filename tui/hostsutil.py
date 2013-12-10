@@ -10,6 +10,8 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
 
+__version__ = "1.9.8"
+__revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
 from zipfile import BadZipfile

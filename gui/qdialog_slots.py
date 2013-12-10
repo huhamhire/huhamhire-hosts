@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  qdialog_slots.py : Main parts of Hosts Setup Utility
+#  qdialog_slots.py :
 #
-# Copyleft (C) 2013 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <develop@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -29,11 +29,17 @@ import sys
 sys.path.append("..")
 from util import RetrieveData
 
-# Path to store language files
-LANG_DIR = "./gui/lang/"
-
 
 class QDialogSlots(QDialogDaemon):
+    """
+    Attributes:
+        _ipv_id (int): An integer indicating current IP version setting. The
+            value could be 1 or 0. 1 represents IPv6 while 1 represents IPv4.
+        _make_path (str): A string indicating the path to store the hosts file
+            in export mode.
+    """
+    _ipv_id = 0
+    _make_path = "./hosts"
 
     def __init__(self):
         """Initialize a new instance of this class - Private Method
@@ -140,7 +146,7 @@ class QDialogSlots(QDialogDaemon):
         """
         new_lang = LangUtil.get_locale_by_language(unicode(lang))
         trans = QtCore.QTranslator()
-        global LANG_DIR
+        from hostsutil import LANG_DIR
         trans.load(LANG_DIR + new_lang)
         QtGui.QApplication.removeTranslator(self._trans)
         QtGui.QApplication.installTranslator(trans)
