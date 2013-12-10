@@ -32,11 +32,28 @@ LANG_DIR = "./gui/lang/"
 
 
 class QDialogUI(QtGui.QDialog):
+    """
+    Attributes:
+        platform (str): A string indicating the platform of current operating
+            system. The value could be "Windows", "Linux", "Unix", "OS X", and
+            of course "Unkown".
+        plat_flag (bool): A boolean flag indicating whether the current os is
+            supported or not.
+        Ui (str): A user interface object indicating the main dialog of this
+            program.
+    """
+
+    # OS related configuration
+    platform = ''
+    plat_flag = True
+    Ui = None
 
     def __init__(self):
         super(QDialogUI, self).__init__()
         self.Ui = Ui_Util()
         self.Ui.setupUi(self)
+        self.set_style()
+        self.set_stylesheet()
 
     def set_stylesheet(self):
         """Set Stylesheet for main frame - Public Method
@@ -44,7 +61,7 @@ class QDialogUI(QtGui.QDialog):
         Define the style sheet of main dialog.
         """
         app = QtGui.QApplication.instance()
-        with open("./gui/theme/darkdefault.qss", "r") as qss:
+        with open("./gui/theme/default.qss", "r") as qss:
             app.setStyleSheet(qss.read())
 
     def set_style(self):
@@ -159,7 +176,7 @@ class QDialogUI(QtGui.QDialog):
         build = CommonUtil.timestamp_to_date(build)
         self.set_label_text(self.Ui.labelReleaseData, build)
 
-    def set_downprogbar(self, prog, msg):
+    def set_down_progress(self, prog, msg):
         """Set progress bar - Public Method
 
         Set the progress bar to a specified progress position ({prog}) with a
@@ -214,7 +231,7 @@ class QDialogUI(QtGui.QDialog):
                         funcs.append(0)
                 self._funcs[ip] = funcs
 
-    def set_listitemunchecked(self, item_id):
+    def set_list_item_unchecked(self, item_id):
         """Set list item to be unchecked - Public Method
 
         Set a specified item ({item_id}) to become unchecked in the function
@@ -245,7 +262,7 @@ class QDialogUI(QtGui.QDialog):
             item.setText(_translate("Util", func[3], None))
             self.Ui.Functionlist.addItem(item)
 
-    def set_makeprog(self, mod_name, mod_num):
+    def set_make_progress(self, mod_name, mod_num):
         """Operations to show progress while making hosts file - Public Method
 
         The slot response to the info_trigger signal ({mod_name}, {mod_num})
@@ -265,7 +282,7 @@ class QDialogUI(QtGui.QDialog):
             "Util", "Applying module: %s(%s/%s)", None)) % (
             mod_name, mod_num, total_mods_num)
         self.Ui.Prog.setFormat(format)
-        self.set_makemsg(format)
+        self.set_make_message(format)
 
 
     def set_message(self, title, msg):
@@ -286,7 +303,7 @@ class QDialogUI(QtGui.QDialog):
         item.setFlags(QtCore.Qt.ItemIsEnabled)
         self.Ui.Functionlist.addItem(item)
 
-    def set_makemsg(self, msg, start=0):
+    def set_make_message(self, msg, start=0):
         """Operations to show making progress in function list - Public Method
 
         List message for the current operating progress while making the new
@@ -410,14 +427,12 @@ class QDialogUI(QtGui.QDialog):
     def set_make_start_btns(self):
         self.Ui.Functionlist.setEnabled(False)
         self.Ui.SelectIP.setEnabled(False)
-        self.Ui.ButtonCeck.setEnabled(False)
+        self.Ui.ButtonCheck.setEnabled(False)
         self.Ui.ButtonUpdate.setEnabled(False)
         self.Ui.ButtonApply.setEnabled(False)
         self.Ui.ButtonANSI.setEnabled(False)
         self.Ui.ButtonUTF.setEnabled(False)
         self.Ui.ButtonExit.setEnabled(False)
-        self.set_makemsg(unicode(_translate(
-            "Util", "Building hosts file...", None)), 1)
 
     def set_make_finish_btns(self):
         self.Ui.Functionlist.setEnabled(True)
@@ -473,4 +488,3 @@ class QDialogUI(QtGui.QDialog):
         self.Ui.ButtonCheck.setEnabled(True)
         self.Ui.ButtonUpdate.setEnabled(True)
         self.Ui.ButtonExit.setEnabled(True)
-

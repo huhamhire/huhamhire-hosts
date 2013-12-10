@@ -30,7 +30,7 @@ class MakeHosts(object):
         Fetch settings from the main dialog to make a new hosts file.
 
         Args:
-            parent (obj): An instance of CursesDeamon object to get settings
+            parent (obj): An instance of CursesDaemon object to get settings
                 from.
         """
         self.make_cfg = parent._make_cfg

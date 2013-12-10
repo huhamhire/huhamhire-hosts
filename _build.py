@@ -69,7 +69,7 @@ DATA_FILES = [
         ]
     ),
     ("theme", [
-        "theme/darkdefault.qss",
+        "theme/default.qss",
         ]
     ),
     "LICENSE",

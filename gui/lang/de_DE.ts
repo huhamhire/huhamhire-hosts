@@ -3,87 +3,87 @@
 <context>
     <name>Util</name>
     <message>
-        <location filename="../hostsutil.py" line="134"/>
+        <location filename="../hostsutil.py" line="97"/>
         <source>google(cn)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="135"/>
+        <location filename="../hostsutil.py" line="98"/>
         <source>google(hk)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="136"/>
+        <location filename="../hostsutil.py" line="99"/>
         <source>google(us)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="137"/>
+        <location filename="../hostsutil.py" line="100"/>
         <source>google-apis(cn)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="138"/>
+        <location filename="../hostsutil.py" line="101"/>
         <source>google-apis(us)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="139"/>
+        <location filename="../hostsutil.py" line="102"/>
         <source>activation-helper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="140"/>
+        <location filename="../hostsutil.py" line="103"/>
         <source>facebook</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="141"/>
+        <location filename="../hostsutil.py" line="104"/>
         <source>twitter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="142"/>
+        <location filename="../hostsutil.py" line="105"/>
         <source>youtube</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="143"/>
+        <location filename="../hostsutil.py" line="106"/>
         <source>wikipedia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="144"/>
+        <location filename="../hostsutil.py" line="107"/>
         <source>institutions</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="145"/>
+        <location filename="../hostsutil.py" line="108"/>
         <source>steam</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="146"/>
+        <location filename="../hostsutil.py" line="109"/>
         <source>others</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="147"/>
+        <location filename="../hostsutil.py" line="110"/>
         <source>adblock-hostsx</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="148"/>
+        <location filename="../hostsutil.py" line="111"/>
         <source>adblock-mvps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="149"/>
+        <location filename="../hostsutil.py" line="112"/>
         <source>adblock-mwsl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="150"/>
+        <location filename="../hostsutil.py" line="113"/>
         <source>adblock-yoyo</source>
         <translation type="unfinished"></translation>
     </message>
@@ -93,86 +93,44 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="328"/>
+        <location filename="../hostsutil.py" line="317"/>
         <source>Backup File(*.bak)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="328"/>
+        <location filename="../hostsutil.py" line="317"/>
         <source>Restore hosts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../_checkupdate.py" line="66"/>
+        <location filename="../qdialog_d.py" line="318"/>
         <source>[Error]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="137"/>
+        <location filename="../qdialog_d.py" line="115"/>
         <source>Checking...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="499"/>
-        <source>Export hosts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../hostsutil.py" line="499"/>
-        <source>hosts File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../hostsutil.py" line="532"/>
-        <source>Copying new hosts file to
-  %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../hostsutil.py" line="544"/>
-        <source>Remove temporary file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qdialog_ui.py" line="404"/>
+        <location filename="../qdialog_d.py" line="210"/>
         <source>Operation completed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="664"/>
-        <source>Notice: %i hosts entries has 
-  been applied in %ssecs.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../hostsutil.py" line="668"/>
-        <source>Operation Completed Successfully!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../hostsutil.py" line="711"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qdialog_ui.py" line="342"/>
+        <location filename="../qdialog_d.py" line="352"/>
         <source>Incorrect Data file!
 Please use the &quot;Download&quot; key to 
 fetch a new data file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../hostsutil.py" line="727"/>
-        <source>Download Complete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qdialog_ui.py" line="141"/>
+        <location filename="../qdialog_ui.py" line="158"/>
         <source>[OK]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="144"/>
+        <location filename="../qdialog_ui.py" line="161"/>
         <source>[Failed]</source>
         <translation type="unfinished"></translation>
     </message>
@@ -182,22 +140,22 @@ fetch a new data file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="264"/>
+        <location filename="../qdialog_ui.py" line="281"/>
         <source>Applying module: %s(%s/%s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="303"/>
+        <location filename="../qdialog_ui.py" line="320"/>
         <source>Progress</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="330"/>
+        <location filename="../qdialog_ui.py" line="347"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="316"/>
+        <location filename="../qdialog_ui.py" line="333"/>
         <source>You do not have permissions to change the 
 hosts file.
 Please run this program as Administrator/root
@@ -205,25 +163,25 @@ so it can modify your hosts file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="330"/>
+        <location filename="../qdialog_ui.py" line="347"/>
         <source>Error retrieving data from the server.
 Please try another server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="357"/>
+        <location filename="../qdialog_ui.py" line="374"/>
         <source>Data file not found!
 Please use the &quot;Download&quot; key to 
 fetch a new data file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="395"/>
+        <location filename="../qdialog_ui.py" line="412"/>
         <source>Notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="376"/>
+        <location filename="../qdialog_ui.py" line="393"/>
         <source>Are you sure you want to apply changes 
 to the hosts file on your system?
 
@@ -233,18 +191,13 @@ current hosts file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="395"/>
+        <location filename="../qdialog_ui.py" line="412"/>
         <source>Data file is up-to-date.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qdialog_ui.py" line="404"/>
+        <location filename="../qdialog_ui.py" line="421"/>
         <source>Complete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qdialog_ui.py" line="419"/>
-        <source>Building hosts file...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -400,6 +353,53 @@ current hosts file.</source>
     <message>
         <location filename="../_update.py" line="119"/>
         <source>Downloading: %s / %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qdialog_d.py" line="159"/>
+        <source>Export hosts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qdialog_d.py" line="159"/>
+        <source>hosts File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qdialog_d.py" line="175"/>
+        <source>Building hosts file...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qdialog_d.py" line="194"/>
+        <source>Copying new hosts file to
+%s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qdialog_d.py" line="206"/>
+        <source>Remove temporary file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qdialog_d.py" line="297"/>
+        <source>Notice: %i hosts entries has 
+  been applied in %ssecs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qdialog_d.py" line="302"/>
+        <source>Operation Completed Successfully!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qdialog_d.py" line="344"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qdialog_d.py" line="360"/>
+        <source>Download Complete</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
