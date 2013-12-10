@@ -3,7 +3,7 @@
 #
 #  hostsutil.py : Main parts of Hosts Setup Utility
 #
-# Copyleft (C) 2014 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -24,7 +24,6 @@ from PyQt4 import QtGui
 from zipfile import BadZipfile
 
 from qdialog_slots import QDialogSlots
-from util_ui import _translate, _fromUtf8
 
 sys.path.append("..")
 from util import RetrieveData, CommonUtil
@@ -47,21 +46,15 @@ class HostsUtil(QDialogSlots):
     methods dealing with the user interface is also given by this class.
 
     Attributes:
-        initd (int): An integer indicating how many times has the main dialog
-            been initialized. This value would be referenced for translator
-            to set the language of the main dialog.
-        _mirr_id (int): An integer indicating current index number of mirrors.
-        mirrors (list): A dictionary containing tag, test url, and update url
-            of mirrors.
+        init_flag (int): An integer indicating how many times has the main
+            dialog been initialized. This value would be referenced for
+            translator to set the language of the main dialog.
         filename (str): A string indicating the filename of the data file
             containing data to make a hosts file.
         infofile (str): A string indicating the filename of the info file
             containing metadata of the data file in JSON format.
     """
-    initd = 0
-    # Mirror related configuration
-    _mirr_id = 0
-    mirrors = []
+    init_flag = 0
     # Data file related configuration
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
@@ -78,7 +71,7 @@ class HostsUtil(QDialogSlots):
             pass
 
     def start(self):
-        if not self.initd:
+        if not self.init_flag:
             self.init_main()
         self.show()
         sys.exit(self.app.exec_())
@@ -92,11 +85,7 @@ class HostsUtil(QDialogSlots):
         self.Ui.SelectMirror.clear()
         # Set mirrors
         self.mirrors = CommonUtil.set_network("network.conf")
-        for i, mirror in enumerate(self.mirrors):
-            self.Ui.SelectMirror.addItem(_fromUtf8(""))
-            self.Ui.SelectMirror.setItemText(
-                i, _translate("Util", mirror["tag"], None))
-            self.set_platform_label()
+        self.set_mirrors()
         # Read data file and set function list
         try:
             RetrieveData.unpack()
@@ -110,7 +99,7 @@ class HostsUtil(QDialogSlots):
             self.warning_incorrect_datafile()
         # Check if current session have root privileges
         self.check_writable()
-        self.initd += 1
+        self.init_flag += 1
 
 
 if __name__ == "__main__":

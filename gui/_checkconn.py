@@ -46,7 +46,7 @@ class QSubChkConnection(QtCore.QThread):
                 from.
         """
         super(QSubChkConnection, self).__init__(parent)
-        self.link = parent.mirrors[parent._mirr_id]["test_url"]
+        self.link = parent.mirrors[parent.mirror_id]["test_url"]
 
     def run(self):
         """Check connection - Public Method

@@ -3,7 +3,7 @@
 #
 #  _build.py : Tools to make packages for different platforms
 #
-# Copyleft (C) 2013 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2013 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -31,7 +31,7 @@ NAME = "HostsUtl"
 VERSION = __version__
 DESCRIPTION = "HostsUtl - Hosts Setup Utility"
 AUTHOR = "Hamhire Hu"
-AUTHOR_EMAIL ="develop@huhamhire.com",
+AUTHOR_EMAIL ="hosts@huhamhire.com",
 LICENSE = "Public Domain, Python, BSD, GPLv3 (see LICENSE)",
 URL = "https://hosts.huhamhire.com",
 CLASSIFIERS =  [

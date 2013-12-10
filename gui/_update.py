@@ -66,7 +66,8 @@ class QSubFetchUpdate(QtCore.QThread):
                 from.
         """
         super(QSubFetchUpdate, self).__init__(parent)
-        self.url = parent.mirrors[parent._mirr_id]["update"] + parent.filename
+        self.url = parent.mirrors[parent.mirror_id]["update"] + \
+                   parent.filename
         self.path = "./" + parent.filename
         self.tmp_path = self.path + ".download"
         self.filesize = parent._update["size"]

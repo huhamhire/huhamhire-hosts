@@ -3,7 +3,7 @@
 #
 #  qdialog_ui.py :
 #
-# Copyleft (C) 2014 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -38,6 +38,9 @@ class QDialogUI(QtGui.QDialog, object):
             file.
         _trans (obj): A QtCore.QTranslator object indicating the current UI
             language setting.
+
+        mirrors (list): A dictionary containing tag, test url, and update url
+            of mirrors.
         platform (str): A string indicating the platform of current operating
             system. The value could be "Windows", "Linux", "Unix", "OS X", and
             of course "Unkown".
@@ -49,7 +52,7 @@ class QDialogUI(QtGui.QDialog, object):
     _cur_ver = ""
     _trans = None
 
-    # OS related configuration
+    mirrors = []
     platform = ''
     plat_flag = True
     Ui = None
@@ -125,6 +128,13 @@ class QDialogUI(QtGui.QDialog, object):
             self.Ui.SelectLang.setItemText(i, lang)
         self.Ui.SelectLang.blockSignals(False)
         self.Ui.SelectLang.setCurrentIndex(select)
+
+    def set_mirrors(self):
+        for i, mirror in enumerate(self.mirrors):
+            self.Ui.SelectMirror.addItem(_fromUtf8(""))
+            self.Ui.SelectMirror.setItemText(
+                i, _translate("Util", mirror["tag"], None))
+            self.set_platform_label()
 
     def set_label_color(self, label, color):
         """Set the color of a label - Public Method

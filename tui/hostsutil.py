@@ -74,9 +74,9 @@ class HostsUtil(CursesDaemon):
         self.hostspath = path
         self.statusinfo[1][2] = color
         if encode == "win_ansi":
-            self._sys_eol = "\r\n"
+            self.sys_eol = "\r\n"
         else:
-            self._sys_eol = "\n"
+            self.sys_eol = "\n"
 
     def set_func_list(self):
         for ip in range(2):

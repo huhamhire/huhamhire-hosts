@@ -31,12 +31,13 @@ from util import CommonUtil, RetrieveData
 class CursesDaemon(CursesUI):
     """
     Attributes:
-        _make_cfg (dict): A dictionary containing the selection control bytes
-            to make a hosts file.
         _update (dict): A dictionary containing the update information of the
             current data file on server.
         _writable (int): An integer indicating whether the program is run with
             admin/root privileges. The value could be 1 or 0.
+
+        make_cfg (dict): A dictionary containing the selection control bytes
+            to make a hosts file.
         platform (str): A string indicating the platform of current operating
             system. The value could be "Windows", "Linux", "Unix", "OS X", and
             of course "Unkown".
@@ -45,10 +46,10 @@ class CursesDaemon(CursesUI):
         hosts_path (str): A string indicating the absolute path of the hosts
             file on current operating system.
     """
-    _make_cfg = {}
     _update = {}
     _writable = 0
-    # OS related configuration
+
+    make_cfg = {}
     platform = ''
     hostname = ''
     hostspath = ''
@@ -260,7 +261,7 @@ class CursesDaemon(CursesUI):
             for i, cfg in enumerate(part_cfg):
                 part_word += cfg << i
             selection[part] = part_word
-        self._make_cfg = selection
+        self.make_cfg = selection
 
     def move_hosts(self):
         """Move hosts file to the system path after making - Public Method

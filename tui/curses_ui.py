@@ -24,9 +24,8 @@ from gui.hostsutil import __version__
 class CursesUI(object):
     """
     Attributes:
-        _make_path (str): A string indicating the path to store the hosts file
+        make_path (str): A string indicating the path to store the hosts file
             in export mode.
-        _sys_eol (str): A string indicating the End-Of-Line marker.
         _funcs (list): A list containing two lists with the information of
             function list for IPv4 and IPv6 environment.
         choice (list): A list containing two lists with the selection of
@@ -34,6 +33,7 @@ class CursesUI(object):
         slices (list): A list containing two lists with integers indicating
             the number of function items from different parts listed in the
             function list.
+        sys_eol (str): A string indicating the End-Of-Line marker.
         filename (str): A string indicating the filename of the data file
             containing data to make a hosts file.
         infofile (str): A string indicating the filename of the info file
@@ -47,10 +47,10 @@ class CursesUI(object):
     _item_inf = 0
 
     _make_path = "./hosts"
-    _sys_eol = ""
     _funcs = [[], []]
     choice = [[], []]
     slices = [[], []]
+    sys_eol = ""
 
     colorpairs = [(curses.COLOR_WHITE, curses.COLOR_BLUE),
                   (curses.COLOR_WHITE, curses.COLOR_RED),

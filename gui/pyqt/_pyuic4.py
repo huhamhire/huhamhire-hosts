@@ -3,7 +3,7 @@
 #
 #  _pyuic4.py : Tools update the UI code from UI design
 #
-# Copyleft (C) 2013 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2013 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
