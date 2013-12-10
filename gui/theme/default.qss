@@ -113,7 +113,7 @@ QComboBox::drop-down
 
 QComboBox::down-arrow
 {
-     image: url(:/qss/img/style/down_arrow.png);
+     image: url(:/qss/res/img/style/down_arrow.png);
 }
 
 QGroupBox {
@@ -280,7 +280,7 @@ QCheckBox::indicator{
 
 QCheckBox::indicator:checked
 {
-    image:url(:/qss/img/style/checkbox.png);
+    image:url(:/qss/res/img/style/checkbox.png);
 }
 
 QCheckBox::indicator:disabled, QRadioButton::indicator:disabled

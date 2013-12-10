@@ -10,18 +10,20 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
 
+__version__ = "1.9.8"
+__revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
 from zipfile import BadZipfile
 
+from curses_d import CursesDaemon
+
 import sys
 sys.path.append("..")
-from curses_d import CursesDeamon
-from util.retrievedata import RetrieveData
-from util import CommonUtil
+from util import CommonUtil, RetrieveData
 
 
-class HostsUtil(CursesDeamon):
+class HostsUtil(CursesDaemon):
     _down_flag = 0
     _hostsinfo = []
 
@@ -50,7 +52,7 @@ class HostsUtil(CursesDeamon):
         except:
             pass
 
-    def startutil(self):
+    def start(self):
         while True:
             # Reload
             if self.session_daemon():
@@ -101,4 +103,4 @@ class HostsUtil(CursesDeamon):
 
 if __name__ == "__main__":
     main = HostsUtil()
-    main.startutil()
+    main.start()

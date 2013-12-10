@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  _pyuic4.py : Tools update the UI code from UI design
+#  _pylupdate4.py : Tools to update the language files for UI
 #
 # Copyleft (C) 2013 - huhamhire hosts team <develop@huhamhire.com>
 # =====================================================================
@@ -15,11 +15,8 @@
 # =====================================================================
 
 import os
+
 for root, dirs, files in os.walk('.'):
-    for file in files:
-        if file.endswith('.ui'):
-            os.system('pyuic4 -o %s.py -x %s' \
-                      % (file.rsplit('.', 1)[0], file))
-        elif file.endswith('.qrc'):
-            os.system('pyrcc4 -o %s_rc.py %s' \
-                      % (file.rsplit('.', 1)[0], file))
+    for f in files:
+        if f.endswith('.pro'):
+            os.system('pylupdate4 %s' % f)

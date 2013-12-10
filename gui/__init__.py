@@ -10,7 +10,6 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
 
-from common import CommonUtil
-from retrievedata import RetrieveData
+from hostsutil import HostsUtil
 
-__all__ = ["CommonUtil", "RetrieveData"]
+__all__ = ["HostsUtil"]

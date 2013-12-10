@@ -21,15 +21,14 @@ import urllib
 import sys
 
 from curses_ui import CursesUI
-from make import MakeHosts
-from update import FetchUpdate
+from _make import MakeHosts
+from _update import FetchUpdate
 
 sys.path.append("..")
-from util.retrievedata import RetrieveData
-from util import CommonUtil
+from util import CommonUtil, RetrieveData
 
 
-class CursesDeamon(CursesUI):
+class CursesDaemon(CursesUI):
     """
     Attributes:
         _make_cfg (dict): A dictionary containing the selection control bytes
@@ -43,7 +42,7 @@ class CursesDeamon(CursesUI):
             of course "Unkown".
         hostname (str): A string indicating the hostname of current operating
             system. This attribute would be used for linux clients.
-        hostspath (str): A string indicating the absolute path of the hosts
+        hosts_path (str): A string indicating the absolute path of the hosts
             file on current operating system.
     """
     _make_cfg = {}
@@ -58,7 +57,7 @@ class CursesDeamon(CursesUI):
     _hot_keys = [curses.KEY_UP, curses.KEY_DOWN, 10, 32]
 
     def __init__(self):
-        super(CursesDeamon, self).__init__()
+        super(CursesDaemon, self).__init__()
         # Check if current session have root privileges
         self.check_writable()
 
@@ -111,13 +110,14 @@ class CursesDeamon(CursesUI):
                         msg = "Apply Changes to hosts file?"
                         confirm = self.messagebox(msg, 2)
                         if confirm:
-                            self.set_cfgbytes()
+                            self.set_config_bytes()
                             maker = MakeHosts(self)
                             maker.make()
                             self.move_hosts()
                 elif key_in == curses.KEY_F5:
                     self._update = self.check_update()
                 elif key_in == curses.KEY_F6:
+                    # TODO Check if data file up-to-date
                     if self._update == {}:
                         self._update = self.check_update()
                     self.fetch_update()
@@ -240,7 +240,7 @@ class CursesDeamon(CursesUI):
         fetch_d = FetchUpdate(self)
         fetch_d.get_file()
 
-    def set_cfgbytes(self):
+    def set_config_bytes(self):
         """Set configuration byte words - Public Method
 
         Calculate the module configuration byte words by the selection from

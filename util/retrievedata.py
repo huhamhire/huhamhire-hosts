@@ -32,14 +32,14 @@ class RetrieveData(object):
     methods.
 
     Attributes:
-        _conn (obj): An instance of sqlite3.connect object to set the
+        conn (obj): An instance of sqlite3.connect object to set the
             connection with a SQLite database.
         _cur (obj): An instance of sqlite3.connect.cursor object to operate
             SQL queries in the database.
         _database (str): A string indicating the filename of a SQLite database
             file.
     """
-    _conn = None
+    conn = None
     _cur = None
     _database = None
 
@@ -68,8 +68,8 @@ class RetrieveData(object):
             database (str): A string indicating the SQLite database file.
                 "hostslist.s3db" by default.
         """
-        cls._conn = sqlite3.connect(database)
-        cls._cur = cls._conn.cursor()
+        cls.conn = sqlite3.connect(database)
+        cls._cur = cls.conn.cursor()
         cls._database = database
 
     @classmethod
@@ -78,7 +78,7 @@ class RetrieveData(object):
 
         Close the connection with a SQLite database.
         """
-        cls._conn.close()
+        cls.conn.close()
 
     @classmethod
     def get_info(cls):
@@ -244,5 +244,5 @@ class RetrieveData(object):
 
         Close the connection to the database and delete the database file.
         """
-        cls._conn.close()
+        cls.conn.close()
         os.remove(cls._database)

@@ -20,9 +20,9 @@ import os
 import sys
 import shutil
 
-from hostsutl import __version__
+from gui.hostsutil import __version__
 
-SCRIPT = "hostsutl.py"
+SCRIPT = "hostsutil.py"
 
 SCRIPT_DIR = os.getcwd() + '/'
 RELEASE_DIR = "../release/"
@@ -69,7 +69,7 @@ DATA_FILES = [
         ]
     ),
     ("theme", [
-        "theme/darkdefault.qss",
+        "theme/default.qss",
         ]
     ),
     "LICENSE",
@@ -200,7 +200,7 @@ elif system == "OS X":
     from setuptools import setup
     # Set working directories
     WORK_DIR = SCRIPT_DIR + "work/"
-    RES_DIR = SCRIPT_DIR + "mac_res/"
+    RES_DIR = SCRIPT_DIR + "res/"
     APP_NAME = "HostsUtl.app"
     APP_PATH = WORK_DIR + APP_NAME
     DIST_DIR = APP_PATH + "/Contents/"
@@ -268,7 +268,7 @@ elif system == "OS X":
     # Pack APP to DMG file
     VDMG_DIR = WORK_DIR + "package_vdmg/"
     DMG_TMP = WORK_DIR + "pack_tmp.dmg"
-    DMG_RES_DIR = RES_DIR + "dmg_resource/"
+    DMG_RES_DIR = RES_DIR + "dmg/"
     VOL_NAME = "HostsUtl"
     DMG_NAME = VOL_NAME + "-mac-gpl-" + VERSION + ".dmg"
     DMG_PATH = WORK_DIR + DMG_NAME
