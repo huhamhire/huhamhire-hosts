@@ -31,7 +31,7 @@ from util import RetrieveData, CommonUtil
 LANG_DIR = "./gui/lang/"
 
 
-class QDialogUI(QtGui.QDialog):
+class QDialogUI(QtGui.QDialog, object):
     """
     Attributes:
         platform (str): A string indicating the platform of current operating
@@ -49,11 +49,21 @@ class QDialogUI(QtGui.QDialog):
     Ui = None
 
     def __init__(self):
+        """Initialize a new instance of this class - Private Method
+
+        Set the UI object and current translator of the main dialog.
+        """
         super(QDialogUI, self).__init__()
         self.Ui = Ui_Util()
         self.Ui.setupUi(self)
         self.set_style()
         self.set_stylesheet()
+        # Set default UI language
+        trans = QtCore.QTranslator()
+        trans.load(LANG_DIR + "en_US")
+        self._trans = trans
+        QtGui.QApplication.installTranslator(trans)
+        self.set_languages()
 
     def set_stylesheet(self):
         """Set Stylesheet for main frame - Public Method

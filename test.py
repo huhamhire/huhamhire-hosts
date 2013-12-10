@@ -5,4 +5,4 @@ import tui
 
 if __name__ == "__main__":
     main = tui.HostsUtil()
-    main.startutil()
+    main.start()

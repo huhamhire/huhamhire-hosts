@@ -65,6 +65,11 @@ class QDialogDaemon(QDialogUI):
     hostname = ''
     hosts_path = ''
 
+    def __init__(self):
+        super(QDialogDaemon, self).__init__()
+        self.set_platform()
+        self.set_platform_label()
+
     def reject(self):
         """Response to the reject signal - Public Method
 

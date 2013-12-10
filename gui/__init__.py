@@ -10,6 +10,6 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
 
-from hostsutil import qt_main
+from hostsutil import HostsUtil
 
-__all__ = ["qt_main"]
+__all__ = ["HostsUtil"]

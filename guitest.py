@@ -4,4 +4,5 @@
 import gui
 
 if __name__ == "__main__":
-    gui.qt_main()
+    main = gui.HostsUtil()
+    main.start()

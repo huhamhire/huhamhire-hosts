@@ -50,7 +50,7 @@ class HostsUtil(CursesDaemon):
         except:
             pass
 
-    def startutil(self):
+    def start(self):
         while True:
             # Reload
             if self.session_daemon():
@@ -101,4 +101,4 @@ class HostsUtil(CursesDaemon):
 
 if __name__ == "__main__":
     main = HostsUtil()
-    main.startutil()
+    main.start()
