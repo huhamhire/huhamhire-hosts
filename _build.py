@@ -20,9 +20,9 @@ import os
 import sys
 import shutil
 
-from gui.hostsutil import __version__
+from hoststool import __version__
 
-SCRIPT = "hostsutil.py"
+SCRIPT = "hoststool.py"
 
 SCRIPT_DIR = os.getcwd() + '/'
 RELEASE_DIR = "../release/"
@@ -31,10 +31,10 @@ NAME = "HostsUtl"
 VERSION = __version__
 DESCRIPTION = "HostsUtl - Hosts Setup Utility"
 AUTHOR = "Hamhire Hu"
-AUTHOR_EMAIL ="hosts@huhamhire.com",
+AUTHOR_EMAIL = "hosts@huhamhire.com",
 LICENSE = "Public Domain, Python, BSD, GPLv3 (see LICENSE)",
 URL = "https://hosts.huhamhire.com",
-CLASSIFIERS =  [
+CLASSIFIERS = [
     "Development Status :: 4 - Beta",
     "Environment :: MacOS X",
     "Environment :: Win32 (MS Windows)",
@@ -62,30 +62,44 @@ CLASSIFIERS =  [
     "Topic :: CommonUtil",
 ]
 DATA_FILES = [
-    ("lang", [
-        "lang/en_US.qm",
-        "lang/zh_CN.qm",
-        "lang/zh_TW.qm",
-        ]
-    ),
-    ("theme", [
-        "theme/default.qss",
-        ]
-    ),
-    "LICENSE",
-    "README.md",
-    "network.conf",
+    ("gui/lang", [
+        "gui/lang/en_US.qm",
+        "gui/lang/zh_CN.qm",
+        "gui/lang/zh_TW.qm",
+    ]),
+    ("gui/theme", [
+        "gui/theme/default.qss",
+    ]),
+    (".", [
+        "LICENSE",
+        "README.md",
+        "network.conf",
+    ]),
 ]
 
 if sys.argv > 1:
     tar_flag = 0
+    includes = []
+    excludes = []
     if sys.argv[1] == "py2tar":
         # Pack up script package for Linux users
         file_path = lambda rel_path: SCRIPT_DIR + rel_path
         includes = [
-            "*.py", "lang/*.qm", "theme/*.qss", "LICENSE", "README.md",
-            "network.conf"]
-        excludes = ["_*.py", ".gitattributes"]
+            "*.py",
+            "gui/lang/*.qm",
+            "gui/theme/*.qss",
+            "*/*.py",
+            "LICENSE",
+            "README.md",
+            "network.conf",
+        ]
+        excludes = [
+            "_build.py",
+            "_pylupdate4.py",
+            "_pyuic4.py",
+            ".gitattributes",
+            ".gitignore",
+        ]
         ex_files = []
         prefix = "HostsUtl-x11-gpl-"
         tar_flag = 1
@@ -94,7 +108,10 @@ if sys.argv > 1:
         # Pack up source package for Linux users
         file_path = lambda rel_path: SCRIPT_DIR + rel_path
         includes = ["*"]
-        excludes = [".gitattributes"]
+        excludes = [
+            ".gitattributes",
+            ".gitignore"
+        ]
         ex_files = []
         prefix = "HostsUtl-source-gpl-"
         tar_flag = 1
@@ -102,6 +119,7 @@ if sys.argv > 1:
     if tar_flag:
         import glob
         import tarfile
+
         TAR_NAME = prefix + VERSION + ".tar.gz"
         RELEASE_PATH = RELEASE_DIR + TAR_NAME
         if not os.path.exists(RELEASE_DIR):
@@ -116,23 +134,26 @@ if sys.argv > 1:
             files = glob.glob(file_path(name_format))
             for src_file in files:
                 if src_file not in ex_files:
-                    tar_path = os.path.join(prefix + VERSION, src_file[rel_len:])
+                    tar_path = os.path.join(prefix + VERSION,
+                                            src_file[rel_len:])
                     tar.add(src_file, tar_path)
-                    print src_file
+                    print "compressing: %s" % src_file
         tar.close()
         exit(1)
 
-from util.common import CommonUtil
+from util import CommonUtil
+
 system = CommonUtil.check_platform()[0]
 if system == "Windows":
     # Build binary executables for Windows
     import struct
     import zipfile
     from distutils.core import setup
+    import py2exe
 
     # Set working directories
     WORK_DIR = SCRIPT_DIR + "work/"
-    DIR_NAME = "HostsUtl"
+    DIR_NAME = "HostsUtil"
     DIST_DIR = WORK_DIR + DIR_NAME + '/'
     WIN_OPTIONS = {
         "includes": ["sip"],
@@ -148,22 +169,22 @@ if system == "Windows":
     # Build Executable
     print " Building Executable ".center(78, '=')
     setup(
-        name = NAME,
-        version = VERSION,
-        options = {"py2exe": WIN_OPTIONS},
-        windows = [
+        name=NAME,
+        version=VERSION,
+        options={"py2exe": WIN_OPTIONS},
+        windows=[
             {"script": SCRIPT,
-             "icon_resources": [(1, "img/icons/hosts_utl.ico")]
+             "icon_resources": [(1, "res/img/icons/hosts_utl.ico")],
             },
         ],
-        description = DESCRIPTION,
-        author = AUTHOR,
-        author_email = AUTHOR_EMAIL,
-        license = LICENSE,
-        url = URL,
-        zipfile = None,
-        data_files = DATA_FILES,
-        classifiers = CLASSIFIERS,
+        description=DESCRIPTION,
+        author=AUTHOR,
+        author_email=AUTHOR_EMAIL,
+        license=LICENSE,
+        url=URL,
+        zipfile=None,
+        data_files=DATA_FILES,
+        classifiers=CLASSIFIERS,
     )
     # Clean work directory after build
     shutil.rmtree(SCRIPT_DIR + "build/")
@@ -239,24 +260,24 @@ elif system == "OS X":
         shutil.rmtree(APP_PATH)
     if not os.path.exists(WORK_DIR):
         os.mkdir(WORK_DIR)
-    # Make daemon APP
+        # Make daemon APP
     OSAC_CMD = "osacompile -o %s %sHostsUtl.scpt" % (APP_PATH, RES_DIR)
     os.system(OSAC_CMD)
     # Build APP
     print " Building Application ".center(78, '=')
     setup(
-        app = [SCRIPT],
-        name = NAME,
-        version = VERSION,
-        options = {"py2app": MAC_OPTIONS},
-        setup_requires = ["py2app"],
-        description = DESCRIPTION,
-        author = AUTHOR,
-        author_email = AUTHOR_EMAIL,
-        license = LICENSE,
-        url = URL,
-        data_files = DATA_FILES,
-        classifiers = CLASSIFIERS,
+        app=[SCRIPT],
+        name=NAME,
+        version=VERSION,
+        options={"py2app": MAC_OPTIONS},
+        setup_requires=["py2app"],
+        description=DESCRIPTION,
+        author=AUTHOR,
+        author_email=AUTHOR_EMAIL,
+        license=LICENSE,
+        url=URL,
+        data_files=DATA_FILES,
+        classifiers=CLASSIFIERS,
     )
     # Clean work directory after build
     os.remove(DIST_DIR + "Resources/applet.icns")
@@ -279,7 +300,7 @@ elif system == "OS X":
         os.remove(DMG_TMP)
     if os.path.isfile(DMG_PATH):
         os.remove(DMG_PATH)
-    # Prepare files in DMG package
+        # Prepare files in DMG package
     os.mkdir(VDMG_DIR)
     shutil.move(APP_PATH, VDMG_DIR)
     os.symlink("/Applications", VDMG_DIR + " ")

@@ -14,8 +14,6 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "1.9.8"
-__revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
 import sys
