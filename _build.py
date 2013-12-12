@@ -81,9 +81,9 @@ if sys.argv > 1:
     tar_flag = 0
     includes = []
     excludes = []
+    file_path = lambda rel_path: SCRIPT_DIR + rel_path
     if sys.argv[1] == "py2tar":
         # Pack up script package for Linux users
-        file_path = lambda rel_path: SCRIPT_DIR + rel_path
         includes = [
             "*.py",
             "gui/lang/*.qm",
@@ -106,7 +106,6 @@ if sys.argv > 1:
 
     elif sys.argv[1] == "py2source":
         # Pack up source package for Linux users
-        file_path = lambda rel_path: SCRIPT_DIR + rel_path
         includes = ["*"]
         excludes = [
             ".gitattributes",
@@ -115,6 +114,9 @@ if sys.argv > 1:
         ex_files = []
         prefix = "HostsUtl-source-gpl-"
         tar_flag = 1
+    else:
+        prefix = "Error"
+        ex_files = []
 
     if tar_flag:
         import glob
@@ -166,7 +168,7 @@ if system == "Windows":
     # Clean work space before build
     if os.path.exists(DIST_DIR):
         shutil.rmtree(DIST_DIR)
-    # Build Executable
+        # Build Executable
     print " Building Executable ".center(78, '=')
     setup(
         name=NAME,
@@ -194,6 +196,8 @@ if system == "Windows":
         PLAT = "x64"
     elif struct.calcsize("P") * 8 == 32:
         PLAT = "x86"
+    else:
+        PLAT = "unknown"
     DIR_NAME = DIR_NAME + '-win-gpl-' + VERSION + '-' + PLAT
     ZIP_NAME = DIR_NAME + ".zip"
     ZIP_FILE = WORK_DIR + ZIP_NAME
