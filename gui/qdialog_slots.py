@@ -152,10 +152,10 @@ class QDialogSlots(QDialogDaemon):
         trans = QtCore.QTranslator()
         from hostsutil import LANG_DIR
         trans.load(LANG_DIR + new_lang)
-        QtGui.QApplication.removeTranslator(self._trans)
-        QtGui.QApplication.installTranslator(trans)
+        self.app.removeTranslator(self._trans)
+        self.app.installTranslator(trans)
         self._trans = trans
-        self.Ui.retranslateUi(self)
+        self.ui.retranslateUi(self)
         self.init_main()
         self.check_connection()
 

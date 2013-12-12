@@ -127,7 +127,7 @@ class QDialogDaemon(QDialogUI):
         a server.
         """
         self.set_update_start_btns()
-        self.set_label_text(self.Ui.labelLatestData, unicode(
+        self.set_label_text(self.ui.labelLatestData, unicode(
             _translate("Util", "Checking...", None)))
         thread = QSubChkUpdate(self)
         thread.trigger.connect(self.finish_update)
@@ -328,7 +328,7 @@ class QDialogDaemon(QDialogUI):
                 hosts file from the server.
         """
         self._update = update
-        self.set_label_text(self.Ui.labelLatestData, update["version"])
+        self.set_label_text(self.ui.labelLatestData, update["version"])
         if self._update["version"] == \
                 unicode(_translate("Util", "[Error]", None)):
             self.set_conn_status(0)

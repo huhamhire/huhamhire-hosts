@@ -58,7 +58,6 @@ class HostsUtil(QDialogSlots):
     infofile = "hostsinfo.json"
 
     def __init__(self):
-        self.app = QtGui.QApplication(sys.argv)
         super(HostsUtil, self).__init__()
 
     def __del__(self):
@@ -80,7 +79,7 @@ class HostsUtil(QDialogSlots):
         Set up the elements on the main dialog. Check the environment of
         current operating system and current session.
         """
-        self.Ui.SelectMirror.clear()
+        self.ui.SelectMirror.clear()
         # Set mirrors
         self.mirrors = CommonUtil.set_network("network.conf")
         self.set_mirrors()
