@@ -109,7 +109,8 @@ if sys.argv > 1:
         includes = ["*"]
         excludes = [
             ".gitattributes",
-            ".gitignore"
+            ".gitignore",
+            "hostslist.data",
         ]
         ex_files = []
         prefix = "HostsUtl-source-gpl-"
@@ -168,15 +169,22 @@ if system == "Windows":
     # Clean work space before build
     if os.path.exists(DIST_DIR):
         shutil.rmtree(DIST_DIR)
-        # Build Executable
+    # Build Executable
     print " Building Executable ".center(78, '=')
+    EXE_NAME = SCRIPT.split(".")[0]
     setup(
         name=NAME,
         version=VERSION,
         options={"py2exe": WIN_OPTIONS},
+        console=[
+            {"script": SCRIPT,
+             "dest_base": "command_line_tool",
+            },
+        ],
         windows=[
             {"script": SCRIPT,
              "icon_resources": [(1, "res/img/icons/hosts_utl.ico")],
+             "dest_base": EXE_NAME,
             },
         ],
         description=DESCRIPTION,
@@ -184,7 +192,7 @@ if system == "Windows":
         author_email=AUTHOR_EMAIL,
         license=LICENSE,
         url=URL,
-        zipfile=None,
+        zipfile="lib/shared.zip",
         data_files=DATA_FILES,
         classifiers=CLASSIFIERS,
     )
@@ -231,7 +239,7 @@ elif system == "OS X":
     DIST_DIR = APP_PATH + "/Contents/"
     # Set build configuration
     MAC_OPTIONS = {
-        "iconfile": "img/icons/hosts_utl.icns",
+        "iconfile": "res/img/icons/hosts_utl.icns",
         "includes": ["sip", "PyQt4.QtCore", "PyQt4.QtGui"],
         "excludes": [
             "PyQt4.QtDBus",
