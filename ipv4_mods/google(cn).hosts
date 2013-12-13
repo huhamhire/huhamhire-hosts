@@ -338,7 +338,6 @@
 203.208.46.204 maps.google.com.hk
 203.208.46.205 news.google.com.hk
 203.208.46.206 picasaweb.google.com.hk
-203.208.46.206 plus.url.google.com.hk
 203.208.46.207 scholar.google.com.hk
 203.208.46.201 toolbar.google.com.hk
 203.208.46.202 toolbarqueries.google.com.hk
@@ -373,9 +372,10 @@
 203.208.46.201 www.googlelabs.com
 203.208.46.222 www.googlesource.com
 
-203.208.46.206 plus.google.com
-203.208.46.206 plus.url.google.com
-203.208.46.206 plusone.google.com
+173.194.126.128 plus.google.com
+173.194.126.128 plus.url.google.com
+173.194.126.128 plusone.google.com
+173.194.126.128 plus.url.google.com.hk
 
 173.194.64.141 www.panoramio.com
 
