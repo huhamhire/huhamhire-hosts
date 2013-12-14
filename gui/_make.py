@@ -80,17 +80,17 @@ class QSubMakeHosts(QtCore.QThread):
         """
         super(QSubMakeHosts, self).__init__(parent)
         self.count = 0
-        self.make_cfg = parent._make_cfg
-        self.make_mode = parent._make_mode
-        make_path = parent._make_path
+        self.make_cfg = parent.make_cfg
+        self.make_mode = parent.make_mode
+        make_path = parent.make_path
         self.hostname = parent.hostname
-        if parent._make_mode == "system":
-            self.eol = parent._sys_eol
+        if parent.make_mode == "system":
+            self.eol = parent.sys_eol
             self.hosts_file = open("hosts", "wb")
-        elif parent._make_mode == "ansi":
+        elif parent.make_mode == "ansi":
             self.eol = "\r\n"
             self.hosts_file = open(unicode(make_path), "wb")
-        elif parent._make_mode == "utf-8":
+        elif parent.make_mode == "utf-8":
             self.eol = "\n"
             self.hosts_file = open(unicode(make_path), "wb")
 

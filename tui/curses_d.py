@@ -31,12 +31,13 @@ from util import CommonUtil, RetrieveData
 class CursesDaemon(CursesUI):
     """
     Attributes:
-        _make_cfg (dict): A dictionary containing the selection control bytes
-            to make a hosts file.
         _update (dict): A dictionary containing the update information of the
             current data file on server.
         _writable (int): An integer indicating whether the program is run with
             admin/root privileges. The value could be 1 or 0.
+
+        make_cfg (dict): A dictionary containing the selection control bytes
+            to make a hosts file.
         platform (str): A string indicating the platform of current operating
             system. The value could be "Windows", "Linux", "Unix", "OS X", and
             of course "Unkown".
@@ -45,10 +46,10 @@ class CursesDaemon(CursesUI):
         hosts_path (str): A string indicating the absolute path of the hosts
             file on current operating system.
     """
-    _make_cfg = {}
     _update = {}
     _writable = 0
-    # OS related configuration
+
+    make_cfg = {}
     platform = ''
     hostname = ''
     hostspath = ''
@@ -117,11 +118,14 @@ class CursesDaemon(CursesUI):
                 elif key_in == curses.KEY_F5:
                     self._update = self.check_update()
                 elif key_in == curses.KEY_F6:
-                    # TODO Check if data file up-to-date
                     if self._update == {}:
                         self._update = self.check_update()
-                    self.fetch_update()
-                    return 1
+                    # Check if data file up-to-date
+                    if self.new_version():
+                        self.fetch_update()
+                        return 1
+                    else:
+                        self.messagebox("Data file is up-to-date!", 1)
                 else:
                     pass
         return 0
@@ -235,6 +239,28 @@ class CursesDaemon(CursesUI):
         self.status()
         return info
 
+    def new_version(self):
+        """Compare version of data file - Public Method
+
+        Compare version of local data file to the version from the server.
+
+        Returns:
+            A flag integer indicating whether the local data file is
+            up-to-date or not.
+                1 -> The version of data file on server is newer.
+                0 -> The local data file is up-to-date.
+        """
+        local_ver = self.hostsinfo["Version"]
+        if local_ver == "N/A":
+            return 1
+        server_ver = self._update["version"]
+        local_ver = local_ver.split('.')
+        server_ver = server_ver.split('.')
+        for i, ver_num in enumerate(local_ver):
+            if server_ver[i] > ver_num:
+                return 1
+        return 0
+
     def fetch_update(self):
         self.messagebox("Downloading...")
         fetch_d = FetchUpdate(self)
@@ -260,7 +286,7 @@ class CursesDaemon(CursesUI):
             for i, cfg in enumerate(part_cfg):
                 part_word += cfg << i
             selection[part] = part_word
-        self._make_cfg = selection
+        self.make_cfg = selection
 
     def move_hosts(self):
         """Move hosts file to the system path after making - Public Method

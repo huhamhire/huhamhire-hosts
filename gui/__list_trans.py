@@ -3,7 +3,7 @@
 #
 #  __list_trans.py : Name of items from the function list to be localized
 #
-# Copyleft (C) 2014 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with

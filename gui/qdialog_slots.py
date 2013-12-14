@@ -3,7 +3,7 @@
 #
 #  qdialog_slots.py :
 #
-# Copyleft (C) 2014 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -35,11 +35,16 @@ class QDialogSlots(QDialogDaemon):
     Attributes:
         _ipv_id (int): An integer indicating current IP version setting. The
             value could be 1 or 0. 1 represents IPv6 while 1 represents IPv4.
-        _make_path (str): A string indicating the path to store the hosts file
+
+        make_path (str): A string indicating the path to store the hosts file
             in export mode.
+        mirror_id (int): An integer indicating current index number of
+            mirrors.
     """
     _ipv_id = 0
-    _make_path = "./hosts"
+
+    make_path = "./hosts"
+    mirror_id = 0
 
     def __init__(self):
         """Initialize a new instance of this class - Private Method
@@ -85,7 +90,7 @@ class QDialogSlots(QDialogDaemon):
             mirr_id (int): An integer indicating current index number of
                 mirrors.
         """
-        self._mirr_id = mirr_id
+        self.mirror_id = mirr_id
         self.check_connection()
 
     def on_IPVersion_changed(self, ipv_id):
@@ -129,7 +134,6 @@ class QDialogSlots(QDialogDaemon):
             if c[0] == self.choice[ip_flag][func_id][0]:
                 if c[1] in mutex and self._funcs[ip_flag][c_id] == 1:
                     self._funcs[ip_flag][c_id] = 0
-                    item = self.Ui.Functionlist.item(c_id)
         self.refresh_func_list()
 
     def on_Lang_changed(self, lang):
@@ -148,10 +152,10 @@ class QDialogSlots(QDialogDaemon):
         trans = QtCore.QTranslator()
         from hostsutil import LANG_DIR
         trans.load(LANG_DIR + new_lang)
-        QtGui.QApplication.removeTranslator(self._trans)
-        QtGui.QApplication.installTranslator(trans)
+        self.app.removeTranslator(self._trans)
+        self.app.installTranslator(trans)
         self._trans = trans
-        self.Ui.retranslateUi(self)
+        self.ui.retranslateUi(self)
         self.init_main()
         self.check_connection()
 
@@ -168,7 +172,7 @@ class QDialogSlots(QDialogDaemon):
             self.warning_permission()
             return
         if self.question_apply():
-            self._make_path = "./hosts"
+            self.make_path = "./hosts"
             self.make_hosts("system")
         else:
             return
@@ -180,8 +184,8 @@ class QDialogSlots(QDialogDaemon):
         button is clicked. This method would call operations to export a hosts
         file encoding in ANSI.
         """
-        self._make_path = self.export_hosts()
-        if unicode(self._make_path) != u'':
+        self.make_path = self.export_hosts()
+        if unicode(self.make_path) != u'':
             self.make_hosts("ansi")
 
     def on_MakeUTF8_clicked(self):
@@ -191,8 +195,8 @@ class QDialogSlots(QDialogDaemon):
         button is clicked. This method would call operations to export a hosts
         file encoding in UTF-8.
         """
-        self._make_path = self.export_hosts()
-        if unicode(self._make_path) != u'':
+        self.make_path = self.export_hosts()
+        if unicode(self.make_path) != u'':
             self.make_hosts("utf-8")
 
     def on_Backup_clicked(self):

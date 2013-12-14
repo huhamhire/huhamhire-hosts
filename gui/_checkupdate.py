@@ -48,7 +48,7 @@ class QSubChkUpdate(QtCore.QThread):
                 from.
         """
         super(QSubChkUpdate, self).__init__(parent)
-        self.url = parent.mirrors[parent._mirr_id]["update"] + parent.infofile
+        self.url = parent.mirrors[parent.mirror_id]["update"] + parent.infofile
 
     def run(self):
         """Check update - Public Method

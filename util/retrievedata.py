@@ -3,7 +3,7 @@
 #
 # retrievedata.py : Read data from the hosts data file
 #
-# Copyleft (C) 2014 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -194,7 +194,7 @@ class RetrieveData(object):
                              'WHERE part_id=?', (ch_part, ))
             slices.append(cls._cur.fetchone()[0])
         for s in range(1, len(slices)):
-            slices[s] = slices[s] + slices[s - 1]
+            slices[s] += slices[s - 1]
         return modules, defaults, slices
 
     @classmethod
@@ -235,8 +235,8 @@ class RetrieveData(object):
         ({dbfile}).
         """
         datafile = zipfile.ZipFile(datafile, "r")
-        path, file = os.path.split(database)
-        datafile.extract(file, path)
+        path, filename = os.path.split(database)
+        datafile.extract(filename, path)
 
     @classmethod
     def clear(cls):

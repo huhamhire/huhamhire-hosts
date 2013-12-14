@@ -33,9 +33,9 @@ class MakeHosts(object):
             parent (obj): An instance of CursesDaemon object to get settings
                 from.
         """
-        self.make_cfg = parent._make_cfg
+        self.make_cfg = parent.make_cfg
         self.hostname = parent.hostname
-        self.eol = parent._sys_eol
+        self.eol = parent.sys_eol
         self.hosts_file = open("hosts", "wb")
 
     def make(self):

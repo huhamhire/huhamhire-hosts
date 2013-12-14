@@ -3,7 +3,7 @@
 #
 #  qdialog_d.py :
 #
-# Copyleft (C) 2014 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -41,11 +41,6 @@ class QDialogDaemon(QDialogUI):
             current session. 1 represents data file is being downloaded.
         _funcs (list): A list containing two lists with the information of
             function list for IPv4 and IPv6 environment.
-        _make_cfg (dict): A dictionary containing the selection control bytes
-            to make a hosts file.
-        _make_mode (str): A string indicating the operation mode for making
-            hosts file.
-        _sys_eol (str): A string indicating the End-Of-Line marker.
         _update (dict): A dictionary containing the update information of the
             current data file on server.
         _writable (int): An integer indicating whether the program is run with
@@ -60,13 +55,15 @@ class QDialogDaemon(QDialogUI):
             system. This attribute would be used for linux clients.
         hosts_path (str): A string indicating the absolute path of the hosts
             file on current operating system.
+        make_cfg (dict): A dictionary containing the selection control bytes
+            to make a hosts file.
+        make_mode (str): A string indicating the operation mode for making
+            hosts file.
+        sys_eol (str): A string indicating the End-Of-Line marker.
     """
 
     _down_flag = 0
     _funcs = [[], []]
-    _make_cfg = {}
-    _make_mode = ""
-    _sys_eol = ""
     _update = {}
     _writable = 0
 
@@ -74,6 +71,9 @@ class QDialogDaemon(QDialogUI):
     slices = [[], []]
     hostname = ''
     hosts_path = ''
+    make_cfg = {}
+    make_mode = ""
+    sys_eol = ""
 
     def __init__(self):
         super(QDialogDaemon, self).__init__()
@@ -127,7 +127,7 @@ class QDialogDaemon(QDialogUI):
         a server.
         """
         self.set_update_start_btns()
-        self.set_label_text(self.Ui.labelLatestData, unicode(
+        self.set_label_text(self.ui.labelLatestData, unicode(
             _translate("Util", "Checking...", None)))
         thread = QSubChkUpdate(self)
         thread.trigger.connect(self.finish_update)
@@ -191,7 +191,7 @@ class QDialogDaemon(QDialogUI):
             "Util", "Building hosts file...", None)), 1)
         # Avoid conflict while making hosts file
         RetrieveData.disconnect_db()
-        self._make_mode = mode
+        self.make_mode = mode
         self.set_config_bytes(mode)
         thread = QSubMakeHosts(self)
         thread.info_trigger.connect(self.set_make_progress)
@@ -238,9 +238,9 @@ class QDialogDaemon(QDialogUI):
         self.hosts_path = path
         self.plat_flag = flag
         if encode == "win_ansi":
-            self._sys_eol = "\r\n"
+            self.sys_eol = "\r\n"
         else:
-            self._sys_eol = "\n"
+            self.sys_eol = "\n"
 
     def set_config_bytes(self, mode):
         """Set configuration byte words - Public Method
@@ -269,7 +269,7 @@ class QDialogDaemon(QDialogUI):
             for i, cfg in enumerate(part_cfg):
                 part_word += cfg << i
             selection[part] = part_word
-        self._make_cfg = selection
+        self.make_cfg = selection
 
     def refresh_info(self, refresh=0):
         """Refresh data file information - Public Method
@@ -283,7 +283,7 @@ class QDialogDaemon(QDialogUI):
                 needs to be reloaded or not. 1: reload, 0: do not reload.
                 Default by 0.
         """
-        if refresh and RetrieveData.conn is None:
+        if refresh and RetrieveData.conn is not None:
             RetrieveData.clear()
         try:
             RetrieveData.unpack()
@@ -328,7 +328,7 @@ class QDialogDaemon(QDialogUI):
                 hosts file from the server.
         """
         self._update = update
-        self.set_label_text(self.Ui.labelLatestData, update["version"])
+        self.set_label_text(self.ui.labelLatestData, update["version"])
         if self._update["version"] == \
                 unicode(_translate("Util", "[Error]", None)):
             self.set_conn_status(0)

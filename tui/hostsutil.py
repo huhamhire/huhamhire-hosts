@@ -10,8 +10,6 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
 
-__version__ = "1.9.8"
-__revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
 from zipfile import BadZipfile
@@ -74,9 +72,9 @@ class HostsUtil(CursesDaemon):
         self.hostspath = path
         self.statusinfo[1][2] = color
         if encode == "win_ansi":
-            self._sys_eol = "\r\n"
+            self.sys_eol = "\r\n"
         else:
-            self._sys_eol = "\n"
+            self.sys_eol = "\n"
 
     def set_func_list(self):
         for ip in range(2):
