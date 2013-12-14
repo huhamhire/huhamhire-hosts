@@ -232,7 +232,7 @@ class CursesUI(object):
         # Progress Bar
         if mode:
             done = done * block
-            prog = prog_len * done / total
+            prog = 1.0 * prog_len * done / total
             progress = ''.join(['=' * int(prog), '-' * int(2 * prog % 2)])
             progress = progress.ljust(prog_len)
             total = CommonUtil.convert_size(total).ljust(7)

@@ -1,6 +1,7 @@
 *.tmp
 *.pyc
 *.data
+
 Thumbs.db
 hosts
 .DS_Store
