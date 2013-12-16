@@ -36,7 +36,7 @@ class RetrieveData(object):
             connection with a SQLite database.
         _cur (obj): An instance of sqlite3.connect.cursor object to operate
             SQL queries in the database.
-        _database (str): A string indicating the filename of a SQLite database
+        _db (str): A string indicating the filename of a SQLite database
             file.
     """
     conn = None

@@ -7,7 +7,7 @@ import struct
 import threading
 import sys
 
-from multi_ping import MultiPing
+from data import SourceData
 
 
 class NSTools(object):
@@ -26,10 +26,7 @@ class NSTools(object):
     @staticmethod
     def decode(in_sock):
         in_file = in_sock.makefile("rb")
-        try:
-            size = struct.unpack("!H", in_file.read(2))[0]
-        except struct.error:
-            return ["decode-error"]
+        size = struct.unpack("!H", in_file.read(2))[0]
         data = in_file.read(size)
         ip_list = re.findall("\xC0.\x00\x01\x00\x01.{6}(.{4})", data)
         return [".".join(str(ord(x)) for x in s) for s in ip_list]
@@ -38,6 +35,13 @@ class NSTools(object):
 class NSLookup(threading.Thread):
     ERROR_DESCR = {
         10054: 'ERROR: Connection reset by peer',
+    }
+    STATUS_DESCR = {
+        0: "OK",
+        1: "No Results",
+        2: "Timeout",
+        3: "Connection Error",
+        4: "Decode Error"
     }
 
     def __init__(self, server_ip, host_name, results,
@@ -58,7 +62,7 @@ class NSLookup(threading.Thread):
             self.sock_type = socket.SOCK_STREAM
         else:
             self.sock_type = socket.SOCK_DGRAM
-        self.hosts = []
+        self._response = {"hosts": [], "stat": 1}
 
     @property
     def __sock(self):
@@ -67,7 +71,7 @@ class NSLookup(threading.Thread):
             sock.settimeout(self.timeout)
             return sock
         except socket.error, (error_no, msg):
-            sys.stdout.write("host: %s, Error %d: %s\n" %
+            sys.stdout.write("\r  host: %s, Error %d: %s\n" %
                              (self.host_name, error_no, msg))
             raise
 
@@ -77,35 +81,38 @@ class NSLookup(threading.Thread):
         try:
             sock.connect((self.server_ip, self.port))
             sock.sendall(NSTools.encode(self.host_name))
-            self.hosts = NSTools.decode(sock)
+            hosts = NSTools.decode(sock)
+            self._response["hosts"] = hosts
+            if hosts:
+                # Set status OK
+                self._response["stat"] = 0
+            else:
+                # Set status No Results
+                self._response["stat"] = 1
         except socket.timeout, e:
-            sys.stdout.write("host: %s, %s\n" % (self.host_name, e))
-            self.hosts = ["timeout"]
+            sys.stdout.write("\r  host: %s, %s\n" % (self.host_name, e))
+            # Set status Timeout
+            self._response["stat"] = 2
         except socket.error, (error_no, msg):
             if error_no in self.ERROR_DESCR:
                 sys.stdout.write(
-                    "host: %s, %s %s\n" %
+                    "\r  host: %s, %s %s\n" %
                     (self.host_name, msg, self.ERROR_DESCR[error_no]))
-            self.hosts = ["connection-error"]
+            # Set status Connection Error
+            self._response["stat"] = 3
+        except struct.error, e:
+            sys.stdout.write("\r  host: %s, %s\n" % (self.host_name, e))
+            self._response["stat"] = 4
         finally:
             sock.close()
             NSTools.sem.release()
 
     def set_result(self):
-        self.results[self.host_name] = self.hosts
+        self.results[self.host_name] = self._response
 
     def show_progress(self):
-        if self.hosts == ["timeout"]:
-            status = "Timeout"
-        elif self.hosts == ["connection-error"]:
-            status = "Connection Error"
-        elif self.hosts == ["decode-error"]:
-            status = "Decode Error"
-        elif not self.hosts:
-            status = "No Results"
-        else:
-            status = "OK"
-        Progress.status(self.host_name, status)
+        stat = self.STATUS_DESCR[self._response["stat"]]
+        Progress.status(self.host_name, stat)
         Progress.progress_bar(len(self.results))
 
     def run(self):
@@ -115,10 +122,10 @@ class NSLookup(threading.Thread):
 
 
 class MultiNSLookup(object):
-    def __init__(self, server_ip, host_names):
-        self.server_ip = server_ip
+    def __init__(self, dns_ip, host_names):
+        self.server_ip = dns_ip
         self.host_names = host_names
-        self._results = {}
+        self._responses = {}
 
     def nslookup(self):
         threads = []
@@ -127,7 +134,7 @@ class MultiNSLookup(object):
             if host_name not in name_pool:
                 name_pool.append(host_name)
             lookup_host = NSLookup(
-                self.server_ip, host_name, self._results)
+                self.server_ip, host_name, self._responses)
             threads.append(lookup_host)
 
         Progress.set_total(len(name_pool))
@@ -136,14 +143,7 @@ class MultiNSLookup(object):
         for th in threads:
             th.join()
 
-        print
-        ip_pool = []
-        errors = ["timeout", "connection-error", "decode-error"]
-        for ip_results in self._results.values():
-            for ip in ip_results:
-               if ip not in ip_pool and ip not in errors:
-                   ip_pool.append(ip)
-        return ip_pool
+        return self._responses
 
 
 class Progress(object):
@@ -172,11 +172,16 @@ class Progress(object):
 
 
 if __name__ == '__main__':
-    server_ip = "202.45.84.59"
+    dns_ip = "202.45.84.59"
     in_file = "test.hosts"
     with open(in_file, 'r') as hosts_in:
         host_names = [host_name.rstrip('\n') for host_name in hosts_in]
-    lookups = MultiNSLookup(server_ip, host_names)
-    hosts = lookups.nslookup()
-    pings = MultiPing(hosts)
-    pings.ping()
+    lookups = MultiNSLookup(dns_ip, host_names)
+    responses = lookups.nslookup()
+    # pings = MultiPing(hosts)
+    # pings.ping()
+
+    SourceData.connect_db()
+    SourceData.drop_tables()
+    SourceData.create_tables()
+    SourceData.insert_multi_domain_dict(responses)
