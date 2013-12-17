@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  data.py
+#  source_data.py
 #
 # Copyleft (C) 2013 - huhamhire hosts team <develop@huhamhire.com>
 # =====================================================================
@@ -50,9 +50,9 @@ class SourceData(object):
                 cls._cur.execute(sql)
 
     @classmethod
-    def __insert_domain(cls, domain, response):
+    def __set_domain(cls, domain, response):
         status = response["stat"]
-        ins_sql = "INSERT INTO t_domain VALUES (:domain_id, :name, :stat)"
+        ins_sql = "REPLACE INTO t_domain VALUES (:domain_id, :name, :stat)"
         domain_id = cls.__calc_id(domain)
         data = (domain_id, domain, status)
         try:
@@ -62,32 +62,50 @@ class SourceData(object):
 
         for ip in response["hosts"]:
             ip_id = cls.__calc_id(ip)
-            ins_sql = "INSERT INTO t_ip VALUES (:ip_id, :ip)"
+            ins_sql = "REPLACE INTO t_ip VALUES (:ip_id, :ip)"
             try:
                 cls._cur.execute(ins_sql, (ip_id, ip))
             except sqlite3.IntegrityError, e:
                 if "column id is not unique" not in e:
-                    sys.stdout.write(str(e) + "\n")
+                    sys.stderr.write(str(e) + "\n")
 
-            ins_sql = "INSERT INTO t_domain_ip VALUES (:domain_id, :ip_id)"
+            comb_id = cls.__calc_id(domain + ip)
+            ins_sql = "REPLACE INTO t_domain_ip VALUES (:domain, :ip, :comb)"
             try:
-                cls._cur.execute(ins_sql, (domain_id, ip_id))
+                cls._cur.execute(ins_sql, (domain_id, ip_id, comb_id))
             except sqlite3.IntegrityError, e:
                 sys.stdout.write(str(e) + "\n")
 
     @classmethod
-    def insert_multi_domain_dict(cls, ns_responses):
+    def set_multi_domain_dict(cls, ns_responses):
         for domain, response in ns_responses.iteritems():
-            cls.__insert_domain(domain, response)
+            cls.__set_domain(domain, response)
         cls._conn.commit()
 
     @classmethod
-    def insert_single_domain(cls, domain, response):
-        cls.__insert_domain(domain, response)
+    def set_single_domain(cls, domain, response):
+        cls.__set_domain(domain, response)
         cls._conn.commit()
+
+    @classmethod
+    def get_http_test_comb(cls):
+        sql = "SELECT name AS domain, ip, combination_id AS id " \
+              "FROM t_domain LEFT JOIN t_domain_ip " \
+              "ON t_domain.id = t_domain_ip.domain_id "\
+              "LEFT JOIN t_ip ON t_domain_ip.ip_id = t_ip.id " \
+              "WHERE ip IS NOT NULL;"
+        cls._cur.execute(sql)
+        tests = []
+        sql_results = cls._cur.fetchmany(100)
+        while sql_results:
+            for result in sql_results:
+                item = dict(zip(["domain", "ip", "id"], list(result)))
+                tests.append(item)
+            sql_results = cls._cur.fetchmany(100)
+
+        return tests
 
 
 if __name__ == "__main__":
     SourceData.connect_db()
-    SourceData.drop_tables()
-    SourceData.create_tables()
+    SourceData.get_http_test_comb()

@@ -7,7 +7,8 @@ import struct
 import threading
 import sys
 
-from data import SourceData
+from progress import Progress
+from source_data import SourceData
 
 
 class NSTools(object):
@@ -33,13 +34,13 @@ class NSTools(object):
 
 
 class NSLookup(threading.Thread):
-    ERROR_DESCR = {
+    ERROR_DESC = {
         10054: 'ERROR: Connection reset by peer',
     }
-    STATUS_DESCR = {
+    STATUS_DESC = {
         0: "OK",
         1: "No Results",
-        2: "Timeout",
+        2: "Timed Out",
         3: "Connection Error",
         4: "Decode Error"
     }
@@ -90,18 +91,18 @@ class NSLookup(threading.Thread):
                 # Set status No Results
                 self._response["stat"] = 1
         except socket.timeout, e:
-            sys.stdout.write("\r  host: %s, %s\n" % (self.host_name, e))
+            sys.stderr.write("\r  host: %s, %s\n" % (self.host_name, e))
             # Set status Timeout
             self._response["stat"] = 2
         except socket.error, (error_no, msg):
-            if error_no in self.ERROR_DESCR:
-                sys.stdout.write(
+            if error_no in self.ERROR_DESC:
+                sys.stderr.write(
                     "\r  host: %s, %s %s\n" %
-                    (self.host_name, msg, self.ERROR_DESCR[error_no]))
+                    (self.host_name, msg, self.ERROR_DESC[error_no]))
             # Set status Connection Error
             self._response["stat"] = 3
         except struct.error, e:
-            sys.stdout.write("\r  host: %s, %s\n" % (self.host_name, e))
+            sys.stderr.write("\r  host: %s, %s\n" % (self.host_name, e))
             self._response["stat"] = 4
         finally:
             sock.close()
@@ -111,8 +112,11 @@ class NSLookup(threading.Thread):
         self.results[self.host_name] = self._response
 
     def show_progress(self):
-        stat = self.STATUS_DESCR[self._response["stat"]]
-        Progress.status(self.host_name, stat)
+        stat = self.STATUS_DESC[self._response["stat"]]
+        if stat == "OK":
+            Progress.status(self.host_name, stat)
+        else:
+            Progress.status(self.host_name, stat, 1)
         Progress.progress_bar(len(self.results))
 
     def run(self):
@@ -146,33 +150,8 @@ class MultiNSLookup(object):
         return self._responses
 
 
-class Progress(object):
-    __line_width = 78
-    _total = 0
-
-    @classmethod
-    def set_total(cls, total):
-        cls._total = total
-
-    @classmethod
-    def status(cls, message, status):
-        sys.stdout.write("\r%s" % message.ljust(cls.__line_width - 20)
-                         + ("[%s]" % status).rjust(20) + "\n")
-
-    @classmethod
-    def progress_bar(cls, done_count):
-        prog_len = cls.__line_width - 20
-        prog = 1.0 * prog_len * done_count / cls._total
-        bar = ''.join(['=' * int(prog), '-' * int(2 * prog % 2)])
-        bar = bar.ljust(prog_len)
-        count = str(done_count).rjust(7)
-        total = str(cls._total).rjust(7)
-        progress_bar = "[%s] %s | %s" % (bar, count, total)
-        sys.stdout.write("\r" + progress_bar)
-
-
 if __name__ == '__main__':
-    dns_ip = "202.45.84.59"
+    dns_ip = "64.13.131.34"
     in_file = "test.hosts"
     with open(in_file, 'r') as hosts_in:
         host_names = [host_name.rstrip('\n') for host_name in hosts_in]
@@ -184,4 +163,4 @@ if __name__ == '__main__':
     SourceData.connect_db()
     SourceData.drop_tables()
     SourceData.create_tables()
-    SourceData.insert_multi_domain_dict(responses)
+    SourceData.set_multi_domain_dict(responses)
