@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyleft (C) 2013 - Huhamhire-hosts Team -->
-<hostslist version="1.4.1">
-    <part id="0x10" default="0x7DF2">
+<hostslist version="1.4.2">
+    <part id="0x10" default="0x7DF3">
         <table>hosts_ipv4</table>
         <path>ipv4_mods/</path>
         <modules>
-            <mod cate="0x0001" mutex="0x0006">google(cn)</mod>
-            <mod cate="0x0002" mutex="0x0005">google(hk)</mod>
+            <mod cate="0x0001" mutex="0x0004">google(cn)</mod>
+            <mod cate="0x0002" mutex="0x0004">google(hk)</mod>
             <mod cate="0x0004" mutex="0x0003">google(us)</mod>
             <mod cate="0x0008" mutex="0x0010">google-apis(cn)</mod>
             <mod cate="0x0010" mutex="0x0008">google-apis(us)</mod>
