@@ -8,20 +8,9 @@ import struct
 import threading
 import time
 import select
-import sys
 
-
-class MultiPing(object):
-    def __init__(self, hosts):
-        self.hosts = hosts
-
-    def ping(self):
-        threads = []
-        for host in self.hosts:
-            ping_host = PingHost(host, 4, 3)
-            threads.append(ping_host)
-        for th in threads:
-            th.start()
+from progress import Progress
+from source_data import SourceData
 
 
 class PingHost(threading.Thread):
@@ -33,24 +22,30 @@ class PingHost(threading.Thread):
         10049: 'ERROR: "%s" is not available from the local computer',
     }
 
-    def __init__(self, host, ping_count=4, timeout=5, v6_flag=False):
+    def __init__(self, ip, ip_id, results, semaphore,
+                 ping_count=4, timeout=5, v6_flag=False):
         threading.Thread.__init__(self)
-        self._timeout = timeout
-        self.time_log = []
-        self.delay_stat = {}
-        self.v6_flag = v6_flag
         self.__data = struct.pack('d', time.time())
-
         self._pid = 0
         self._pack = None
-        self._sock = self.__sock
-        self.host = host
+
+        self._ip = ip
+        self._ip_id = ip_id
         self._ping_count = ping_count
+        self.results = results
+        self.sem = semaphore
+        self._timeout = timeout
+        self._v6_flag = v6_flag
+
+        self.time_log = []
+        self.delay_stat = {}
+
+        self._sock = self.__sock
 
     @property
     def __sock(self):
         try:
-            if not self.v6_flag:
+            if not self._v6_flag:
                 sock = socket.socket(socket.AF_INET, socket.SOCK_RAW,
                                      socket.getprotobyname("icmp"))
             else:
@@ -65,7 +60,7 @@ class PingHost(threading.Thread):
 
     @property
     def __pack(self):
-        if not self.v6_flag:
+        if not self._v6_flag:
             header = struct.pack('bbHHh', 8, 0, 0, self._pid, 0)
         else:
             header = struct.pack('BbHHh', 128, 0, 0, self._pid, 0)
@@ -73,7 +68,7 @@ class PingHost(threading.Thread):
         pack = header + self.__data
         checksum = self.__checksum(pack)
 
-        if not self.v6_flag:
+        if not self._v6_flag:
             header = struct.pack('bbHHh', 8, 0, checksum, self._pid, 0)
         else:
             header = struct.pack('BbHHh', 128, 0, checksum, self._pid, 0)
@@ -93,7 +88,7 @@ class PingHost(threading.Thread):
     def send(self):
         pack = self._pack
         while pack:
-            sent = self._sock.sendto(pack, (self.host, 0))
+            sent = self._sock.sendto(pack, (self._ip, 0))
             pack = pack[sent:]
         self.time_sent = time.time()
 
@@ -129,11 +124,13 @@ class PingHost(threading.Thread):
             if error_no in self.ERROR_DESCR:
                 msg += self.ERROR_DESCR[error_no]
                 if "%s" in msg:
-                    print(msg % self.host)
+                    print(msg % self._ip)
                 else:
                     print(msg)
             else:
                 raise
+        finally:
+            self.sem.release()
 
     def stat(self):
         log = self.time_log
@@ -148,15 +145,61 @@ class PingHost(threading.Thread):
         else:
             self.delay_stat = {"min": None, "max": None,
                                "avg": None, "ratio": 0}
+        self.delay_stat["ping_count"] = self._ping_count
+
+    def set_results(self):
+        self.results[self._ip_id] = self.delay_stat
+
+    def show_state(self):
+        msg = "PING: %s" % self._ip
+        if self.delay_stat["ratio"] == 1:
+            Progress.show_status(msg, "OK")
+        else:
+            if self.delay_stat["ratio"] > 0:
+                status = "Lose Pack"
+            else:
+                status = "Failed"
+            Progress.show_status(msg, status, 1)
+        Progress.progress_bar()
 
     def run(self):
         self.session()
         self.stat()
-        sys.stdout.write("%s %s\n" % (self.host.ljust(15), self.delay_stat))
+        self.set_results()
+        self.show_state()
+
+
+class MultiPing(object):
+    # Limit the number of concurrent sessions
+    sem = threading.Semaphore(0x40)
+
+    def __init__(self, combinations):
+        self.combs = combinations
+        self._responses = {}
+
+    def ping_test(self):
+        Progress.set_total(len(self.combs))
+        Progress.set_counter(self._responses)
+        threads = []
+        for comb in self.combs:
+            self.sem.acquire()
+            ping_host = PingHost(comb["ip"], comb["ip_id"],
+                                 self._responses, self.sem)
+            ping_host.start()
+            threads.append(ping_host)
+
+        for ping_host in threads:
+            ping_host.join()
+
+        Progress.progress_bar()
+        return self._responses
 
 
 if __name__ == '__main__':
-    hosts = ["14.17.32.211", "220.181.111.86", "0.0.0.0", "199.59.149.243",
-             "74.125.128.104", "74.125.128.120"]
-    pings = MultiPing(hosts)
-    pings.ping()
+    SourceData.connect_db()
+    combs = SourceData.get_ping_test_comb()
+
+    ping_tests = MultiPing(combs)
+    results = ping_tests.ping_test()
+
+    SourceData.set_multi_ping_test_dict(results)

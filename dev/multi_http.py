@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
+
 import httplib
 import socket
 import threading
@@ -25,6 +26,10 @@ class HTTPTest(threading.Thread):
         600: "Unknown",
         601: "Conn Reset"
     }
+    url = ""
+    conn = None
+    http_stat = {}
+    _response_log = {}
 
     def __init__(self, ip, domain, comb_id, results, semaphore,
                  req_count=4, timeout=5):
@@ -63,12 +68,14 @@ class HTTPTest(threading.Thread):
                     sys.stderr.write("\r  %s - %s: %s\n" %
                                      (self.url, self._ip, _err_msg))
             else:
-               _err_no, _err_msg = e.args
+                _err_no, _err_msg = e.args
 
             if _err_no == 10054:
                 return 601, None
             else:
                 return 600, None
+        except httplib.BadStatusLine:
+            return 600, None
         finally:
             self.conn.close()
         delay = time.time() - start_time
@@ -76,13 +83,12 @@ class HTTPTest(threading.Thread):
 
     def session(self):
         response = {}
-        self.sem.acquire()
         try:
             for method in ["http", "https"]:
                 status_log = []
                 delay_log = []
                 for i in range(self.req_count):
-                    exec("self._set_%s_req()" % method)
+                    exec ("self._set_%s_req()" % method)
                     status, delay = self._check()
                     if status not in status_log:
                         status_log.append(status)
@@ -91,7 +97,6 @@ class HTTPTest(threading.Thread):
                 response[method] = {"status": status_log,
                                     "delay": delay_log}
                 self.show_state(status_log)
-                self.show_progress()
             self._response_log = response
         finally:
             self.sem.release()
@@ -114,7 +119,11 @@ class HTTPTest(threading.Thread):
 
     def stat(self):
         response_log = self._response_log
-        stat = {"ip": self._ip, "domain": self._domain}
+        stat = {
+            "ip": self._ip,
+            "domain": self._domain,
+            "req_count": self.req_count
+        }
         for method, log in response_log.iteritems():
             stat[method] = {"delay": self._stat_delay(log["delay"]),
                             "status": self._stat_status(log["status"])}
@@ -124,48 +133,48 @@ class HTTPTest(threading.Thread):
         self.results[self._comb_id] = self.http_stat
 
     def show_state(self, status_log):
-        msg = "\rTEST: %s - %s" % (self.url, self._ip)
+        msg = "HTTP: %s - %s" % (self.url, self._ip)
         if status_log:
-            status_flag = max(status_log)
+            status_flag = min(status_log)
             if status_flag == 200:
-                Progress.status(msg, self.STATUS_DESC[status_flag])
+                Progress.show_status(msg, self.STATUS_DESC[status_flag])
             elif status_flag in self.STATUS_DESC.keys():
-                Progress.status(msg, self.STATUS_DESC[status_flag], 1)
+                Progress.show_status(msg, self.STATUS_DESC[status_flag], 1)
             else:
-                Progress.status(msg, str(status_flag), 1)
+                Progress.show_status(msg, str(status_flag), 1)
         else:
-            Progress.status(msg, "NO STATUS", 1)
-
-    def show_progress(self):
-        Progress.progress_bar(len(self.results))
+            Progress.show_status(msg, "NO STATUS", 1)
+        Progress.progress_bar()
 
     def run(self):
         self.session()
         self.stat()
         self.set_results()
-        self.show_progress()
+
 
 class MultiHTTPTest(object):
     # Limit the number of concurrent sessions
-    sem = threading.Semaphore(256)
+    sem = threading.Semaphore(0x100)
 
     def __init__(self, combinations):
         self.combs = combinations
         self._responses = {}
 
     def http_test(self):
+        Progress.set_total(len(self.combs))
+        Progress.set_counter(self._responses)
         threads = []
         for comb in self.combs:
+            self.sem.acquire()
             http_test_item = HTTPTest(comb["ip"], comb["domain"], comb["id"],
                                       self._responses, self.sem)
+            http_test_item.start()
             threads.append(http_test_item)
 
-        Progress.set_total(len(self.combs))
-        for th in threads:
-            th.start()
-        for th in threads:
-            th.join()
+        for http_test_item in threads:
+            http_test_item.join()
 
+        Progress.progress_bar()
         return self._responses
 
 if __name__ == '__main__':
@@ -175,6 +184,4 @@ if __name__ == '__main__':
     http_tests = MultiHTTPTest(combs)
     results = http_tests.http_test()
 
-    print
-    for item in results.values():
-        print(item)
+    SourceData.set_multi_http_test_dict(results)

@@ -58,7 +58,7 @@ class SourceData(object):
         try:
             cls._cur.execute(ins_sql, data)
         except sqlite3.IntegrityError, e:
-            sys.stdout.write(str(e) + "\n")
+            sys.stderr.write(str(e) + "\n")
 
         for ip in response["hosts"]:
             ip_id = cls.__calc_id(ip)
@@ -74,7 +74,7 @@ class SourceData(object):
             try:
                 cls._cur.execute(ins_sql, (domain_id, ip_id, comb_id))
             except sqlite3.IntegrityError, e:
-                sys.stdout.write(str(e) + "\n")
+                sys.stderr.write(str(e) + "\n")
 
     @classmethod
     def set_multi_domain_dict(cls, ns_responses):
@@ -85,6 +85,58 @@ class SourceData(object):
     @classmethod
     def set_single_domain(cls, domain, response):
         cls.__set_domain(domain, response)
+        cls._conn.commit()
+
+    @classmethod
+    def __set_http_test(cls, id, response):
+        methods = ["http", "https"]
+        count = response["req_count"]
+        for method in methods:
+            if method in response.keys():
+                stat = response[method]
+                ssl_flag = methods.index(method)
+                ins_sql = "REPLACE INTO t_httpTest VALUES (" \
+                          ":http_id, :ssl_flag, :min_delay, :max_delay," \
+                          ":avg_delay, :ratio, :status, :test_count)"
+                data = (id, ssl_flag, stat["delay"]["min"],
+                        stat["delay"]["max"], stat["delay"]["avg"],
+                        stat["delay"]["ratio"], stat["status"], count)
+                try:
+                    cls._cur.execute(ins_sql, data)
+                except sqlite3.IntegrityError, e:
+                    sys.stderr.write(str(e) + "\n")
+
+    @classmethod
+    def set_multi_http_test_dict(cls, http_responses):
+        for id, response in http_responses.iteritems():
+            cls.__set_http_test(id, response)
+        cls._conn.commit()
+
+    @classmethod
+    def set_single_http_test(cls, id, response):
+        cls.__set_domain(id, response)
+        cls._conn.commit()
+
+    @classmethod
+    def __set_ping_test(cls, id, response):
+        ins_sql = "REPLACE INTO t_pingTest VALUES (" \
+                  ":ip_id, :min, :max, :avg, :ratio, :count)"
+        data = (id, response["min"], response["max"], response["avg"],
+                response["ratio"], response["ping_count"])
+        try:
+            cls._cur.execute(ins_sql, data)
+        except sqlite3.IntegrityError, e:
+            sys.stderr.write(str(e) + "\n")
+
+    @classmethod
+    def set_multi_ping_test_dict(cls, ping_responses):
+        for id, response in ping_responses.iteritems():
+            cls.__set_ping_test(id, response)
+        cls._conn.commit()
+
+    @classmethod
+    def set_single_ping_test(cls, id, response):
+        cls.__set_ping_test(id, response)
         cls._conn.commit()
 
     @classmethod
@@ -102,7 +154,19 @@ class SourceData(object):
                 item = dict(zip(["domain", "ip", "id"], list(result)))
                 tests.append(item)
             sql_results = cls._cur.fetchmany(100)
+        return tests
 
+    @classmethod
+    def get_ping_test_comb(cls):
+        sql = "SELECT ip, id FROM t_ip"
+        cls._cur.execute(sql)
+        tests = []
+        sql_results = cls._cur.fetchmany(100)
+        while sql_results:
+            for result in sql_results:
+                item = dict(zip(["ip", "ip_id"], list(result)))
+                tests.append(item)
+            sql_results = cls._cur.fetchmany(100)
         return tests
 
 

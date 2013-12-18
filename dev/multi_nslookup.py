@@ -45,13 +45,14 @@ class NSLookup(threading.Thread):
         4: "Decode Error"
     }
 
-    def __init__(self, server_ip, host_name, results,
+    def __init__(self, server_ip, host_name, results, semaphore,
                  timeout=2, sock_type="TCP", port=53):
         threading.Thread.__init__(self)
         self.server_ip = server_ip
         self.port = port
         self.host_name = host_name
         self.results = results
+        self.sem = semaphore
         self.timeout = timeout
         # Set IP family
         if ":" in server_ip:
@@ -78,7 +79,6 @@ class NSLookup(threading.Thread):
 
     def lookup(self):
         sock = self.__sock
-        NSTools.sem.acquire()
         try:
             sock.connect((self.server_ip, self.port))
             sock.sendall(NSTools.encode(self.host_name))
@@ -106,47 +106,55 @@ class NSLookup(threading.Thread):
             self._response["stat"] = 4
         finally:
             sock.close()
-            NSTools.sem.release()
+            self.sem.release()
 
     def set_result(self):
         self.results[self.host_name] = self._response
 
-    def show_progress(self):
+    def show_state(self):
         stat = self.STATUS_DESC[self._response["stat"]]
+        msg = "NSLK: " + self.host_name
         if stat == "OK":
-            Progress.status(self.host_name, stat)
+            Progress.show_status(msg, stat)
         else:
-            Progress.status(self.host_name, stat, 1)
-        Progress.progress_bar(len(self.results))
+            Progress.show_status(msg, stat, 1)
+        Progress.progress_bar()
 
     def run(self):
         self.lookup()
         self.set_result()
-        self.show_progress()
+        self.show_state()
 
 
 class MultiNSLookup(object):
-    def __init__(self, dns_ip, host_names):
-        self.server_ip = dns_ip
+    # Limit the number of concurrent sessions
+    sem = threading.Semaphore(0x08)
+
+    def __init__(self, server_ip, host_names):
+        self.server_ip = server_ip
         self.host_names = host_names
         self._responses = {}
 
     def nslookup(self):
         threads = []
         name_pool = []
-        for host_name in self.host_names:
-            if host_name not in name_pool:
-                name_pool.append(host_name)
-            lookup_host = NSLookup(
-                self.server_ip, host_name, self._responses)
-            threads.append(lookup_host)
+        for domain in self.host_names:
+            if domain not in name_pool:
+                name_pool.append(domain)
 
         Progress.set_total(len(name_pool))
-        for th in threads:
-            th.start()
-        for th in threads:
-            th.join()
+        Progress.set_counter(self._responses)
+        for domain in name_pool:
+            self.sem.acquire()
+            lookup_host = NSLookup(
+                self.server_ip, domain, self._responses, self.sem)
+            lookup_host.start()
+            threads.append(lookup_host)
 
+        for lookup_host in threads:
+            lookup_host.join()
+
+        Progress.progress_bar()
         return self._responses
 
 
