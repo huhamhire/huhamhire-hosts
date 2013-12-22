@@ -39,9 +39,9 @@ class NSLookup(threading.Thread):
     }
     STATUS_DESC = {
         0: "OK",
-        1: "No Results",
+        1: "No Hit",
         2: "Timed Out",
-        3: "Connection Error",
+        3: "Conn Error",
         4: "Decode Error"
     }
 
@@ -136,15 +136,10 @@ class MultiNSLookup(object):
         self._responses = {}
 
     def nslookup(self):
-        threads = []
-        name_pool = []
-        for domain in self.host_names:
-            if domain not in name_pool:
-                name_pool.append(domain)
-
-        Progress.set_total(len(name_pool))
+        Progress.set_total(len( self.host_names))
         Progress.set_counter(self._responses)
-        for domain in name_pool:
+        threads = []
+        for domain in  self.host_names:
             self.sem.acquire()
             lookup_host = NSLookup(
                 self.server_ip, domain, self._responses, self.sem)
@@ -163,10 +158,13 @@ if __name__ == '__main__':
     in_file = "test.hosts"
     with open(in_file, 'r') as hosts_in:
         host_names = [host_name.rstrip('\n') for host_name in hosts_in]
-    lookups = MultiNSLookup(dns_ip, host_names)
+    name_pool = []
+    for domain in host_names:
+        if domain not in name_pool:
+            name_pool.append(domain)
+
+    lookups = MultiNSLookup(dns_ip, name_pool)
     responses = lookups.nslookup()
-    # pings = MultiPing(hosts)
-    # pings.ping()
 
     SourceData.connect_db()
     SourceData.drop_tables()

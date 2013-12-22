@@ -88,7 +88,7 @@ class SourceData(object):
         cls._conn.commit()
 
     @classmethod
-    def __set_http_test(cls, id, response):
+    def __set_http_test(cls, http_id, response):
         methods = ["http", "https"]
         count = response["req_count"]
         for method in methods:
@@ -98,7 +98,7 @@ class SourceData(object):
                 ins_sql = "REPLACE INTO t_httpTest VALUES (" \
                           ":http_id, :ssl_flag, :min_delay, :max_delay," \
                           ":avg_delay, :ratio, :status, :test_count)"
-                data = (id, ssl_flag, stat["delay"]["min"],
+                data = (http_id, ssl_flag, stat["delay"]["min"],
                         stat["delay"]["max"], stat["delay"]["avg"],
                         stat["delay"]["ratio"], stat["status"], count)
                 try:
@@ -108,20 +108,20 @@ class SourceData(object):
 
     @classmethod
     def set_multi_http_test_dict(cls, http_responses):
-        for id, response in http_responses.iteritems():
-            cls.__set_http_test(id, response)
+        for http_id, response in http_responses.iteritems():
+            cls.__set_http_test(http_id, response)
         cls._conn.commit()
 
     @classmethod
-    def set_single_http_test(cls, id, response):
-        cls.__set_domain(id, response)
+    def set_single_http_test(cls, http_id, response):
+        cls.__set_domain(http_id, response)
         cls._conn.commit()
 
     @classmethod
-    def __set_ping_test(cls, id, response):
+    def __set_ping_test(cls, ip_id, response):
         ins_sql = "REPLACE INTO t_pingTest VALUES (" \
                   ":ip_id, :min, :max, :avg, :ratio, :count)"
-        data = (id, response["min"], response["max"], response["avg"],
+        data = (ip_id, response["min"], response["max"], response["avg"],
                 response["ratio"], response["ping_count"])
         try:
             cls._cur.execute(ins_sql, data)
@@ -130,13 +130,13 @@ class SourceData(object):
 
     @classmethod
     def set_multi_ping_test_dict(cls, ping_responses):
-        for id, response in ping_responses.iteritems():
-            cls.__set_ping_test(id, response)
+        for ip_id, response in ping_responses.iteritems():
+            cls.__set_ping_test(ip_id, response)
         cls._conn.commit()
 
     @classmethod
-    def set_single_ping_test(cls, id, response):
-        cls.__set_ping_test(id, response)
+    def set_single_ping_test(cls, ip_id, response):
+        cls.__set_ping_test(ip_id, response)
         cls._conn.commit()
 
     @classmethod
