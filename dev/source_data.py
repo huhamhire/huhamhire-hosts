@@ -50,13 +50,35 @@ class SourceData(object):
                 cls._cur.execute(sql)
 
     @classmethod
-    def __set_domain(cls, domain, response):
-        status = response["stat"]
-        ins_sql = "REPLACE INTO t_domain VALUES (:domain_id, :name, :stat)"
+    def __set_domain(cls, domain):
+        ins_sql = "REPLACE INTO t_domain VALUES (:domain_id, :name, NULL)"
         domain_id = cls.__calc_id(domain)
-        data = (domain_id, domain, status)
+        data = (domain_id, domain)
         try:
             cls._cur.execute(ins_sql, data)
+        except sqlite3.IntegrityError, e:
+            sys.stderr.write(str(e) + "\n")
+
+    @classmethod
+    def set_multi_domain_list(cls, domains):
+        for domain in domains:
+            cls.__set_domain(domain)
+        cls._conn.commit()
+
+    @classmethod
+    def set_single_domain(cls, domain):
+        cls.__set_domain(domain)
+        cls._conn.commit()
+
+    @classmethod
+    def __set_domain_ip(cls, domain, response):
+        # Update status info
+        status = response["stat"]
+        domain_id = cls.__calc_id(domain)
+        upd_sql = "UPDATE t_domain SET stat=:stat WHERE id=:id"
+        data = (status, domain_id)
+        try:
+            cls._cur.execute(upd_sql, data)
         except sqlite3.IntegrityError, e:
             sys.stderr.write(str(e) + "\n")
 
@@ -77,14 +99,14 @@ class SourceData(object):
                 sys.stderr.write(str(e) + "\n")
 
     @classmethod
-    def set_multi_domain_dict(cls, ns_responses):
+    def set_multi_domain_ip_dict(cls, ns_responses):
         for domain, response in ns_responses.iteritems():
-            cls.__set_domain(domain, response)
+            cls.__set_domain_ip(domain, response)
         cls._conn.commit()
 
     @classmethod
-    def set_single_domain(cls, domain, response):
-        cls.__set_domain(domain, response)
+    def set_single_domain_ip(cls, domain, response):
+        cls.__set_domain_ip(domain, response)
         cls._conn.commit()
 
     @classmethod
@@ -114,7 +136,7 @@ class SourceData(object):
 
     @classmethod
     def set_single_http_test(cls, http_id, response):
-        cls.__set_domain(http_id, response)
+        cls.__set_domain_ip(http_id, response)
         cls._conn.commit()
 
     @classmethod
@@ -138,6 +160,18 @@ class SourceData(object):
     def set_single_ping_test(cls, ip_id, response):
         cls.__set_ping_test(ip_id, response)
         cls._conn.commit()
+
+    @classmethod
+    def get_domain_list(cls):
+        sql = "SELECT name FROM t_domain"
+        cls._cur.execute(sql)
+        domains = []
+        sql_results = cls._cur.fetchmany(100)
+        while sql_results:
+            for result in sql_results:
+                domains.append(result)
+            sql_results = cls._cur.fetchmany(100)
+        return domains
 
     @classmethod
     def get_http_test_comb(cls):

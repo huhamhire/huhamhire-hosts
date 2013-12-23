@@ -117,6 +117,7 @@ class PingHost(threading.Thread):
                 self.send()
                 delay = self.response()
                 time_log.append(delay)
+                time.sleep(0.1)
             self._sock.close()
             self.time_log = time_log
         except socket.error, (error_no, msg):
@@ -167,6 +168,7 @@ class PingHost(threading.Thread):
         self.stat()
         self.set_results()
         self.show_state()
+        time.sleep(0.5)
 
 
 class MultiPing(object):

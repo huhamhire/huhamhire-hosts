@@ -6,14 +6,14 @@ import socket
 import struct
 import threading
 import sys
+import time
+from set_domain import SetDomain
 
 from progress import Progress
 from source_data import SourceData
 
 
 class NSTools(object):
-    # Limit the number of concurrent sessions
-    sem = threading.Semaphore(8)
 
     @staticmethod
     def encode(host_name):
@@ -107,6 +107,7 @@ class NSLookup(threading.Thread):
         finally:
             sock.close()
             self.sem.release()
+            time.sleep(0.1)
 
     def set_result(self):
         self.results[self.host_name] = self._response
@@ -154,19 +155,16 @@ class MultiNSLookup(object):
 
 
 if __name__ == '__main__':
-    dns_ip = "64.13.131.34"
-    in_file = "test.hosts"
-    with open(in_file, 'r') as hosts_in:
-        host_names = [host_name.rstrip('\n') for host_name in hosts_in]
-    name_pool = []
-    for domain in host_names:
-        if domain not in name_pool:
-            name_pool.append(domain)
-
-    lookups = MultiNSLookup(dns_ip, name_pool)
-    responses = lookups.nslookup()
-
     SourceData.connect_db()
     SourceData.drop_tables()
     SourceData.create_tables()
-    SourceData.set_multi_domain_dict(responses)
+
+    dns_ip = "64.13.131.34"
+    in_file = "test.hosts"
+    set_domain = SetDomain(in_file)
+    set_domain.set_domains()
+    domains = set_domain.get_domains()
+    lookups = MultiNSLookup(dns_ip, domains)
+    responses = lookups.nslookup()
+
+    SourceData.set_multi_domain_ip_dict(responses)

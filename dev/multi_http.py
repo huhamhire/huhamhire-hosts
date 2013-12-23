@@ -93,7 +93,7 @@ class HTTPTest(threading.Thread):
                     if status not in status_log:
                         status_log.append(status)
                     delay_log.append(delay)
-                    time.sleep(0.5)
+                    time.sleep(0.1)
                 response[method] = {"status": status_log,
                                     "delay": delay_log}
                 self.show_state(status_log)
