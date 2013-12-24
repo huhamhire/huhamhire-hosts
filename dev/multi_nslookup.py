@@ -167,4 +167,4 @@ if __name__ == '__main__':
     lookups = MultiNSLookup(dns_ip, domains)
     responses = lookups.nslookup()
 
-    SourceData.set_multi_domain_ip_dict(responses)
+    SourceData.set_multi_ns_response(responses, "hk")

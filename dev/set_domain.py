@@ -18,7 +18,7 @@ class SetDomain(object):
 
     def set_domains(self):
         SourceData.connect_db()
-        SourceData.set_multi_domain_list(self._name_pool)
+        SourceData.set_multi_domain_list(self._name_pool, "google")
 
     def get_domains(self):
         return self._name_pool

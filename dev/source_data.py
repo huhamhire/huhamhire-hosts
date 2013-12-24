@@ -50,28 +50,29 @@ class SourceData(object):
                 cls._cur.execute(sql)
 
     @classmethod
-    def __set_domain(cls, domain):
-        ins_sql = "REPLACE INTO t_domain VALUES (:domain_id, :name, NULL)"
+    def __set_domain(cls, domain, module):
+        ins_sql = "REPLACE INTO t_domain VALUES (" \
+                  ":domain_id, :name, NULL, :mod)"
         domain_id = cls.__calc_id(domain)
-        data = (domain_id, domain)
+        data = (domain_id, domain, module)
         try:
             cls._cur.execute(ins_sql, data)
         except sqlite3.IntegrityError, e:
             sys.stderr.write(str(e) + "\n")
 
     @classmethod
-    def set_multi_domain_list(cls, domains):
+    def set_multi_domain_list(cls, domains, module):
         for domain in domains:
-            cls.__set_domain(domain)
+            cls.__set_domain(domain, module)
         cls._conn.commit()
 
     @classmethod
-    def set_single_domain(cls, domain):
-        cls.__set_domain(domain)
+    def set_single_domain(cls, domain, module):
+        cls.__set_domain(domain, module)
         cls._conn.commit()
 
     @classmethod
-    def __set_domain_ip(cls, domain, response):
+    def __set_ns_response(cls, domain, response, ns_label):
         # Update status info
         status = response["stat"]
         domain_id = cls.__calc_id(domain)
@@ -84,29 +85,38 @@ class SourceData(object):
 
         for ip in response["hosts"]:
             ip_id = cls.__calc_id(ip)
-            ins_sql = "REPLACE INTO t_ip VALUES (:ip_id, :ip)"
+            ins_sql = "INSERT OR IGNORE INTO t_ip VALUES (:ip_id, :ip)"
             try:
                 cls._cur.execute(ins_sql, (ip_id, ip))
             except sqlite3.IntegrityError, e:
-                if "column id is not unique" not in e:
-                    sys.stderr.write(str(e) + "\n")
+                sys.stderr.write(str(e) + "\n")
 
             comb_id = cls.__calc_id(domain + ip)
-            ins_sql = "REPLACE INTO t_domain_ip VALUES (:domain, :ip, :comb)"
+            ins_sql = "INSERT OR IGNORE INTO t_domain_ip VALUES (" \
+                      ":domain, :ip, :comb, '');"
+            upd_sql = "UPDATE t_domain_ip SET ns=ns||:ns " \
+                      "WHERE domain_id=:domain AND ip_id=:ip;"
+            data = {
+                "domain": domain_id,
+                "ip": ip_id,
+                "comb": comb_id,
+                "ns": ns_label + '|'
+            }
             try:
-                cls._cur.execute(ins_sql, (domain_id, ip_id, comb_id))
+                cls._cur.execute(ins_sql, data)
+                cls._cur.execute(upd_sql, data)
             except sqlite3.IntegrityError, e:
                 sys.stderr.write(str(e) + "\n")
 
     @classmethod
-    def set_multi_domain_ip_dict(cls, ns_responses):
+    def set_multi_ns_response(cls, ns_responses, ns_label):
         for domain, response in ns_responses.iteritems():
-            cls.__set_domain_ip(domain, response)
+            cls.__set_ns_response(domain, response, ns_label)
         cls._conn.commit()
 
     @classmethod
-    def set_single_domain_ip(cls, domain, response):
-        cls.__set_domain_ip(domain, response)
+    def set_single_ns_response(cls, domain, response, ns_label):
+        cls.__set_ns_response(domain, response, ns_label)
         cls._conn.commit()
 
     @classmethod
@@ -136,7 +146,7 @@ class SourceData(object):
 
     @classmethod
     def set_single_http_test(cls, http_id, response):
-        cls.__set_domain_ip(http_id, response)
+        cls.__set_ns_response(http_id, response)
         cls._conn.commit()
 
     @classmethod
@@ -160,6 +170,10 @@ class SourceData(object):
     def set_single_ping_test(cls, ip_id, response):
         cls.__set_ping_test(ip_id, response)
         cls._conn.commit()
+
+    @classmethod
+    def clear(cls):
+        cls._cur.execute("VACUUM")
 
     @classmethod
     def get_domain_list(cls):

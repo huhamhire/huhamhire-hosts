@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS t_domain (
     UNIQUE
     ON CONFLICT IGNORE,
   name VARCHAR(255) NOT NULL,
-  stat UNSIGNED TINYINT
+  stat UNSIGNED TINYINT,
+  mod VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS t_ip (
@@ -24,6 +25,7 @@ CREATE TABLE IF NOT EXISTS t_domain_ip (
     NOT NULL,
   combination_id UNSIGNED INTEGER
     NOT NULL,
+  ns VARCHAR(40) NOT NULL,
   FOREIGN KEY (domain_id) REFERENCES t_domain(id),
   FOREIGN KEY (ip_id) REFERENCES t_ip(id),
   PRIMARY KEY (domain_id, ip_id)
