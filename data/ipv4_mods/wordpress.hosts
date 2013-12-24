@@ -1,0 +1,39 @@
+# region wordpress
+
+#Wordpress
+72.21.91.19 i.polldaddy.com
+72.21.91.19 i0.poll.fm
+192.0.82.252 wordpress.com
+72.21.91.111 s0.wp.com
+72.21.91.111 s1.wp.com
+72.21.91.111 s2.wp.com
+72.21.91.19 s.wordpress.org
+72.21.91.19 s.wordpress.com
+72.21.91.19 s1.wordpress.com
+72.21.91.19 s2.wordpress.com
+72.21.91.19 s3.wordpress.com
+72.21.91.19 s.stats.wordpress.com
+76.74.248.252 store.files.wordpress.com
+192.0.81.250 store.wordpress.com
+76.74.254.123 lb.wordpress.com
+76.74.254.123 zh.wordpress.com
+76.74.254.123 zh-sg.wordpress.com
+76.74.254.120 dashboard.wordpress.com
+192.0.81.250 forums.wordpress.com
+76.74.254.120 en.forums.wordpress.com
+76.74.248.132 en.blog.wordpress.com
+216.151.210.122 stats.wordpress.com
+76.74.254.123 wpcom.wordpress.com
+192.0.80.250 botd2.wordpress.com
+192.0.80.248 botd.wordpress.com
+192.0.81.250 lucifr.wordpress.com
+# 192.0.81.250 *.wordpress.com
+
+#Gravatar
+72.21.91.121 s.gravatar.com
+72.21.91.121 0.gravatar.com
+72.21.91.121 1.gravatar.com
+72.21.91.121 2.gravatar.com
+192.0.80.240 lb.gravatar.com
+
+# endregion

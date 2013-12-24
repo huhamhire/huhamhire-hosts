@@ -1,0 +1,15 @@
+# region github
+
+# GitHub
+192.30.252.129 github.com
+199.27.79.133 raw.github.com
+192.30.252.141 gist.github.com
+199.27.79.133 developer.github.com
+192.30.252.138 api.github.com
+199.27.79.133 documentcloud.github.com
+54.235.185.69 help.github.com
+192.30.252.147 nodeload.github.com
+184.73.4.42 status.github.com
+199.27.79.133 training.github.com
+185.31.17.184 github.global.ssl.fastly.net
+# endregion

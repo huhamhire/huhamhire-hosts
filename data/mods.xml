@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyleft (C) 2013 - Huhamhire-hosts Team -->
+<hostslist version="1.4.3">
+    <part id="0x10" default="0x7DF3">
+        <table>hosts_ipv4</table>
+        <path>ipv4_mods/</path>
+        <modules>
+            <mod cate="0x0001" mutex="0x0004">google(cn)</mod>
+            <mod cate="0x0002" mutex="0x0004">google(hk)</mod>
+            <mod cate="0x0004" mutex="0x0003">google(us)</mod>
+            <mod cate="0x0008" mutex="0x0010">google-apis(cn)</mod>
+            <mod cate="0x0010" mutex="0x0008">google-apis(us)</mod>
+            <mod cate="0x0020" mutex="0x0000">facebook</mod>
+            <mod cate="0x0040" mutex="0x0000">twitter</mod>
+            <mod cate="0x0080" mutex="0x0000">youtube</mod>
+            <mod cate="0x0100" mutex="0x0000">wikipedia</mod>
+            <mod cate="0x0200" mutex="0x0000">steam</mod>
+            <mod cate="0x0400" mutex="0x0000">flickr</mod>
+            <mod cate="0x0800" mutex="0x0000">github</mod>
+            <mod cate="0x1000" mutex="0x0000">dropbox</mod>
+            <mod cate="0x2000" mutex="0x0000">wordpress</mod>
+            <mod cate="0x4000" mutex="0x0000">others</mod>
+        </modules>
+    </part>
+    <part id="0x20" default="0x00FD">
+        <table>hosts_ipv6</table>
+        <path>ipv6_mods/</path>
+        <modules>
+            <mod cate="0x0001" mutex="0x0002">google(hk)</mod>
+            <mod cate="0x0002" mutex="0x0001">google(us)</mod>
+            <mod cate="0x0004" mutex="0x0000">facebook</mod>
+            <mod cate="0x0008" mutex="0x0000">twitter</mod>
+            <mod cate="0x0010" mutex="0x0000">youtube</mod>
+            <mod cate="0x0020" mutex="0x0000">wikipedia</mod>
+            <mod cate="0x0040" mutex="0x0000">institutions</mod>
+            <mod cate="0x0080" mutex="0x0000">others</mod>
+        </modules>
+    </part>
+    <part id="0x40" default="0x0000">
+        <table>hosts_adblock</table>
+        <path>adblock_mods/</path>
+        <modules>
+            <mod cate="0x0001" mutex="0x0000">adblock-hostsx</mod>
+            <mod cate="0x0002" mutex="0x0000">adblock-mvps</mod>
+            <mod cate="0x0004" mutex="0x0000">adblock-mwsl</mod>
+            <mod cate="0x0008" mutex="0x0000">adblock-yoyo</mod>
+        </modules>
+    </part>
+    <part id="0x08" default="0x0000">
+        <table>hosts_share</table>
+        <path>share_mods/</path>
+        <modules>
+            <mod cate="0x0001" mutex="0x0000">activation-helper</mod>
+        </modules>
+    </part>
+    <part id="0x02" default="0x0000">
+        <table>localhost</table>
+        <path>info_mods/</path>
+        <modules>
+            <mod cate="0x0001" mutex="0x000E">localhost-nt</mod>
+            <mod cate="0x0002" mutex="0x000D">localhost-linux</mod>
+            <mod cate="0x0004" mutex="0x000B">localhost-darwin</mod>
+            <mod cate="0x0008" mutex="0x0007">localhost-common</mod>
+        </modules>
+    </part>
+    <head id="0x00" default="0x0000">
+        <table>hosts_head</table>
+        <path>info_mods/</path>
+        <module>head</module>
+    </head>
+    <info id="0x01" default="0x0000">
+        <table>info</table>
+    </info>
+</hostslist>

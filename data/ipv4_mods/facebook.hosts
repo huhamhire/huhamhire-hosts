@@ -1,0 +1,63 @@
+# region facebook
+
+#facebook
+# 118.215.189.177 s-static.ak.facebook.net
+23.42.82.110 s-static.ak.facebook.com
+# 208.46.163.41 profile.ak.facebook.com
+
+165.254.42.75 static.ak.facebook.com
+165.254.42.75 b.static.ak.facebook.com
+173.252.74.22 graph.facebook.com
+173.252.74.22 ssl.facebook.com
+173.252.74.22 api.facebook.com
+173.252.103.11 secure-profile.facebook.com
+173.252.74.22 secure.facebook.com
+173.252.74.22 zh-cn.facebook.com
+31.13.77.81 login.facebook.com
+173.252.74.22 m.facebook.com
+50.57.69.167 messages-facebook.com
+173.252.74.22 attachments.facebook.com
+173.252.74.22 touch.facebook.com
+173.252.74.22 facebook.com
+173.252.74.22 www.facebook.com
+173.252.74.22 apps.facebook.com
+198.87.182.217 profile.ak.fbcdn.net
+173.252.71.184 vpn.tfbnw.net
+184.50.27.123 vthumb.ak.fbcdn.net
+198.87.182.232 photos-a.ak.fbcdn.net
+198.87.182.218 photos-b.ak.fbcdn.net
+198.87.182.232 photos-c.ak.fbcdn.net
+198.87.182.235 photos-d.ak.fbcdn.net
+23.59.189.8 photos-e.ak.fbcdn.net
+198.87.182.218 photos-f.ak.fbcdn.net
+198.87.182.232 photos-g.ak.fbcdn.net
+198.87.182.235 photos-h.ak.fbcdn.net
+165.254.42.91 creative.ak.fbcdn.net
+# 173.252.110.27 fbcdn.net
+165.254.42.82 external.ak.fbcdn.net
+165.254.42.75 b.static.ak.fbcdn.net
+165.254.42.104 static.ak.fbcdn.net
+31.13.77.65 upload.facebook.com
+31.13.74.49 developers.facebook.com
+165.254.42.75 fbstatic-a.akamaihd.net
+
+# 69.171.246.16 act.channel.facebook.com
+# 69.171.246.16 0-act.channel.facebook.com
+# 69.171.246.16 1-act.channel.facebook.com
+# 69.171.246.16 2-act.channel.facebook.com
+# 69.171.246.16 3-act.channel.facebook.com
+# 69.171.246.16 4-act.channel.facebook.com
+# 69.171.246.16 5-act.channel.facebook.com
+# 69.171.246.16 6-act.channel.facebook.com
+
+69.171.246.7 beta-chat-01-05-ash3.facebook.com
+69.171.246.8 origincache-ai-01-05-ash3.fbcdn.net
+69.171.246.9 static.thefacebook.com
+69.171.246.10 inyour-slb-01-05-ash3.facebook.com
+69.171.246.12 origincache-starfacebook-ai-01-05-ash3.facebook.com
+69.171.246.16 channel-ecmp-05-ash3.facebook.com
+69.171.246.17 channel-staging-ecmp-05-ash3.facebook.com
+69.171.246.18 channel-testing-ecmp-05-ash3.facebook.com
+
+# endregion
+

@@ -1,3 +1,4 @@
+downloads/tmp
 *.tmp
 *.pyc
 *.data
