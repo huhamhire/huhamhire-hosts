@@ -3,7 +3,7 @@
 #
 #  _build.py : Tools to make packages for different platforms
 #
-# Copyleft (C) 2013 - huhamhire hosts team <hosts@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -265,7 +265,7 @@ elif system == "OS X":
             "CFBundleAllowMixedLocalizations": True,
             "CFBundleSignature": "hamh",
             "CFBundleIdentifier": "org.pythonmac.huhamhire.HostsUtl",
-            "NSHumanReadableCopyright": "(C) 2013, Huhamhire hosts Team"}
+            "NSHumanReadableCopyright": "(C) 2014, huhamhire hosts Team"}
     }
     # Clean work space before build
     if os.path.exists(APP_PATH):

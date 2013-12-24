@@ -38,6 +38,10 @@ class SourceData(object):
         cls._db = db
 
     @classmethod
+    def disconnect_db(cls):
+        cls._cur.close()
+
+    @classmethod
     def create_tables(cls):
         with open("./schema.sql", "r") as script:
             for sql in script.read().split(";"):
@@ -183,7 +187,7 @@ class SourceData(object):
         sql_results = cls._cur.fetchmany(100)
         while sql_results:
             for result in sql_results:
-                domains.append(result)
+                domains.append(result[0].encode("ascii"))
             sql_results = cls._cur.fetchmany(100)
         return domains
 

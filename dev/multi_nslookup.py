@@ -160,10 +160,12 @@ if __name__ == '__main__':
     SourceData.create_tables()
 
     dns_ip = "64.13.131.34"
-    in_file = "test.hosts"
-    set_domain = SetDomain(in_file)
-    set_domain.set_domains()
-    domains = set_domain.get_domains()
+    cfg_file = "mods.xml"
+    set_domain = SetDomain(cfg_file)
+    set_domain.get_config()
+    set_domain.get_domains_in_mods()
+    domains = SourceData.get_domain_list()
+
     lookups = MultiNSLookup(dns_ip, domains)
     responses = lookups.nslookup()
 

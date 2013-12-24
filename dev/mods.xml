@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyleft (C) 2014 - Huhamhire-hosts Team -->
+<domains>
+    <module name="ipv4">
+        <mod>google</mod>
+        <mod>google-apis</mod>
+        <mod>facebook</mod>
+        <mod>twitter</mod>
+        <mod>youtube</mod>
+        <mod>wikipedia</mod>
+        <mod>steam</mod>
+        <mod>flickr</mod>
+        <mod>github</mod>
+        <mod>dropbox</mod>
+        <mod>wordpress</mod>
+        <mod>others</mod>
+    </module>
+</domains>
