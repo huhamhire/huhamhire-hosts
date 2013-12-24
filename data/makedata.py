@@ -29,7 +29,7 @@ import zipfile
 from xml.etree.ElementTree import ElementTree
 
 # File Settings
-DATA_PATH = "../data/"
+DATA_PATH = "../../release/data/"
 DATA_NAME = "hostslist.data"
 DATA_FILE = DATA_PATH + DATA_NAME
 JSON_FILE = DATA_PATH + "hostsinfo.json"
