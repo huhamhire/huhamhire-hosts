@@ -93,7 +93,6 @@ class HTTPTest(threading.Thread):
                     if status not in status_log:
                         status_log.append(status)
                     delay_log.append(delay)
-                    time.sleep(0.1)
                 response[method] = {"status": status_log,
                                     "delay": delay_log}
                 self.show_state(status_log)
@@ -154,7 +153,7 @@ class HTTPTest(threading.Thread):
 
 class MultiHTTPTest(object):
     # Limit the number of concurrent sessions
-    sem = threading.Semaphore(0x100)
+    sem = threading.Semaphore(0x200)
 
     def __init__(self, combinations):
         self.combs = combinations

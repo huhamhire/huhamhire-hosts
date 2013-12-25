@@ -168,7 +168,6 @@ class PingHost(threading.Thread):
         self.stat()
         self.set_results()
         self.show_state()
-        time.sleep(0.5)
 
 
 class MultiPing(object):
