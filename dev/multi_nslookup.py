@@ -6,7 +6,6 @@ import socket
 import struct
 import threading
 import sys
-import time
 from set_domain import SetDomain
 
 from progress import Progress

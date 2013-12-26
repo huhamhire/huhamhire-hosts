@@ -396,7 +396,7 @@ def get_mod_info(infile="mods.xml"):
     head = {}
     xml_head = xmlfile.find("head")
     head["part_id"] = int(xml_head.get("id"), 16)
-    head["default"] = int(xml_part.get("default"), 16)
+    head["default"] = int(xml_head.get("default"), 16)
     head["table"] = xml_head.find("table").text
     head["modpath"] = xml_head.find("path").text
     head["module"] = xml_head.find("module").text
@@ -404,7 +404,7 @@ def get_mod_info(infile="mods.xml"):
     info = {}
     xml_info = xmlfile.find("info")
     info["part_id"] = int(xml_info.get("id"), 16)
-    info["default"] = int(xml_part.get("default"), 16)
+    info["default"] = int(xml_info.get("default"), 16)
     info["table"] = xml_info.find("table").text
     return parts, head, info, version
 

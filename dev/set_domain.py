@@ -1,4 +1,5 @@
-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from xml.etree.ElementTree import ElementTree
 
 from source_data import SourceData
