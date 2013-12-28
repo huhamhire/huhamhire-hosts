@@ -7,12 +7,53 @@ import operator
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+from source_data import SourceData
+
+
+class DomainTestTableData(object):
+    def __init__(self, domain_id):
+        self.__domain_id = domain_id
+        self._ping_results = []
+        self._ping_header = [
+            ("", ""), ("IP", "ip"), ("Min", "min"), ("Max", "max"),
+            ("Average", "avg"), ("Ratio", "ratio"), ("NS", "ns")]
+        self.get_ping_test_results()
+
+    def get_ping_test_results(self):
+        SourceData.connect_db()
+        self._ping_results = SourceData.get_ping_test_results_by_domain_id(
+            self.__domain_id)
+
+    @property
+    def ping_test_data(self):
+        data = []
+        for result in self._ping_results:
+            is_check = 0
+            item = [is_check]
+            for tag in self._ping_header[1:]:
+                item_data = result[tag[1]]
+                if tag[1] == "ns":
+                    item_data = item_data.replace("|", ", ")
+                if item_data is None:
+                    item_data = "N/A"
+                item.append(item_data)
+            data.append(item)
+        return data
+
+    @property
+    def ping_test_header(self):
+        header_items = []
+        for tag in self._ping_header:
+            header_items.append(tag[0])
+        return header_items
+
 
 class DomainTestTableModel(QAbstractTableModel):
-    def __init__(self, test_data, header_data, parent=None):
+    def __init__(self, table_data, header_data, checkbox=None, parent=None):
         QAbstractTableModel.__init__(self, parent)
-        self.__table_data = test_data
+        self.__table_data = table_data
         self.__header_data = header_data
+        self.__checkbox_column = checkbox
 
     def rowCount(self, parent=None, *args, **kwargs):
         return len(self.__table_data)
@@ -29,8 +70,9 @@ class DomainTestTableModel(QAbstractTableModel):
             return QVariant(self.__table_data[index.row()][index.column()])
 
     def setData(self, index, value, role=None):
-        if index.column() == 3:
-            self.__table_data[index.row()][3] = value
+        box_col = self.__checkbox_column
+        if box_col is not None and index.column() == box_col:
+            self.__table_data[index.row()][box_col] = value
             return True
 
     def headerData(self, col, orientation, role=None):
@@ -41,7 +83,8 @@ class DomainTestTableModel(QAbstractTableModel):
 
     def flags(self, index):
         # Set CheckBox column
-        if index.column() == 3:
+        box_col = self.__checkbox_column
+        if box_col is not None and index.column() == box_col:
             return Qt.ItemIsEditable | Qt.ItemIsEnabled
         else:
             return Qt.ItemIsEnabled
@@ -102,15 +145,13 @@ class CheckBoxDelegate(QStyledItemDelegate):
         if not int(index.flags() & Qt.ItemIsEditable) > 0:
             return False
         # Do not change the checkbox-state
-        if event.type() in [QEvent.MouseButtonPress, QEvent.MouseMove]:
-            return False
-        if event.type() in [QEvent.MouseButtonRelease,
+        if event.type() in [QEvent.MouseButtonPress, QEvent.MouseMove,
                             QEvent.MouseButtonDblClick]:
+            return False
+        if event.type() == QEvent.MouseButtonRelease:
             if event.button() != Qt.LeftButton:
                 return False
             if not self.get_box_rect(option).contains(event.pos()):
-                return False
-            if event.type() == QEvent.MouseButtonDblClick:
                 return False
         # Change the checkbox-state
         self.setModelData(None, model, index)
@@ -121,14 +162,13 @@ class CheckBoxDelegate(QStyledItemDelegate):
         model.setData(index, new_value, Qt.EditRole)
 
     def get_box_rect(self, option):
-        check_box_style_option = QStyleOptionButton()
-        check_box_rect = self.parent().style().subElementRect(
-            QStyle.SE_CheckBoxIndicator, check_box_style_option, None)
-        check_box_point = QPoint(option.rect.x() + option.rect.width() / 2 -
-                                 check_box_rect.width() / 2,
-                                 option.rect.y() + option.rect.height() / 2 -
-                                 check_box_rect.height() / 2)
-        return QRect(check_box_point, check_box_rect.size())
+        style_option = QStyleOptionButton()
+        rect = self.parent().style().subElementRect(
+            QStyle.SE_CheckBoxIndicator, style_option, None)
+        x_pos = option.rect.x() + (option.rect.width() - rect.width()) / 2
+        y_pos = option.rect.y() + (option.rect.height() - rect.height()) / 2
+        box_point = QPoint(x_pos, y_pos)
+        return QRect(box_point, rect.size())
 
 
 class MyWindow(QWidget):
@@ -136,28 +176,24 @@ class MyWindow(QWidget):
         QWidget.__init__(self, *args)
         self.resize(1024, 480)
 
-        table_model = DomainTestTableModel(my_array, header, self)
+        table_data = DomainTestTableData(169048887)
+        data = table_data.ping_test_data
+        header = table_data.ping_test_header
+
+        table_model = DomainTestTableModel(data, header, 0, self)
         table_view = QTableView()
         table_view.setModel(table_model)
-        table_view.setColumnWidth(0, 200)
-        table_view.setColumnWidth(3, 30)
+        table_view.setColumnWidth(0, 30)
+        table_view.setColumnWidth(1, 200)
         table_view.verticalHeader().hide()
         table_view.setSortingEnabled(True)
 
-        table_view.setItemDelegateForColumn(3, CheckBoxDelegate(table_view))
+        table_view.setItemDelegateForColumn(0, CheckBoxDelegate(table_view))
 
         layout = QVBoxLayout(self)
 
         layout.addWidget(table_view)
         self.setLayout(layout)
-
-
-my_array = [['00', '01', '02', True],
-            ['10', '11', '12', True],
-            ['20', '21', '22', False],
-            ['30', '31', 'N/A', False],
-            ]
-header = ["IP", "Ping", "HTTP", "Chk"]
 
 
 def main():
