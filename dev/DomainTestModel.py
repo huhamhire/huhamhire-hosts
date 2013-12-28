@@ -14,38 +14,115 @@ class DomainTestTableData(object):
     def __init__(self, domain_id):
         self.__domain_id = domain_id
         self._ping_results = []
+        self._http_results = []
         self._ping_header = [
             ("", ""), ("IP", "ip"), ("Min", "min"), ("Max", "max"),
-            ("Average", "avg"), ("Ratio", "ratio"), ("NS", "ns")]
+            ("Average", "avg"), ("Ratio", "ratio"), ("NS", "ns")
+        ]
+        self._http_header = [
+            ("", ""), ("IP", "ip"), ("Min", "min"), ("Max", "max"),
+            ("Average", "avg"), ("Ratio", "ratio"), ("Status", "status"),
+            ("NS", "ns")
+        ]
+        self._brief_header = [
+            "", "IP Address", "Ping(ms)", "HTTP/GET(ms)", "HTTP/Status",
+            "HTTPS/GET(ms)", "HTTPS/Status", "Name Server"
+        ]
+
+        SourceData.connect_db()
         self.get_ping_test_results()
+        self.get_http_test_results()
 
     def get_ping_test_results(self):
-        SourceData.connect_db()
         self._ping_results = SourceData.get_ping_test_results_by_domain_id(
-            self.__domain_id)
+            self.__domain_id
+        )
 
-    @property
-    def ping_test_data(self):
+    def get_http_test_results(self):
+        self._http_results = SourceData.get_http_test_results_by_domain_id(
+            self.__domain_id
+        )
+
+    def ping_table_data(self):
         data = []
         for result in self._ping_results:
-            is_check = 0
+            is_check = False
             item = [is_check]
             for tag in self._ping_header[1:]:
                 item_data = result[tag[1]]
                 if tag[1] == "ns":
-                    item_data = item_data.replace("|", ", ")
+                    item_data = item_data.replace("|", ", ").upper()
+                    if item_data.endswith(", "):
+                        item_data = item_data[:-2]
                 if item_data is None:
                     item_data = "N/A"
                 item.append(item_data)
             data.append(item)
         return data
 
+    def http_table_data(self, https=False):
+        data = []
+        for result in self._http_results:
+            if bool(result["ssl"]) != https:
+                continue
+            is_check = False
+            item = [is_check]
+            for tag in self._http_header[1:]:
+                item_data = result[tag[1]]
+                if tag[1] in ["ns", "status"]:
+                    item_data = item_data.replace("|", ", ").upper()
+                    if item_data.endswith(", "):
+                        item_data = item_data[:-2]
+                if item_data is None:
+                    item_data = "N/A"
+                item.append(item_data)
+            data.append(item)
+        return data
+
+    def brief_table_data(self):
+        data = []
+        for result in self._ping_results:
+            item = [None] * len(self._brief_header)
+            is_check = True
+            item[0] = is_check
+            item[1] = result["ip"]
+            item[2] = result["avg"]
+            for http_result in self._http_results:
+                if http_result["id"] == result["id"]:
+                    if not bool(http_result["ssl"]):
+                        item[3] = http_result["avg"]
+                        item[4] = http_result["status"]
+                    else:
+                        item[5] = http_result["avg"]
+                        item[6] = http_result["status"]
+            item[7] = result["ns"]
+            for i in [4, 6, 7]:
+                item[i] = item[i].replace("|", ", ").upper()
+                if item[i].endswith(", "):
+                    item[i] = item[i][:-2]
+            for i in [2, 3, 5]:
+                if item[i] is None:
+                    item[i] = "N/A"
+            data.append(item)
+        return data
+
     @property
-    def ping_test_header(self):
+    def ping_table_header(self):
         header_items = []
         for tag in self._ping_header:
             header_items.append(tag[0])
         return header_items
+
+    @property
+    def http_table_header(self):
+        header_items = []
+        for tag in self._http_header:
+            header_items.append(tag[0])
+        return header_items
+
+    @property
+    def brief_table_header(self):
+        return self._brief_header
 
 
 class DomainTestTableModel(QAbstractTableModel):
@@ -174,11 +251,11 @@ class CheckBoxDelegate(QStyledItemDelegate):
 class MyWindow(QWidget):
     def __init__(self, *args):
         QWidget.__init__(self, *args)
-        self.resize(1024, 480)
+        self.resize(1024, 640)
 
         table_data = DomainTestTableData(169048887)
-        data = table_data.ping_test_data
-        header = table_data.ping_test_header
+        data = table_data.brief_table_data()
+        header = table_data.brief_table_header
 
         table_model = DomainTestTableModel(data, header, 0, self)
         table_view = QTableView()

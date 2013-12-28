@@ -238,7 +238,8 @@ class SourceData(object):
               "  t_domain_ip.ns AS ns " \
               "FROM t_domain_ip" \
               "  LEFT JOIN t_ip ON t_domain_ip.ip_id = t_ip.id" \
-              "  LEFT JOIN t_pingTest ON t_domain_ip.ip_id = t_pingTest.ip_id" \
+              "  LEFT JOIN t_pingTest ON " \
+              "    t_domain_ip.ip_id = t_pingTest.ip_id" \
               "  WHERE t_domain_ip.domain_id=:domain_id;"
         data = (domain_id, )
         cls._cur.execute(sql, data)
@@ -247,6 +248,36 @@ class SourceData(object):
         for result in sql_results:
             item = dict(zip(
                 ["id", "ip", "min", "max", "avg", "ratio", "count", "ns"],
+                list(result))
+            )
+            results.append(item)
+        return results
+
+    @classmethod
+    def get_http_test_results_by_domain_id(cls, domain_id):
+        sql = "SELECT t_domain_ip.ip_id AS ip_id," \
+              "  t_ip.ip AS ip," \
+              "  t_httpTest.ssl_flag AS ssl_flag," \
+              "  t_httpTest.min_delay AS http_min," \
+              "  t_httpTest.max_delay AS http_max," \
+              "  t_httpTest.avg_delay AS http_avg," \
+              "  t_httpTest.ratio AS http_ratio," \
+              "  t_httpTest.test_count AS test_count," \
+              "  t_httpTest.status AS status," \
+              "  t_domain_ip.ns AS ns " \
+              "FROM t_domain_ip" \
+              "  LEFT JOIN t_ip ON t_domain_ip.ip_id = t_ip.id" \
+              "  LEFT JOIN t_httpTest ON " \
+              "    t_domain_ip.combination_id = t_httpTest.http_id" \
+              "  WHERE t_domain_ip.domain_id=:domain_id;"
+        data = (domain_id, )
+        cls._cur.execute(sql, data)
+        results = []
+        sql_results = cls._cur.fetchall()
+        for result in sql_results:
+            item = dict(zip(
+                ["id", "ip", "ssl", "min", "max", "avg", "ratio",
+                 "count", "status", "ns"],
                 list(result))
             )
             results.append(item)
