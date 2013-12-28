@@ -40,6 +40,7 @@ class DomainTestTableModel(QAbstractTableModel):
             return QVariant()
 
     def flags(self, index):
+        # Set CheckBox column
         if index.column() == 3:
             return Qt.ItemIsEditable | Qt.ItemIsEnabled
         else:
@@ -54,18 +55,19 @@ class DomainTestTableModel(QAbstractTableModel):
         self.emit(SIGNAL("layoutChanged()"))
 
 
-class CheckBoxDelegate(QItemDelegate):
+class CheckBoxDelegate(QStyledItemDelegate):
     """
-    A delegate that places a fully functioning QCheckBox in every
-    cell of the column to which it's applied
+    A delegate that places a fully functioning QCheckBox in every cell of the
+    column to which it's applied.
     """
     def __init__(self, parent):
-        QItemDelegate.__init__(self, parent)
+        QStyledItemDelegate.__init__(self, parent)
 
     def createEditor(self, parent, option, index):
         """
         Important, otherwise an editor is created if the user clicks in this
-        cell. ** Need to hook up a signal to the model
+        cell.
+        ** Need to hook up a signal to the model
         """
         return None
 
@@ -73,11 +75,10 @@ class CheckBoxDelegate(QItemDelegate):
         """
         Paint a checkbox without the label.
         """
-
         checked = index.data().toBool()
         check_box_style_option = QStyleOptionButton()
 
-        if (index.flags() & Qt.ItemIsEditable) > 0:
+        if int(index.flags() & Qt.ItemIsEditable) > 0:
             check_box_style_option.state |= QStyle.State_Enabled
         else:
             check_box_style_option.state |= QStyle.State_ReadOnly
@@ -87,61 +88,41 @@ class CheckBoxDelegate(QItemDelegate):
         else:
             check_box_style_option.state |= QStyle.State_Off
 
-        check_box_style_option.rect = self.getCheckBoxRect(option)
+        check_box_style_option.rect = self.get_box_rect(option)
 
-        # this will not run - hasFlag does not exist
-        #if not index.model().hasFlag(index, Qt.ItemIsEditable):
-            #check_box_style_option.state |= QStyle.State_ReadOnly
-
-        check_box_style_option.state |= QStyle.State_Enabled
-
-        QApplication.style().drawControl(
+        self.parent().style().drawControl(
             QStyle.CE_CheckBox, check_box_style_option, painter)
 
     def editorEvent(self, event, model, option, index):
         """
-        Change the data in the model and the state of the checkbox if the
-        user presses the left mouse button or presses Key_Space or Key_Select
-        and this cell is editable. Otherwise do nothing.
+        Change the data in the model and the state of the checkbox if the user
+        presses the left mouse button and this cell is editable.
+        Otherwise do nothing.
         """
-        print 'Check Box editor Event detected : '
-        print event.type()
-        if not (index.flags() & Qt.ItemIsEditable) > 0:
+        if not int(index.flags() & Qt.ItemIsEditable) > 0:
             return False
-
-        print 'Check Box editor Event detected : passed first check'
         # Do not change the checkbox-state
-        if event.type() == QEvent.MouseButtonPress:
+        if event.type() in [QEvent.MouseButtonPress, QEvent.MouseMove]:
             return False
-        if event.type() == QEvent.MouseButtonRelease or \
-                event.type() == QEvent.MouseButtonDblClick:
-            if event.button() != Qt.LeftButton or \
-                    not self.getCheckBoxRect(option).contains(event.pos()):
+        if event.type() in [QEvent.MouseButtonRelease,
+                            QEvent.MouseButtonDblClick]:
+            if event.button() != Qt.LeftButton:
+                return False
+            if not self.get_box_rect(option).contains(event.pos()):
                 return False
             if event.type() == QEvent.MouseButtonDblClick:
-                return True
-        elif event.type() == QEvent.KeyPress:
-            if event.key() != Qt.Key_Space and event.key() != Qt.Key_Select:
                 return False
-            else:
-                return False
-
         # Change the checkbox-state
         self.setModelData(None, model, index)
         return True
 
     def setModelData(self, editor, model, index):
-        """
-        The user wanted to change the old state in the opposite.
-        """
-        print 'SetModelData'
         new_value = not index.data().toBool()
-        print 'New Value : {0}'.format(new_value)
         model.setData(index, new_value, Qt.EditRole)
 
-    def getCheckBoxRect(self, option):
+    def get_box_rect(self, option):
         check_box_style_option = QStyleOptionButton()
-        check_box_rect = QApplication.style().subElementRect(
+        check_box_rect = self.parent().style().subElementRect(
             QStyle.SE_CheckBoxIndicator, check_box_style_option, None)
         check_box_point = QPoint(option.rect.x() + option.rect.width() / 2 -
                                  check_box_rect.width() / 2,
@@ -153,11 +134,13 @@ class CheckBoxDelegate(QItemDelegate):
 class MyWindow(QWidget):
     def __init__(self, *args):
         QWidget.__init__(self, *args)
+        self.resize(1024, 480)
 
         table_model = DomainTestTableModel(my_array, header, self)
         table_view = QTableView()
         table_view.setModel(table_model)
         table_view.setColumnWidth(0, 200)
+        table_view.setColumnWidth(3, 30)
         table_view.verticalHeader().hide()
         table_view.setSortingEnabled(True)
 
@@ -169,12 +152,13 @@ class MyWindow(QWidget):
         self.setLayout(layout)
 
 
-my_array = [['00', '01', '02', 1],
-            ['10', '11', '12', 1],
-            ['20', '21', '22', 0],
-            ['30', '31', 'No', 0],
+my_array = [['00', '01', '02', True],
+            ['10', '11', '12', True],
+            ['20', '21', '22', False],
+            ['30', '31', 'N/A', False],
             ]
 header = ["IP", "Ping", "HTTP", "Chk"]
+
 
 def main():
     app = QApplication(sys.argv)
