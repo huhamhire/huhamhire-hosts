@@ -11,8 +11,8 @@ from source_data import SourceData
 
 
 class DomainTestTableData(object):
-    def __init__(self, domain_id):
-        self.__domain_id = domain_id
+    def __init__(self):
+        self.__domain_id = None
         self._ping_results = []
         self._http_results = []
         self._ping_header = [
@@ -30,18 +30,23 @@ class DomainTestTableData(object):
         ]
 
         SourceData.connect_db()
+
+    def set_domain_id(self, domain_id):
+        self.__domain_id = domain_id
         self.get_ping_test_results()
         self.get_http_test_results()
 
     def get_ping_test_results(self):
-        self._ping_results = SourceData.get_ping_test_results_by_domain_id(
-            self.__domain_id
-        )
+        if self.__domain_id is not None:
+            self._ping_results = SourceData.get_ping_results_by_domain_id(
+                self.__domain_id
+            )
 
     def get_http_test_results(self):
-        self._http_results = SourceData.get_http_test_results_by_domain_id(
-            self.__domain_id
-        )
+        if self.__domain_id is not None:
+            self._http_results = SourceData.get_http_results_by_domain_id(
+                self.__domain_id
+            )
 
     def ping_table_data(self):
         data = []
@@ -253,7 +258,8 @@ class MyWindow(QWidget):
         QWidget.__init__(self, *args)
         self.resize(1024, 640)
 
-        table_data = DomainTestTableData(169048887)
+        table_data = DomainTestTableData()
+        table_data.set_domain_id(1711483047)
         data = table_data.brief_table_data()
         header = table_data.brief_table_header
 

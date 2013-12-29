@@ -227,7 +227,7 @@ class SourceData(object):
         return tests
 
     @classmethod
-    def get_ping_test_results_by_domain_id(cls, domain_id):
+    def get_ping_results_by_domain_id(cls, domain_id):
         sql = "SELECT t_domain_ip.ip_id AS ip_id, " \
               "  t_ip.ip AS ip," \
               "  t_pingTest.min_delay AS ping_min," \
@@ -254,7 +254,7 @@ class SourceData(object):
         return results
 
     @classmethod
-    def get_http_test_results_by_domain_id(cls, domain_id):
+    def get_http_results_by_domain_id(cls, domain_id):
         sql = "SELECT t_domain_ip.ip_id AS ip_id," \
               "  t_ip.ip AS ip," \
               "  t_httpTest.ssl_flag AS ssl_flag," \
@@ -283,6 +283,19 @@ class SourceData(object):
             results.append(item)
         return results
 
+    @classmethod
+    def get_domains_by_module_tag(cls, tag):
+        sql = "SELECT id, name FROM t_domain WHERE mod=:tag;"
+        data = (tag, )
+        cls._cur.execute(sql, data)
+        results = []
+        sql_results = cls._cur.fetchall()
+        for result in sql_results:
+            item = dict(zip(
+                ["id", "domain"], list(result)
+            ))
+            results.append(item)
+        return results
 
 if __name__ == "__main__":
     SourceData.connect_db()
