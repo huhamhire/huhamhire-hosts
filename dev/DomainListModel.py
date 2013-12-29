@@ -29,6 +29,18 @@ class DomainListData(object):
         return [item["domain"] for item in self._domain_results]
 
 
+class DomainListProxyModel(QSortFilterProxyModel):
+    def __init__(self, parent=None):
+        super(DomainListProxyModel, self).__init__(parent)
+
+    def filterAcceptsRow(self, src_row, src_parent):
+        if self.filterRegExp() == QRegExp(u''):
+            return True
+        src_index = self.sourceModel().index(src_row, 0)
+        item = src_index.data(Qt.DisplayRole).toString()
+        return item.contains(self.filterRegExp())
+
+
 class DomainListModel(QAbstractListModel):
     def __init__(self, list_data, parent=None):
         """ list_data: a list where each item is a row
@@ -49,12 +61,27 @@ class DomainListModel(QAbstractListModel):
 class DomainListView(QListView):
 
     def __init__(self, parent):
-        QListView.__init__(self, parent)
+        super(DomainListView, self).__init__(parent)
 
     def selectionChanged(self, selected, deselected):
         self.emit(SIGNAL('newDomainSelection'))
         print selected[0].indexes()[0].data().toString()
-        QListView.selectionChanged(self, selected, deselected)
+        super(DomainListView, self).selectionChanged(selected, deselected)
+
+
+class DomainListFilter(QLineEdit):
+    def __init__(self, model, parent=None):
+        super(DomainListFilter, self).__init__(parent)
+        self._data_model = model
+        self.textChanged.connect(self.update_filter)
+
+    def update_filter(self):
+        reg_text = self.text()
+        if len(reg_text.split(" ")) > 1:
+            reg_ex = reg_text.split(" ").join("[A-Za-z0-9]*[.-_]*")
+        else:
+            reg_ex = QStringList(list(reg_text)).join("[A-Za-z0-9]*[.-_]*")
+        self._data_model.setFilterRegExp(reg_ex)
 
 
 class MyWindow(QWidget):
@@ -63,14 +90,22 @@ class MyWindow(QWidget):
         self.resize(320, 640)
 
         list_data = DomainListData()
+        list_view = DomainListView(self)
+        proxy_model = DomainListProxyModel(list_view)
+
         list_data.set_module_tag("ipv4-google")
         data = list_data.domain_list()
 
         list_model = DomainListModel(data, self)
-        list_view = DomainListView(self)
-        list_view.setModel(list_model)
+
+        proxy_model.setSourceModel(list_model)
+        proxy_model.setDynamicSortFilter(True)
+
+        list_filter = DomainListFilter(proxy_model, self)
+        list_view.setModel(proxy_model)
 
         layout = QVBoxLayout()
+        layout.addWidget(list_filter)
         layout.addWidget(list_view)
         self.setLayout(layout)
 
