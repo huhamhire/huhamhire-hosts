@@ -125,6 +125,8 @@ class DomainListWidget(QWidget):
         self._list_filter = DomainListFilter(self._proxy_model, self)
         self._list_view.setModel(self._proxy_model)
 
+        self.setTabOrder(self._list_filter, self._list_view)
+
         layout = QVBoxLayout(self)
         layout.setMargin(5)
         layout.addWidget(self._list_filter)
@@ -145,7 +147,11 @@ class DomainListWidget(QWidget):
         self._proxy_model.setSourceModel(self._list_model)
         self._list_filter.setText("")
 
-        self.emit(self.set_new_test_table_signal, None)
+        if self._list_view.model().rowCount():
+            item = self._list_view.model().index(0, 0)
+            self._list_view.setCurrentIndex(item)
+        else:
+            self.emit(self.set_new_test_table_signal, None)
 
 
 def main():

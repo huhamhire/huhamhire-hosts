@@ -13,11 +13,12 @@ class CheckWidget(QWidget):
 
         from ModuleTreeModel import ModuleTreeWidget
         from DomainListModel import DomainListWidget
-        from DomainTestTableModel import DomainTestTableWidget
+        from DomainTestTableModel import DomainTestTabWidget
 
         module_tree = ModuleTreeWidget()
         domain_list = DomainListWidget()
-        domain_test_table = DomainTestTableWidget()
+
+        test_tab = DomainTestTabWidget(self)
 
         module_tree.connect(
             module_tree,
@@ -27,7 +28,7 @@ class CheckWidget(QWidget):
         domain_list.connect(
             domain_list,
             domain_list.set_new_test_table_signal,
-            domain_test_table.set_table_data
+            test_tab.update_table_data_by_domain
         )
 
         splitter = QSplitter(self)
@@ -36,14 +37,18 @@ class CheckWidget(QWidget):
         splitter.setStretchFactor(0, 1)
         splitter.addWidget(domain_list)
         splitter.setStretchFactor(1, 1)
-        splitter.addWidget(domain_test_table)
+        splitter.addWidget(test_tab)
         splitter.setStretchFactor(2, 4)
         splitter.setHandleWidth(3)
+
+        self.setTabOrder(module_tree, domain_list)
+        self.setTabOrder(domain_list, test_tab)
 
         layout = QHBoxLayout(self)
         layout.addWidget(splitter)
 
         self.setLayout(layout)
+        module_tree.set_default()
 
 
 def main():

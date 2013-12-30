@@ -25,10 +25,11 @@ class DomainTestTableData(QObject):
             ("Average", "avg"), ("Ratio", "ratio"), ("Status", "status"),
             ("NS", "ns")
         ]
-        self._brief_header = [
+        self._summary_header = [
             "", "IP Address", "Ping(ms)", "HTTP/GET(ms)", "HTTP/Status",
             "HTTPS/GET(ms)", "HTTPS/Status", "Name Server"
         ]
+        self._selection = {}
 
         SourceData.connect_db()
 
@@ -36,6 +37,7 @@ class DomainTestTableData(QObject):
         self.__domain_id = domain_id
         self.get_ping_test_results()
         self.get_http_test_results()
+        self.set_selection()
 
     def get_ping_test_results(self):
         if self.__domain_id is not None:
@@ -49,12 +51,16 @@ class DomainTestTableData(QObject):
                 self.__domain_id
             )
 
+    def set_selection(self):
+        for result in self._ping_results:
+            self._selection[result["ip"]] = True
+
     def ping_table_data(self):
         data = []
         if self.__domain_id is None:
             return data
         for result in self._ping_results:
-            is_check = False
+            is_check = self._selection[result["ip"]]
             item = [is_check]
             for tag in self._ping_header[1:]:
                 item_data = result[tag[1]]
@@ -75,7 +81,7 @@ class DomainTestTableData(QObject):
         for result in self._http_results:
             if bool(result["ssl"]) != https:
                 continue
-            is_check = False
+            is_check = self._selection[result["ip"]]
             item = [is_check]
             for tag in self._http_header[1:]:
                 item_data = result[tag[1]]
@@ -89,13 +95,13 @@ class DomainTestTableData(QObject):
             data.append(item)
         return data
 
-    def brief_table_data(self):
+    def summary_table_data(self):
         data = []
         if self.__domain_id is None:
             return data
         for result in self._ping_results:
-            item = [None] * len(self._brief_header)
-            is_check = True
+            item = [None] * len(self._summary_header)
+            is_check = self._selection[result["ip"]]
             item[0] = is_check
             item[1] = result["ip"]
             item[2] = result["avg"]
@@ -133,8 +139,8 @@ class DomainTestTableData(QObject):
         return header_items
 
     @property
-    def brief_table_header(self):
-        return self._brief_header
+    def summary_table_header(self):
+        return self._summary_header
 
 
 class DomainTestTableModel(QAbstractTableModel):
@@ -169,6 +175,7 @@ class DomainTestTableModel(QAbstractTableModel):
 
     def setData(self, index, value, role=None):
         box_col = self.__checkbox_column
+        print value
         if box_col is not None and index.column() == box_col:
             self.__table_data[index.row()][box_col] = value
             return True
@@ -183,9 +190,9 @@ class DomainTestTableModel(QAbstractTableModel):
         # Set CheckBox column
         box_col = self.__checkbox_column
         if box_col is not None and index.column() == box_col:
-            return Qt.ItemIsEditable | Qt.ItemIsEnabled
+            return Qt.ItemIsEditable | Qt.ItemIsEnabled | Qt.ItemIsSelectable
         else:
-            return Qt.ItemIsEnabled
+            return Qt.ItemIsEnabled | Qt.ItemIsSelectable
 
     def sort(self, col, order=None):
         self.emit(SIGNAL("layoutAboutToBeChanged()"))
@@ -270,15 +277,15 @@ class CheckBoxDelegate(QStyledItemDelegate):
 
 
 class DomainTestTableWidget(QWidget):
-    def __init__(self, parent=None, *args):
+    def __init__(self, mode="Summary", parent=None, *args):
         super(DomainTestTableWidget, self).__init__(parent, *args)
+        self.mode = mode
 
         self._table_data = DomainTestTableData(self)
         self._table_model = DomainTestTableModel(self)
         self._table_view = QTableView(self)
 
-        header = self._table_data.brief_table_header
-        self._table_model.set_header(header)
+        self.set_table_header()
         self._table_model.set_checkbox_column(0)
 
         self._table_view.setModel(self._table_model)
@@ -286,6 +293,9 @@ class DomainTestTableWidget(QWidget):
         self._table_view.setColumnWidth(1, 150)
         self._table_view.verticalHeader().hide()
         self._table_view.setSortingEnabled(True)
+        self._table_view.setSelectionBehavior(self._table_view.SelectRows)
+
+        self._table_view.sortByColumn(2, Qt.AscendingOrder)
 
         self._table_view.setItemDelegateForColumn(
             0, CheckBoxDelegate(self._table_view)
@@ -296,12 +306,63 @@ class DomainTestTableWidget(QWidget):
         layout.addWidget(self._table_view)
         self.setLayout(layout)
 
-    @pyqtSlot(long)
-    def set_table_data(self, domain_id):
+    def set_table_header(self):
+        if self.mode == "Summary":
+            header = self._table_data.summary_table_header
+        elif self.mode == "Ping":
+            header = self._table_data.ping_table_header
+        elif self.mode == "HTTP" or self.mode == "HTTPS":
+            header = self._table_data.http_table_header
+        else:
+            header = []
+        self._table_model.set_header(header)
+
+    def update_table_data(self, domain_id):
         self._table_data.set_domain_id(domain_id)
-        data = self._table_data.brief_table_data()
+        if self.mode == "Summary":
+            data = self._table_data.summary_table_data()
+        elif self.mode == "Ping":
+            data = self._table_data.ping_table_data()
+        elif self.mode == "HTTP":
+            data = self._table_data.http_table_data(False)
+        elif self.mode == "HTTPS":
+            data = self._table_data.http_table_data(True)
+        else:
+            data = []
         self._table_model.reset()
         self._table_model.set_table_data(data)
+
+
+class DomainTestTabWidget(QWidget):
+    def __init__(self, parent=None, *args):
+        super(DomainTestTabWidget, self).__init__(parent, *args)
+
+        self.domain_id = None
+        self.test_tab = QTabWidget(self)
+
+        self.test_tab.currentChanged.connect(self.update_table_data_by_tab)
+
+        self.tabs = ["Summary", "Ping", "HTTP", "HTTPS"]
+        self.test_tables = {}
+        for tab in self.tabs:
+            self.test_tables[tab] = DomainTestTableWidget(tab, self)
+            self.test_tab.addTab(self.test_tables[tab], tab)
+
+        layout = QVBoxLayout(self)
+        layout.setMargin(5)
+        layout.addWidget(self.test_tab)
+
+    @pyqtSlot(long)
+    def update_table_data_by_domain(self, domain_id):
+        self.domain_id = domain_id
+        tab_id = self.test_tab.currentIndex()
+        table = self.test_tables[self.tabs[tab_id]]
+        table.update_table_data(domain_id)
+
+    @pyqtSlot(int)
+    def update_table_data_by_tab(self, tab_id):
+        table = self.test_tables[self.tabs[tab_id]]
+        table.update_table_data(self.domain_id)
 
 
 def main():

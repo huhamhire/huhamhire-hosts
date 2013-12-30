@@ -231,28 +231,45 @@ class ModuleTreeWidget(QWidget):
     def __init__(self, *args):
         super(ModuleTreeWidget, self).__init__(*args)
 
-        tree_data = ModuleTreeData(self)
-        tree_model = ModuleTreeModel(tree_data.module_tree_data(), self)
-        tree_view = ModuleTreeView(self)
+        self._tree_data = ModuleTreeData(self)
+        self._tree_model = ModuleTreeModel(
+            self._tree_data.module_tree_data(), self
+        )
+        self._tree_view = ModuleTreeView(self)
 
-        tree_view.connect(
-            tree_view, tree_view.select_new_signal, self.set_new_module
+        self._tree_view.connect(
+            self._tree_view,
+            self._tree_view.select_new_signal,
+            self.set_new_module
         )
 
-        proxy_model = ModuleTreeProxyModel(tree_view)
-        proxy_model.setSourceModel(tree_model)
+        self._proxy_model = ModuleTreeProxyModel(self._tree_view)
+        self._proxy_model.setSourceModel(self._tree_model)
 
-        tree_view.setModel(proxy_model)
-        tree_view.setHeaderHidden(True)
-        tree_view.expandAll()
+        self._tree_view.setModel(self._proxy_model)
+        self._tree_view.setHeaderHidden(True)
+        self._tree_view.expandAll()
 
-        tree_filter = ModuleTreeFilter(proxy_model, tree_view, self)
+        self._tree_filter = ModuleTreeFilter(
+            self._proxy_model, self._tree_view, self
+        )
+
+        self.setTabOrder(self._tree_filter, self._tree_view)
+
         layout = QVBoxLayout(self)
         layout.setMargin(5)
-        layout.addWidget(tree_filter)
-        layout.addWidget(tree_view)
+        layout.addWidget(self._tree_filter)
+        layout.addWidget(self._tree_view)
 
         self.setLayout(layout)
+
+    def set_default(self):
+        if self._tree_view.model().rowCount():
+            item = self._tree_view.model().index(0, 0)
+            self._tree_view.setCurrentIndex(item)
+            self.emit(self.set_new_module_signal, item.data().toString())
+        else:
+            self.emit(self.set_new_module_signal, None)
 
     @pyqtSlot(QString)
     def set_new_module(self, module_label):
