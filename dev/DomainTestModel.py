@@ -10,8 +10,9 @@ from PyQt4.QtGui import *
 from source_data import SourceData
 
 
-class DomainTestTableData(object):
-    def __init__(self):
+class DomainTestTableData(QObject):
+    def __init__(self, parent=None):
+        super(DomainTestTableData, self).__init__(parent)
         self.__domain_id = None
         self._ping_results = []
         self._http_results = []
@@ -50,6 +51,8 @@ class DomainTestTableData(object):
 
     def ping_table_data(self):
         data = []
+        if self.__domain_id is None:
+            return data
         for result in self._ping_results:
             is_check = False
             item = [is_check]
@@ -67,6 +70,8 @@ class DomainTestTableData(object):
 
     def http_table_data(self, https=False):
         data = []
+        if self.__domain_id is None:
+            return data
         for result in self._http_results:
             if bool(result["ssl"]) != https:
                 continue
@@ -86,6 +91,8 @@ class DomainTestTableData(object):
 
     def brief_table_data(self):
         data = []
+        if self.__domain_id is None:
+            return data
         for result in self._ping_results:
             item = [None] * len(self._brief_header)
             is_check = True
@@ -131,17 +138,26 @@ class DomainTestTableData(object):
 
 
 class DomainTestTableModel(QAbstractTableModel):
-    def __init__(self, table_data, header_data, checkbox=None, parent=None):
-        QAbstractTableModel.__init__(self, parent)
+    def __init__(self, parent=None):
+        super(DomainTestTableModel, self).__init__(parent)
+        self.__table_data = []
+        self.__header = []
+        self.__checkbox_column = None
+
+    def set_header(self, header):
+        self.__header = header
+
+    def set_table_data(self, table_data):
         self.__table_data = table_data
-        self.__header_data = header_data
-        self.__checkbox_column = checkbox
+
+    def set_checkbox_column(self, col):
+        self.__checkbox_column = col
 
     def rowCount(self, parent=None, *args, **kwargs):
         return len(self.__table_data)
 
     def columnCount(self, parent=None, *args, **kwargs):
-        return len(self.__table_data[0])
+        return len(self.__header)
 
     def data(self, index, role=None):
         if not index.isValid():
@@ -159,7 +175,7 @@ class DomainTestTableModel(QAbstractTableModel):
 
     def headerData(self, col, orientation, role=None):
         if orientation == Qt.Horizontal and role == Qt.DisplayRole:
-            return QVariant(self.__header_data[col])
+            return QVariant(self.__header[col])
         else:
             return QVariant()
 
@@ -186,7 +202,7 @@ class CheckBoxDelegate(QStyledItemDelegate):
     column to which it's applied.
     """
     def __init__(self, parent):
-        QStyledItemDelegate.__init__(self, parent)
+        super(CheckBoxDelegate, self).__init__(parent)
 
     def createEditor(self, parent, option, index):
         """
@@ -253,35 +269,43 @@ class CheckBoxDelegate(QStyledItemDelegate):
         return QRect(box_point, rect.size())
 
 
-class MyWindow(QWidget):
-    def __init__(self, *args):
-        QWidget.__init__(self, *args)
-        self.resize(1024, 640)
+class DomainTestWidget(QWidget):
+    def __init__(self, parent=None, *args):
+        super(DomainTestWidget, self).__init__(parent, *args)
 
-        table_data = DomainTestTableData()
-        table_data.set_domain_id(1711483047)
-        data = table_data.brief_table_data()
-        header = table_data.brief_table_header
+        self._table_data = DomainTestTableData(self)
+        self._table_model = DomainTestTableModel(self)
+        self._table_view = QTableView(self)
 
-        table_model = DomainTestTableModel(data, header, 0, self)
-        table_view = QTableView()
-        table_view.setModel(table_model)
-        table_view.setColumnWidth(0, 30)
-        table_view.setColumnWidth(1, 200)
-        table_view.verticalHeader().hide()
-        table_view.setSortingEnabled(True)
+        header = self._table_data.brief_table_header
+        self._table_model.set_header(header)
+        self._table_model.set_checkbox_column(0)
 
-        table_view.setItemDelegateForColumn(0, CheckBoxDelegate(table_view))
+        self._table_view.setModel(self._table_model)
+        self._table_view.setColumnWidth(0, 30)
+        self._table_view.setColumnWidth(1, 150)
+        self._table_view.verticalHeader().hide()
+        self._table_view.setSortingEnabled(True)
+
+        self._table_view.setItemDelegateForColumn(
+            0, CheckBoxDelegate(self._table_view)
+        )
 
         layout = QVBoxLayout(self)
-
-        layout.addWidget(table_view)
+        layout.setMargin(5)
+        layout.addWidget(self._table_view)
         self.setLayout(layout)
+
+    def set_table_data(self, domain_id):
+        self._table_data.set_domain_id(domain_id)
+        data = self._table_data.brief_table_data()
+        self._table_model.reset()
+        self._table_model.set_table_data(data)
 
 
 def main():
     app = QApplication(sys.argv)
-    w = MyWindow()
+    w = DomainTestWidget()
     w.show()
     sys.exit(app.exec_())
 
