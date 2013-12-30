@@ -70,7 +70,7 @@ class DomainListModel(QAbstractListModel):
 class DomainListView(QListView):
     select_new_signal = SIGNAL("SelectNewItem(QString)")
 
-    def __init__(self, parent):
+    def __init__(self, parent=None):
         super(DomainListView, self).__init__(parent)
 
     def selectionChanged(self, selected, deselected):
@@ -99,75 +99,58 @@ class DomainListWidget(QWidget):
     set_new_test_table_signal = SIGNAL("SetNewTestTable")
 
     def __init__(self, *args):
-        QWidget.__init__(self, *args)
+        super(DomainListWidget, self).__init__(*args)
 
-        list_data = DomainListData(self)
-        list_view = DomainListView(self)
+        self._list_data = DomainListData(self)
+        self._list_view = DomainListView(self)
 
-        list_view.connect(
-            list_view, list_view.select_new_signal,
-            list_data.get_domain_id
+        self._list_view.connect(
+            self._list_view,
+            self._list_view.select_new_signal,
+            self._list_data.get_domain_id
         )
-        list_data.connect(
-            list_data, list_data.get_new_id_signal, self.set_new_test_table
+        self._list_data.connect(
+            self._list_data,
+            self._list_data.get_new_id_signal,
+            self.set_new_test_table
         )
 
-        proxy_model = DomainListProxyModel(list_view)
+        data = self._list_data.domain_list()
+        self._list_model = DomainListModel(data, self)
 
-        list_data.set_module_tag("ipv4-google")
-        data = list_data.domain_list()
+        self._proxy_model = DomainListProxyModel(self._list_view)
+        self._proxy_model.setSourceModel(self._list_model)
+        self._proxy_model.setDynamicSortFilter(True)
 
-        list_model = DomainListModel(data, self)
-
-        proxy_model.setSourceModel(list_model)
-        proxy_model.setDynamicSortFilter(True)
-
-        list_filter = DomainListFilter(proxy_model, self)
-        list_view.setModel(proxy_model)
+        self._list_filter = DomainListFilter(self._proxy_model, self)
+        self._list_view.setModel(self._proxy_model)
 
         layout = QVBoxLayout(self)
         layout.setMargin(5)
-        layout.addWidget(list_filter)
-        layout.addWidget(list_view)
+        layout.addWidget(self._list_filter)
+        layout.addWidget(self._list_view)
         self.setLayout(layout)
 
     @pyqtSlot(long)
     def set_new_test_table(self, domain_id):
         self.emit(self.set_new_test_table_signal, domain_id)
 
+    @pyqtSlot(QString)
+    def set_new_domain_list(self, domain_label):
+        tag = str(domain_label)
+        self._list_data.set_module_tag(tag)
+        data = self._list_data.domain_list()
+        self._list_model = DomainListModel(data, self)
+        self._proxy_model.reset()
+        self._proxy_model.setSourceModel(self._list_model)
+        self._list_filter.setText("")
 
-class TestWidget(QWidget):
-    def __init__(self, *args):
-        super(TestWidget, self).__init__(*args)
-        self.resize(1024, 640)
-
-        from DomainTestModel import DomainTestWidget
-
-        domain_list = DomainListWidget()
-        test_table = DomainTestWidget()
-
-        domain_list.connect(
-            domain_list, domain_list.set_new_test_table_signal,
-            test_table.set_table_data
-        )
-
-        splitter = QSplitter(self)
-        splitter.resize(1024, 640)
-        splitter.addWidget(domain_list)
-        splitter.setStretchFactor(0, 1)
-        splitter.addWidget(test_table)
-        splitter.setStretchFactor(1, 4)
-        splitter.setHandleWidth(3)
-
-        layout = QHBoxLayout(self)
-        layout.addWidget(splitter)
-
-        self.setLayout(layout)
+        self.emit(self.set_new_test_table_signal, None)
 
 
 def main():
     app = QApplication(sys.argv)
-    w = TestWidget()
+    w = DomainListWidget()
     w.show()
     sys.exit(app.exec_())
 

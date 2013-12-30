@@ -269,9 +269,9 @@ class CheckBoxDelegate(QStyledItemDelegate):
         return QRect(box_point, rect.size())
 
 
-class DomainTestWidget(QWidget):
+class DomainTestTableWidget(QWidget):
     def __init__(self, parent=None, *args):
-        super(DomainTestWidget, self).__init__(parent, *args)
+        super(DomainTestTableWidget, self).__init__(parent, *args)
 
         self._table_data = DomainTestTableData(self)
         self._table_model = DomainTestTableModel(self)
@@ -296,6 +296,7 @@ class DomainTestWidget(QWidget):
         layout.addWidget(self._table_view)
         self.setLayout(layout)
 
+    @pyqtSlot(long)
     def set_table_data(self, domain_id):
         self._table_data.set_domain_id(domain_id)
         data = self._table_data.brief_table_data()
@@ -305,7 +306,7 @@ class DomainTestWidget(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    w = DomainTestWidget()
+    w = DomainTestTableWidget()
     w.show()
     sys.exit(app.exec_())
 

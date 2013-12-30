@@ -285,8 +285,8 @@ class SourceData(object):
 
     @classmethod
     def get_domains_by_module_tag(cls, tag):
-        sql = "SELECT id, name FROM t_domain WHERE mod=:tag;"
-        data = (tag, )
+        sql = "SELECT id, name FROM t_domain WHERE mod like :tag;"
+        data = (tag + "%", )
         cls._cur.execute(sql, data)
         results = []
         sql_results = cls._cur.fetchall()
@@ -296,6 +296,17 @@ class SourceData(object):
             ))
             results.append(item)
         return results
+
+    @classmethod
+    def get_domain_modules(cls):
+        sql = "SELECT DISTINCT mod FROM t_domain;"
+        cls._cur.execute(sql)
+        results = []
+        sql_results = cls._cur.fetchall()
+        for result in sql_results:
+            results.append(result[0])
+        return results
+
 
 if __name__ == "__main__":
     SourceData.connect_db()
