@@ -5,11 +5,16 @@ import sys
 
 from PyQt4.QtGui import *
 
+from source_data import SourceData
+
 
 class CheckWidget(QWidget):
     def __init__(self, *args):
         super(CheckWidget, self).__init__(*args)
         self.resize(1280, 640)
+
+        if not SourceData.is_connected:
+            SourceData.connect_db()
 
         from ModuleTreeModel import ModuleTreeWidget
         from DomainListModel import DomainListWidget
@@ -49,6 +54,10 @@ class CheckWidget(QWidget):
 
         self.setLayout(layout)
         module_tree.set_default()
+
+    def __del__(self):
+        if SourceData.is_connected:
+            SourceData.disconnect_db()
 
 
 def main():

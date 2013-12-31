@@ -25,6 +25,7 @@ class SourceData(object):
     _conn = None
     _cur = None
     _db = ""
+    is_connected = False
 
     @staticmethod
     def __calc_id(in_string):
@@ -36,10 +37,12 @@ class SourceData(object):
         cls._conn = sqlite3.connect(db)
         cls._cur = cls._conn.cursor()
         cls._db = db
+        cls.is_connected = True
 
     @classmethod
     def disconnect_db(cls):
         cls._cur.close()
+        cls.is_connected = False
 
     @classmethod
     def create_tables(cls):

@@ -16,7 +16,9 @@ class DomainListData(QObject):
         super(DomainListData, self).__init__(parent)
         self.__module_tag = None
         self._domain_results = []
-        SourceData.connect_db()
+
+        if not SourceData.is_connected:
+            SourceData.connect_db()
 
     def set_module_tag(self, tag):
         self.__module_tag = tag

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
 import operator
 
 from PyQt4.QtCore import *
@@ -31,13 +30,14 @@ class DomainTestTableData(QObject):
         ]
         self._selection = {}
 
-        SourceData.connect_db()
+        if not SourceData.is_connected:
+            SourceData.connect_db()
 
     def set_domain_id(self, domain_id):
         self.__domain_id = domain_id
         self.get_ping_test_results()
         self.get_http_test_results()
-        self.set_selection()
+        self.setup_selection()
 
     def get_ping_test_results(self):
         if self.__domain_id is not None:
@@ -51,9 +51,12 @@ class DomainTestTableData(QObject):
                 self.__domain_id
             )
 
-    def set_selection(self):
+    def setup_selection(self):
         for result in self._ping_results:
             self._selection[result["ip"]] = True
+
+    def update_selection(self, ip, status):
+        self._selection[ip] = status
 
     def ping_table_data(self):
         data = []
@@ -144,11 +147,13 @@ class DomainTestTableData(QObject):
 
 
 class DomainTestTableModel(QAbstractTableModel):
-    def __init__(self, parent=None):
+    def __init__(self, data_model, parent=None):
         super(DomainTestTableModel, self).__init__(parent)
         self.__table_data = []
         self.__header = []
         self.__checkbox_column = None
+        self.__key_column = None
+        self._data_model = data_model
 
     def set_header(self, header):
         self.__header = header
@@ -158,6 +163,9 @@ class DomainTestTableModel(QAbstractTableModel):
 
     def set_checkbox_column(self, col):
         self.__checkbox_column = col
+
+    def set_key_column(self, col):
+        self.__key_column = col
 
     def rowCount(self, parent=None, *args, **kwargs):
         return len(self.__table_data)
@@ -175,9 +183,11 @@ class DomainTestTableModel(QAbstractTableModel):
 
     def setData(self, index, value, role=None):
         box_col = self.__checkbox_column
-        print value
+        key_col = self.__key_column
         if box_col is not None and index.column() == box_col:
             self.__table_data[index.row()][box_col] = value
+            ip = self.__table_data[index.row()][key_col]
+            self._data_model.update_selection(ip, value)
             return True
 
     def headerData(self, col, orientation, role=None):
@@ -194,7 +204,7 @@ class DomainTestTableModel(QAbstractTableModel):
         else:
             return Qt.ItemIsEnabled | Qt.ItemIsSelectable
 
-    def sort(self, col, order=None):
+    def sort(self, col, order=Qt.AscendingOrder):
         self.emit(SIGNAL("layoutAboutToBeChanged()"))
         self.__table_data = sorted(self.__table_data,
                                    key=operator.itemgetter(col))
@@ -277,16 +287,17 @@ class CheckBoxDelegate(QStyledItemDelegate):
 
 
 class DomainTestTableWidget(QWidget):
-    def __init__(self, mode="Summary", parent=None, *args):
+    def __init__(self, table_data, mode="Summary", parent=None, *args):
         super(DomainTestTableWidget, self).__init__(parent, *args)
         self.mode = mode
 
-        self._table_data = DomainTestTableData(self)
-        self._table_model = DomainTestTableModel(self)
+        self._table_data = table_data
+        self._table_model = DomainTestTableModel(self._table_data, self)
         self._table_view = QTableView(self)
 
         self.set_table_header()
         self._table_model.set_checkbox_column(0)
+        self._table_model.set_key_column(1)
 
         self._table_view.setModel(self._table_model)
         self._table_view.setColumnWidth(0, 30)
@@ -294,8 +305,7 @@ class DomainTestTableWidget(QWidget):
         self._table_view.verticalHeader().hide()
         self._table_view.setSortingEnabled(True)
         self._table_view.setSelectionBehavior(self._table_view.SelectRows)
-
-        self._table_view.sortByColumn(2, Qt.AscendingOrder)
+        self.sort_by_col_asc(2)
 
         self._table_view.setItemDelegateForColumn(
             0, CheckBoxDelegate(self._table_view)
@@ -305,6 +315,9 @@ class DomainTestTableWidget(QWidget):
         layout.setMargin(5)
         layout.addWidget(self._table_view)
         self.setLayout(layout)
+
+    def sort_by_col_asc(self, col):
+        self._table_view.sortByColumn(col, Qt.AscendingOrder)
 
     def set_table_header(self):
         if self.mode == "Summary":
@@ -317,8 +330,11 @@ class DomainTestTableWidget(QWidget):
             header = []
         self._table_model.set_header(header)
 
-    def update_table_data(self, domain_id):
+    def set_table_data(self, domain_id):
         self._table_data.set_domain_id(domain_id)
+        self.update_table_data()
+
+    def update_table_data(self):
         if self.mode == "Summary":
             data = self._table_data.summary_table_data()
         elif self.mode == "Ping":
@@ -337,6 +353,8 @@ class DomainTestTabWidget(QWidget):
     def __init__(self, parent=None, *args):
         super(DomainTestTabWidget, self).__init__(parent, *args)
 
+        self._table_data = DomainTestTableData(self)
+
         self.domain_id = None
         self.test_tab = QTabWidget(self)
 
@@ -345,7 +363,9 @@ class DomainTestTabWidget(QWidget):
         self.tabs = ["Summary", "Ping", "HTTP", "HTTPS"]
         self.test_tables = {}
         for tab in self.tabs:
-            self.test_tables[tab] = DomainTestTableWidget(tab, self)
+            self.test_tables[tab] = DomainTestTableWidget(
+                self._table_data, tab, self
+            )
             self.test_tab.addTab(self.test_tables[tab], tab)
 
         layout = QVBoxLayout(self)
@@ -357,19 +377,10 @@ class DomainTestTabWidget(QWidget):
         self.domain_id = domain_id
         tab_id = self.test_tab.currentIndex()
         table = self.test_tables[self.tabs[tab_id]]
-        table.update_table_data(domain_id)
+        table.set_table_data(domain_id)
+        table.sort_by_col_asc(2)
 
     @pyqtSlot(int)
     def update_table_data_by_tab(self, tab_id):
         table = self.test_tables[self.tabs[tab_id]]
-        table.update_table_data(self.domain_id)
-
-
-def main():
-    app = QApplication(sys.argv)
-    w = DomainTestTableWidget()
-    w.show()
-    sys.exit(app.exec_())
-
-if __name__ == "__main__":
-    main()
+        table.update_table_data()
