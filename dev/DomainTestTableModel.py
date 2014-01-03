@@ -268,6 +268,9 @@ class CheckBoxDelegate(QStyledItemDelegate):
                 return False
             if not self.get_box_rect(option).contains(event.pos()):
                 return False
+        elif event.type() == QEvent.KeyPress:
+            if event.key() != Qt.Key_Space and event.key() != Qt.Key_Select:
+                return False
         # Change the checkbox-state
         self.setModelData(None, model, index)
         return True

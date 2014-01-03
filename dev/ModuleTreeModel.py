@@ -13,7 +13,6 @@ class ModuleTreeData(QObject):
 
     def __init__(self, parent=None):
         super(ModuleTreeData, self).__init__(parent)
-
         if not SourceData.is_connected:
             SourceData.connect_db()
         self.__modules = SourceData.get_domain_modules()
