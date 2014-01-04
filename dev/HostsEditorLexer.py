@@ -93,9 +93,6 @@ class HostsSciLexer(QsciLexerCustom):
         get_fold_level = editor.SCI_GETFOLDLEVEL
         set_fold_level = editor.SCI_SETFOLDLEVEL
         header_flag = editor.SC_FOLDLEVELHEADERFLAG
-        level_base = editor.SC_FOLDLEVELBASE
-        number_mask = editor.SC_FOLDLEVELNUMBERMASK
-        white_flag = editor.SC_FOLDLEVELWHITEFLAG
 
         source = ''
         if end > editor.length():
@@ -107,17 +104,11 @@ class HostsSciLexer(QsciLexerCustom):
             return
 
         index = sci(editor.SCI_LINEFROMPOSITION, start)
-        if index > 0:
-            pos = sci(editor.SCI_GETLINEENDPOSITION, index - 1)
-            prev_state = sci(editor.SCI_GETSTYLEAT, pos)
-        else:
-            prev_state = self.Default
-
         self.startStyling(start, 0x1f)
 
-        for line in source.splitlines(True):
-            level = sci(get_fold_level, index)
-            if line.startswith('#'):
+        lines = source.splitlines(True)
+        for i, line in enumerate(lines):
+            if line.startswith("#"):
                 line_styles = self.set_comment_line_style(line)
             else:
                 line_styles = self.set_hosts_line_style(line)
@@ -125,6 +116,7 @@ class HostsSciLexer(QsciLexerCustom):
             for style in line_styles:
                 self.setStyling(style["len"], style["style"])
 
+            level = sci(get_fold_level, index)
             if line_styles[0]["style"] == self.Section:
                 if line[line_styles[0]["len"]+1:].lower().startswith("end")\
                         and line_styles[1]["style"] == self.Keyword:
@@ -133,6 +125,7 @@ class HostsSciLexer(QsciLexerCustom):
                     level += 1
             else:
                 level |= header_flag
+
             index += 1
             sci(set_fold_level, index, level)
 
@@ -145,12 +138,19 @@ class HostsSciLexer(QsciLexerCustom):
             comment_styles = {}
 
         line_len = len(comments[0])
-        parts = comments[0].split()
+        parts = comments[0].split(" ")
         if not len(parts):
             styles.append({"len": line_len, "style": self.Default})
             return styles
 
-        address = str(parts[0])
+        address = ""
+        len_count = 0
+        for part in parts:
+            if part:
+                address = str(part)
+                break
+            styles.append({"len": 1, "style": self.Default})
+            len_count += 1
         add_len = 0
         try:
             add_len = len(address)
@@ -159,7 +159,7 @@ class HostsSciLexer(QsciLexerCustom):
         except ValueError:
             styles.append({"len": add_len, "style": self.InValid})
         finally:
-            hosts = comments[0][add_len: line_len]
+            hosts = comments[0][add_len + len_count: line_len]
             styles.extend(self.set_hosts_style(hosts))
 
         styles.extend(comment_styles)

@@ -10,41 +10,6 @@ from PyQt4.Qsci import *
 from HostsEditorLexer import HostsSciLexer
 
 
-class PythonEditorLexer(QsciLexerPython):
-    def __init__(self, parent=None):
-        """
-
-        @param parent:
-        """
-        super(PythonEditorLexer, self).__init__(parent)
-
-        self.setDefaultColor(QColor("#F8F8F2"))
-        self.setDefaultPaper(QColor("#272822"))
-
-        font = QFont("Consolas", 11)
-        # font = QFont("Bitstream Vera Sans Mono", 10)
-
-        self.setDefaultFont(font)
-        self.setFont(font, -1)
-
-        self.setColor(QColor("#75715E"), self.Comment)
-        self.setColor(QColor("#75715E"), self.TripleDoubleQuotedString)
-        self.setColor(QColor("#75715E"), self.TripleSingleQuotedString)
-        self.setColor(QColor("#E6DB74"), self.DoubleQuotedString)
-        self.setColor(QColor("#E6DB74"), self.SingleQuotedString)
-        self.setColor(QColor("#E6DB74"), self.UnclosedString)
-        self.setColor(QColor("#AE81FF"), self.Number)
-        self.setColor(QColor("#F92672"), self.Keyword)
-        self.setColor(QColor("#A6E22E"), self.ClassName)
-        self.setColor(QColor("#A6E22E"), self.FunctionMethodName)
-        self.setColor(QColor("#A6E22E"), self.Decorator)
-
-        italic_font = QFont(font)
-        italic_font.setItalic(True)
-        self.setFont(italic_font, self.Keyword)
-        self.setFont(italic_font, self.FunctionMethodName)
-
-
 class TextEditor(QsciScintilla):
     def __init__(self, parent=None):
         super(TextEditor, self).__init__(parent)
@@ -92,8 +57,9 @@ class TextEditor(QsciScintilla):
         self.setEdgeColumn(80)
         self.setEdgeMode(self.EdgeLine)
 
-        self.SendScintilla(self.SCI_SETHSCROLLBAR, 0)
-        self.SendScintilla(self.SCI_SETWRAPMODE, 1)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
         self.SendScintilla(self.SCI_EMPTYUNDOBUFFER)
 
 
@@ -102,38 +68,60 @@ class EditorWidget(QWidget):
         super(EditorWidget, self).__init__(parent, *args)
         self.resize(800, 640)
 
-        # code_file = open("C:/Windows/System32/drivers/etc/hosts", "r")
-        code_file = open("E:/Project/Hosts/example.hosts", "r")
-        try:
-            text = ''.join(code_file.readlines(200))
-        finally:
-            code_file.close()
-
         self.editor = TextEditor(self)
-        self.editor.textChanged.connect(self.on_text_changed)
-
-        self.editor.setText(text)
+        self.editor.cursorPositionChanged.connect(self.on_cursor_changed)
+        self.editor.verticalScrollBar().valueChanged.connect(
+            self.update_screen_style)
+        self.editor.linesChanged.connect(self.on_lines_changed)
 
         layout = QVBoxLayout(self)
         layout.setMargin(0)
         layout.addWidget(self.editor)
         self.setLayout(layout)
 
-    @pyqtSlot()
-    def on_text_changed(self):
-        # Adjust line number margin width
-        width = len(str(
-            len(self.editor.text().split("\n"))
-        ))
-        self.editor.setMarginWidth(1, width * 10 + 1)
+    @pyqtSlot(int)
+    def update_screen_style(self, start_line):
+        # Update style of visible text
+        start_pos = self.editor.positionFromLineIndex(start_line, 0)
+        visible = self.editor.SendScintilla(QsciScintilla.SCI_LINESONSCREEN)
+        end_line = start_line + visible
+        end_line_len = self.editor.lineLength(end_line)
+        while end_line_len == -1:
+            end_line -= 1
+            end_line_len = self.editor.lineLength(end_line)
+        end_pos = self.editor.positionFromLineIndex(end_line, end_line_len)
+        self.editor.lexer.styleText(start_pos, end_pos)
 
-        # Update text style
+    @pyqtSlot()
+    def on_lines_changed(self):
         self.editor.lexer.styleText(0, len(self.editor.text()))
+
+    @pyqtSlot()
+    def on_cursor_changed(self):
+        # Adjust line number margin width
+        line_count = self.editor.lines()
+        line_width = len(str(line_count)) * 10 + 1
+        if line_width > self.editor.marginWidth(1):
+            self.editor.setMarginWidth(1, line_width)
+
+        # Update style of visible text
+        start_line = self.editor.firstVisibleLine()
+        self.update_screen_style(start_line)
 
 
 def main():
     app = QApplication(sys.argv)
     w = EditorWidget()
+
+    code_file = open("C:/Windows/System32/drivers/etc/hosts", "r")
+    # code_file = open("E:/Project/Hosts/example.hosts", "r")
+    try:
+        text = ''.join(code_file.readlines())
+    finally:
+        code_file.close()
+
+    w.editor.setText(text)
+
     w.show()
     sys.exit(app.exec_())
 
