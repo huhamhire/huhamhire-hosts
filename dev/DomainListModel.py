@@ -76,9 +76,12 @@ class DomainListView(QListView):
         super(DomainListView, self).__init__(parent)
 
     def selectionChanged(self, selected, deselected):
-        item = selected[0].indexes()[0].data().toString()
-        self.emit(self.select_new_signal, item)
-        super(DomainListView, self).selectionChanged(selected, deselected)
+        try:
+            item = selected[0].indexes()[0].data().toString()
+            self.emit(self.select_new_signal, item)
+            super(DomainListView, self).selectionChanged(selected, deselected)
+        except IndexError:
+            pass
 
 
 class DomainListFilter(QLineEdit):
