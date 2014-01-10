@@ -142,7 +142,7 @@ class MakeModuleFile(object):
         return hosts
 
     def make_module_file(self, hosts, module, mod):
-        file_name = module + "_out/" + mod + ".hosts"
+        file_name = "../data/" + module + "_mods/" + mod + ".hosts"
         out_file = open(file_name, "w")
         out_file.writelines(hosts)
         out_file.close()

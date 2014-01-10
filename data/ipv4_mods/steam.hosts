@@ -1,11 +1,26 @@
 # region steam
 
 # steam
-208.111.148.6 cdn.steampowered.com
-208.111.148.7 cdn.steamcommunity.com
-208.111.148.6 cdn.store.steampowered.com
-205.185.216.10 cdn2.store.steampowered.com
-208.111.148.7 media.steampowered.com
+111.119.4.135     cdn.steampowered.com
+203.77.188.253    cdn.steampowered.com
+87.248.217.254    cdn.steampowered.com
+111.221.33.253    cdn.steampowered.com
+111.221.33.254    cdn.steampowered.com
+208.111.128.7     cdn.steamcommunity.com
+87.248.217.254    cdn.steamcommunity.com
+111.221.33.253    cdn.steamcommunity.com
+111.119.4.135     cdn.steamcommunity.com
+111.221.33.254    cdn.steamcommunity.com
+208.111.128.7     cdn.store.steampowered.com
+87.248.217.254    cdn.store.steampowered.com
+111.119.4.135     cdn.store.steampowered.com
+111.221.33.253    cdn.store.steampowered.com
+111.221.33.254    cdn.store.steampowered.com
+87.248.217.253    media.steampowered.com
+203.77.188.253    media.steampowered.com
+87.248.217.254    media.steampowered.com
+111.221.33.253    media.steampowered.com
+111.221.33.254    media.steampowered.com
 
 # endregion
 

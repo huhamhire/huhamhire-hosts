@@ -8,3 +8,4 @@ hosts
 .DS_Store
 
 .idea/
+data/ipv4_mods/*.hosts

@@ -376,7 +376,6 @@ feeds.feedburner.com
 g.co
 goo.gl
 listen.googlelabs.com
-magnifier.blogspot.com
 market.android.com
 ngrams.googlelabs.com
 panoramio.com
@@ -392,6 +391,12 @@ www.panoramio.com
 plus.google.com
 plus.url.google.com
 plusone.google.com
+
+www.blogger.com
+blogspot.com
+www.blogspot.com
+magnifier.blogspot.com
+hwswbits.blogspot.com
 
 # endregion
 
