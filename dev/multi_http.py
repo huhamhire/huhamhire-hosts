@@ -14,6 +14,7 @@ from source_data import SourceData
 class HTTPTest(threading.Thread):
     STATUS_DESC = {
         200: "OK",
+        204: "No Content",
         301: "Moved",
         302: "Redirect",
         400: "Bad Request",

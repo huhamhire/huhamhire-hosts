@@ -10,7 +10,9 @@ class SetDomain(object):
         self._cfg_file = cfg_file
         self._name_pool = []
         self._modules = {}
-        SourceData.connect_db()
+
+        if not SourceData.is_connected:
+            SourceData.connect_db()
 
     def __get_domains_in_mod(self, mod_file):
         domains = []
@@ -41,12 +43,11 @@ class SetDomain(object):
                 domains = self.__get_domains_in_mod(mod_file)
                 SourceData.set_multi_domain_list(domains, module + "-" + mod)
 
-    def set_domains(self):
-        SourceData.set_multi_domain_list(self._name_pool, "google")
-
 
 if __name__ == '__main__':
-    SourceData.connect_db()
+    if not SourceData.is_connected:
+        SourceData.connect_db()
+
     SourceData.drop_tables()
     SourceData.create_tables()
     SourceData.disconnect_db()

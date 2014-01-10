@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from xml.etree.ElementTree import ElementTree
+
 from source_data import SourceData
 
 
@@ -55,21 +57,104 @@ class MakeDomainHost(object):
         m = 3 if results_len < 10 else 5
         for score in sorted_scores:
             hosts_list.append(score[0])
-            if len(hosts_list) > results_len * 0.2 and len(hosts_list) > m:
+            if len(hosts_list) > results_len * 0.2 and len(hosts_list) >= m:
                 break
         self.hosts = hosts_list
 
     def get_domain_hosts(self):
-        return self.hosts.reverse()
+        hosts = self.hosts
+        hosts.reverse()
+        return hosts
 
     def make(self):
         self.set_ping_results()
         self.set_http_results()
         self.set_score()
         self.make_domain_hosts()
-        return self.get_domain_hosts()
+
+
+class MakeDomainModule(object):
+    def __init__(self, module_tag):
+        self._tag = module_tag
+        self._domains = []
+        self.module = {}
+
+        if not SourceData.is_connected:
+            SourceData.connect_db()
+
+    def set_domains(self):
+        self._domains = SourceData.get_domains_by_module_tag(self._tag)
+
+    def make_module(self):
+        for domain in self._domains:
+            mk_host = MakeDomainHost(domain["id"])
+            mk_host.make()
+            hosts = mk_host.get_domain_hosts()
+            if hosts:
+                self.module[domain["domain"]] = hosts
+
+    def get_module(self):
+        return self.module
+
+    def make(self):
+        self.set_domains()
+        self.make_module()
+
+
+class MakeModuleFile(object):
+    def __init__(self, cfg_file):
+        self._cfg_file = cfg_file
+        self._modules = {}
+
+    def get_config(self):
+        # Same as SetDomain
+        tree = ElementTree()
+        xmlfile = tree.parse(self._cfg_file)
+        for module in xmlfile.iter(tag="module"):
+            module_name = module.get("name")
+            mod_names = []
+            mods = module.iter(tag="mod")
+            for mod in mods:
+                mod_names.append(mod.text)
+            self._modules[module_name] = mod_names
+
+    def set_hosts_in_mod(self, module, mod):
+        hosts = []
+        mod_file = module + "_mods/" + mod + ".hosts"
+        mod_tag = module + "-" + mod
+        make_mod = MakeDomainModule(mod_tag)
+        make_mod.make()
+        mod_hosts = make_mod.get_module()
+        with open(mod_file, 'r') as hosts_in:
+            lines = [host_name.rstrip('\n') for host_name in hosts_in]
+        for line in lines:
+            if not line.startswith("#") \
+                    and len(line) > 3 \
+                    and line not in hosts:
+                domain = line
+                if domain not in mod_hosts.keys():
+                    pass
+                else:
+                    for ip in mod_hosts[domain]:
+                        hosts.append(ip.ljust(18) + domain + "\n")
+            else:
+                hosts.append(line + "\n")
+        return hosts
+
+    def make_module_file(self, hosts, module, mod):
+        file_name = module + "_out/" + mod + ".hosts"
+        out_file = open(file_name, "w")
+        out_file.writelines(hosts)
+        out_file.close()
+
+    def make_modules_from_mods(self):
+        for module, mod_names in self._modules.iteritems():
+            for mod in mod_names:
+                hosts = self.set_hosts_in_mod(module, mod)
+                self.make_module_file(hosts, module, mod)
 
 
 if __name__ == "__main__":
-    mk = MakeDomainHost(169048887)
-    mk.make()
+    mk = MakeModuleFile("mods.xml")
+    mk.get_config()
+    mk.make_modules_from_mods()
