@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# retrievedata.py : Read data from the hosts data file
+# retrievedata.py : Retrieve data from the hosts data file.
 #
 # Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -25,7 +25,7 @@ DATABASE = "./hostslist.s3db"
 
 
 class RetrieveData(object):
-    """A class to fetch data from data file
+    """Retrieve data from a single hosts data file
 
     RetrieveData class contains a set of tools to retrieve information from
     the hosts data file. All methods from this class are defined as class

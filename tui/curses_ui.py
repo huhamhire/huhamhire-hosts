@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  curses_ui.py:
+#  curses_ui.py: Draw TUI using curses.
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -18,31 +18,94 @@ import locale
 import sys
 sys.path.append("..")
 from util import CommonUtil
-from hoststool import __version__
+from __version__ import __version__
 
 
 class CursesUI(object):
     """
-    Attributes:
-        make_path (str): A string indicating the path to store the hosts file
-            in export mode.
-        _funcs (list): A list containing two lists with the information of
-            function list for IPv4 and IPv6 environment.
-        choice (list): A list containing two lists with the selection of
-            functions for IPv4 and IPv6 environment.
-        slices (list): A list containing two lists with integers indicating
-            the number of function items from different parts listed in the
-            function list.
-        sys_eol (str): A string indicating the End-Of-Line marker.
-        filename (str): A string indicating the filename of the data file
-            containing data to make a hosts file.
-        infofile (str): A string indicating the filename of the info file
-            containing metadata of the data file in JSON format.
+    CursesUI class contains methods to draw the Text-based User Interface
+    (TUI) of Hosts Setup Utility. The methods to make TUI here are based on
+    `curses <http://docs.python.org/2/library/curses.html>`_.
+
+    :ivar str __title: Title of the TUI utility.
+    :ivar str __copyleft: Copyleft information of the TUI utility.
+    :ivar WindowObject _stdscr: A **WindowObject** which represents the whole
+        screen.
+    :ivar int _item_sup: Upper bound of item index from `function selection
+        list`.
+    :ivar int _item_inf: Lower bound of item index from `function selection
+        list`.
+    :ivar str _make_path: Temporary path to store the hosts file in while
+        building. The default _make_path is `./hosts`.
+    :ivar list _funcs: Two lists with the information of function list both
+        for IPv4 and IPv6 environment.
+    :ivar list choice: Two lists with the selection of functions both
+        for IPv4 and IPv6 environment.
+    :ivar list slices: Two lists with integers indicating the number of
+        function items from different parts listed in the function list.
+    :ivar str sys_eol: The End-Of-Line marker. This maker could typically be
+        one of `CR`, `LF`, or `CRLF`.
+    :ivar list colorpairs: Tuples of `(foreground-color, background-color)`
+        used while drawing TUI.
+
+        The default colorpairs is defined as::
+
+            colorpairs = [(curses.COLOR_WHITE, curses.COLOR_BLUE),
+                          (curses.COLOR_WHITE, curses.COLOR_RED),
+                          (curses.COLOR_YELLOW, curses.COLOR_BLUE),
+                          (curses.COLOR_BLUE, curses.COLOR_WHITE),
+                          (curses.COLOR_WHITE, curses.COLOR_WHITE),
+                          (curses.COLOR_BLACK, curses.COLOR_WHITE),
+                          (curses.COLOR_GREEN, curses.COLOR_WHITE),
+                          (curses.COLOR_WHITE, curses.COLOR_BLACK),
+                          (curses.COLOR_RED, curses.COLOR_WHITE), ]
+
+    :ivar list settings: Two list containing the server selection and IP
+        protocol version of current session.
+
+        The settings should be like::
+
+            settings = [["Server", 0, []],
+                        ["IP Version", 0, ["IPv4", "IPv6"]]]
+
+    :ivar list funckeys: Lists of hot keys with their function to be shown on
+        TUI.
+
+        The default :attr:`funckeys` is defined as::
+
+            funckeys = [["", "Select Item"], ["Tab", "Select Field"],
+                        ["Enter", "Set Item"], ["F5", "Check Update"],
+                        ["F6", "Fetch Update"], ["F10", "Apply Changes"],
+                        ["Esc", "Exit"]]
+
+    :ivar list statusinfo: Two lists containing the connection and OS checking
+        status of current session.
+
+        The default :attr:`statusinfo` is defined as::
+
+            statusinfo = [["Connection", "N/A", "GREEN"],
+                          ["OS", "N/A", "GREEN"]]
+
+    :ivar dict hostsinfo: Containing the `Version`, `Release Date` of current
+        hosts data file and the `Latest Version` of the data file on server.
+
+        The default hostsinfo is defined as::
+
+            hostsinfo = {"Version": "N/A", "Release": "N/A", "Latest": "N/A"}
+
+        .. note:: IF the hosts data file does NOT exist in current working
+            directory, OR the file metadata has NOT been checked, the values
+            here would just be `N/A`.
+
+    :ivar str filename: Filename of the hosts data file containing data to
+        make hosts files from.
+    :ivar str infofile: Filename of the info file containing metadata of the
+        hosts data file formatted in JSON.
     """
     __title = "HOSTS SETUP UTILITY"
     __copyleft = "v%s Copyleft 2011-2014, huhamhire-hosts Team" % __version__
 
-    _stdscr = ''
+    _stdscr = None
     _item_sup = 0
     _item_inf = 0
 
@@ -75,6 +138,9 @@ class CursesUI(object):
     infofile = "hostsinfo.json"
 
     def __init__(self):
+        """
+        Initialize a new TUI window in terminal.
+        """
         locale.setlocale(locale.LC_ALL, '')
         self._stdscr = curses.initscr()
         curses.start_color()
@@ -87,6 +153,9 @@ class CursesUI(object):
             curses.init_pair(i + 1, *color)
 
     def banner(self):
+        """
+        Draw the banner in the TUI window.
+        """
         screen = self._stdscr.subwin(2, 80, 0, 0)
         screen.bkgd(' ', curses.color_pair(1))
         # Set local variable
@@ -99,6 +168,9 @@ class CursesUI(object):
         screen.refresh()
 
     def footer(self):
+        """
+        Draw the footer in the TUI window.
+        """
         screen = self._stdscr.subwin(1, 80, 23, 0)
         screen.bkgd(' ', curses.color_pair(1))
         # Set local variable
@@ -109,6 +181,17 @@ class CursesUI(object):
         screen.refresh()
 
     def configure_settings_frame(self, pos=None):
+        """
+        Draw `Configure Setting` frame with a index number (`pos`) of the item
+        selected.
+
+        :param pos: Index of selected item in `Configure Setting` frame. The
+            default value of `pos` is `None`.
+        :type pos: int or None
+
+        .. note:: None of the items in `Configure Setting` frame would be
+            selected if pos is `None`.
+        """
         self._stdscr.keypad(1)
         screen = self._stdscr.subwin(8, 25, 2, 0)
         screen.bkgd(' ', curses.color_pair(4))
@@ -129,6 +212,9 @@ class CursesUI(object):
         screen.refresh()
 
     def status(self):
+        """
+        Draw `Status` frame and `Hosts File` frame in the TUI window.
+        """
         screen = self._stdscr.subwin(11, 25, 10, 0)
         screen.bkgd(' ', curses.color_pair(4))
         # Set local variable
@@ -150,6 +236,19 @@ class CursesUI(object):
         screen.refresh()
 
     def show_funclist(self, pos, item_sup, item_inf):
+        """
+        Draw `function selection list` frame with a index number of the item
+        selected and the range of items to be displayed.
+
+        :param pos: Index of selected item in `function selection list`.
+        :type pos: int or None
+        :param item_sup: Upper bound of item index from `function selection
+            list`.
+        :type item_sup: int
+        :param item_inf: Lower bound of item index from `function selection
+            list`.
+        :type item_inf: int
+        """
         # Set UI variable
         screen = self._stdscr.subwin(18, 26, 2, 26)
         screen.bkgd(' ', curses.color_pair(4))
@@ -198,6 +297,18 @@ class CursesUI(object):
         self._item_sup, self._item_inf = item_sup, item_inf
 
     def info(self, pos, tab):
+        """
+        Draw `Information` frame with a index number (`pos`) of the item
+        selected from the frame specified by `tab`.
+
+        :param pos: Index of selected item in a specified frame.
+        :type pos: int
+        :param tab: Index of the frame to select items from.
+        :type tab: int
+
+        .. warning:: Both of `pos` and `tab` in this method could not be
+            set to `None`.
+        """
         screen = self._stdscr.subwin(18, 24, 2, 52)
         screen.bkgd(' ', curses.color_pair(4))
         normal = curses.A_NORMAL
@@ -224,6 +335,31 @@ class CursesUI(object):
         screen.refresh()
 
     def process_bar(self, done, block, total, mode=1):
+        """
+        Draw `Process Bar` at the bottom which is used to indicate progress of
+        downloading operation.
+
+        .. note:: This method is a callback function responses to
+            :meth:`urllib.urlretrieve` method while fetching hosts data
+            file.
+
+        :param done: Block count of packaged retrieved.
+        :type done: int
+        :param block: Block size of the data pack retrieved.
+        :type block: int
+        :param total: Total size of the hosts data file.
+        :type total: int
+        :param mode: A flag indicating the status of `Process Bar`.
+            The default value of `mode` is `1`.
+
+            ====  ====================================
+            mode  `Process Bar` status
+            ====  ====================================
+            1     Downloading operation is processing.
+            0     Not downloading.
+            ====  ====================================
+        :type mode: int
+        """
         screen = self._stdscr.subwin(2, 80, 20, 0)
         screen.bkgd(' ', curses.color_pair(4))
         normal = curses.A_NORMAL
@@ -231,7 +367,7 @@ class CursesUI(object):
         prog_len = line_width - 20
         # Progress Bar
         if mode:
-            done = done * block
+            done *= block
             prog = 1.0 * prog_len * done / total
             progress = ''.join(['=' * int(prog), '-' * int(2 * prog % 2)])
             progress = progress.ljust(prog_len)
@@ -246,6 +382,17 @@ class CursesUI(object):
         screen.refresh()
 
     def sub_selection_dialog(self, pos):
+        """
+        Draw a `Selection Dialog` on screen used to make configurations.
+
+        :param pos: Index of selected item in `Configure Setting` frame.
+        :type pos: int
+
+        .. warning:: The value of `pos` MUST NOT be `None`.
+
+        :return: A **WindowObject** which represents the selection dialog.
+        :rtype: WindowObject
+        """
         i_len = len(self.settings[pos][2])
         # Draw Shadow
         shadow = curses.newwin(i_len + 2, 18, 13 - i_len / 2, 31)
@@ -263,6 +410,17 @@ class CursesUI(object):
         return screen
 
     def sub_selection_dialog_items(self, pos, i_pos, screen):
+        """
+        Draw items in `Selection Dialog`.
+
+        :param pos: Index of selected item in `Configure Setting` frame.
+        :type pos: int
+        :param i_pos: Index of selected item in `Selection Dialog`.
+        :type i_pos: int
+        :param screen: A **WindowObject** which represents the selection
+            dialog.
+        :type screen: WindowObject
+        """
         # Set local variable
         normal = curses.A_NORMAL
         select = normal + curses.A_BOLD
@@ -273,6 +431,9 @@ class CursesUI(object):
         screen.refresh()
 
     def setup_menu(self):
+        """
+        Draw the main frame of `Setup` tab in the TUI window.
+        """
         screen = self._stdscr.subwin(21, 80, 2, 0)
         screen.box()
         screen.bkgd(' ', curses.color_pair(4))
@@ -304,6 +465,38 @@ class CursesUI(object):
 
     @staticmethod
     def messagebox(msg, mode=0):
+        """
+        Draw a `Message Box` with :attr:`msg` in a specified type defined by
+        :attr:`mode`.
+
+        .. note:: This is a `static` method.
+
+        :param msg: The information to be displayed in message box.
+        :type msg: str
+        :param mode: A flag indicating the type of message box to be
+            displayed. The default value of `mode` is `0`.
+
+            ====  ===========================================================
+            mode  Message Box Type
+            ====  ===========================================================
+            0     A simple message box showing a message without any buttons.
+            1     A message box with an `OK` button for user to confirm.
+            2     A message box with `OK` and `Cancel` buttons for user to
+                  choose.
+            ====  ===========================================================
+        :type mode: int
+        :return: A flag indicating the choice made by user.
+
+            ======  =====================================================
+            Return  Condition
+            ======  =====================================================
+            0       #. No button is pressed while :attr:`mode` is `0`.
+                    #. `OK` button pressed while :attr:`mode` is `1`.
+                    #. `Cancel` button pressed while :attr:`mode` is `2`.
+            1       `OK` button pressed while :attr:`mode` is `2`.
+            ======  =====================================================
+        :rtype: int
+        """
         pos_x = 24 if mode == 0 else 20
         pos_y = 10
         width = 30 if mode == 0 else 40

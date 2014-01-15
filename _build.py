@@ -20,7 +20,7 @@ import os
 import sys
 import shutil
 
-from hoststool import __version__
+from __version__ import __version__
 
 SCRIPT = "hoststool.py"
 
@@ -178,13 +178,15 @@ if system == "Windows":
         options={"py2exe": WIN_OPTIONS},
         console=[
             {"script": SCRIPT,
-             "dest_base": "command_line_tool",
+             "dest_base": "hoststool_tui",
+             "uac_info": "highestAvailable",
             },
         ],
         windows=[
             {"script": SCRIPT,
              "icon_resources": [(1, "res/img/icons/hosts_utl.ico")],
              "dest_base": EXE_NAME,
+             "uac_info": "highestAvailable",
             },
         ],
         description=DESCRIPTION,

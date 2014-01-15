@@ -14,14 +14,14 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "1.9.8"
-__revision__ = "$Id$"
 __author__ = "huhamhire <me@huhamhire.com>"
 
 from optparse import OptionParser
 
 import gui
 import tui
+
+from __version__ import __version__
 
 
 class UtilLauncher(object):

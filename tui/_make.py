@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  _make.py:
+#  _make.py: Make a hosts file.
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -20,18 +20,31 @@ from util import RetrieveData
 
 
 class MakeHosts(object):
-    mod_num = 0
+    """
+    MakeHosts class contains methods to make a hosts file with host entries
+    from a single data file.
+
+    :ivar str hostname: File Name of hosts file.
+    :ivar file hosts_file: The hosts file to write hosts to.
+    :ivar int mod_num: Number of modules written to hosts file.
+    :ivar dict make_cfg: Configuration to make a new hosts file.
+    :ivar str eol: End-of-Line used by the hosts file created.
+    :ivar time make_time: Timestamp of making hosts file.
+    """
+    hostname = ""
+    hosts_file = None
     make_cfg = {}
+    mod_num = 0
     eol = ""
+    make_time = None
 
     def __init__(self, parent=None):
-        """Initialize a new instance of this class - Private Method
+        """
+        Retrieve configuration from the main dialog to make a new hosts file.
 
-        Fetch settings from the main dialog to make a new hosts file.
-
-        Args:
-            parent (obj): An instance of CursesDaemon object to get settings
-                from.
+        :param parent: An instance of :class:`~tui.curses_d.CursesDaemon`
+            class to get configuration with.
+        :type parent: :class:`~tui.curses_d.CursesDaemon`
         """
         self.make_cfg = parent.make_cfg
         self.hostname = parent.hostname
@@ -39,13 +52,12 @@ class MakeHosts(object):
         self.hosts_file = open("hosts", "wb")
 
     def make(self):
-        """Make new hosts file - Public Method
-
+        """
         Operations to retrieve data from the data file and make the new hosts
-        file for current system.
+        file for the current operating system.
         """
         RetrieveData.connect_db()
-        self.maketime = time.time()
+        self.make_time = time.time()
         self.write_head()
         self.write_info()
         self.get_hosts(self.make_cfg)
@@ -53,14 +65,12 @@ class MakeHosts(object):
         RetrieveData.disconnect_db()
 
     def get_hosts(self, make_cfg):
-        """Make hosts by user config - Public Method
+        """
+        Make the new hosts file by the configuration defined by `make_cfg`
+        from function list on the main dialog.
 
-        Make the new hosts file by the configuration ({make_cfg}) from
-        function list on the main dialog.
-
-        Args:
-            make_cfg (dict): A dictionary containing module settings in byte
-                word format.
+        :param make_cfg: Module settings in byte word format.
+        :type make_cfg: dict
         """
         for part_id in sorted(make_cfg.keys()):
             mod_cfg = make_cfg[part_id]
@@ -75,38 +85,36 @@ class MakeHosts(object):
                     self.write_common_mod(part_id, mod_id)
 
     def write_head(self):
-        """Write head section - Public Method
-
+        """
         Write the head part of new hosts file.
         """
         for head_str in RetrieveData.get_head():
             self.hosts_file.write("%s%s" % (head_str[0], self.eol))
 
     def write_info(self):
-        """Write info section - Public Method
-
+        """
         Write the information part of new hosts file.
         """
         info = RetrieveData.get_info()
-        info_lines = ["#"]
-        info_lines.append("# %s: %s" % ("Version", info["Version"]))
-        info_lines.append("# %s: %s" % ("Buildtime", info["Buildtime"]))
-        info_lines.append("# %s: %s" % ("Applytime", int(self.maketime)))
-        info_lines.append("#")
+        info_lines = [
+            "#",
+            "# %s: %s" % ("Version", info["Version"]),
+            "# %s: %s" % ("BuildTime", info["Buildtime"]),
+            "# %s: %s" % ("ApplyTime", int(self.make_time)),
+            "#"
+        ]
         for line in info_lines:
             self.hosts_file.write("%s%s" % (line, self.eol))
 
     def write_common_mod(self, part_id, mod_id):
-        """Write module section - Public Method
+        """
+        Write hosts entries in a module specified by `mod_id` from a part of
+        the data file to the new hosts file specified by `part_id`.
 
-        Write hosts entries in a specified module ({mod_id}) from a specified
-        part ({part_id}) of the data file to the new hosts file.
-
-        Args:
-            part_id (int): An integer indicating the index number of a part
-                in the data file.
-            mod_id (int): An integer indicating the index number of a module
-                in the data file.
+        :param part_id: Index number of a part in the data file.
+        :type part_id: int
+        :param mod_id: Index number of a module in the data file.
+        :type mod_id: int
         """
         hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
         self.hosts_file.write(
@@ -116,16 +124,14 @@ class MakeHosts(object):
         self.hosts_file.write("# Section End: %s%s" % (mod_name, self.eol))
 
     def write_localhost_mod(self, part_id, mod_id):
-        """Write localhost section - Public Method
+        """
+        Write hosts entries in a localhost module specified by `mod_id` from a
+        part of the data file to the new hosts file specified by `part_id`.
 
-        Write hosts entries in a localhost module ({mod_id}) from a specified
-        part ({part_id}) of the data file to the new hosts file.
-
-        Args:
-            part_id (int): An integer indicating the index number of a part
-                in the data file.
-            mod_id (int): An integer indicating the index number of a module
-                in the data file.
+        :param part_id: Index number of a part in the data file.
+        :type part_id: int
+        :param mod_id: Index number of a module in the data file.
+        :type mod_id: int
         """
         hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
         self.hosts_file.write(

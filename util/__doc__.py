@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  __init__.py: Define modules to be called in tui module.
+#  __doc__.py Document in reST format of util module.
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -9,7 +9,3 @@
 # have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
-
-from hostsutil import HostsUtil
-
-__all__ = ["HostsUtil"]

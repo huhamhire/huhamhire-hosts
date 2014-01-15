@@ -25,25 +25,28 @@ import time
 
 
 class CommonUtil(object):
-    """Basic tools for Hosts Setup Utility
-
+    """
     CommonUtil class contains a set of basic tools for Hosts Setup Utility to
     use.
     """
     @classmethod
     def check_connection(cls, link):
-        """ Check connect to a server - Class Method
+        """
+        Check connect to a specified server by :attr:`link`.
 
-        Check connect to a specified server by link ({link}).
+        :param link: The link to a specified server. This string could be a
+            domain name or the IP address of a server.
+        :type link: str
+        :return: A flag indicating whether the connection status is good or
+            not.
 
-        Args:
-            link (str): A string indicating the link to a specified server.
-                This string could be a domain name or the IP address of a
-                server.
-
-        Returns:
-            A flag integer indicating whether the connection is good or not.
-            1: OK, 0: Error.
+            ====  ======
+            flag  Status
+            ====  ======
+            1     OK
+            0     Error
+            ====  ======
+        :rtype: int
         """
         try:
             timeout = 3
