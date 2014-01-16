@@ -106,9 +106,12 @@ class CursesUI(object):
             here would just be `N/A`.
 
     :ivar str filename: Filename of the hosts data file containing data to
-        make hosts files from.
+        make hosts files from. Default by "`hostslist.data`".
     :ivar str infofile: Filename of the info file containing metadata of the
-        hosts data file formatted in JSON.
+        hosts data file formatted in JSON. Default by "`hostslist.json`".
+
+    .. seealso:: :attr:`filename` and :attr:`infofile` in
+        :class:`~gui.hostsutil.HostsUtil` class.
     """
     __title = "HOSTS SETUP UTILITY"
     __copyleft = "v%s Copyleft 2011-2014, huhamhire-hosts Team" % __version__

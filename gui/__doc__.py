@@ -14,7 +14,7 @@ Graphical User Interface (GUI)
 ==============================
 
 The following sections describe the objects and methods from the Graphical
-User Interface (TUI) module of huhamhire-hosts HostsUtil. The methods to make
+User Interface (GUI) module of huhamhire-hosts HostsUtil. The methods to make
 GUI here are based on `PyQT4 <http://pyqt.sourceforge.net/Docs/PyQt4/>`_.
 
 
@@ -22,6 +22,8 @@ HostsUtil(GUI)
 --------------
 .. autoclass:: gui.hostsutil.HostsUtil
     :members:
+
+    .. automethod:: gui.hostsutil.HostsUtil.__del__
 
 
 QDialogSlots

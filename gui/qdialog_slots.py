@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  qdialog_slots.py :
+#  qdialog_slots.py : Qt slots response to signals on the main dialog.
 #
 # Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -32,8 +32,8 @@ from util import RetrieveData
 
 class QDialogSlots(QDialogDaemon):
     """
-    QDialogSlots class contains Qt `Slots` response to `Signals` generated in
-    a GUI session of Hosts Setup Utility.
+    QDialogSlots class provides `Qt slots` to deal with the `Qt signals`
+    emitted by the widgets on the main dialog operated by users.
 
     .. note:: This class is subclass of :class:`~gui.qdialog_d.QDialogDaemon`
         class and parent class of :class:`~gui.hostsutil.HostsUtil`.

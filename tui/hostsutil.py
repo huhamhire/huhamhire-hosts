@@ -64,8 +64,8 @@ class HostsUtil(CursesDaemon):
         Initialize a new TUI session.
 
         * Load server list from a configuration file under working directory.
-        * Try to load the hosts data file under working directory if it \
-            exists.
+        * Try to load the hosts data file under working directory if it
+          exists.
 
         .. note:: IF hosts data file does not exists correctly in current
             working directory, a warning message box would popup. And
@@ -74,6 +74,9 @@ class HostsUtil(CursesDaemon):
 
         .. seealso:: :meth:`~tui.curses_d.CursesDaemon.session_daemon` method
             in :class:`~tui.curses_d.CursesDaemon`.
+
+        .. seealso:: :meth:``~gui.hostsutil.HostsUtil.init_main` in
+            :class:`~gui.hostsutil.HostsUtil` class.
         """
         super(HostsUtil, self).__init__()
         # Set mirrors

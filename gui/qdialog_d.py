@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  qdialog_d.py :
+#  qdialog_d.py : Operations on the main dialog.
 #
 # Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -36,9 +36,10 @@ from util import RetrieveData, CommonUtil
 
 class QDialogDaemon(QDialogUI):
     """
-    QDialogDaemon class contains methods to deal with the operations related
-    to the GUI window of `Hosts Setup Utility`. Including methods to
-    interactive with users.
+    QDialogDaemon class contains methods used to manage the operations while
+    modifying the hosts file of current operating system. Including methods
+    to manage operations to update data file, download data file, configure
+    hosts, make hosts file, backup hosts file, and restore backup.
 
     .. note:: This class is subclass of :class:`~gui.qdialog_ui.QDialogUI`
         class and parent class of :class:`~gui.qdialog_slots.QDialogSlots`.
@@ -85,7 +86,7 @@ class QDialogDaemon(QDialogUI):
     :ivar str sys_eol: The End-Of-Line marker. This maker could typically be
         one of `CR`, `LF`, or `CRLF`.
 
-        .. seealse:: :attr:`sys_eol` in
+        .. seealso:: :attr:`sys_eol` in
             :class:`~tui.curses_ui.CursesUI` class.
     """
 
