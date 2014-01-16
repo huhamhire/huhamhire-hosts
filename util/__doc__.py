@@ -9,3 +9,21 @@
 # have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
+"""
+Shared Utilities
+================
+
+The module described in this chapter provides shared utilities
+
+
+CommonUtil
+----------
+.. autoclass:: util.common.CommonUtil
+    :members:
+
+
+RetrieveData
+------------
+.. autoclass:: util.retrievedata.RetrieveData
+    :members:
+"""

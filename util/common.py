@@ -28,11 +28,15 @@ class CommonUtil(object):
     """
     CommonUtil class contains a set of basic tools for Hosts Setup Utility to
     use.
+
+    .. note:: All methods from this class are declared as `classmethod`.
     """
     @classmethod
     def check_connection(cls, link):
         """
         Check connect to a specified server by :attr:`link`.
+
+        .. note:: This is a `classmethod`.
 
         :param link: The link to a specified server. This string could be a
             domain name or the IP address of a server.
@@ -40,12 +44,12 @@ class CommonUtil(object):
         :return: A flag indicating whether the connection status is good or
             not.
 
-            ====  ======
-            flag  Status
-            ====  ======
-            1     OK
-            0     Error
-            ====  ======
+                ====  ======
+                flag  Status
+                ====  ======
+                1     OK
+                0     Error
+                ====  ======
         :rtype: int
         """
         try:
@@ -60,19 +64,28 @@ class CommonUtil(object):
 
     @classmethod
     def check_platform(cls):
-        """Check OS - Class Method
-
+        """
         Check information about current operating system.
 
-        Returns:
-            (system, hostname, path, encode, flag)
-            system (str): A string indicating the platform of current OS.
-            hostname (str): A string indicating the hostname of current OS.
-            path (str): A string indicating the path to hosts on current
-                operating system.
-            encode (str): A string indicating the encoding of current OS.
-            flag (int): A flag integer indicating whether the current OS is
-                supported or not. 1: supported, 2, unsupported.
+        .. note:: This is a `classmethod`.
+
+        :return: system, hostname, path, encode, flag
+
+            * system(`str`): Operating system of current session.
+            * hostname(`str`): Hostname of current machine.
+            * path(`str`): Path to hosts on current operating system.
+            * encode(`str`): Default encoding of current OS.
+            * flag(`int`): A flag indicating whether the current OS is
+                supported or not.
+
+                ====  ===========
+                flag  Status
+                ====  ===========
+                1     supported
+                2     unsupported
+                ====  ===========
+
+        :rtype: str, str, str, str, int
         """
         hostname = socket.gethostname()
         if os.name == "nt":
@@ -94,17 +107,18 @@ class CommonUtil(object):
 
     @classmethod
     def check_privileges(cls):
-        """Check user privileges - Class Method
-
+        """
         Check whether the current session has privileges to change the hosts
         file of current operating system.
 
-        Returns:
-            (username, flag)
-            username (str): A string indicating username of the user running
-                current session.
-            flag (bool): A bool flag indicating whether the current session
-                has write privileges to the hosts file or not.
+        .. note:: This is a `classmethod`.
+
+        :return: username, flag
+
+            * username(`str`): Username of the user running current session.
+            * flag(`bool`): A flag indicating whether the current session has
+              write privileges to the hosts file or not.
+        :rtype: str, bool
         """
         if os.name == 'nt':
             try:
@@ -126,12 +140,30 @@ class CommonUtil(object):
 
     @classmethod
     def set_network(cls, conf_file="network.conf"):
-        """Read network config file
-
+        """
         Get configurations for mirrors to connect to.
 
-        Returns:
-            A dictionary containing tag, test url, and update url of mirrors.
+        .. note:: This is a `classmethod`.
+
+        :param conf_file: Path to a configuration file containing which
+            contains the server list.
+        :type conf_file: str
+        :return: `tag`, `test url`, and `update url` of the servers listed in
+            the configuration file.
+
+            Definition of the dictionary returned:
+
+                ========  ===================================================
+                Key       Value
+                ========  ===================================================
+                tag       `Tag` string of a specified server.
+                label     Name of a specified server.
+                test_url  `URL` to test the connection to a server.
+                update    `URL` containing the directory to get latest hosts\
+                          data file.
+                ========  ===================================================
+
+        :rtype: dict
         """
         conf = ConfigParser.ConfigParser()
         conf.read(conf_file)
@@ -146,15 +178,18 @@ class CommonUtil(object):
 
     @classmethod
     def timestamp_to_date(cls, timestamp):
-        """Transform timestamp to readable string - Class Method
+        """
+        Transform unix :attr:`timestamp` to a data string in ISO format.
 
-        Transform unix timestamp ({timestamp}) to a data string in ISO format.
+        .. note:: This is a `classmethod`.
 
-        Args:
-            timestamp (int/float): A number indicating a unix timestamp.
+        :param timestamp: A unix timestamp indicating a specified time.
+        :type timestamp: number
 
-        Returns:
-            A data string in ISO format.
+            .. note:: The :attr:`timestamp` could be `int` or `float`.
+
+        :return: Date in ISO format, which is `YY-mm-dd` in specific.
+        :rtype: str
         """
         l_time = time.localtime(float(timestamp))
         iso_format = "%Y-%m-%d"
@@ -163,16 +198,15 @@ class CommonUtil(object):
 
     @classmethod
     def convert_size(cls, bufferbytes):
-        """Transform file size to readable string - Class Method
+        """
+        Convert byte size :attr:`bufferbytes` of a file into a size string.
 
-        Convert byte size ({bufferbytes}) of a file into a size string.
+        .. note:: This is a `classmethod`.
 
-        Args:
-            bufferbytes (int): A integer indicating the size of a file counted
-                by byte.
-
-        Returns:
-            A readable size string.
+        :param bufferbytes: The size of a file counted in bytes.
+        :type bufferbytes: int
+        :return: A readable size string.
+        :rtype: str
         """
         if bufferbytes == 0:
             return "0 B"
@@ -189,16 +223,18 @@ class CommonUtil(object):
 
     @classmethod
     def cut_message(cls, msg, cut):
-        """Cut message into lines - Class Method
+        """
+        Cut english message (:attr:`msg`) into lines with specified length
+        (:attr:`cut`).
 
-        Cut english message into lines with specified length ({length}).
+        .. note:: This is a `classmethod`.
 
-        Args:
-            msg (str): A string indicating the message to be cut.
-            cut (int): An integer indicating the length for each line.
-
-        Returns:
-            A list containing lines from the message.
+        :param msg: The message to be cut.
+        :type msg: str
+        :param cut: The length for each line of the message.
+        :type cut: int
+        :return: Lines cut from the message.
+        :rtype: list
         """
         delimiter = [" ", "\n"]
         msgs = []

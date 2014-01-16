@@ -44,7 +44,7 @@ class CursesDaemon(CursesUI):
         control whether a specified method is used or not while generate a
         hosts file.
 
-        * `Keys` of :attr:`make_cfg` are typically 8 bit control byte
+        * `Keys` of :attr:`make_cfg` are typically 8-bit control byte
           indicating which part of the hosts data file would be effected by
           the corresponding `Value`.
 
@@ -62,7 +62,7 @@ class CursesDaemon(CursesUI):
           |0x40|AD block hosts  |
           +----+----------------+
 
-        * `Values` of :attr:`make_cfg` are typically 16 bit control bytes that
+        * `Values` of :attr:`make_cfg` are typically 16-bit control bytes that
           decides which of the modules in a specified part would be inserted
           into the `hosts` file.
 

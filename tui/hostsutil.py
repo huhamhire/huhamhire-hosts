@@ -63,7 +63,7 @@ class HostsUtil(CursesDaemon):
         """
         Initialize a new TUI session.
 
-        * Load server list from `network.conf` file under working directory.
+        * Load server list from a configuration file under working directory.
         * Try to load the hosts data file under working directory if it \
             exists.
 
