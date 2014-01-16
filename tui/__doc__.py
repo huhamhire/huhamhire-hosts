@@ -14,7 +14,9 @@ Text-based User Interface (TUI)
 ===============================
 
 The following sections describe the objects and methods from the Text-based
-User Interface (TUI) module of huhamhire-hosts HostsUtil.
+User Interface (TUI) module of huhamhire-hosts HostsUtil. The methods to make
+TUI here are based on
+`curses <http://docs.python.org/2/library/curses.html>`_.
 
 
 HostsUtil(TUI)
