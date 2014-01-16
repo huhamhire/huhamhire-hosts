@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# common.py : Basic utilities used by Hosts Setup Utility
+# common.py : Basic utilities used by Hosts Setup Utility.
 #
 # Copyleft (C) 2013 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================

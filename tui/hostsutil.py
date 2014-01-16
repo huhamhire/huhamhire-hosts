@@ -30,7 +30,7 @@ class HostsUtil(CursesDaemon):
     .. note:: This class is subclass of :class:`~tui.curses_d.CursesDaemon`
         class.
 
-    .. inheritance-diagram:: tui.hostsutil.HostsUtil tui.curses_d.CursesDaemon
+    .. inheritance-diagram:: tui.hostsutil.HostsUtil
         :parts: 2
 
     Typical usage to start a TUI session::

@@ -26,10 +26,12 @@ class MakeHosts(object):
 
     :ivar str hostname: File Name of hosts file.
     :ivar file hosts_file: The hosts file to write hosts to.
-    :ivar int mod_num: Number of modules written to hosts file.
+    :ivar int mod_num: Total number of modules written to hosts file.
     :ivar dict make_cfg: Configuration to make a new hosts file.
     :ivar str eol: End-of-Line used by the hosts file created.
     :ivar time make_time: Timestamp of making hosts file.
+
+    .. seealso:: :class:`gui._make.QSubMakeHosts` class.
     """
     hostname = ""
     hosts_file = None
@@ -38,13 +40,15 @@ class MakeHosts(object):
     eol = ""
     make_time = None
 
-    def __init__(self, parent=None):
+    def __init__(self, parent):
         """
         Retrieve configuration from the main dialog to make a new hosts file.
 
         :param parent: An instance of :class:`~tui.curses_d.CursesDaemon`
-            class to get configuration with.
+            class to retrieve configuration with.
         :type parent: :class:`~tui.curses_d.CursesDaemon`
+
+        .. warning:: :attr:`parent` MUST NOT be set as `None`.
         """
         self.make_cfg = parent.make_cfg
         self.hostname = parent.hostname
@@ -53,8 +57,8 @@ class MakeHosts(object):
 
     def make(self):
         """
-        Operations to retrieve data from the data file and make the new hosts
-        file for the current operating system.
+        Start operations to retrieve data from the data file and make the new
+        hosts file for the current operating system.
         """
         RetrieveData.connect_db()
         self.make_time = time.time()
@@ -71,6 +75,9 @@ class MakeHosts(object):
 
         :param make_cfg: Module settings in byte word format.
         :type make_cfg: dict
+
+        .. seealso:: :attr:`make_cfg` in :class:`~tui.curses_d.CursesDaemon`
+            class.
         """
         for part_id in sorted(make_cfg.keys()):
             mod_cfg = make_cfg[part_id]
@@ -86,14 +93,14 @@ class MakeHosts(object):
 
     def write_head(self):
         """
-        Write the head part of new hosts file.
+        Write the head part into the new hosts file.
         """
         for head_str in RetrieveData.get_head():
             self.hosts_file.write("%s%s" % (head_str[0], self.eol))
 
     def write_info(self):
         """
-        Write the information part of new hosts file.
+        Write the information part into the new hosts file.
         """
         info = RetrieveData.get_info()
         info_lines = [

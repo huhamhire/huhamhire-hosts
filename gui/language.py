@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# common.py : Basic utilities used by Hosts Setup Utility
+#  language.py : Language utilities used in GUI module.
 #
 # Copyleft (C) 2013 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -38,6 +38,9 @@ class LangUtil(object):
                         "ru_RU": u"Русский",
                         "zh_CN": u"简体中文",
                         "zh_TW": u"正體中文", }
+
+        .. note:: The keys of :attr:`language` are typically in the format of \
+            IETF language tag. For example: en_US, en_GB, etc.
 
         .. note:: The Hosts Setup Utility would check whether the language
             files exist in `gui/lang/` folder automatically while loading GUI.

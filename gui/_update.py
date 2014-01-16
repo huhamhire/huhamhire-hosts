@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  _update.py:
+#  _update.py: Fetch the latest data file.
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -25,73 +25,88 @@ from util import CommonUtil
 
 
 class QSubFetchUpdate(QtCore.QThread):
-    """A class to fetch the latest data file
+    """
+    QSubFetchUpdate is a subclass of :class:`PyQt4.QtCore.QThread`. This
+    class contains methods to retrieve the latest hosts data file from a
+    server.
 
-    QSubFetchUpdate is a subclasse of PyQt4.QtCore.QThread. This class
-    contains methods to retrieve the latest hosts data file.
+    .. inheritance-diagram:: gui._update.QSubFetchUpdate
+        :parts: 1
 
-    The instance of this class should be created in an individual thread. And
-    the object instance of HostsUtil class should be set as parent here.
+    .. note:: The instance of this class should be created in an individual
+        thread. And an instance of  class should be set as :attr:`parent`
+        here.
 
-    Attributes:
-        prog_trigger (obj): A PyQt4.QtCore.pyqtSignal object to emit progress
-            signal to the main dialog indicating the current download
-            progress. The meaning of the signal arguments is listed here:
-                (int, str) -> (progress, message)
-                progress (int): An integer indicating the current download
-                    progress.
-                message (str): A string indicating the message to be shown to
-                    users on the progress bar.
-        finish_trigger (obj): A PyQt4.QtCore.pyqtSignal object to emit finish
-            signal to the main dialog. The meaning of the signal arguments is
-            listed here:
-                (int, int) -> (refresh_flag, error_flag)
-                refresh_flag (int): An integer indicating whether to refresh
-                    the funcion list or not. 1: refresh, 0: do not refresh.
-                error_flag (int): An integer indicating whether the
-                    downloading is successfully finished or not.
-                    1: error, 0: success.
+    :ivar PyQt4.QtCore.pyqtSignal prog_trigger: An instance of
+        :class:`PyQt4.QtCore.pyqtSignal` to emit signal to the main dialog
+        which indicates current downloading progress.
+
+        .. note:: The signal :attr:`prog_trigger` should be a tuple of
+            (`progress`, message`):
+
+            * progress(`int`): An number between `0` and `100` which indicates
+              current download progress.
+            * message(`str`): Message to be displayed to users on the progress
+              bar.
+
+    :ivar PyQt4.QtCore.pyqtSignal finish_trigger: An instance of
+        :class:`PyQt4.QtCore.pyqtSignal` to emit signal to the main dialog
+        which notifies if current operation is finished.
+
+        .. note:: The signal :attr:`finish_trigger` should be a tuple of
+            (`refresh_flag`, error_flag`):
+
+            * refresh_flag(`int`): An flag indicating whether to refresh
+              function list in the main dialog or not.
+
+                ============  ==============
+                refresh_flag  Operation
+                ============  ==============
+                1             Refresh
+                0             Do not refresh
+                ============  ==============
+            * error_flag(`int`): An flag indicating whether the downloading
+              progress is successfully finished or not.
+
+                ==========  =======
+                error_flag  Status
+                ==========  =======
+                1           Error
+                0           Success
+                ==========  =======
     """
     prog_trigger = QtCore.pyqtSignal(int, str)
     finish_trigger = QtCore.pyqtSignal(int, int)
 
-    def __init__(self, parent=None):
-        """Initialize a new instance of this class - Private Method
+    def __init__(self, parent):
+        """
+        Initialize a new instance of this class. Fetch download settings from
+        the main dialog to retrieve new hosts data file.
 
-        Get download settings from the main dialog to retrieve new hosts data
-        file.
+        :param parent: An instance of :class:`~gui.qdialog_d.QDialogDaemon`
+            class to fetch settings from.
+        :type parent: :class:`~gui.qdialog_d.QDialogDaemon`
 
-        Args:
-            parent (obj): An instance of HostsUtil object to get settings
-                from.
+        .. warning:: :attr:`parent` MUST NOT be set as `None`.
         """
         super(QSubFetchUpdate, self).__init__(parent)
         self.url = parent.mirrors[parent.mirror_id]["update"] + \
-                   parent.filename
+            parent.filename
         self.path = "./" + parent.filename
         self.tmp_path = self.path + ".download"
         self.filesize = parent._update["size"]
 
     def run(self):
-        """Fetch data file - Public Method
-
-        Operations to retrieve the new hosts data file.
+        """
+        Start operations to retrieve the new hosts data file.
         """
         self.prog_trigger.emit(0, unicode(_translate(
             "Util", "Connecting...", None)))
         self.fetch_file()
 
     def fetch_file(self):
-        """Fetch the data file - Public Method
-
-        Retrieve the latest data file to a specified path ({path}) by url
-        ({url}).
-
-        Args:
-            url (str): A string indicating the url to fetch the latest data
-                file.
-            path (str): A string indicating the path to save the data file on
-                current machine.
+        """
+        Retrieve the latest data file to a specified local path with a url.
         """
         socket.setdefaulttimeout(10)
         try:
@@ -101,17 +116,18 @@ class QSubFetchUpdate(QtCore.QThread):
         except:
             self.finish_trigger.emit(1, 1)
 
-    def set_progress(self, done, blocksize, total):
-        """Set progress bar in the main dialog - Public Method
-
-        Send message to the main dialog to set the progress bar Prog.
-
-        Args:
-            done (int): An integer indicating the number of data blocks have
-                been downloaded from the server.
-            blocksize (int): An integer indicating the size of a data block.
+    def set_progress(self, done, block, total):
         """
-        done = done * blocksize
+        Send message to the main dialog to set the progress bar.
+
+        :param done: Block count of packaged retrieved.
+        :type done: int
+        :param block: Block size of the data pack retrieved.
+        :type block: int
+        :param total: Total size of the hosts data file.
+        :type total: int
+        """
+        done = done * block
         if total <= 0:
             total = self.filesize
         prog = 100 * done / total
@@ -122,9 +138,8 @@ class QSubFetchUpdate(QtCore.QThread):
         self.prog_trigger.emit(prog, text)
 
     def replace_old(self):
-        """Replace the old data file - Public Method
-
-        Overwrite the old hosts data file with the new one.
+        """
+        Replace the old hosts data file with the new one.
         """
         if os.path.isfile(self.path):
             os.remove(self.path)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  _checkupdate.py:
+#  _checkupdate.py: Check update info of the latest data file.
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -21,39 +21,46 @@ from util_ui import _translate
 
 
 class QSubChkUpdate(QtCore.QThread):
-    """A class to check update info of the latest data file
+    """
+    QSubChkConnection is a subclass of :class:`PyQt4.QtCore.QThread`. This
+    class contains methods to retrieve the metadata of the latest hosts data
+    file.
 
-    QSubChkConnection is a subclasse of PyQt4.QtCore.QThread. This class
-    contains methods to retrieve the metadata of the latest hosts data file.
+    .. inheritance-diagram:: gui._checkupdate.QSubChkUpdate
+        :parts: 1
 
-    The instance of this class should be created in an individual thread. And
-    the object instance of HostsUtil class should be set as parent here.
+    .. note:: The instance of this class should be created in an individual
+        thread. And an instance of  class should be set as :attr:`parent`
+        here.
 
-    Attribute:
-        trigger (obj): A PyQt4.QtCore.pyqtSignal object to emit suatus signal
-            to the main dialog. The meaning of the signal is listed here:
-                (dict) -> (update_info)
-                update_info (dict): A dictionary containing metadata of the
-                    latest hosts data file.
+    :ivar PyQt4.QtCore.pyqtSignal trigger: An instance of
+        :class:`PyQt4.QtCore.pyqtSignal` to emit signal to the main dialog
+        which indicates current status.
+
+        .. note:: The signal :attr:`trigger` should be a dictionary (`dict`)
+            containing metadata of the latest hosts data file.
     """
     trigger = QtCore.pyqtSignal(dict)
 
-    def __init__(self, parent=None):
-        """Initialize a new instance of this class - Private Method
+    def __init__(self, parent):
+        """
+        Initialize a new instance of this class. Retrieve mirror settings from
+        the main dialog to check the update information.
 
-        Get mirror settings from the main dialog to check the connection.
 
-        Args:
-            parent (obj): An instance of HostsUtil object to get settings
-                from.
+        :param parent: An instance of :class:`~gui.qdialog_d.QDialogDaemon`
+            class to fetch settings from.
+        :type parent: :class:`~gui.qdialog_d.QDialogDaemon`
+
+        .. warning:: :attr:`parent` MUST NOT be set as `None`.
         """
         super(QSubChkUpdate, self).__init__(parent)
         self.url = parent.mirrors[parent.mirror_id]["update"] + parent.infofile
 
     def run(self):
-        """Check update - Public Method
-
-        Operations to retrieve the metadata of the latest hosts data file.
+        """
+        Start operations to retrieve the metadata of the latest hosts data
+        file.
         """
         try:
             socket.setdefaulttimeout(5)

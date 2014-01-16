@@ -24,10 +24,12 @@ HostsUtil(GUI)
     :members:
 
 
-QDialogDaemon
--------------
-.. autoclass:: gui.qdialog_d.QDialogDaemon
+QDialogSlots
+------------
+.. autoclass:: gui.qdialog_slots.QDialogSlots
     :members:
+
+    .. automethod:: gui.qdialog_slots.QDialogSlots.__init__
 
 
 LangUtil
@@ -36,9 +38,9 @@ LangUtil
     :members:
 
 
-QDialogSlots
-------------
-.. autoclass:: gui.qdialog_slots.QDialogSlots
+QDialogDaemon
+-------------
+.. autoclass:: gui.qdialog_d.QDialogDaemon
     :members:
 
 
