@@ -39,6 +39,9 @@ class QSubChkUpdate(QtCore.QThread):
 
         .. note:: The signal :attr:`trigger` should be a dictionary (`dict`)
             containing metadata of the latest hosts data file.
+
+        .. seealso:: Method :meth:`~gui.qdialog_d.QDialogDaemon.finish_update`
+            in :class:`~gui.qdialog_d.QDialogDaemon` class.
     """
     trigger = QtCore.pyqtSignal(dict)
 

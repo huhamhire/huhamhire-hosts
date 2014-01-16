@@ -43,8 +43,16 @@ class CursesUI(object):
         for IPv4 and IPv6 environment.
     :ivar list slices: Two lists with integers indicating the number of
         function items from different parts listed in the function list.
+
+        .. seealso:: `_funcs`, `choice`, and `slices` in
+            :class:`~gui.qdialog_d.QDialogDaemon` class.
+
     :ivar str sys_eol: The End-Of-Line marker. This maker could typically be
         one of `CR`, `LF`, or `CRLF`.
+
+        .. seealso:: :attr:`sys_eol` in
+            :class:`~gui.qdialog_d.QDialogDaemon` class.
+
     :ivar list colorpairs: Tuples of `(foreground-color, background-color)`
         used while drawing TUI.
 

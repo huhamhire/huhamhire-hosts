@@ -40,6 +40,10 @@ class CursesDaemon(CursesUI):
     :ivar dict _update: Update information of the current data file on server.
     :ivar int _writable: Indicating whether the program is run with admin/root
         privileges. The value could be `1` or `0`.
+
+        .. seealso:: `_update` and `_writable` in
+            :class:`~gui.qdialog_d.QDialogDaemon` class.
+
     :ivar dict make_cfg: A set of module selection control bytes used to
         control whether a specified method is used or not while generate a
         hosts file.
@@ -99,6 +103,7 @@ class CursesDaemon(CursesUI):
     :ivar str hostname: The hostname of current operating system.
 
         .. note:: This attribute would only be used on linux.
+
     :ivar str hosts_path: The absolute path to the hosts file on current
         operating system.
     :ivar list _ops_keys: Hot keys used to start a specified operation.

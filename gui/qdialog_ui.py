@@ -60,9 +60,9 @@ class QDialogUI(QtGui.QDialog, object):
     ui = None
 
     def __init__(self):
-        """Initialize a new instance of this class - Private Method
-
-        Set the UI object and current translator of the main dialog.
+        """
+        Initialize a new instance of this class. Set the UI object and current
+        translator of the main dialog.
         """
         self.app = QtGui.QApplication(sys.argv)
         super(QDialogUI, self).__init__()

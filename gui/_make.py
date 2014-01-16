@@ -38,7 +38,7 @@ class QSubMakeHosts(QtCore.QThread):
 
         .. note:: The signal :attr:`info_trigger` should be a tuple of
             (`mod_name`, mod_num`):
-\
+
             * mod_name(`str`): Tag of a specified hosts module in current
               progress.
             * mod_num(`int`): Number of current module in the operation
@@ -56,17 +56,26 @@ class QSubMakeHosts(QtCore.QThread):
             * count(`int`): Total number of hosts entries inserted into the
               new hosts file.
 
+        .. seealso:: Method :meth:`~gui.qdialog_d.QDialogDaemon.finish_make`
+            in :class:`~gui.qdialog_d.QDialogDaemon` class.
+
     :ivar PyQt4.QtCore.pyqtSignal move_trigger: An instance of
         :class:`PyQt4.QtCore.pyqtSignal` to notify the main dialog while new
         hosts is being moved to specified path on current operating system.
 
         .. note:: This signal does not send any data.
 
+        .. seealso:: Method :meth:`~gui.qdialog_d.QDialogDaemon.move_hosts`
+            in :class:`~gui.qdialog_d.QDialogDaemon` class.
 
     :ivar int count: Number of the module being processed currently in the
         operation sequence.
     :ivar str make_mode: Operation mode for making hosts file. The valid value
         could be one of `system`, `ansi`, and `utf-8`.
+
+        .. seealso:: :attr:`make_mode` in
+            :class:`~gui.qdialog_d.QDialogDaemon` class.
+
     :ivar str hostname: File Name of hosts file.
     :ivar file hosts_file: The hosts file to write hosts to.
     :ivar dict make_cfg: Configuration to make a new hosts file.

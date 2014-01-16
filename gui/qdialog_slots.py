@@ -68,6 +68,29 @@ class QDialogSlots(QDialogDaemon):
         """
         super(QDialogSlots, self).__init__()
 
+    def reject(self):
+        """
+        Close this program while the reject signal is emitted.
+
+        .. note:: This method is the slot responses to the reject signal from
+            an instance of the main dialog.
+        """
+        self.close()
+        return QtGui.QDialog.reject(self)
+
+    def close(self):
+        """
+        Close this program while the close signal is emitted.
+
+        .. note:: This method is the slot responses to the close signal from
+            an instance of the main dialog.
+        """
+        try:
+            RetrieveData.clear()
+        except:
+            pass
+        super(QDialogDaemon, self).close()
+
     def mouseMoveEvent(self, e):
         """
         Allow drag operations to set the new position for current cursor.

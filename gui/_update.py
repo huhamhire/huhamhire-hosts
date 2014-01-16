@@ -74,6 +74,10 @@ class QSubFetchUpdate(QtCore.QThread):
                 1           Error
                 0           Success
                 ==========  =======
+
+        .. seealso:: Method :meth:`~gui.qdialog_d.QDialogDaemon.finish_fetch`
+            in :class:`~gui.qdialog_d.QDialogDaemon` class.
+
     """
     prog_trigger = QtCore.pyqtSignal(int, str)
     finish_trigger = QtCore.pyqtSignal(int, int)

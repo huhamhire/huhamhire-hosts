@@ -49,6 +49,8 @@ QDialogUI
 .. autoclass:: gui.qdialog_ui.QDialogUI
     :members:
 
+    .. automethod:: gui.qdialog_ui.QDialogUI.__init__
+
 
 QSubChkConnection
 -----------------
