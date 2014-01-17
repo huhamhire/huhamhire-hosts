@@ -44,6 +44,10 @@ class QSubMakeHosts(QtCore.QThread):
             * mod_num(`int`): Number of current module in the operation
               sequence.
 
+        .. seealso:: Method
+            :meth:`~gui.qdialog_ui.QDialogUI.set_make_progress`
+            in :class:`~gui.qdialog_ui.QDialogUI` class.
+
     :ivar PyQt4.QtCore.pyqtSignal fina_trigger: An instance of
         :class:`PyQt4.QtCore.pyqtSignal` to emit signal to the main dialog
         which notifies statistics to the main dialog.

@@ -38,9 +38,11 @@ class HostsUtil(QDialogSlots):
     .. note:: This class is subclass of
         :class:`~gui.qdialog_slots.QDialogSlots` class.
 
-    Typical usage to start a TUI session::
+    Typical usage to start a GUI session::
 
-        util = HostsUtil()
+        import gui
+
+        util = gui.HostsUtil()
         util.start()
 
     :ivar int init_flag: Times of the main dialog being initialized. This

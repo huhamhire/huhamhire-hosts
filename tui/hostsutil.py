@@ -35,7 +35,9 @@ class HostsUtil(CursesDaemon):
 
     Typical usage to start a TUI session::
 
-        util = HostsUtil()
+        import tui
+
+        util = tui.HostsUtil()
         util.start()
 
     :ivar str platform: Platform of current operating system. The value could

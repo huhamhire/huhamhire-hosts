@@ -96,6 +96,8 @@ Language Files
 --------------
 
 
+.. _qt-stylesheet:
+
 QT Stylesheet
 -------------
 
