@@ -77,7 +77,7 @@ class HostsUtil(CursesDaemon):
         .. seealso:: :meth:`~tui.curses_d.CursesDaemon.session_daemon` method
             in :class:`~tui.curses_d.CursesDaemon`.
 
-        .. seealso:: :meth:``~gui.hostsutil.HostsUtil.init_main` in
+        .. seealso:: :meth:`~gui.hostsutil.HostsUtil.init_main` in
             :class:`~gui.hostsutil.HostsUtil` class.
         """
         super(HostsUtil, self).__init__()

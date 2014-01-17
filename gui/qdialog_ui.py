@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  qdialog_ui.py :
+#  qdialog_ui.py : Draw the Graphical User Interface.
 #
 # Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -34,7 +34,7 @@ LANG_DIR = "./gui/lang/"
 
 class QDialogUI(QtGui.QDialog, object):
     """
-    CursesUI class contains methods to draw theGraphical User Interface (GUI)
+    CursesUI class contains methods to draw the Graphical User Interface (GUI)
     of Hosts Setup Utility. The methods to make GUI here are based on
     `PyQT4 <http://pyqt.sourceforge.net/Docs/PyQt4/>`_.
 

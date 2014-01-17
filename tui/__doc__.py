@@ -10,6 +10,8 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
 """
+.. _tui-module:
+
 Text-based User Interface (TUI)
 ===============================
 
