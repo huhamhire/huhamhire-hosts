@@ -6,16 +6,17 @@ Hosts Setup Utility
 Introduction
 ------------
 
-Due to the Chinese government is using the GFW blocking the web access to some
-world famous sites like Googel+, twitter, Facebook, and Wikipedia etc., we
-made this hosts tool to help people to get through the Great Firewall.
+Since the Chinese government is using the blocking the internet access to
+several websites and web service providers which includes some world famous
+sites like Googel, twitter, Facebook, and Wikipedia etc., we designed this
+tiny utility in order to help people to get through the Great Firewall.
 
-Hosts Setup Utility provides basic tools to manage the hosts file on operating
-systems with a desktop environment. Users could use these tool to modify the
-hosts file in order to visit specified websites blocked by Chinese government.
-Tools for users to backup/restore hosts files is also provided.
+Hosts Setup Utility provides basic tools to manage the hosts file on current
+operating systems. Users could use these tool to modify the hosts file in
+order to visit specified websites or services blocked by Chinese government.
+Functions which help users to backup/restore hosts files are also provided.
 
-The home page of this project is <https://hosts.huhamhire.com/>.
+Our home page of is <https://hosts.huhamhire.com/>.
 
 You can also visit the project page on Google Code to get our latest news
 <http://code.google.com/p/huhamhire-hosts/>.
