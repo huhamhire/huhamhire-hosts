@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  qdialog_slots.py :
+#  qdialog_slots.py : Qt slots response to signals on the main dialog.
 #
 # Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -32,14 +32,30 @@ from util import RetrieveData
 
 class QDialogSlots(QDialogDaemon):
     """
-    Attributes:
-        _ipv_id (int): An integer indicating current IP version setting. The
-            value could be 1 or 0. 1 represents IPv6 while 1 represents IPv4.
+    QDialogSlots class provides `Qt slots` to deal with the `Qt signals`
+    emitted by the widgets on the main dialog operated by users.
 
-        make_path (str): A string indicating the path to store the hosts file
-            in export mode.
-        mirror_id (int): An integer indicating current index number of
-            mirrors.
+    .. note:: This class is subclass of :class:`~gui.qdialog_d.QDialogDaemon`
+        class and parent class of :class:`~gui.hostsutil.HostsUtil`.
+
+    :ivar int ipv_id: An flag indicating current IP version setting. The
+        value could be 1 or 0:
+
+            ======  ==========
+            ipv_id  IP Version
+            ======  ==========
+            1       IPv6
+            0       IPv4
+            ======  ==========
+
+        .. seealso::
+            :meth:`~gui.qdialog_slots.QDialogSlots.on_IPVersion_changed`. in
+            this class.
+
+    :ivar str make_path: Temporary path to store generated hosts file. The
+        default value of :attr:`make_path` is "`./hosts`".
+    :ivar int mirror_id: Index number of current selected server from the
+        mirror list.
     """
     _ipv_id = 0
 
@@ -47,19 +63,42 @@ class QDialogSlots(QDialogDaemon):
     mirror_id = 0
 
     def __init__(self):
-        """Initialize a new instance of this class - Private Method
+        """
+        Initialize a new instance of this class.
         """
         super(QDialogSlots, self).__init__()
 
-    def mouseMoveEvent(self, e):
-        """Set mouse drag event - Public Method
-
-        Allow drag operations to set the new position for current dialog.
-
-        Args:
-            e (QMouseEvent): A QMouseEvent object indicating current mouse
-                event.
+    def reject(self):
         """
+        Close this program while the reject signal is emitted.
+
+        .. note:: This method is the slot responses to the reject signal from
+            an instance of the main dialog.
+        """
+        self.close()
+        return QtGui.QDialog.reject(self)
+
+    def close(self):
+        """
+        Close this program while the close signal is emitted.
+
+        .. note:: This method is the slot responses to the close signal from
+            an instance of the main dialog.
+        """
+        try:
+            RetrieveData.clear()
+        except:
+            pass
+        super(QDialogDaemon, self).close()
+
+    def mouseMoveEvent(self, e):
+        """
+        Allow drag operations to set the new position for current cursor.
+
+        :param e: Current mouse event.
+        :type e: :class:`PyQt4.QtGui.QMouseEvent`
+        """
+
         if e.buttons() & QtCore.Qt.LeftButton:
             try:
                 self.move(e.globalPos() - self.dragPos)
@@ -68,41 +107,47 @@ class QDialogSlots(QDialogDaemon):
             e.accept()
 
     def mousePressEvent(self, e):
-        """Set mouse press event - Public Method
+        """
+        Allow press operation to set the new position for current dialog.
 
-        Allow drag operations to set the new position for current dialog.
-
-        Args:
-            e (QMouseEvent): A QMouseEvent object indicating current mouse
-                event.
+        :param e: Current mouse event.
+        :type e: :class:`PyQt4.QtGui.QMouseEvent`
         """
         if e.button() == QtCore.Qt.LeftButton:
             self.dragPos = e.globalPos() - self.frameGeometry().topLeft()
             e.accept()
 
     def on_Mirror_changed(self, mirr_id):
-        """Change the current mirror setting - Public Method
+        """
+        Change the current server selection.
 
-        The slot response to the signal ({mirr_id}) from SelectMirror widget
-        while the value is changed.
+        .. note:: This method is the slot responses to the signal argument
+            :attr:`mirr_id` from SelectMirror widget while the value is
+            changed.
 
-        Args:
-            mirr_id (int): An integer indicating current index number of
-                mirrors.
+        :param mirr_id: Index number of current mirror server.
         """
         self.mirror_id = mirr_id
         self.check_connection()
 
     def on_IPVersion_changed(self, ipv_id):
-        """Change the current IP version setting - Public Method
+        """
+        Change the current IP version setting.
 
-        The slot response to the signal ({ipv_id}) from SelectIP widget while
-        the value is changed.
+        .. note:: This method is the slot responses to the signal argument
+            :attr:`ipv_id` from SelectIP widget while the value is changed.
 
-        Args:
-            ipv_id (int): An integer indicating current IP version setting.
-                The value could be 1 or 0. 1 represents IPv6 while 1
-                represents IPv4.
+        :param ipv_id: An flag indicating current IP version setting. The
+            value could be 1 or 0:
+
+                ======  ==========
+                ipv_id  IP Version
+                ======  ==========
+                1       IPv6
+                0       IPv4
+                ======  ==========
+
+        :type ipv_id: int
         """
         if self._ipv_id != ipv_id:
             self._ipv_id = ipv_id
@@ -113,18 +158,19 @@ class QDialogSlots(QDialogDaemon):
                 self.refresh_func_list()
 
     def on_Selection_changed(self, item):
-        """Change the function selection setting - Public Method
+        """
+        Change the current selection of modules to be applied to hosts file.
 
-        The slot response to the signal ({item}) from Functionlist widget
-        while the selection of the items is changed. This method would change
-        the current selection of functions.
+        .. note:: This method is the slot responses to the signal argument
+            :attr:`item` from Functionlist widget while the item selection is
+            changed.
 
-        Args:
-            item (int): An integer indicating the row number of the item
-                listed in Functionlist which is changed by user.
+        :param item: Row number of the item listed in Functionlist which is
+            changed by user.
+        :type item: int
         """
         ip_flag = self._ipv_id
-        func_id = item.listWidget().row(item)
+        func_id = self.listWidget().row(item)
         if self._funcs[ip_flag][func_id] == 0:
             self._funcs[ip_flag][func_id] = 1
         else:
@@ -137,16 +183,21 @@ class QDialogSlots(QDialogDaemon):
         self.refresh_func_list()
 
     def on_Lang_changed(self, lang):
-        """Change the UI language setting - Public Method
+        """
+        Change the UI language setting.
 
-        The slot response to the signal ({lang}) from SelectLang widget while
-        the value is changed. This method would change the language of the UI.
+        .. note:: This method is the slot responses to the signal argument
+            :attr:`lang` from SelectLang widget while the value is changed.
 
-        Args:
-            lang (str): A string indicating the language which is selected by
-                user.
-                This string uses the for of IETF language tag. For example:
-                en_US, en_GB, etc.
+        :param lang: The language name which is selected by user.
+
+            .. note:: This string is typically in the format of IETF language
+                tag. For example: en_US, en_GB, etc.
+
+            .. seealso:: :attr:`language` in :class:`~gui.language.LangUtil`
+                class.
+
+        :type lang: str
         """
         new_lang = LangUtil.get_locale_by_language(unicode(lang))
         trans = QtCore.QTranslator()
@@ -160,13 +211,14 @@ class QDialogSlots(QDialogDaemon):
         self.check_connection()
 
     def on_MakeHosts_clicked(self):
-        """Start making hosts file - Public Method
+        """
+        Start operations to make a hosts file.
 
-        The slot response to the signal from ButtonApply widget while the
-        button is clicked. This method would call operations to make a hosts
-        file.
-        No operations would be called if current session does not have the
-        privileges to change the hosts file.
+        .. note:: This method is the slot responses to the signal from
+            ButtonApply widget while the button is clicked.
+
+        .. note:: No operations would be called if current session does not
+            have the privileges to change the hosts file.
         """
         if not self._writable:
             self.warning_permission()
@@ -178,33 +230,33 @@ class QDialogSlots(QDialogDaemon):
             return
 
     def on_MakeANSI_clicked(self):
-        """Export hosts ANSI - Public Method
+        """
+        Export a hosts file encoded in ANSI.
 
-        The slot response to the signal from ButtonANSI widget while the
-        button is clicked. This method would call operations to export a hosts
-        file encoding in ANSI.
+        .. note:: This method is the slot responses to the signal from
+            ButtonANSI widget while the button is clicked.
         """
         self.make_path = self.export_hosts()
         if unicode(self.make_path) != u'':
             self.make_hosts("ansi")
 
     def on_MakeUTF8_clicked(self):
-        """Export hosts in UTF-8 - Public Method
+        """
+        Export a hosts file encoded in UTF-8.
 
-        The slot response to the signal from ButtonUTF widget while the
-        button is clicked. This method would call operations to export a hosts
-        file encoding in UTF-8.
+        .. note:: This method is the slot responses to the signal from
+            ButtonUTF widget while the button is clicked.
         """
         self.make_path = self.export_hosts()
         if unicode(self.make_path) != u'':
             self.make_hosts("utf-8")
 
     def on_Backup_clicked(self):
-        """Backup system hosts file - Public Method
+        """
+        Backup the hosts file of current operating system.
 
-        The slot response to the signal from ButtonBackup widget while the
-        button is clicked. This method would call operations to backup the
-        hosts file of current operating system.
+        .. note:: This method is the slot responses to the signal from
+            ButtonBackup widget while the button is clicked.
         """
         l_time = time.localtime(time.time())
         backtime = time.strftime("%Y-%m-%d-%H%M%S", l_time)
@@ -220,13 +272,15 @@ class QDialogSlots(QDialogDaemon):
             self.info_complete()
 
     def on_Restore_clicked(self):
-        """Restore hosts file - Public Method
+        """
+        Restore a previously backed up hosts file.
 
-        The slot response to the signal from ButtonRestore widget while the
-        button is clicked. This method would call operations to restore a
-        previously backed up hosts file.
-        No operations would be called if current session does not have the
-        privileges to change the hosts file.
+        .. note:: This method is the slot responses to the signal from
+            ButtonRestore widget while the button is clicked.
+            This method would call
+
+        .. note:: No operations would be called if current session does not
+            have the privileges to change the hosts file.
         """
         if not self._writable:
             self.warning_permission()
@@ -243,11 +297,12 @@ class QDialogSlots(QDialogDaemon):
             self.info_complete()
 
     def on_CheckUpdate_clicked(self):
-        """Check data file update - Public Method
+        """
+        Retrieve update information (metadata) of the latest data file from a
+        specified server.
 
-        The slot response to the signal from ButtonCheck widget while the
-        button is clicked. This method would call operations to fetch update
-        information of the latest data file.
+        .. note:: This method is the slot responses to the signal from
+            ButtonCheck widget while the button is clicked.
         """
         if self.choice != [[], []]:
             self.refresh_func_list()
@@ -257,14 +312,18 @@ class QDialogSlots(QDialogDaemon):
             self.check_update()
 
     def on_FetchUpdate_clicked(self):
-        """Fetch data file update - Public Method
+        """
+        Retrieve the latest hosts data file.
 
-        The slot response to the signal from ButtonUpdate widget while the
-        button is clicked. This method would call operations to fetch the
-        latest data file.
-        If no update information has been got from the server, the method to
-        check the update would be called.
-        If the current data is up-to-date, no data file would be retrieved.
+        .. note:: This method is the slot responses to the signal from
+            ButtonUpdate widget while the button is clicked.
+            This method would call operations to
+
+        .. note:: Method :meth:`~gui.qdialog_slots.on_CheckUpdate_clicked`
+            would be called if no update information has been set,
+
+        .. note:: If the current data is up-to-date, no data file would be
+            retrieved.
         """
         self.set_fetch_click_btns()
         self._down_flag = 1
@@ -278,9 +337,10 @@ class QDialogSlots(QDialogDaemon):
             self.finish_fetch()
 
     def on_LinkActivated(self, url):
-        """Open external link in browser - Public Method
+        """
+        Open external link in browser.
 
-        The slot response to the signal from Label widget while the text with
-        a hyperlink is clicked by user.
+        .. note:: This method is the slot responses to the signal from a Label
+            widget while the text with a hyperlink which is clicked by user.
         """
         QtGui.QDesktopServices.openUrl(QtCore.QUrl(url))

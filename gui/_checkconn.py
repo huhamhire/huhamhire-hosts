@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  _checkconn.py:
+#  _checkconn.py: Check connect to a specified server.
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -20,38 +20,52 @@ from util import CommonUtil
 
 
 class QSubChkConnection(QtCore.QThread):
-    """A class to check connection with server
+    """
+    QSubChkConnection is a subclass of :class:`PyQt4.QtCore.QThread`. This
+    class contains methods to check the network connection with a specified
+    server.
 
-    QSubChkConnection is a subclasse of PyQt4.QtCore.QThread. This class
-    contains methods to check the network connection with a specified mirror.
+    .. inheritance-diagram:: gui._checkconn.QSubChkConnection
+        :parts: 1
 
-    The instance of this class should be created in an individual thread. And
-    the object instance of HostsUtil class should be set as parent here.
+    .. note:: The instance of this class should be created in an individual
+        thread. And an instance of  class should be set as :attr:`parent`
+        here.
 
-    Attribute:
-        trigger (obj): A PyQt4.QtCore.pyqtSignal object to emit suatus signal
-            to the main dialog. The meaning of the signal arguments is listed
-            here:
-                -1 -> checking..., 0 -> Failed, 1 -> OK.
+    :ivar PyQt4.QtCore.pyqtSignal trigger: An instance of
+        :class:`PyQt4.QtCore.pyqtSignal` to emit signal to the main dialog
+        which indicates current status.
+
+        .. note:: The signal :attr:`trigger` should be a integer flag:
+
+            ======  ========
+            signal  Status
+            ======  ========
+            -1      Checking
+            0       Failed
+            1       OK
+            ======  ========
     """
     trigger = QtCore.pyqtSignal(int)
 
-    def __init__(self, parent=None):
-        """Initialize a new instance of this class - Private Method
+    def __init__(self, parent):
+        """
+        Initialize a new instance of this class. Retrieve mirror settings from
+        the main dialog to check the connection.
 
-        Get mirror settings from the main dialog to check the connection.
+        :param parent: An instance of :class:`~gui.qdialog_d.QDialogDaemon`
+            class to fetch settings from.
+        :type parent: :class:`~gui.qdialog_d.QDialogDaemon`
 
-        Args:
-            parent (obj): An instance of HostsUtil object to get settings
-                from.
+        .. warning:: :attr:`parent` MUST NOT be set as `None`.
         """
         super(QSubChkConnection, self).__init__(parent)
         self.link = parent.mirrors[parent.mirror_id]["test_url"]
 
     def run(self):
-        """Check connection - Public Method
-
-        Operations to check the network connection with a specified mirror.
+        """
+        Start operations to check the network connection with a specified
+        server.
         """
         self.trigger.emit(-1)
         status = CommonUtil.check_connection(self.link)

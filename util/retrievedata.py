@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# retrievedata.py : Read data from the hosts data file
+# retrievedata.py : Retrieve data from the hosts data file.
 #
 # Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -25,19 +25,18 @@ DATABASE = "./hostslist.s3db"
 
 
 class RetrieveData(object):
-    """A class to fetch data from data file
-
+    """
     RetrieveData class contains a set of tools to retrieve information from
-    the hosts data file. All methods from this class are defined as class
-    methods.
+    the hosts data file.
 
-    Attributes:
-        conn (obj): An instance of sqlite3.connect object to set the
-            connection with a SQLite database.
-        _cur (obj): An instance of sqlite3.connect.cursor object to operate
-            SQL queries in the database.
-        _database (str): A string indicating the filename of a SQLite database
-            file.
+    .. note:: All methods from this class are declared as `classmethod`.
+
+    :ivar sqlite3.connect conn: An instance of :class:`sqlite3.connect`
+        object to set up connection to a SQLite database.
+    :ivar sqlite3.connect.cursor _cur: An instance of
+        :class:`sqlite3.connect.cursor` object to process SQL queries in the
+        database.
+    :ivar str _db: Filename of a SQLite database file.
     """
     conn = None
     _cur = None
@@ -45,28 +44,29 @@ class RetrieveData(object):
 
     @classmethod
     def db_exists(cls, database=DATABASE):
-        """Check if database exists - Class Method
+        """
+        Check whether the :attr:`database` file exists or not.
 
-        Check whether the database file exists or not.
+        .. note:: This is a `classmethod`.
 
-        Args:
-            database (str): A string indicating the SQLite database file.
-                "hostslist.s3db" by default.
-
-        Returns:
-            A boolean indicating if the database file exists.
+        :param database: Path to a SQLite database file.
+                `./hostslist.s3db` by default.
+        :type database: str
+        :return: A flag indicating whether the database file exists or not.
+        :rtype: bool
         """
         return os.path.isfile(database)
 
     @classmethod
     def connect_db(cls, database=DATABASE):
-        """Connect to database - Class Method
+        """
+        Set up connection with a SQLite :attr:`database`.
 
-        Set up connection with a SQLite database.
+        .. note:: This is a `classmethod`.
 
-        Args:
-            database (str): A string indicating the SQLite database file.
-                "hostslist.s3db" by default.
+        :param database: Path to a SQLite database file.
+                `./hostslist.s3db` by default.
+        :type database: str
         """
         cls.conn = sqlite3.connect(database)
         cls._cur = cls.conn.cursor()
@@ -74,50 +74,54 @@ class RetrieveData(object):
 
     @classmethod
     def disconnect_db(cls):
-        """Disconnect to database - Class Method
-
+        """
         Close the connection with a SQLite database.
+
+        .. note:: This is a `classmethod`.
         """
         cls.conn.close()
 
     @classmethod
     def get_info(cls):
-        """Get data file information - Class Method
-
+        """
         Retrieve the metadata of current data file.
 
-        Returns:
-            A dictionary containing the metadata of current data file.
+        .. note:: This is a `classmethod`.
+
+        :return: Metadata of current data file. The metadata here is a
+            dictionary while the `Keys` are made of `Section Name` and
+            `Values` are made of `Information` defined in the hosts data file.
+        :rtype: dict
         """
-        cls._cur.execute("SELECT sect, info FROM info")
+        cls._cur.execute("SELECT sect, info FROM info;")
         info = dict(cls._cur.fetchall())
         return info
 
     @classmethod
     def get_head(cls):
-        """Get head info from data file - Class Method
-
+        """
         Retrieve the head information from hosts data file.
 
-        Returns:
-            A list containing hosts head information.
+        .. note:: This is a `classmethod`.
+
+        :return: Lines of hosts head information.
+        :rtype: list
         """
-        cls._cur.execute("SELECT str FROM hosts_head ORDER BY ln")
+        cls._cur.execute("SELECT str FROM hosts_head ORDER BY ln;")
         head = cls._cur.fetchall()
         return head
 
     @classmethod
     def get_ids(cls, id_cfg):
-        """Get id numbers - Class Method
+        """
+        Calculate the id numbers covered by config word :attr:`id_cfg`.
 
-        Calculate the id numbers covered by config word ({id_cfg}).
+        .. note:: This is a `classmethod`.
 
-        Args:
-            id_cfg (int): A hex number indicating the config word of id
-                selections.
-
-        Returns:
-            A list containing the id numbers covered by config word.
+        :param id_cfg: A hexadecimal config word of id selections.
+        :type id_cfg: int
+        :return: ID numbers covered by config word.
+        :rtype: list
         """
         cfg = bin(id_cfg)[:1:-1]
         ids = []
@@ -128,70 +132,93 @@ class RetrieveData(object):
 
     @classmethod
     def get_host(cls, part_id, mod_id):
-        """Get hosts entries - Class Method
-
-        Retrieve the hosts of a specified module ({mod_id}) from a specified
-        part ({part_id}) in the data file.
-
-        Args:
-            part_id (int): An integer indicating the id number of a specified
-                part from the hosts data file
-            mod_id (int): An integer indicating the id number of a specified
-                module number from a specified part.
-
-        Returns:
-            (hosts, mod_name)
-            hosts (list): A list containing hosts entries of a specified
-                module.
-            mod_name (str): A string indicating the name of a specified
-                module.
         """
-        cls._cur.execute("SELECT part_name FROM parts "
-                         "WHERE part_id=%s" % part_id)
+        Retrieve the hosts module specified by :attr:`mod_id` from a part
+        specified by :attr:`part_id` in the data file.
+
+        .. note:: This is a `classmethod`.
+
+        :param part_id: ID number of a specified part from the hosts data
+            file.
+
+            .. note:: ID number is usually an 8-bit control byte.
+        :type part_id: int
+        :param mod_id: ID number of a specified module from a specified part.
+
+            .. note:: ID number is usually an 8-bit control byte.
+        :type mod_id: int
+
+        .. seealso:: :attr:`make_cfg` in
+            :class:`~tui.curses_d.CursesDaemon` class.
+
+        :return: hosts, mod_name
+
+            * hosts(`list`): Hosts entries from a specified module.
+            * mod_name(`str`): Name of a specified module.
+        :rtype: list, str
+        """
+        cls._cur.execute("""
+            SELECT part_name FROM parts
+            WHERE part_id=:part_id;
+        """, (part_id, ))
         part_name = cls._cur.fetchone()[0]
-        cls._cur.execute("SELECT ip, host FROM %s "
-                         "WHERE cate=%s" % (part_name, mod_id))
+        cls._cur.execute("""
+            SELECT ip, host FROM %s
+            WHERE cate=%s;
+        """ % (part_name, mod_id))
         hosts = cls._cur.fetchall()
-        cls._cur.execute("SELECT mod_name FROM modules "
-                         "WHERE part_id=%s AND mod_id = %s"
-                         % (part_id, mod_id))
+        cls._cur.execute("""
+            SELECT mod_name FROM modules
+            WHERE part_id=:part_id AND mod_id=:mod_id;
+        """, (part_id, mod_id))
         mod_name = cls._cur.fetchone()[0]
         return hosts, mod_name
 
     @classmethod
     def get_choice(cls, flag_v6=False):
-        """Get module selection choices - Class Method
-
+        """
         Retrieve module selection items from the hosts data file with default
         selection for users.
 
-        Args:
-            flag_v6 (bool): A bool flag indicating whether to receive the IPv6
-                entries or the IPv4 ones. True: IPv6, False: IPv4.
+        .. note:: This is a `classmethod`.
 
-        Returns:
-            (modules, defaults, slices)
-            modules (list): A list containing information of modules for users
-                to select.
-            defaults (dict): A dictionary containing default selection for
-                selected parts.
-            slices (list): A list containing the number of modules in each
-                part.
+        :param flag_v6: A flag indicating whether to receive IPv6 hosts
+            entries or the IPv4 ones. Default by `False`.
+
+                ===============  =======
+                :attr:`flag_v6`  hosts
+                ===============  =======
+                True             IPv6
+                False            IPv4
+                ===============  =======
+        :type flag_v6: bool
+        :return: modules, defaults, slices
+
+            * modules(`list`): Information of modules for users to select.
+            * defaults(`dict`): Default selection config for selected parts.
+            * slices(`list`): Number of modules in each part.
+        :rtype: list, dict, list
         """
         ch_parts = (0x08, 0x20 if flag_v6 else 0x10, 0x40)
-        cls._cur.execute("SELECT * FROM modules "
-                         "WHERE part_id IN (?, ?, ?)", ch_parts)
+        cls._cur.execute("""
+            SELECT * FROM modules
+            WHERE part_id IN (:id_shared, :id_ipv, :id_adblock);
+        """, ch_parts)
         modules = cls._cur.fetchall()
-        cls._cur.execute("SELECT part_id, part_default FROM parts "
-                         "WHERE part_id IN (?, ?, ?)", ch_parts)
+        cls._cur.execute("""
+            SELECT part_id, part_default FROM parts
+            WHERE part_id IN (:id_shared, :id_ipv, :id_adblock);
+        """, ch_parts)
         default_cfg = cls._cur.fetchall()
         defaults = {}
         for default in default_cfg:
             defaults[default[0]] = cls.get_ids(default[1])
         slices = [0]
         for ch_part in ch_parts:
-            cls._cur.execute('SELECT COUNT(mod_id) FROM modules '
-                             'WHERE part_id=?', (ch_part, ))
+            cls._cur.execute("""
+                SELECT COUNT(mod_id) FROM modules
+                WHERE part_id=:ch_part;
+            """, (ch_part, ))
             slices.append(cls._cur.fetchone()[0])
         for s in range(1, len(slices)):
             slices[s] += slices[s - 1]
@@ -199,23 +226,52 @@ class RetrieveData(object):
 
     @classmethod
     def chk_mutex(cls, part_id, mod_cfg):
-        """Check conflict in selections - Class Method
-
-        Check if there is conflict in user selections ({mod_cfg}) of a
-        specified part ({part_id})
-
-        Args:
-            part_id (int): An integer indicating the id number of a specified
-                part from the hosts data file
-            mod_cfg (int): A hex number indicating the config word of id
-                selections for a specified part.
-
-        Returns:
-            A bool flag indicating whether there is a conflict or not.
-            True : Conflict, False: No conflicts.
         """
-        cls._cur.execute("SELECT mod_id, mutex FROM modules "
-                         "WHERE part_id=%s" % part_id)
+        Check if there is conflict in user selections :attr:`mod_cfg` from a
+        part specified by :attr:`part_id` in the data file.
+
+        .. note:: A conflict may happen while one module selected is declared
+            in `mutex` word of ano module selected at the same time.
+
+        .. note:: This is a `classmethod`.
+
+        :param part_id: ID number of a specified part from the hosts data
+            file.
+
+            .. note:: ID number is usually an 8-bit control byte.
+
+            .. seealso:: :meth:`~util.retrievedata.get_host`.
+
+        :type part_id: int
+        :param mod_cfg: A 16-bit config word indicating module selections of a
+            specified part.
+
+            .. note::
+                If modules in specified part whose IDs are `0x0002` and
+                `0x0010`, the value here should be `0x0002 + 0x0010 = 0x0012`,
+                which is `0b0000000000000010 + 0b0000000000010000 =
+                0b0000000000010010` in binary.
+
+        :type: int
+
+        .. seealso:: :attr:`make_cfg` in
+            :class:`~tui.curses_d.CursesDaemon` class.
+
+        :return: A flag indicating whether there is a conflict or not.
+
+            ======  ============
+            Return  Status
+            ======  ============
+            True    Conflict
+            False   No conflicts
+            ======  ============
+
+        :rtype: bool
+        """
+        cls._cur.execute("""
+            SELECT mod_id, mutex FROM modules
+            WHERE part_id=:part_id;
+        """, (part_id, ))
         mutex_tuple = dict(cls._cur.fetchall())
         mutex_info = []
         mod_info = cls.get_ids(mod_cfg)
@@ -229,10 +285,18 @@ class RetrieveData(object):
 
     @classmethod
     def unpack(cls, datafile=DATAFILE, database=DATABASE):
-        """Unpack local data file - Class Method
+        """
+        Unzip the archived :attr:`datafile` to a SQLite database file
+        :attr:`database`.
 
-        Unzip the zipped data file ({packfile}) to a SQLite database file
-        ({dbfile}).
+        .. note:: This is a `classmethod`.
+
+        :param datafile: Path to the zipped data file. `./hostslist.data` by
+            default.
+        :type datafile: str
+        :param database: Path to a SQLite database file. `./hostslist.s3db` by
+            default.
+        :type database: str
         """
         datafile = zipfile.ZipFile(datafile, "r")
         path, filename = os.path.split(database)
@@ -240,9 +304,10 @@ class RetrieveData(object):
 
     @classmethod
     def clear(cls):
-        """Clear up workspace - Class Method
+        """
+        Close connection to the database and delete the database file.
 
-        Close the connection to the database and delete the database file.
+        .. note:: This is a `classmethod`.
         """
         cls.conn.close()
         os.remove(cls._database)

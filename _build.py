@@ -3,7 +3,7 @@
 #
 #  _build.py : Tools to make packages for different platforms
 #
-# Copyleft (C) 2013 - huhamhire hosts team <hosts@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -20,7 +20,7 @@ import os
 import sys
 import shutil
 
-from hoststool import __version__
+from __version__ import __version__
 
 SCRIPT = "hoststool.py"
 
@@ -101,7 +101,7 @@ if sys.argv > 1:
             ".gitignore",
         ]
         ex_files = []
-        prefix = "HostsUtl-x11-gpl-"
+        prefix = "HostsTool-x11-gpl-"
         tar_flag = 1
 
     elif sys.argv[1] == "py2source":
@@ -113,7 +113,7 @@ if sys.argv > 1:
             "hostslist.data",
         ]
         ex_files = []
-        prefix = "HostsUtl-source-gpl-"
+        prefix = "HostsTool-source-gpl-"
         tar_flag = 1
     else:
         prefix = "Error"
@@ -156,7 +156,7 @@ if system == "Windows":
 
     # Set working directories
     WORK_DIR = SCRIPT_DIR + "work/"
-    DIR_NAME = "HostsUtil"
+    DIR_NAME = "HostsTool"
     DIST_DIR = WORK_DIR + DIR_NAME + '/'
     WIN_OPTIONS = {
         "includes": ["sip"],
@@ -178,13 +178,15 @@ if system == "Windows":
         options={"py2exe": WIN_OPTIONS},
         console=[
             {"script": SCRIPT,
-             "dest_base": "command_line_tool",
+             "dest_base": "hoststool_tui",
+             "uac_info": "highestAvailable",
             },
         ],
         windows=[
             {"script": SCRIPT,
              "icon_resources": [(1, "res/img/icons/hosts_utl.ico")],
              "dest_base": EXE_NAME,
+             "uac_info": "highestAvailable",
             },
         ],
         description=DESCRIPTION,
@@ -234,7 +236,7 @@ elif system == "OS X":
     # Set working directories
     WORK_DIR = SCRIPT_DIR + "work/"
     RES_DIR = SCRIPT_DIR + "res/"
-    APP_NAME = "HostsUtl.app"
+    APP_NAME = "HostsTool.app"
     APP_PATH = WORK_DIR + APP_NAME
     DIST_DIR = APP_PATH + "/Contents/"
     # Set build configuration
@@ -264,8 +266,8 @@ elif system == "OS X":
         "plist": {
             "CFBundleAllowMixedLocalizations": True,
             "CFBundleSignature": "hamh",
-            "CFBundleIdentifier": "org.pythonmac.huhamhire.HostsUtl",
-            "NSHumanReadableCopyright": "(C) 2013, Huhamhire hosts Team"}
+            "CFBundleIdentifier": "org.pythonmac.huhamhire.HostsTool",
+            "NSHumanReadableCopyright": "(C) 2014, huhamhire hosts Team"}
     }
     # Clean work space before build
     if os.path.exists(APP_PATH):
@@ -302,7 +304,7 @@ elif system == "OS X":
     VDMG_DIR = WORK_DIR + "package_vdmg/"
     DMG_TMP = WORK_DIR + "pack_tmp.dmg"
     DMG_RES_DIR = RES_DIR + "dmg/"
-    VOL_NAME = "HostsUtl"
+    VOL_NAME = "HostsTool"
     DMG_NAME = VOL_NAME + "-mac-gpl-" + VERSION + ".dmg"
     DMG_PATH = WORK_DIR + DMG_NAME
     # Clean work space before pack up

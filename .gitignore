@@ -1,8 +1,12 @@
+downloads/tmp
 *.tmp
 *.pyc
 *.data
+
 Thumbs.db
 hosts
 .DS_Store
 
 .idea/
+data/ipv4_mods/*.hosts
+doc/build/

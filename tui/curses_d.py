@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  curses_d.py:
+#  curses_d.py: Operations for TUI window.
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -30,21 +30,91 @@ from util import CommonUtil, RetrieveData
 
 class CursesDaemon(CursesUI):
     """
-    Attributes:
-        _update (dict): A dictionary containing the update information of the
-            current data file on server.
-        _writable (int): An integer indicating whether the program is run with
-            admin/root privileges. The value could be 1 or 0.
+    CursesDaemon class contains methods to deal with the operations related to
+    the TUI window of `Hosts Setup Utility`. Including methods to interactive
+    with users.
 
-        make_cfg (dict): A dictionary containing the selection control bytes
-            to make a hosts file.
-        platform (str): A string indicating the platform of current operating
-            system. The value could be "Windows", "Linux", "Unix", "OS X", and
-            of course "Unkown".
-        hostname (str): A string indicating the hostname of current operating
-            system. This attribute would be used for linux clients.
-        hosts_path (str): A string indicating the absolute path of the hosts
-            file on current operating system.
+    .. note:: This class is subclass of :class:`~tui.curses_ui.CursesUI`
+        class.
+
+    :ivar dict _update: Update information of the current data file on server.
+    :ivar int _writable: Indicating whether the program is run with admin/root
+        privileges. The value could be `1` or `0`.
+
+        .. seealso:: `_update` and `_writable` in
+            :class:`~gui.qdialog_d.QDialogDaemon` class.
+
+    :ivar dict make_cfg: A set of module selection control bytes used to
+        control whether a specified method is used or not while generate a
+        hosts file.
+
+        * `Keys` of :attr:`make_cfg` are typically 8-bit control byte
+          indicating which part of the hosts data file would be effected by
+          the corresponding `Value`.
+
+          +----+----------------+
+          |Key |Part            |
+          +====+================+
+          |0x02|Localhost       |
+          +----+----------------+
+          |0x08|Shared hosts    |
+          +----+----------------+
+          |0x10|IPv4 hosts      |
+          +----+----------------+
+          |0x20|IPv6 hosts      |
+          +----+----------------+
+          |0x40|AD block hosts  |
+          +----+----------------+
+
+        * `Values` of :attr:`make_cfg` are typically 16-bit control bytes that
+          decides which of the modules in a specified part would be inserted
+          into the `hosts` file.
+
+            * `Value` of `Localhost` part. The Value used in `Localhost` part
+              are usually bytes indicating the current operating system.
+
+              +---------------+-------------------+
+              |Hex            |OS                 |
+              +===============+===================+
+              |0x0001         |Windows            |
+              +---------------+-------------------+
+              |0x0002         |Linux, Unix        |
+              +---------------+-------------------+
+              |0x0004         |Mac OS X           |
+              +---------------+-------------------+
+
+            * `Values` of `Shared hosts`, `IPv4 hosts`, `IPv6 hosts`, and
+              `AD block hosts` parts are usually sum of module IDs selected
+              by user.
+
+              .. note::
+                If modules in specified part whose IDs are `0x0002` and
+                `0x0010`, the value here should be `0x0002 + 0x0010 = 0x0012`,
+                which is `0b0000000000000010 + 0b0000000000010000 =
+                0b0000000000010010` in binary.
+
+              .. warning::
+                Only one bit could be `1` in the binary form of a module ID,
+                which means `0b0000000000010010` is an INVALID module ID while
+                it could be a VALID `Value` in `make_cfg`.
+
+    :ivar str platform: Platform of current operating system. The value could
+        be `Windows`, `Linux`, `Unix`, `OS X`, and of course `Unknown`.
+    :ivar str hostname: The hostname of current operating system.
+
+        .. note:: This attribute would only be used on linux.
+
+    :ivar str hosts_path: The absolute path to the hosts file on current
+        operating system.
+    :ivar list _ops_keys: Hot keys used to start a specified operation.
+        Default operation keys are `F5`, `F6`, and `F10`.
+    :ivar list _hot_keys: Hot keys used to select a item or confirm an
+        operation. And the default :attr:`_hot_keys` is defined as::
+
+            _hot_keys = [curses.KEY_UP, curses.KEY_DOWN, 10, 32]
+
+        .. seealso:: :attr:`~tui.curses_ui.CursesUI.funckeys` in
+            :class:`~tui.curses_ui.CursesUI` class.
     """
     _update = {}
     _writable = 0
@@ -52,20 +122,25 @@ class CursesDaemon(CursesUI):
     make_cfg = {}
     platform = ''
     hostname = ''
-    hostspath = ''
+    hosts_path = ''
 
     _ops_keys = [curses.KEY_F5, curses.KEY_F6, curses.KEY_F10]
     _hot_keys = [curses.KEY_UP, curses.KEY_DOWN, 10, 32]
 
     def __init__(self):
         super(CursesDaemon, self).__init__()
-        # Check if current session have root privileges
         self.check_writable()
 
     def check_writable(self):
-        """Check write privileges - Public Method
+        """
+        Check if current session has write privileges to the hosts file.
 
-        Check if current session has write privileges for the hosts file.
+        .. note:: IF current session does not has the write privileges to the
+            hosts file of current system, a warning message box would popup.
+
+        .. note:: ALL operation would change the `hosts` file on current
+            system could only be done while current session has write
+            privileges to the file.
         """
         self._writable = CommonUtil.check_privileges()[1]
         if not self._writable:
@@ -74,6 +149,32 @@ class CursesDaemon(CursesUI):
             exit()
 
     def session_daemon(self):
+        """
+        Operations processed while running a TUI session of `Hosts Setup
+        Utility`.
+
+        :return: A flag indicating whether to reload the current session or
+            all operations have been finished. The return value could only be
+            `0` or `1`. To be specific:
+
+                ====  =========
+                flag  operation
+                ====  =========
+                0     Finish
+                1     Reload
+                ====  =========
+
+            .. note:: Reload operation is called only when a new data file is
+                retrieved from server.
+
+        :rtype: int
+
+        .. note:: IF hosts data file does not exists in current working
+            directory, a warning message box would popup. And operations to
+            change the hosts file on current system could be done only until
+            a new data file has been downloaded.
+        """
+
         screen = self._stdscr.subwin(0, 0, 0, 0)
         screen.keypad(1)
         # Draw Menu
@@ -131,6 +232,30 @@ class CursesDaemon(CursesUI):
         return 0
 
     def configure_settings(self, pos=None, key_in=None):
+        """
+        Perform operations to config settings if `Configure Setting` frame is
+        active, or just draw the `Configure Setting` frame with no items
+        selected while it is inactive.
+
+        .. note:: Whether the `Configure Setting` frame is inactive is decided
+            by if :attr:`pos` is `None` or not.
+
+                ===========  ========
+                :attr:`pos`  Status
+                ===========  ========
+                None         Inactive
+                int          Active
+                ===========  ========
+
+        :param pos: Index of selected item in `Configure Setting` frame. The
+            default value of `pos` is `None`.
+        :type pos: int or None
+        :param key_in: A flag indicating the key pressed by user. The default
+            value of `key_in` is `None`.
+        :type key_in: int or None
+        :return: Index of selected item in `Configure Setting` frame.
+        :rtype: int or None
+        """
         id_num = range(len(self.settings))
         if pos is not None:
             if key_in == curses.KEY_DOWN:
@@ -144,6 +269,25 @@ class CursesDaemon(CursesUI):
         return pos
 
     def select_func(self, pos=None, key_in=None):
+        """
+        Perform operations if `function selection list` is active, or just
+        draw the `function selection list` with no items selected while it is
+        inactive.
+
+        .. note:: Whether the `function selection list` is inactive is decided
+            by if :attr:`pos` is `None` or not.
+
+        .. seealso:: :meth:`~tui.curses_d.CursesDaemon.configure_settings`.
+
+        :param pos: Index of selected item in `function selection list`. The
+            default value of `pos` is `None`.
+        :type pos: int or None
+        :param key_in: A flag indicating the key pressed by user. The default
+            value of `key_in` is `None`.
+        :type key_in: int or None
+        :return: Index of selected item in `function selection list`.
+        :rtype: int or None
+        """
         list_height = 15
         ip = self.settings[1][1]
         # Key Press Operations
@@ -192,6 +336,18 @@ class CursesDaemon(CursesUI):
         return pos
 
     def sub_selection(self, pos):
+        """
+        Let user to choose settings from `Selection Dialog` specified by
+        :attr:`pos`.
+
+        :param pos: Index of selected item in `Configure Setting` frame.
+        :type pos: int
+
+        .. warning:: The value of `pos` MUST NOT be `None`.
+
+        .. seealso:: :meth:`~tui.curses_ui.CursesUI.sub_selection_dialog` in
+            :class:`~tui.curses_ui.CursesUI`.
+        """
         screen = self.sub_selection_dialog(pos)
         i_pos = self.settings[pos][1]
         # Key Press Operations
@@ -212,6 +368,22 @@ class CursesDaemon(CursesUI):
                 return
 
     def check_connection(self, url):
+        """
+        Check connection status to the server currently  selected by user and
+        show a status box indicating current operation.
+
+        :param url: The link of the server chose by user.This string could be
+            a domain name or the IP address of a server.
+
+            .. seealso:: :attr:`link` in
+                :meth:`~util.common.CommonUtil.check_connection`.
+        :type url: str
+        :return: A flag indicating connection status is good or not.
+
+            .. seealso:: :meth:`~util.common.CommonUtil.check_connection`. in
+                :class:`~util.common.CommonUtil` class.
+        :rtype: int
+        """
         self.messagebox("Checking Server Status...")
         conn = CommonUtil.check_connection(url)
         if conn:
@@ -224,14 +396,28 @@ class CursesDaemon(CursesUI):
         return conn
 
     def check_update(self):
+        """
+        Check the metadata of the latest hosts data file from server and
+        show a status box indicating current operation.
+
+        :return: A dictionary containing the `Version`, `Release Date` of
+            current hosts data file and the `Latest Version` of the data file
+            on server.
+
+            IF error occurs while checking update, the dictionary would be
+            defined as::
+
+                {"version": "[Error]"}
+        :rtype: dict
+        """
         self.messagebox("Checking Update...")
         srv_id = self.settings[0][1]
         url = self.settings[0][2][srv_id]["update"] + self.infofile
         try:
             socket.setdefaulttimeout(5)
-            urlobj = urllib.urlopen(url)
-            j_str = urlobj.read()
-            urlobj.close()
+            url_obj = urllib.urlopen(url)
+            j_str = url_obj.read()
+            url_obj.close()
             info = json.loads(j_str)
         except:
             info = {"version": "[Error]"}
@@ -240,15 +426,19 @@ class CursesDaemon(CursesUI):
         return info
 
     def new_version(self):
-        """Compare version of data file - Public Method
-
+        """
         Compare version of local data file to the version from the server.
 
-        Returns:
-            A flag integer indicating whether the local data file is
-            up-to-date or not.
-                1 -> The version of data file on server is newer.
-                0 -> The local data file is up-to-date.
+        :return: A flag indicating whether the local data file is up-to-date
+            or not.
+
+            ======  ============================================
+            Return  Data file status
+            ======  ============================================
+            1       The version of data file on server is newer.
+            0       The local data file is up-to-date.
+            ======  ============================================
+        :rtype: int
         """
         local_ver = self.hostsinfo["Version"]
         if local_ver == "N/A":
@@ -262,13 +452,16 @@ class CursesDaemon(CursesUI):
         return 0
 
     def fetch_update(self):
+        """
+        Retrieve the latest hosts data file from server and show a status box
+        indicating current operation.
+        """
         self.messagebox("Downloading...")
         fetch_d = FetchUpdate(self)
         fetch_d.get_file()
 
     def set_config_bytes(self):
-        """Set configuration byte words - Public Method
-
+        """
         Calculate the module configuration byte words by the selection from
         function list on the main dialog.
         """
@@ -289,14 +482,13 @@ class CursesDaemon(CursesUI):
         self.make_cfg = selection
 
     def move_hosts(self):
-        """Move hosts file to the system path after making - Public Method
-
+        """
         Move hosts file to the system path after making operations are
         finished.
         """
         filepath = "hosts"
         try:
-            shutil.copy2(filepath, self.hostspath)
+            shutil.copy2(filepath, self.hosts_path)
         except IOError:
             os.remove(filepath)
             return

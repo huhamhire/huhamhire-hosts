@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  __init__.py : Declare modules to be called in gui module.
+#  __doc__.py : Document in reST format of util module.
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -9,7 +9,21 @@
 # have received a copy of the GNU General Public License along with
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
+"""
+Shared Utilities
+================
 
-from hostsutil import HostsUtil
+The module described in this chapter provides shared utilities
 
-__all__ = ["HostsUtil"]
+
+CommonUtil
+----------
+.. autoclass:: util.common.CommonUtil
+    :members:
+
+
+RetrieveData
+------------
+.. autoclass:: util.retrievedata.RetrieveData
+    :members:
+"""
