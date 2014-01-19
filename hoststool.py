@@ -31,6 +31,19 @@ class UtilLauncher(object):
     Graphical User Interface (GUI) mode or in Text-based User Interface (TUI)
     mode.
 
+    Usage can be printed to screen via terminal by using ``-h`` or ``--help``
+    argument. The help message would be like this::
+
+        Usage: hoststool.py [-g] [-t] [-h] [--version]
+
+        Options:
+          --version        show program's version number and exit
+          -h, --help       show this help message and exit
+          -g, --graphicui  launch in GUI(QT) mode
+          -t, --textui     launch in TUI(Curses) mode
+
+    .. seealso:: :ref:`Get Started <intro-get-started>`.
+
     .. note:: All methods from this class are declared as `classmethod`.
     """
 
