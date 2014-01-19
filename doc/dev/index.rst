@@ -9,9 +9,9 @@ Internet blockade.
 
 Chapter one of this documentation contains a brief introduction of
 `Hosts Setup Utility` and basic usage to start this tool. While the others
-describing modules and functions that is used in the current version of
+describing modules and functions that are used in the current version of
 `Hosts Setup Utility`. These chapters also describes some optional methods
-for developers to improve this tool.
+for developers to help improve this tool.
 
 This is the documentation for `Hosts Setup Utility` |release|, last updated
 |today|.

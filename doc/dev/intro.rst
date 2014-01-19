@@ -38,7 +38,9 @@ listed here:
 
 .. note:: On some linux distributions, pre-built packages of PyQt4 can be
     found in software repositories. For example, you can install PyQt4 on
-    a debian distribution simplly using ::
+    a debian distribution simplly using:
+
+    .. code-block:: bash
 
         apt-get install python-qt4
 
