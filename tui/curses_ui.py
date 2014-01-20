@@ -163,6 +163,14 @@ class CursesUI(object):
         for i, color in enumerate(self.colorpairs):
             curses.init_pair(i + 1, *color)
 
+    def __del__(self):
+        """
+        Reset terminal before quit.
+        """
+        curses.nocbreak()
+        curses.echo()
+        curses.endwin()
+
     def banner(self):
         """
         Draw the banner in the TUI window.

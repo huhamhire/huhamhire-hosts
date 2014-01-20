@@ -99,8 +99,10 @@ class HostsUtil(CursesDaemon):
 
     def __del__(self):
         """
-        Clear up the temporary data file while TUI session is finished.
+        Reset the terminal and clear up the temporary data file while TUI
+        session is finished.
         """
+        super(HostsUtil, self).__del__()
         try:
             RetrieveData.clear()
         except:
