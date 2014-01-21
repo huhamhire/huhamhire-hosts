@@ -12,6 +12,8 @@
 
 __author__ = "huhamhire <me@huhamhire.com>"
 
+import os
+
 from zipfile import BadZipfile
 
 from curses_d import CursesDaemon
@@ -145,6 +147,12 @@ class HostsUtil(CursesDaemon):
         """
         for ip in range(2):
             choice, defaults, slices = RetrieveData.get_choice(ip)
+            if os.path.isfile(self.custom):
+                choice.insert(0, [4, 1, 0, "customize"])
+                defaults[0x04] = [1]
+                for i in range(len(slices)):
+                    slices[i] += 1
+                slices.insert(0, 0)
             self.choice[ip] = choice
             self.slices[ip] = slices
             funcs = []

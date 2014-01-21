@@ -102,9 +102,6 @@ class MakeHosts(object):
             class.
         """
         for part_id in sorted(make_cfg.keys()):
-            if part_id == 0x04:
-                self.write_customized()
-                continue
             mod_cfg = make_cfg[part_id]
             if not RetrieveData.chk_mutex(part_id, mod_cfg):
                 return
@@ -114,6 +111,8 @@ class MakeHosts(object):
                 hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
                 if part_id == 0x02:
                     self.write_localhost_mod(hosts)
+                elif part_id == 0x04:
+                    self.write_customized()
                 else:
                     self.write_common_mod(hosts, mod_name)
 

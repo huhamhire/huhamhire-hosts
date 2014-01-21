@@ -70,7 +70,7 @@ class QDialogUI(QtGui.QDialog, object):
     plat_flag = True
     ui = None
 
-    custom = "customize.hosts"
+    custom = "custom.hosts"
 
     def __init__(self):
         """

@@ -112,6 +112,9 @@ class CursesUI(object):
 
     .. seealso:: :attr:`filename` and :attr:`infofile` in
         :class:`~gui.hostsutil.HostsUtil` class.
+
+    :ivar str custom: File name of User Customized Hosts File. Customized
+        hosts would be able to select if this file exists.
     """
     __title = "HOSTS SETUP UTILITY"
     version = "".join(['v', __version__,' ', __release__])
@@ -148,6 +151,7 @@ class CursesUI(object):
 
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
+    custom = "custom.hosts"
 
     def __init__(self):
         """
