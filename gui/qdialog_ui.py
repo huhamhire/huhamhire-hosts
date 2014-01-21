@@ -20,13 +20,13 @@ import os
 
 from PyQt4 import QtCore, QtGui
 
-from language import LangUtil
-from util_ui import Ui_Util, _translate, _fromUtf8
-
 import sys
 
 sys.path.append("..")
 from util import RetrieveData, CommonUtil
+from __version__ import __version__, __release__
+from language import LangUtil
+from util_ui import Ui_Util, _translate, _fromUtf8
 
 # Path to store language files
 LANG_DIR = "./gui/lang/"
@@ -58,6 +58,8 @@ class QDialogUI(QtGui.QDialog, object):
 
     :ivar object ui: Form implementation declares layout of the main dialog
         which is generated from a UI file designed by `Qt Designer`.
+    :ivar str custom: File name of User Customized Hosts File. Customized
+        hosts would be able to select if this file exists.
     """
     _cur_ver = ""
     _trans = None
@@ -67,6 +69,8 @@ class QDialogUI(QtGui.QDialog, object):
     platform = ''
     plat_flag = True
     ui = None
+
+    custom = "customize.hosts"
 
     def __init__(self):
         """
@@ -198,6 +202,10 @@ class QDialogUI(QtGui.QDialog, object):
             self.set_label_color(self.ui.labelConnStat, color)
             self.set_label_text(self.ui.labelConnStat, stat)
 
+    def set_version(self):
+        version = "".join(['v', __version__,' ', __release__])
+        self.set_label_text(self.ui.VersionLabel, version)
+
     def set_info(self):
         """
         Set the information of the current local data file.
@@ -255,6 +263,12 @@ class QDialogUI(QtGui.QDialog, object):
         if new:
             for ip in range(2):
                 choice, defaults, slices = RetrieveData.get_choice(ip)
+                if os.path.isfile(self.custom):
+                    choice.insert(0, [4, 1, 0, "customize"])
+                    defaults[0x04] = [1]
+                    for i in range(len(slices)):
+                        slices[i] += 1
+                    slices.insert(0, 0)
                 self.choice[ip] = choice
                 self.slices[ip] = slices
                 funcs = []
@@ -282,6 +296,7 @@ class QDialogUI(QtGui.QDialog, object):
         """
         ip_flag = self._ipv_id
         self.ui.Functionlist.clear()
+
         for f_id, func in enumerate(self.choice[self._ipv_id]):
             item = QtGui.QListWidgetItem()
             if self._funcs[ip_flag][f_id] == 1:
@@ -312,9 +327,10 @@ class QDialogUI(QtGui.QDialog, object):
         total_mods_num = self._funcs[self._ipv_id].count(1) + 1
         prog = 100 * mod_num / total_mods_num
         self.ui.Prog.setProperty("value", prog)
+        module = unicode(_translate("Util", mod_name, None))
         message = unicode(_translate(
             "Util", "Applying module: %s(%s/%s)", None)
-        ) % (mod_name, mod_num, total_mods_num)
+        ) % (module, mod_num, total_mods_num)
         self.ui.Prog.setFormat(message)
         self.set_make_message(message)
 
@@ -323,9 +339,9 @@ class QDialogUI(QtGui.QDialog, object):
         Show a message box with a :attr:`message` and a :attr:`title`.
 
         :param title: Title of the message box to be displayed.
-        :type title: str
+        :type title: unicode
         :param message: Message in the message box.
-        :type message: str
+        :type message: unicode
         """
         self.ui.FunctionsBox.setTitle(_translate("Util", title, None))
         self.ui.Functionlist.clear()
@@ -340,7 +356,7 @@ class QDialogUI(QtGui.QDialog, object):
         hosts file in function list.
 
         :param message: Message to be displayed in the function list.
-        :type message: str
+        :type message: unicode
         :param start: A flag indicating whether the message is the first one
             in the making progress or not. Default value is `0`.
 

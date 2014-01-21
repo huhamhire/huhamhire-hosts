@@ -18,7 +18,7 @@ import locale
 import sys
 sys.path.append("..")
 from util import CommonUtil
-from __version__ import __version__
+from __version__ import __version__, __release__
 
 
 class CursesUI(object):
@@ -114,7 +114,8 @@ class CursesUI(object):
         :class:`~gui.hostsutil.HostsUtil` class.
     """
     __title = "HOSTS SETUP UTILITY"
-    __copyleft = "v%s Copyleft 2011-2014, huhamhire-hosts Team" % __version__
+    version = "".join(['v', __version__,' ', __release__])
+    __copyleft = "%s Copyleft 2011-2014, huhamhire-hosts Team" % version
 
     _stdscr = None
     _item_sup = 0

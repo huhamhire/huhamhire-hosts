@@ -12,6 +12,7 @@
 
 __author__ = "huhamhire <me@huhamhire.com>"
 
+import os
 import time
 
 from retrievedata import RetrieveData
@@ -28,6 +29,7 @@ class MakeHosts(object):
         .. seealso:: :attr:`make_mode` in
             :class:`~gui.qdialog_d.QDialogDaemon` class.
 
+    :ivar str custom: File name of User Customized Hosts file.
     :ivar str hostname: File Name of hosts file.
     :ivar file hosts_file: The hosts file to write hosts to.
     :ivar int mod_num: Total number of modules written to hosts file.
@@ -41,6 +43,7 @@ class MakeHosts(object):
         :class:`tui.curses_d.CursesDaemon` class.
     """
     make_mode = ""
+    custom = ""
     hostname = ""
     hosts_file = None
     make_cfg = {}
@@ -62,6 +65,7 @@ class MakeHosts(object):
         self.count = 0
         self.make_cfg = parent.make_cfg
         self.hostname = parent.hostname
+        self.custom = parent.custom
         make_path = parent.make_path
         if parent.make_mode == "system":
             self.eol = parent.sys_eol
@@ -98,6 +102,9 @@ class MakeHosts(object):
             class.
         """
         for part_id in sorted(make_cfg.keys()):
+            if part_id == 0x04:
+                self.write_customized()
+                continue
             mod_cfg = make_cfg[part_id]
             if not RetrieveData.chk_mutex(part_id, mod_cfg):
                 return
@@ -151,6 +158,21 @@ class MakeHosts(object):
             self.hosts_file.write("%s %s%s" % (ip, host[1], self.eol))
             self.count += 1
         self.hosts_file.write("# Section End: %s%s" % (mod_name, self.eol))
+
+    def write_customized(self):
+        """
+        Write user customized hosts list into the hosts file if the customized
+        hosts file exists.
+        """
+        if os.path.isfile(self.custom):
+            custom_file = open(unicode(self.custom), "r")
+            lines = custom_file.readlines()
+            self.hosts_file.write(
+                "%s# Section Start: Customized%s" % (self.eol, self.eol))
+            for line in lines:
+                line = line.strip("\n")
+                self.hosts_file.write(line + self.eol)
+            self.hosts_file.write("# Section End: Customized%s" % self.eol)
 
     def write_localhost_mod(self, hosts):
         """

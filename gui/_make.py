@@ -23,14 +23,15 @@ from util import MakeHosts
 
 class QSubMakeHosts(QtCore.QThread, MakeHosts):
     """
-    QSubMakeHosts is a subclass of :class:`PyQt4.QtCore.QThread`. This class
-    contains methods to make a new hosts file for client.
+    QSubMakeHosts is a subclass of :class:`PyQt4.QtCore.QThread` and class
+    :class:`~util.makehosts.MakeHosts`. This class contains methods to make a
+    new hosts file for client.
 
     .. inheritance-diagram:: gui._make.QSubMakeHosts
         :parts: 1
 
     .. note:: The instance of this class should be created in an individual
-        thread. And an instance of  class should be set as :attr:`parent`
+        thread. And an instance of class should be set as :attr:`parent`
         here.
 
     :ivar PyQt4.QtCore.pyqtSignal info_trigger: An instance of
@@ -128,5 +129,7 @@ class QSubMakeHosts(QtCore.QThread, MakeHosts):
                 self.info_trigger.emit(mod_name, self.mod_num)
                 if part_id == 0x02:
                     self.write_localhost_mod(hosts)
+                elif part_id == 0x04:
+                    self.write_customized()
                 else:
                     self.write_common_mod(hosts, mod_name)

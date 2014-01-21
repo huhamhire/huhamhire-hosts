@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '../pyqt\util_ui.ui'
 #
-# Created: Mon Dec 09 17:45:37 2013
-#      by: PyQt4 UI code generator 4.10.2
+# Created: Tue Jan 21 15:46:43 2014
+#      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -251,6 +251,10 @@ class Ui_Util(object):
         self.label = QtGui.QLabel(Util)
         self.label.setGeometry(QtCore.QRect(10, 390, 150, 16))
         self.label.setObjectName(_fromUtf8("label"))
+        self.VersionLabel = QtGui.QLabel(Util)
+        self.VersionLabel.setGeometry(QtCore.QRect(380, 20, 250, 25))
+        self.VersionLabel.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.VersionLabel.setObjectName(_fromUtf8("VersionLabel"))
         self.labelIP.setBuddy(self.SelectMirror)
         self.labelMirror.setBuddy(self.SelectIP)
 

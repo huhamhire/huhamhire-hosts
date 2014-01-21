@@ -638,6 +638,19 @@
     <string>Powered by PyQT</string>
    </property>
   </widget>
+  <widget class="QLabel" name="VersionLabel">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>20</y>
+     <width>250</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>SelectMirror</tabstop>

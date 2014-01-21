@@ -275,7 +275,10 @@ class QDialogDaemon(QDialogUI):
         else:
             localhost_word = 0x0008
         selection[0x02] = localhost_word
-        ch_parts = (0x08, 0x20 if ip_flag else 0x10, 0x40)
+        ch_parts = [0x08, 0x20 if ip_flag else 0x10, 0x40]
+        # Set customized module if exists
+        if os.path.isfile(self.custom):
+            ch_parts.insert(0, 0x04)
         slices = self.slices[ip_flag]
         for i, part in enumerate(ch_parts):
             part_cfg = self._funcs[ip_flag][slices[i]:slices[i + 1]]
