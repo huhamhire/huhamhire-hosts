@@ -81,7 +81,7 @@ class QDialogDaemon(QDialogUI):
         could be one of `system`, `ansi`, and `utf-8`.
 
         .. seealso:: :attr:`make_mode` in
-            :class:`~gui._make.QSubMakeHosts` class.
+            :class:`~util.makehosts.MakeHosts` class.
 
     :ivar str sys_eol: The End-Of-Line marker. This maker could typically be
         one of `CR`, `LF`, or `CRLF`.
@@ -89,7 +89,6 @@ class QDialogDaemon(QDialogUI):
         .. seealso:: :attr:`sys_eol` in
             :class:`~tui.curses_ui.CursesUI` class.
     """
-
     _down_flag = 0
 
     _update = {}
@@ -99,12 +98,12 @@ class QDialogDaemon(QDialogUI):
     choice = [[], []]
     slices = [[], []]
     make_cfg = {}
-    platform = ""
+    platform = ''
     hostname = ''
     hosts_path = ''
-    sys_eol = ""
+    sys_eol = ''
 
-    make_mode = ""
+    make_mode = ''
 
     def __init__(self):
         super(QDialogDaemon, self).__init__()

@@ -42,6 +42,7 @@ CursesUI
     :members:
 
     .. automethod:: tui.curses_ui.CursesUI.__init__
+    .. automethod:: tui.curses_ui.CursesUI.__del__
 
 
 FetchUpdate
@@ -51,13 +52,4 @@ FetchUpdate
     :members:
 
     .. automethod:: tui._update.FetchUpdate.__init__
-
-
-MakeHosts
----------
-
-.. autoclass:: tui._make.MakeHosts
-    :members:
-
-    .. automethod:: tui._make.MakeHosts.__init__
 """
