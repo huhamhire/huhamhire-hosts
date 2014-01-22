@@ -72,7 +72,7 @@ DATA_FILES = [
     ]),
     (".", [
         "LICENSE",
-        "README.md",
+        "README.rst",
         "network.conf",
     ]),
 ]
@@ -90,7 +90,7 @@ if sys.argv > 1:
             "gui/theme/*.qss",
             "*/*.py",
             "LICENSE",
-            "README.md",
+            "README.rst",
             "network.conf",
         ]
         excludes = [
@@ -194,7 +194,7 @@ if system == "Windows":
         author_email=AUTHOR_EMAIL,
         license=LICENSE,
         url=URL,
-        zipfile="lib/shared.zip",
+        zipfile="lib/shared.lib",
         data_files=DATA_FILES,
         classifiers=CLASSIFIERS,
     )

@@ -110,12 +110,14 @@ class CursesUI(object):
     :ivar str infofile: Filename of the info file containing metadata of the
         hosts data file formatted in JSON. Default by "`hostslist.json`".
 
-    .. seealso:: :attr:`filename` and :attr:`infofile` in
-        :class:`~gui.hostsutil.HostsUtil` class.
+        .. seealso:: :attr:`filename` and :attr:`infofile` in
+            :class:`~gui.hostsutil.HostsUtil` class.
 
     :ivar str custom: File name of User Customized Hosts File. Customized
         hosts would be able to select if this file exists. The default file
         name is ``custom.hosts``.
+
+        .. seealso:: :ref:`User Customized Hosts<intro-customize>`.
     """
     __title = "HOSTS SETUP UTILITY"
     version = "".join(['v', __version__, ' ', __release__])

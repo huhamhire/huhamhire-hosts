@@ -61,6 +61,8 @@ class QDialogUI(QtGui.QDialog, object):
     :ivar str custom: File name of User Customized Hosts File. Customized
         hosts would be able to select if this file exists. The default file
         name is ``custom.hosts``.
+
+        .. seealso:: :ref:`User Customized Hosts<intro-customize>`.
     """
     _cur_ver = ""
     _trans = None

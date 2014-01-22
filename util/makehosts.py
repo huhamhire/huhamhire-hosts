@@ -30,6 +30,9 @@ class MakeHosts(object):
             :class:`~gui.qdialog_d.QDialogDaemon` class.
 
     :ivar str custom: File name of User Customized Hosts file.
+
+        .. seealso:: :ref:`User Customized Hosts<intro-customize>`.
+
     :ivar str hostname: File Name of hosts file.
     :ivar file hosts_file: The hosts file to write hosts to.
     :ivar int mod_num: Total number of modules written to hosts file.
