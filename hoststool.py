@@ -16,12 +16,18 @@
 
 __author__ = "huhamhire <me@huhamhire.com>"
 
+import os
+
 from optparse import OptionParser
 
 import gui
 import tui
 
 from __version__ import __version__
+
+import sys
+sys.path.append("..")
+from util import CommonUtil
 
 
 class UtilLauncher(object):
@@ -116,8 +122,22 @@ class UtilLauncher(object):
 
         .. note:: This is a `classmethod`.
         """
+
+        # Set code page for Windows
+        system = CommonUtil.check_platform()[0]
+        cp = "437"
+        if system == "Windows":
+            chcp = os.popen("chcp")
+            cp = chcp.read().split()[-1]
+            chcp.close()
+            os.popen("chcp 437")
+
         main = tui.HostsUtil()
         main.start()
+
+        # Restore the default code page for Windows
+        if system == "Windows":
+            os.popen("chcp " + cp)
 
 if __name__ == "__main__":
     UtilLauncher.launch()

@@ -148,9 +148,6 @@ Text-based User Interface (TUI) Mode
      not, a warning message box would show up and then terminate current
      session.
 
-If current session is running with `cmd` on a non-english Windows system,
-command ``chcp 437`` is required by curses to set the default code page.
-
 
 User Customized Hosts
 =====================

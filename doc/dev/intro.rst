@@ -137,10 +137,6 @@ Text-based User Interface (TUI) Mode
 
 .. seealso:: :class:`~hoststool.UtilLauncher`.
 
-.. warning:: If current session is running with `cmd` on a non-english
-    Windows system, command ``chcp 437`` is required by curses to set the
-    default code page.
-
 
 .. _intro-customize:
 
