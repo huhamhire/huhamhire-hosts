@@ -170,7 +170,18 @@ class MakeHosts(object):
                 "%s# Section Start: Customized%s" % (self.eol, self.eol))
             for line in lines:
                 line = line.strip("\n")
-                self.hosts_file.write(line + self.eol)
+                entry =  line.split(" ", 1)
+                if line.startswith("#"):
+                    self.hosts_file.write(line + self.eol)
+                elif len(entry) > 1:
+                    ip = entry[0]
+                    if len(ip) < 16:
+                        ip = entry[0].ljust(16)
+                    self.hosts_file.write(
+                        "%s %s%s" % (ip, entry[1], self.eol)
+                    )
+                else:
+                    pass
             self.hosts_file.write("# Section End: Customized%s" % self.eol)
 
     def write_localhost_mod(self, hosts):

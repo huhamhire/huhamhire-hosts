@@ -59,7 +59,8 @@ class QDialogUI(QtGui.QDialog, object):
     :ivar object ui: Form implementation declares layout of the main dialog
         which is generated from a UI file designed by `Qt Designer`.
     :ivar str custom: File name of User Customized Hosts File. Customized
-        hosts would be able to select if this file exists.
+        hosts would be able to select if this file exists. The default file
+        name is ``custom.hosts``.
     """
     _cur_ver = ""
     _trans = None
@@ -179,7 +180,7 @@ class QDialogUI(QtGui.QDialog, object):
         :param label: Label on the main dialog.
         :type: :class:`PyQt4.QtGui.QLabel`
         :param text: Message to be set on the label.
-        :type text: str
+        :type text: unicode
         """
         label.setText(_translate("Util", text, None))
 
@@ -203,7 +204,7 @@ class QDialogUI(QtGui.QDialog, object):
             self.set_label_text(self.ui.labelConnStat, stat)
 
     def set_version(self):
-        version = "".join(['v', __version__,' ', __release__])
+        version = "".join(['v', __version__, ' ', __release__])
         self.set_label_text(self.ui.VersionLabel, version)
 
     def set_info(self):
@@ -216,7 +217,7 @@ class QDialogUI(QtGui.QDialog, object):
         self.set_label_text(self.ui.labelVersionData, ver)
         build = info["Buildtime"]
         build = CommonUtil.timestamp_to_date(build)
-        self.set_label_text(self.ui.labelReleaseData, build)
+        self.set_label_text(self.ui.labelReleaseData, unicode(build))
 
     def set_down_progress(self, progress, message):
         """
@@ -409,7 +410,7 @@ class QDialogUI(QtGui.QDialog, object):
                                  "Incorrect Data file!\n"
                                  "Please use the \"Download\" key to \n"
                                  "fetch a new data file.", None))
-        self.set_message(msg_title, msg)
+        self.set_message(unicode(msg_title), msg)
         self.ui.ButtonApply.setEnabled(False)
         self.ui.ButtonANSI.setEnabled(False)
         self.ui.ButtonUTF.setEnabled(False)
@@ -423,7 +424,7 @@ class QDialogUI(QtGui.QDialog, object):
                                  "Data file not found!\n"
                                  "Please use the \"Download\" key to \n"
                                  "fetch a new data file.", None))
-        self.set_message(msg_title, msg)
+        self.set_message(unicode(msg_title), msg)
         self.ui.ButtonApply.setEnabled(False)
         self.ui.ButtonANSI.setEnabled(False)
         self.ui.ButtonUTF.setEnabled(False)
@@ -450,9 +451,11 @@ class QDialogUI(QtGui.QDialog, object):
                                  "This operation could not be reverted if \n"
                                  "you have not made a backup of your \n"
                                  "current hosts file.", None))
-        choice = QtGui.QMessageBox.question(self, msg_title, msg,
-                                            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
-                                            QtGui.QMessageBox.No)
+        choice = QtGui.QMessageBox.question(
+            self, msg_title, msg,
+            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
+            QtGui.QMessageBox.No
+        )
         if choice == QtGui.QMessageBox.Yes:
             return True
         else:

@@ -98,7 +98,7 @@ class LangUtil(object):
         .. note:: This is a `classmethod`.
 
         :param l_lang: Localized name of a specified language.
-        :type l_lang: str
+        :type l_lang: unicode
         :return: Locale tag of a specified language.
         :rtype: str
         """

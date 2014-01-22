@@ -114,10 +114,11 @@ class CursesUI(object):
         :class:`~gui.hostsutil.HostsUtil` class.
 
     :ivar str custom: File name of User Customized Hosts File. Customized
-        hosts would be able to select if this file exists.
+        hosts would be able to select if this file exists. The default file
+        name is ``custom.hosts``.
     """
     __title = "HOSTS SETUP UTILITY"
-    version = "".join(['v', __version__,' ', __release__])
+    version = "".join(['v', __version__, ' ', __release__])
     __copyleft = "%s Copyleft 2011-2014, huhamhire-hosts Team" % version
 
     _stdscr = None

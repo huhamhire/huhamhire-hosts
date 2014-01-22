@@ -158,7 +158,7 @@ class RetrieveData(object):
         :rtype: list, str
         """
         if part_id == 0x04:
-            return None, "customized"
+            return None, "customize"
         cls._cur.execute("""
             SELECT part_name FROM parts
             WHERE part_id=:part_id;
