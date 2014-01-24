@@ -3,7 +3,7 @@
 #
 #  _build.py : Tools to make packages for different platforms
 #
-# Copyleft (C) 2013 - huhamhire hosts team <develop@huhamhire.com>
+# Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
 # Licensed under the GNU General Public License, version 3. You should
 # have received a copy of the GNU General Public License along with
@@ -14,16 +14,15 @@
 # PURPOSE.
 # =====================================================================
 
-__version__ = "0.9.0"
 __author__ = "huhamhire <me@huhamhire.com>"
 
 import os
 import sys
 import shutil
 
-from hostsutl import __version__
+from __version__ import __version__
 
-SCRIPT = "hostsutl.py"
+SCRIPT = "hoststool.py"
 
 SCRIPT_DIR = os.getcwd() + '/'
 RELEASE_DIR = "../release/"
@@ -32,10 +31,10 @@ NAME = "HostsUtl"
 VERSION = __version__
 DESCRIPTION = "HostsUtl - Hosts Setup Utility"
 AUTHOR = "Hamhire Hu"
-AUTHOR_EMAIL ="develop@huhamhire.com",
+AUTHOR_EMAIL = "hosts@huhamhire.com",
 LICENSE = "Public Domain, Python, BSD, GPLv3 (see LICENSE)",
 URL = "https://hosts.huhamhire.com",
-CLASSIFIERS =  [
+CLASSIFIERS = [
     "Development Status :: 4 - Beta",
     "Environment :: MacOS X",
     "Environment :: Win32 (MS Windows)",
@@ -60,49 +59,70 @@ CLASSIFIERS =  [
     "Topic :: System :: Networking",
     "Topic :: Software Development :: Documentation",
     "Topic :: Text Processing",
-    "Topic :: Utilities",
+    "Topic :: CommonUtil",
 ]
 DATA_FILES = [
-    ("lang", [
-        "lang/en_US.qm",
-        "lang/zh_CN.qm",
-        "lang/zh_TW.qm",
-        ]
-    ),
-    ("theme", [
-        "theme/darkdefault.qss",
-        ]
-    ),
-    "LICENSE",
-    "README.md",
-    "network.conf",
+    ("gui/lang", [
+        "gui/lang/en_US.qm",
+        "gui/lang/zh_CN.qm",
+        "gui/lang/zh_TW.qm",
+    ]),
+    ("gui/theme", [
+        "gui/theme/default.qss",
+    ]),
+    (".", [
+        "LICENSE",
+        "README.rst",
+        "network.conf",
+    ]),
 ]
 
 if sys.argv > 1:
     tar_flag = 0
+    includes = []
+    excludes = []
+    file_path = lambda rel_path: SCRIPT_DIR + rel_path
     if sys.argv[1] == "py2tar":
         # Pack up script package for Linux users
-        file_path = lambda rel_path: SCRIPT_DIR + rel_path
         includes = [
-            "*.py", "lang/*.qm", "theme/*.qss", "LICENSE", "README.md",
-            "network.conf"]
-        excludes = ["_*.py", ".gitattributes"]
+            "*.py",
+            "gui/lang/*.qm",
+            "gui/theme/*.qss",
+            "*/*.py",
+            "LICENSE",
+            "README.rst",
+            "network.conf",
+        ]
+        excludes = [
+            "_build.py",
+            "_pylupdate4.py",
+            "_pyuic4.py",
+            ".gitattributes",
+            ".gitignore",
+        ]
         ex_files = []
-        prefix = "HostsUtl-x11-gpl-"
+        prefix = "HostsTool-x11-gpl-"
         tar_flag = 1
 
     elif sys.argv[1] == "py2source":
         # Pack up source package for Linux users
-        file_path = lambda rel_path: SCRIPT_DIR + rel_path
         includes = ["*"]
-        excludes = [".gitattributes"]
+        excludes = [
+            ".gitattributes",
+            ".gitignore",
+            "hostslist.data",
+        ]
         ex_files = []
-        prefix = "HostsUtl-source-gpl-"
+        prefix = "HostsTool-source-gpl-"
         tar_flag = 1
+    else:
+        prefix = "Error"
+        ex_files = []
 
     if tar_flag:
         import glob
         import tarfile
+
         TAR_NAME = prefix + VERSION + ".tar.gz"
         RELEASE_PATH = RELEASE_DIR + TAR_NAME
         if not os.path.exists(RELEASE_DIR):
@@ -117,24 +137,26 @@ if sys.argv > 1:
             files = glob.glob(file_path(name_format))
             for src_file in files:
                 if src_file not in ex_files:
-                    tar_path = os.path.join(prefix + VERSION, src_file[rel_len:])
+                    tar_path = os.path.join(prefix + VERSION,
+                                            src_file[rel_len:])
                     tar.add(src_file, tar_path)
-                    print src_file
+                    print "compressing: %s" % src_file
         tar.close()
         exit(1)
 
-from utilities import Utilities
-system = Utilities.check_platform()[0]
+from util import CommonUtil
+
+system = CommonUtil.check_platform()[0]
 if system == "Windows":
     # Build binary executables for Windows
     import struct
     import zipfile
     from distutils.core import setup
-
     import py2exe
+
     # Set working directories
     WORK_DIR = SCRIPT_DIR + "work/"
-    DIR_NAME = "HostsUtl"
+    DIR_NAME = "HostsTool"
     DIST_DIR = WORK_DIR + DIR_NAME + '/'
     WIN_OPTIONS = {
         "includes": ["sip"],
@@ -149,23 +171,32 @@ if system == "Windows":
         shutil.rmtree(DIST_DIR)
     # Build Executable
     print " Building Executable ".center(78, '=')
+    EXE_NAME = SCRIPT.split(".")[0]
     setup(
-        name = NAME,
-        version = VERSION,
-        options = {"py2exe": WIN_OPTIONS},
-        windows = [
+        name=NAME,
+        version=VERSION,
+        options={"py2exe": WIN_OPTIONS},
+        console=[
             {"script": SCRIPT,
-             "icon_resources": [(1, "img/hosts_utl.ico")]
+             "dest_base": "hoststool_tui",
+             "uac_info": "highestAvailable",
             },
         ],
-        description = DESCRIPTION,
-        author = AUTHOR,
-        author_email = AUTHOR_EMAIL,
-        license = LICENSE,
-        url = URL,
-        zipfile = None,
-        data_files = DATA_FILES,
-        classifiers = CLASSIFIERS,
+        windows=[
+            {"script": SCRIPT,
+             "icon_resources": [(1, "res/img/icons/hosts_utl.ico")],
+             "dest_base": EXE_NAME,
+             "uac_info": "highestAvailable",
+            },
+        ],
+        description=DESCRIPTION,
+        author=AUTHOR,
+        author_email=AUTHOR_EMAIL,
+        license=LICENSE,
+        url=URL,
+        zipfile="lib/shared.lib",
+        data_files=DATA_FILES,
+        classifiers=CLASSIFIERS,
     )
     # Clean work directory after build
     shutil.rmtree(SCRIPT_DIR + "build/")
@@ -175,6 +206,8 @@ if system == "Windows":
         PLAT = "x64"
     elif struct.calcsize("P") * 8 == 32:
         PLAT = "x86"
+    else:
+        PLAT = "unknown"
     DIR_NAME = DIR_NAME + '-win-gpl-' + VERSION + '-' + PLAT
     ZIP_NAME = DIR_NAME + ".zip"
     ZIP_FILE = WORK_DIR + ZIP_NAME
@@ -202,13 +235,13 @@ elif system == "OS X":
     from setuptools import setup
     # Set working directories
     WORK_DIR = SCRIPT_DIR + "work/"
-    RES_DIR = SCRIPT_DIR + "mac_res/"
-    APP_NAME = "HostsUtl.app"
+    RES_DIR = SCRIPT_DIR + "res/mac/"
+    APP_NAME = "HostsTool.app"
     APP_PATH = WORK_DIR + APP_NAME
     DIST_DIR = APP_PATH + "/Contents/"
     # Set build configuration
     MAC_OPTIONS = {
-        "iconfile": "img/hosts_utl.icns",
+        "iconfile": "res/img/icons/hosts_utl.icns",
         "includes": ["sip", "PyQt4.QtCore", "PyQt4.QtGui"],
         "excludes": [
             "PyQt4.QtDBus",
@@ -233,45 +266,45 @@ elif system == "OS X":
         "plist": {
             "CFBundleAllowMixedLocalizations": True,
             "CFBundleSignature": "hamh",
-            "CFBundleIdentifier": "org.pythonmac.huhamhire.HostsUtl",
-            "NSHumanReadableCopyright": "(C) 2013, Huhamhire hosts Team"}
+            "CFBundleIdentifier": "org.pythonmac.huhamhire.HostsTool",
+            "NSHumanReadableCopyright": "(C) 2014, huhamhire hosts Team"}
     }
     # Clean work space before build
     if os.path.exists(APP_PATH):
         shutil.rmtree(APP_PATH)
     if not os.path.exists(WORK_DIR):
         os.mkdir(WORK_DIR)
-    # Make daemon APP
+        # Make daemon APP
     OSAC_CMD = "osacompile -o %s %sHostsUtl.scpt" % (APP_PATH, RES_DIR)
     os.system(OSAC_CMD)
     # Build APP
     print " Building Application ".center(78, '=')
     setup(
-        app = [SCRIPT],
-        name = NAME,
-        version = VERSION,
-        options = {"py2app": MAC_OPTIONS},
-        setup_requires = ["py2app"],
-        description = DESCRIPTION,
-        author = AUTHOR,
-        author_email = AUTHOR_EMAIL,
-        license = LICENSE,
-        url = URL,
-        data_files = DATA_FILES,
-        classifiers = CLASSIFIERS,
+        app=[SCRIPT],
+        name=NAME,
+        version=VERSION,
+        options={"py2app": MAC_OPTIONS},
+        setup_requires=["py2app"],
+        description=DESCRIPTION,
+        author=AUTHOR,
+        author_email=AUTHOR_EMAIL,
+        license=LICENSE,
+        url=URL,
+        data_files=DATA_FILES,
+        classifiers=CLASSIFIERS,
     )
     # Clean work directory after build
     os.remove(DIST_DIR + "Resources/applet.icns")
     shutil.copy2(
-        SCRIPT_DIR + "img/hosts_utl.icns",
+        SCRIPT_DIR + "res/img/icons/hosts_utl.icns",
         DIST_DIR + "Resources/applet.icns")
     shutil.copy2(RES_DIR + "Info.plist", DIST_DIR + "Info.plist")
     shutil.rmtree(SCRIPT_DIR + "build/")
     # Pack APP to DMG file
     VDMG_DIR = WORK_DIR + "package_vdmg/"
     DMG_TMP = WORK_DIR + "pack_tmp.dmg"
-    DMG_RES_DIR = RES_DIR + "dmg_resource/"
-    VOL_NAME = "HostsUtl"
+    DMG_RES_DIR = RES_DIR + "dmg/"
+    VOL_NAME = "HostsTool"
     DMG_NAME = VOL_NAME + "-mac-gpl-" + VERSION + ".dmg"
     DMG_PATH = WORK_DIR + DMG_NAME
     # Clean work space before pack up
@@ -281,7 +314,7 @@ elif system == "OS X":
         os.remove(DMG_TMP)
     if os.path.isfile(DMG_PATH):
         os.remove(DMG_PATH)
-    # Prepare files in DMG package
+        # Prepare files in DMG package
     os.mkdir(VDMG_DIR)
     shutil.move(APP_PATH, VDMG_DIR)
     os.symlink("/Applications", VDMG_DIR + " ")

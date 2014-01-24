@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>huhamhire</author>
+ <class>Util</class>
+ <widget class="QDialog" name="Util">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>420</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>640</width>
+    <height>420</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>640</width>
+    <height>420</height>
+   </size>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::DefaultContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Hosts Setup Utility</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="util.qrc">
+    <normaloff>:/icon/res/img/icons/utl_icon@256x256.png</normaloff>:/icon/res/img/icons/utl_icon@256x256.png</iconset>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <widget class="QFrame" name="mainFrame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>40</y>
+     <width>640</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QGroupBox" name="ConfigBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>240</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="title">
+     <string>Config</string>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>25</y>
+       <width>221</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="configLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelIP">
+        <property name="text">
+         <string>Server</string>
+        </property>
+        <property name="buddy">
+         <cstring>SelectMirror</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="SelectMirror"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelMirror">
+        <property name="text">
+         <string>IP Version</string>
+        </property>
+        <property name="buddy">
+         <cstring>SelectIP</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="SelectIP">
+        <item>
+         <property name="text">
+          <string notr="true">IPv4</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string notr="true">IPv6</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="StatusBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>240</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="title">
+     <string>Status</string>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>221</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="StatusLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelConn">
+        <property name="text">
+         <string>Connection</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelConnStat">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelOS">
+        <property name="text">
+         <string>OS</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="labelOSStat">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="InfoBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>240</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="title">
+     <string>Hosts Info</string>
+    </property>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>221</width>
+       <height>59</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="InfoLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelVersion">
+        <property name="text">
+         <string>Version</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="labelVersionData">
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelRelease">
+        <property name="text">
+         <string>Release</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="labelReleaseData">
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelLatest">
+        <property name="text">
+         <string>Latest</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLabel" name="labelLatestData">
+        <property name="text">
+         <string>N/A</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="FunctionsBox">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>20</y>
+      <width>250</width>
+      <height>290</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Functions</string>
+    </property>
+    <widget class="QListWidget" name="Functionlist">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>230</width>
+       <height>260</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>30</y>
+      <width>110</width>
+      <height>280</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>0</number>
+    </property>
+    <widget class="QPushButton" name="ButtonBackup">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Backup hosts</string>
+     </property>
+     <property name="whatsThis">
+      <string>Backup the hosts file of current system.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_backup.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_backup_disabled.png</disabledoff>:/buttons/res/img/buttons/button_backup.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonUpdate">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>70</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Download data file</string>
+     </property>
+     <property name="whatsThis">
+      <string>Download the latest data file.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_download.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_download_disabled.png</disabledoff>:/buttons/res/img/buttons/button_download.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonRestore">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>10</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Restore backup</string>
+     </property>
+     <property name="whatsThis">
+      <string>Restore a previous backup of hosts file.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_restore.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_restore_disabled.png</disabledoff>:/buttons/res/img/buttons/button_restore.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonApply">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>220</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Apply hosts</string>
+     </property>
+     <property name="whatsThis">
+      <string>Apply changes to the hosts file.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_apply.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_apply_disabled.png</disabledoff>:/buttons/res/img/buttons/button_apply.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonExit">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>220</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Exit</string>
+     </property>
+     <property name="whatsThis">
+      <string>Close this tool.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_exit.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_exit_disabled.png</disabledoff>:/buttons/res/img/buttons/button_exit.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonCheck">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>70</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Check update / Refresh</string>
+     </property>
+     <property name="whatsThis">
+      <string>Check the latest version of hosts data file.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_update.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_update_disabled.png</disabledoff>:/buttons/res/img/buttons/button_update.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonANSI">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>160</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Save with ANSI</string>
+     </property>
+     <property name="whatsThis">
+      <string>Export to hosts file encoding by ANSI.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_ansi.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_ansi_disabled.png</disabledoff>:/buttons/res/img/buttons/button_ansi.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ButtonUTF">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>160</y>
+       <width>48</width>
+       <height>48</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Save with UTF-8</string>
+     </property>
+     <property name="whatsThis">
+      <string>Export to hosts file encoding by UTF-8.</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="util.qrc">
+       <normaloff>:/buttons/res/img/buttons/button_utf8.png</normaloff>
+       <disabledoff>:/buttons/res/img/buttons/button_utf8_disabled.png</disabledoff>:/buttons/res/img/buttons/button_utf8.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QComboBox" name="SelectLang">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>320</y>
+      <width>108</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="Prog">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>320</y>
+      <width>500</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="textVisible">
+     <bool>true</bool>
+    </property>
+    <property name="invertedAppearance">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="TitleLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>250</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Hosts Setup Utility</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Copyright">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>390</y>
+     <width>300</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Copyleft (C) 2011-2014 &lt;a href=&quot;https://hosts.huhamhire.com/&quot;&gt;&lt;span style=&quot;text-decoration: none;color: #b1b1b1;&quot;&gt;huhamhire-hosts&lt;/span&gt;&lt;/a&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>390</y>
+     <width>150</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Powered by PyQT</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="VersionLabel">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>20</y>
+     <width>250</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>SelectMirror</tabstop>
+  <tabstop>SelectIP</tabstop>
+  <tabstop>Functionlist</tabstop>
+  <tabstop>ButtonApply</tabstop>
+  <tabstop>ButtonExit</tabstop>
+  <tabstop>ButtonCheck</tabstop>
+  <tabstop>ButtonUpdate</tabstop>
+  <tabstop>ButtonBackup</tabstop>
+  <tabstop>ButtonRestore</tabstop>
+  <tabstop>ButtonANSI</tabstop>
+  <tabstop>ButtonUTF</tabstop>
+  <tabstop>SelectLang</tabstop>
+ </tabstops>
+ <resources>
+  <include location="util.qrc"/>
+  <include location="style.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>ButtonExit</sender>
+   <signal>clicked()</signal>
+   <receiver>Util</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>321</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>627</x>
+     <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SelectIP</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>Util</receiver>
+   <slot>on_IPVersion_changed(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>239</x>
+     <y>131</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>253</x>
+     <y>95</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SelectMirror</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>Util</receiver>
+   <slot>on_Mirror_changed(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>239</x>
+     <y>95</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>255</x>
+     <y>12</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Functionlist</sender>
+   <signal>itemChanged(QListWidgetItem*)</signal>
+   <receiver>Util</receiver>
+   <slot>on_Selection_changed(QListWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>300</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>252</x>
+     <y>260</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonApply</sender>
+   <signal>clicked()</signal>
+   <receiver>Util</receiver>
+   <slot>on_MakeHosts_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>551</x>
+     <y>316</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>516</x>
+     <y>281</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonBackup</sender>
+   <signal>clicked()</signal>
+   <receiver>Util</receiver>
+   <slot>on_Backup_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>547</x>
+     <y>93</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>519</x>
+     <y>57</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonRestore</sender>
+   <signal>clicked()</signal>
+   <receiver>Util</receiver>
+   <slot>on_Restore_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>603</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>629</x>
+     <y>56</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonCheck</sender>
+   <signal>clicked()</signal>
+   <receiver>Util</receiver>
+   <slot>on_CheckUpdate_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>547</x>
+     <y>159</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>519</x>
+     <y>103</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonUpdate</sender>
+   <signal>clicked()</signal>
+   <receiver>Util</receiver>
+   <slot>on_FetchUpdate_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>606</x>
+     <y>155</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>631</x>
+     <y>109</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SelectLang</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>Util</receiver>
+   <slot>on_Lang_changed(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>572</x>
+     <y>373</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>541</x>
+     <y>314</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonANSI</sender>
+   <signal>clicked()</signal>
+   <receiver>Util</receiver>
+   <slot>on_MakeANSI_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>549</x>
+     <y>243</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>517</x>
+     <y>176</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ButtonUTF</sender>
+   <signal>clicked()</signal>
+   <receiver>Util</receiver>
+   <slot>on_MakeUTF8_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>607</x>
+     <y>248</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>634</x>
+     <y>177</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Copyright</sender>
+   <signal>linkActivated(QString)</signal>
+   <receiver>Util</receiver>
+   <slot>on_LinkActivated(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>459</x>
+     <y>406</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>405</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>on_Mirror_changed(int)</slot>
+  <slot>on_IPVersion_changed(int)</slot>
+  <slot>on_Selection_changed(QListWidgetItem*)</slot>
+  <slot>on_MakeHosts_clicked()</slot>
+  <slot>on_Backup_clicked()</slot>
+  <slot>on_Restore_clicked()</slot>
+  <slot>on_CheckUpdate_clicked()</slot>
+  <slot>on_FetchUpdate_clicked()</slot>
+  <slot>on_Lang_changed(QString)</slot>
+  <slot>on_MakeANSI_clicked()</slot>
+  <slot>on_MakeUTF8_clicked()</slot>
+  <slot>on_LinkActivated(QString)</slot>
+ </slots>
+</ui>
