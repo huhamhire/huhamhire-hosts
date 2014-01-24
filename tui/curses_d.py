@@ -21,11 +21,11 @@ import urllib
 import sys
 
 from curses_ui import CursesUI
-from _make import MakeHosts
 from _update import FetchUpdate
 
 sys.path.append("..")
 from util import CommonUtil, RetrieveData
+from util import MakeHosts
 
 
 class CursesDaemon(CursesUI):
@@ -106,6 +106,14 @@ class CursesDaemon(CursesUI):
 
     :ivar str hosts_path: The absolute path to the hosts file on current
         operating system.
+    :ivar str make_mode: Operation mode for making hosts file. The valid value
+        could be one of `system`, `ansi`, and `utf-8`.
+
+        .. seealso:: :attr:`make_mode` in
+            :class:`~util.makehosts.MakeHosts` class.
+
+    :ivar str make_path: Temporary path to store generated hosts file. The
+        default value of :attr:`make_path` is "`./hosts`".
     :ivar list _ops_keys: Hot keys used to start a specified operation.
         Default operation keys are `F5`, `F6`, and `F10`.
     :ivar list _hot_keys: Hot keys used to select a item or confirm an
@@ -123,6 +131,9 @@ class CursesDaemon(CursesUI):
     platform = ''
     hostname = ''
     hosts_path = ''
+
+    make_mode = ''
+    make_path = "./hosts"
 
     _ops_keys = [curses.KEY_F5, curses.KEY_F6, curses.KEY_F10]
     _hot_keys = [curses.KEY_UP, curses.KEY_DOWN, 10, 32]
@@ -213,6 +224,7 @@ class CursesDaemon(CursesUI):
                         confirm = self.messagebox(msg, 2)
                         if confirm:
                             self.set_config_bytes()
+                            self.make_mode = "system"
                             maker = MakeHosts(self)
                             maker.make()
                             self.move_hosts()
@@ -471,7 +483,10 @@ class CursesDaemon(CursesUI):
             "Windows": 0x0001, "Linux": 0x0002,
             "Unix": 0x0002, "OS X": 0x0004}[self.platform]
         selection[0x02] = localhost_word
-        ch_parts = (0x08, 0x20 if ip_flag else 0x10, 0x40)
+        ch_parts = [0x08, 0x20 if ip_flag else 0x10, 0x40]
+        # Set customized module if exists
+        if os.path.isfile(self.custom):
+            ch_parts.insert(0, 0x04)
         slices = self.slices[ip_flag]
         for i, part in enumerate(ch_parts):
             part_cfg = self._funcs[ip_flag][slices[i]:slices[i + 1]]

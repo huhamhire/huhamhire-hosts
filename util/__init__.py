@@ -11,6 +11,7 @@
 # =====================================================================
 
 from common import CommonUtil
+from makehosts import MakeHosts
 from retrievedata import RetrieveData
 
-__all__ = ["CommonUtil", "RetrieveData"]
+__all__ = ["CommonUtil", "MakeHosts", "RetrieveData"]

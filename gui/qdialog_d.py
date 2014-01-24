@@ -81,7 +81,7 @@ class QDialogDaemon(QDialogUI):
         could be one of `system`, `ansi`, and `utf-8`.
 
         .. seealso:: :attr:`make_mode` in
-            :class:`~gui._make.QSubMakeHosts` class.
+            :class:`~util.makehosts.MakeHosts` class.
 
     :ivar str sys_eol: The End-Of-Line marker. This maker could typically be
         one of `CR`, `LF`, or `CRLF`.
@@ -89,7 +89,6 @@ class QDialogDaemon(QDialogUI):
         .. seealso:: :attr:`sys_eol` in
             :class:`~tui.curses_ui.CursesUI` class.
     """
-
     _down_flag = 0
 
     _update = {}
@@ -99,12 +98,12 @@ class QDialogDaemon(QDialogUI):
     choice = [[], []]
     slices = [[], []]
     make_cfg = {}
-    platform = ""
+    platform = ''
     hostname = ''
     hosts_path = ''
-    sys_eol = ""
+    sys_eol = ''
 
-    make_mode = ""
+    make_mode = ''
 
     def __init__(self):
         super(QDialogDaemon, self).__init__()
@@ -276,7 +275,10 @@ class QDialogDaemon(QDialogUI):
         else:
             localhost_word = 0x0008
         selection[0x02] = localhost_word
-        ch_parts = (0x08, 0x20 if ip_flag else 0x10, 0x40)
+        ch_parts = [0x08, 0x20 if ip_flag else 0x10, 0x40]
+        # Set customized module if exists
+        if os.path.isfile(self.custom):
+            ch_parts.insert(0, 0x04)
         slices = self.slices[ip_flag]
         for i, part in enumerate(ch_parts):
             part_cfg = self._funcs[ip_flag][slices[i]:slices[i + 1]]

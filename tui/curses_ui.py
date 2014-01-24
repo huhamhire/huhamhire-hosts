@@ -18,7 +18,7 @@ import locale
 import sys
 sys.path.append("..")
 from util import CommonUtil
-from __version__ import __version__
+from __version__ import __version__, __release__
 
 
 class CursesUI(object):
@@ -110,11 +110,18 @@ class CursesUI(object):
     :ivar str infofile: Filename of the info file containing metadata of the
         hosts data file formatted in JSON. Default by "`hostslist.json`".
 
-    .. seealso:: :attr:`filename` and :attr:`infofile` in
-        :class:`~gui.hostsutil.HostsUtil` class.
+        .. seealso:: :attr:`filename` and :attr:`infofile` in
+            :class:`~gui.hostsutil.HostsUtil` class.
+
+    :ivar str custom: File name of User Customized Hosts File. Customized
+        hosts would be able to select if this file exists. The default file
+        name is ``custom.hosts``.
+
+        .. seealso:: :ref:`User Customized Hosts<intro-customize>`.
     """
     __title = "HOSTS SETUP UTILITY"
-    __copyleft = "v%s Copyleft 2011-2014, huhamhire-hosts Team" % __version__
+    version = "".join(['v', __version__, ' ', __release__])
+    __copyleft = "%s Copyleft 2011-2014, huhamhire-hosts Team" % version
 
     _stdscr = None
     _item_sup = 0
@@ -147,6 +154,7 @@ class CursesUI(object):
 
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
+    custom = "custom.hosts"
 
     def __init__(self):
         """
@@ -162,6 +170,14 @@ class CursesUI(object):
         curses.use_default_colors()
         for i, color in enumerate(self.colorpairs):
             curses.init_pair(i + 1, *color)
+
+    def __del__(self):
+        """
+        Reset terminal before quit.
+        """
+        curses.nocbreak()
+        curses.echo()
+        curses.endwin()
 
     def banner(self):
         """

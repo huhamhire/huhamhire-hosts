@@ -157,6 +157,8 @@ class RetrieveData(object):
             * mod_name(`str`): Name of a specified module.
         :rtype: list, str
         """
+        if part_id == 0x04:
+            return None, "customize"
         cls._cur.execute("""
             SELECT part_name FROM parts
             WHERE part_id=:part_id;
@@ -196,7 +198,7 @@ class RetrieveData(object):
 
             * modules(`list`): Information of modules for users to select.
             * defaults(`dict`): Default selection config for selected parts.
-            * slices(`list`): Number of modules in each part.
+            * slices(`list`): Numbers of modules in each part.
         :rtype: list, dict, list
         """
         ch_parts = (0x08, 0x20 if flag_v6 else 0x10, 0x40)
@@ -268,6 +270,8 @@ class RetrieveData(object):
 
         :rtype: bool
         """
+        if part_id == 0x04:
+            return True
         cls._cur.execute("""
             SELECT mod_id, mutex FROM modules
             WHERE part_id=:part_id;

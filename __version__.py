@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  __version__.py :
+#  __version__.py : Version info for Hosts Setup Tool.
 #
 # Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -15,4 +15,5 @@
 # =====================================================================
 
 __version__ = "1.9.8"
+__release__ = "beta"
 __revision__ = "$Id$"

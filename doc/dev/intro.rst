@@ -137,9 +137,23 @@ Text-based User Interface (TUI) Mode
 
 .. seealso:: :class:`~hoststool.UtilLauncher`.
 
-.. warning:: If current session is running with `cmd` on a non-english
-    Windows system, command ``chcp 437`` is required by curses to set the
-    default code page.
+
+.. _intro-customize:
+
+User Customized Hosts
+---------------------
+
+Users are allowed to add customized hosts list as an independent module to
+make a hosts file. All you need to do is create a simple text file named
+``custom.hosts`` in the working directory, and put your own hosts entries
+into this file. Then you would find a `Customized Hosts` option in the
+function list.
+
+.. warning:: Non-ASCII characters are not recommended to be put into the
+    customized hosts file.
+
+.. versionadded:: 1.9.8
+
 
 .. note:: Specific user manual is not included in this documentation. For
     further information, please visit our

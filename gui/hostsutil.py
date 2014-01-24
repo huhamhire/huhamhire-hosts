@@ -103,6 +103,7 @@ class HostsUtil(QDialogSlots):
             :class:`~tui.hostsutil.HostsUtil` class.
         """
         self.ui.SelectMirror.clear()
+        self.set_version()
         # Set mirrors
         self.mirrors = CommonUtil.set_network("network.conf")
         self.set_mirrors()

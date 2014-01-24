@@ -1,11 +1,11 @@
 Hosts Setup Utility Developer Documentation
 ===========================================
 
-Since the government of some countries are using the blocking the internet
-access to several websites and web service providers which includes some world
-famous sites like Google, YouTube, twitter, Facebook, and Wikipedia etc., we
-designed this tiny utility in order to help people getting through the
-Internet blockade.
+Since the governments of some countries are using technical methods blocking
+internet access to some websites and web service providers which includes some
+world famous sites like Google, YouTube, twitter, Facebook, and Wikipedia
+etc., we designed this tiny utility in order to help people getting through
+the Internet blockade.
 
 Chapter one of this documentation contains a brief introduction of
 `Hosts Setup Utility` and basic usage to start this tool. While the others

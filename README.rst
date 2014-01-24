@@ -4,11 +4,11 @@ Hosts Setup Utility
 
 Introduction
 ============
-Since the governments of some countries are using the blocking the internet
-access to several websites and web service providers which includes some world
-famous sites like Google, YouTube, twitter, Facebook, and Wikipedia etc., we
-designed this tiny utility in order to help people getting through the
-Internet blockade.
+Since the governments of some countries are using technical methods blocking
+internet access to some websites and web service providers which includes some
+world famous sites like Google, YouTube, twitter, Facebook, and Wikipedia
+etc., we designed this tiny utility in order to help people getting through
+the Internet blockade.
 
 `Hosts Setup Utility` provides basic tools to manage the hosts file on current
 operating systems. It also provides both support for Graphical Desktop
@@ -148,8 +148,18 @@ Text-based User Interface (TUI) Mode
      not, a warning message box would show up and then terminate current
      session.
 
-If current session is running with `cmd` on a non-english Windows system,
-command ``chcp 437`` is required by curses to set the default code page.
+
+User Customized Hosts
+=====================
+
+Users are allowed to add customized hosts list as an independent module to
+make a hosts file. All you need to do is create a simple text file named
+``custom.hosts`` in the working directory, and put your own hosts entries
+into this file. Then you would find a `Customized Hosts` option in the
+function list.
+
+  * Non-ASCII characters are not recommended to be put into the
+    customized hosts file.
 
 
 Author/Maintainer

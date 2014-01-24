@@ -22,6 +22,15 @@ CommonUtil
     :members:
 
 
+MakeHosts
+---------
+
+.. autoclass:: util.makehosts.MakeHosts
+    :members:
+
+    .. automethod:: util.makehosts.MakeHosts.__init__
+
+
 RetrieveData
 ------------
 .. autoclass:: util.retrievedata.RetrieveData

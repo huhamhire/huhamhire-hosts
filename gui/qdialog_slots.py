@@ -170,7 +170,7 @@ class QDialogSlots(QDialogDaemon):
         :type item: int
         """
         ip_flag = self._ipv_id
-        func_id = self.listWidget().row(item)
+        func_id = self.ui.Functionlist.row(item)
         if self._funcs[ip_flag][func_id] == 0:
             self._funcs[ip_flag][func_id] = 1
         else:
