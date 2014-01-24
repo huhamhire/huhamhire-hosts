@@ -70,13 +70,14 @@ class MakeHosts(object):
         self.hostname = parent.hostname
         self.custom = parent.custom
         make_path = parent.make_path
-        if parent.make_mode == "system":
+        self.make_mode = parent.make_mode
+        if self.make_mode == "system":
             self.eol = parent.sys_eol
             self.hosts_file = open("hosts", "wb")
-        elif parent.make_mode == "ansi":
+        elif self.make_mode == "ansi":
             self.eol = "\r\n"
             self.hosts_file = open(unicode(make_path), "wb")
-        elif parent.make_mode == "utf-8":
+        elif self.make_mode == "utf-8":
             self.eol = "\n"
             self.hosts_file = open(unicode(make_path), "wb")
 
