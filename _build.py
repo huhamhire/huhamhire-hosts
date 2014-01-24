@@ -235,7 +235,7 @@ elif system == "OS X":
     from setuptools import setup
     # Set working directories
     WORK_DIR = SCRIPT_DIR + "work/"
-    RES_DIR = SCRIPT_DIR + "res/"
+    RES_DIR = SCRIPT_DIR + "res/mac/"
     APP_NAME = "HostsTool.app"
     APP_PATH = WORK_DIR + APP_NAME
     DIST_DIR = APP_PATH + "/Contents/"
@@ -296,7 +296,7 @@ elif system == "OS X":
     # Clean work directory after build
     os.remove(DIST_DIR + "Resources/applet.icns")
     shutil.copy2(
-        SCRIPT_DIR + "img/icons/hosts_utl.icns",
+        SCRIPT_DIR + "res/img/icons/hosts_utl.icns",
         DIST_DIR + "Resources/applet.icns")
     shutil.copy2(RES_DIR + "Info.plist", DIST_DIR + "Info.plist")
     shutil.rmtree(SCRIPT_DIR + "build/")
