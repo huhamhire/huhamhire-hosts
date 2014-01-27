@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  hostsutil.py : Main parts of Hosts Setup Utility
+#  hostsutil.py : Main entrance to GUI module of Hosts Setup Utility.
 #
 # Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -18,7 +18,6 @@ __author__ = "huhamhire <me@huhamhire.com>"
 
 import sys
 
-from PyQt4 import QtGui
 from zipfile import BadZipfile
 
 from qdialog_slots import QDialogSlots
@@ -31,26 +30,31 @@ LANG_DIR = "./gui/lang/"
 
 
 class HostsUtil(QDialogSlots):
-    """A class to manage the operations and UI of Hosts Setup Utility
+    """
+    HostsUtil class is the main entrance to the Graphical User Interface (GUI)
+    module of `Hosts Setup Utility`. This class contains methods to launch the
+    main dialog of this utility.
 
-    HostsUtil class is a subclass of PyQt4.QtGui.QDialog which is used to
-    make the main dialog of this hosts setup utility.
-    This class contains a set of tools used to manage the operations while
-    modifying the hosts file of current operating system. Including methods
-    to manage operations to update data file, download data file, configure
-    hosts, make hosts file, backup hosts file, and restore backup.
-    The HostsUtil class also provides QT slots to deal with the QT singles
-    emitted by the widgets on the main dialog operated by users. Extend
-    methods dealing with the user interface is also given by this class.
+    .. note:: This class is subclass of
+        :class:`~gui.qdialog_slots.QDialogSlots` class.
 
-    Attributes:
-        init_flag (int): An integer indicating how many times has the main
-            dialog been initialized. This value would be referenced for
-            translator to set the language of the main dialog.
-        filename (str): A string indicating the filename of the data file
-            containing data to make a hosts file.
-        infofile (str): A string indicating the filename of the info file
-            containing metadata of the data file in JSON format.
+    Typical usage to start a GUI session::
+
+        import gui
+
+        util = gui.HostsUtil()
+        util.start()
+
+    :ivar int init_flag: Times of the main dialog being initialized. This
+        value would be referenced for translator to set the language of the
+        main dialog.
+    :ivar str filename: Filename of the hosts data file containing data to
+        make hosts files from. Default by "`hostslist.data`".
+    :ivar str infofile: Filename of the info file containing metadata of the
+        hosts data file formatted in JSON. Default by "`hostslist.json`".
+
+    .. seealso:: :attr:`filename` and :attr:`infofile` in
+        :class:`~tui.curses_ui.CursesUI` class.
     """
     init_flag = 0
     # Data file related configuration
@@ -61,25 +65,45 @@ class HostsUtil(QDialogSlots):
         super(HostsUtil, self).__init__()
 
     def __del__(self):
-        # Clear up datafile
+        """
+        Clear up the temporary data file while TUI session is finished.
+        """
         try:
             RetrieveData.clear()
         except:
             pass
 
     def start(self):
+        """
+        Start the GUI session.
+
+        .. note:: This method is the trigger to launch a GUI session of
+            `Hosts Setup Utility`.
+        """
         if not self.init_flag:
             self.init_main()
         self.show()
         sys.exit(self.app.exec_())
 
     def init_main(self):
-        """Initialize the main dialog - Public Method
-
+        """
         Set up the elements on the main dialog. Check the environment of
         current operating system and current session.
+
+        * Load server list from a configuration file under working directory.
+        * Try to load the hosts data file under working directory if it
+          exists.
+
+        .. note:: IF hosts data file does not exists correctly in current
+            working directory, a warning message box would popup. And
+            operations to change the hosts file on current system could be
+            done only until a new data file has been downloaded.
+
+        .. seealso:: Method :meth:`~tui.hostsutil.HostsUtil.__init__` in
+            :class:`~tui.hostsutil.HostsUtil` class.
         """
         self.ui.SelectMirror.clear()
+        self.set_version()
         # Set mirrors
         self.mirrors = CommonUtil.set_network("network.conf")
         self.set_mirrors()

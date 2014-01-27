@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  qdialog_d.py :
+#  qdialog_d.py : Operations on the main dialog.
 #
 # Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -36,75 +36,90 @@ from util import RetrieveData, CommonUtil
 
 class QDialogDaemon(QDialogUI):
     """
-    Attributes:
-        _down_flag (int) An integer indicating the downloading status of
-            current session. 1 represents data file is being downloaded.
-        _funcs (list): A list containing two lists with the information of
-            function list for IPv4 and IPv6 environment.
-        _update (dict): A dictionary containing the update information of the
-            current data file on server.
-        _writable (int): An integer indicating whether the program is run with
-            admin/root privileges. The value could be 1 or 0.
+    QDialogDaemon class contains methods used to manage the operations while
+    modifying the hosts file of current operating system. Including methods
+    to manage operations to update data file, download data file, configure
+    hosts, make hosts file, backup hosts file, and restore backup.
 
-        choice (list): A list containing two lists with the selection of
-            functions for IPv4 and IPv6 environment.
-        slices (list): A list containing two lists with integers indicating
-            the number of function items from different parts listed in the
-            function list.
-        hostname (str): A string indicating the hostname of current operating
-            system. This attribute would be used for linux clients.
-        hosts_path (str): A string indicating the absolute path of the hosts
-            file on current operating system.
-        make_cfg (dict): A dictionary containing the selection control bytes
-            to make a hosts file.
-        make_mode (str): A string indicating the operation mode for making
-            hosts file.
-        sys_eol (str): A string indicating the End-Of-Line marker.
+    .. note:: This class is subclass of :class:`~gui.qdialog_ui.QDialogUI`
+        class and parent class of :class:`~gui.qdialog_slots.QDialogSlots`.
+
+    :ivar int_down_flag: An flag indicating the downloading status of
+        current session. 1 represents data file is being downloaded.
+    :ivar dict _update: Update information of the current data file on server.
+    :ivar int _writable: Indicating whether the program is run with admin/root
+        privileges. The value could be `1` or `0`.
+
+        .. seealso:: `_update` and `_writable` in
+            :class:`~tui.curses_d.CursesDaemon` class.
+
+    :ivar list _funcs: Two lists with the information of function list both
+        for IPv4 and IPv6 environment.
+    :ivar list choice: Two lists with the selection of functions both
+        for IPv4 and IPv6 environment.
+    :ivar list slices: Two lists with integers indicating the number of
+        function items from different parts listed in the function list.
+
+        .. seealso:: `_funcs`, `choice`, and `slices` in
+            :class:`~tui.curses_ui.CursesUI` class.
+
+    :ivar dict make_cfg: A set of module selection control bytes used to
+        control whether a specified method is used or not while generate a
+        hosts file.
+
+        .. seealso:: :attr:`make_cfg` in
+            :class:`~tui.curses_d.CursesDaemon` class.
+    :ivar str platform: Platform of current operating system. The value could
+        be `Windows`, `Linux`, `Unix`, `OS X`, and of course `Unknown`.
+    :ivar str hostname: The hostname of current operating system.
+
+        .. note:: This attribute would only be used on linux.
+
+    :ivar str hosts_path: The absolute path to the hosts file on current
+        operating system.
+    :ivar str make_mode: Operation mode for making hosts file. The valid value
+        could be one of `system`, `ansi`, and `utf-8`.
+
+        .. seealso:: :attr:`make_mode` in
+            :class:`~util.makehosts.MakeHosts` class.
+
+    :ivar str sys_eol: The End-Of-Line marker. This maker could typically be
+        one of `CR`, `LF`, or `CRLF`.
+
+        .. seealso:: :attr:`sys_eol` in
+            :class:`~tui.curses_ui.CursesUI` class.
     """
-
     _down_flag = 0
-    _funcs = [[], []]
+
     _update = {}
     _writable = 0
 
+    _funcs = [[], []]
     choice = [[], []]
     slices = [[], []]
+    make_cfg = {}
+    platform = ''
     hostname = ''
     hosts_path = ''
-    make_cfg = {}
-    make_mode = ""
-    sys_eol = ""
+    sys_eol = ''
+
+    make_mode = ''
 
     def __init__(self):
         super(QDialogDaemon, self).__init__()
         self.set_platform()
         self.set_platform_label()
 
-    def reject(self):
-        """Response to the reject signal - Public Method
-
-        The slot response to the reject signal from an instance of the main
-        dialog. Close this program while the reject signal is emitted.
-        """
-        self.close()
-        return QtGui.QDialog.reject(self)
-
-    def close(self):
-        """Response to the close signal - Public Method
-
-        The slot response to the close signal from an instance of the main
-        dialog. Close this program while the reject signal is emitted.
-        """
-        try:
-            RetrieveData.clear()
-        except:
-            pass
-        super(QDialogDaemon, self).close()
-
     def check_writable(self):
-        """Check root privileges - Public Method
-
+        """
         Check if current session is ran with root privileges.
+
+        .. note:: IF current session does not has the write privileges to the
+            hosts file of current system, a warning message box would popup.
+
+        .. note:: ALL operation would change the `hosts` file on current
+            system could only be done while current session has write
+            privileges to the file.
         """
         writable = CommonUtil.check_privileges()[1]
         self._writable = writable
@@ -112,19 +127,16 @@ class QDialogDaemon(QDialogUI):
             self.warning_permission()
 
     def check_connection(self):
-        """Operations to check connection - Public Method
-
-        Call operations to check the connection to current server.
+        """
+        Operations to check the connection to current server.
         """
         thread = QSubChkConnection(self)
         thread.trigger.connect(self.set_conn_status)
         thread.start()
 
     def check_update(self):
-        """Operations to check data file update - Public Method
-
-        Call operations to retrieve the metadata of the latest data file from
-        a server.
+        """
+        Retrieve the metadata of the latest data file from a server.
         """
         self.set_update_start_btns()
         self.set_label_text(self.ui.labelLatestData, unicode(
@@ -134,9 +146,8 @@ class QDialogDaemon(QDialogUI):
         thread.start()
 
     def fetch_update(self):
-        """Operations to fetch new data file - Public Method
-
-        Call operations to retrieve a new hosts data file from a server.
+        """
+        Retrieve a new hosts data file from a server.
         """
         self.set_fetch_start_btns()
         thread = QSubFetchUpdate(self)
@@ -145,8 +156,7 @@ class QDialogDaemon(QDialogUI):
         thread.start()
 
     def fetch_update_after_check(self):
-        """Check to fetch data file after check for update - Public Method
-
+        """
         Decide whether to retrieve a new data file from server or not after
         checking update information from a mirror.
         """
@@ -160,13 +170,12 @@ class QDialogDaemon(QDialogUI):
             self.finish_fetch()
 
     def export_hosts(self):
-        """Draw export hosts dialog - Public Method
-
-        Show the export dialog and get the path to save the exported hosts
+        """
+        Display the export dialog and get the path to save the exported hosts
         file.
 
-        Returns:
-            A string indicating the path to export a hosts file
+        :return: Path to export a hosts file.
+        :rtype: str
         """
         filename = "hosts"
         if self.platform == "OS X":
@@ -178,13 +187,13 @@ class QDialogDaemon(QDialogUI):
         return filepath
 
     def make_hosts(self, mode="system"):
-        """Operations to make hosts file - Public Method
+        """
+        Make a new hosts file for current system.
 
-        Call operations to make a new hosts file for current system.
-
-        Args:
-            mode (str): A string indicating the operation mode for making
-                hosts file.
+        :param mode: Operation mode for making hosts file. The valid value
+            could be one of `system`, `ansi`, and `utf-8`.
+            Default by `system`.
+        :type mode: str
         """
         self.set_make_start_btns()
         self.set_make_message(unicode(_translate(
@@ -200,10 +209,15 @@ class QDialogDaemon(QDialogUI):
         thread.start()
 
     def move_hosts(self):
-        """Move hosts file to the system path after making - Public Method
+        """
+        Move hosts file to the system path after making.
 
-        The slot response to the move_trigger signal from an instance of
-        QSubMakeHosts class while making operations are finished.
+        .. note:: This method is the slot responses to the move_trigger signal
+            from an instance of :class:`~gui._make.QSubMakeHosts` class while
+            making operations are finished.
+
+        .. seealso:: :attr:`move_trigger` in
+            :class:`~gui._make.QSubMakeHosts`.
         """
         filepath = "hosts"
         msg = unicode(
@@ -228,8 +242,7 @@ class QDialogDaemon(QDialogUI):
         self.info_complete()
 
     def set_platform(self):
-        """Set OS info - Public Method
-
+        """
         Set the information of current operating system platform.
         """
         system, hostname, path, encode, flag = CommonUtil.check_platform()
@@ -243,14 +256,15 @@ class QDialogDaemon(QDialogUI):
             self.sys_eol = "\n"
 
     def set_config_bytes(self, mode):
-        """Set configuration byte words - Public Method
-
-        Calculate the module configuration byte words by the selection from
+        """
+        Generate the module configuration byte words by the selection from
         function list on the main dialog.
 
-        Args:
-            mode (str): A string indicating the operation mode for making
-                hosts file.
+        :param mode: Operation mode for making hosts file. The valid value
+            could be one of `system`, `ansi`, and `utf-8`.
+
+            .. seealso:: Method
+                :meth:`~gui.qdialog_d.QDialogDaemon.make_hosts`.
         """
         ip_flag = self._ipv_id
         selection = {}
@@ -261,7 +275,10 @@ class QDialogDaemon(QDialogUI):
         else:
             localhost_word = 0x0008
         selection[0x02] = localhost_word
-        ch_parts = (0x08, 0x20 if ip_flag else 0x10, 0x40)
+        ch_parts = [0x08, 0x20 if ip_flag else 0x10, 0x40]
+        # Set customized module if exists
+        if os.path.isfile(self.custom):
+            ch_parts.insert(0, 0x04)
         slices = self.slices[ip_flag]
         for i, part in enumerate(ch_parts):
             part_cfg = self._funcs[ip_flag][slices[i]:slices[i + 1]]
@@ -272,16 +289,22 @@ class QDialogDaemon(QDialogUI):
         self.make_cfg = selection
 
     def refresh_info(self, refresh=0):
-        """Refresh data file information - Public Method
-
+        """
         Reload the data file information and show them on the main dialog. The
         information here includes both metadata and hosts module info from the
         data file.
 
-        Arg:
-            refresh (int): A flag integer indicating whether the information
-                needs to be reloaded or not. 1: reload, 0: do not reload.
-                Default by 0.
+        :param refresh: A flag indicating whether the information on main
+            dialog needs to be reloaded or not. The value could be `0` or `1`.
+
+                =======  =============
+                refresh  operation
+                =======  =============
+                0        Do NOT reload
+                1        Reload
+                =======  =============
+
+        :type refresh: int
         """
         if refresh and RetrieveData.conn is not None:
             RetrieveData.clear()
@@ -295,17 +318,22 @@ class QDialogDaemon(QDialogUI):
             self.warning_incorrect_datafile()
 
     def finish_make(self, time, count):
-        """Operations after making new hosts file - Public Method
+        """
+        Start operations after making new hosts file.
 
-        The slot response to the fina_trigger signal ({time}, {count}) from
-        an instance of QSubMakeHosts class while making operations are
-        finished.
+        .. note:: This method is the slot responses to the fina_trigger signal
+            values :attr:`time`, :attr:`count` from an instance of
+            :class:`~gui._make.QSubMakeHosts` class while making operations
+            are finished.
 
-        Args:
-            time (str): A string indicating the total time uesd to make the
-                new hosts file.
-            count (int): An integer indicating the total number of hosts
-                entries inserted into the new hosts file.
+        :param time: Total time uesd while generating the new hosts file.
+        :type time: str
+        :param count: Total number of hosts entries inserted into the new
+            hosts file.
+        :type count: int
+
+        .. seealso:: :attr:`fina_trigger` in
+            :class:`~gui._make.QSubMakeHosts` class.
         """
         self.set_make_finish_btns()
         RetrieveData.connect_db()
@@ -318,14 +346,19 @@ class QDialogDaemon(QDialogUI):
             _translate("Util", "Operation Completed Successfully!", None)))
 
     def finish_update(self, update):
-        """Operations after checking update - Public Method
+        """
+        Start operations after checking update.
 
-        The slot response to the trigger signal ({update}) from an instance
-        of QSubChkUpdate class while checking operations are finished.
+        .. note:: This method is the slot responses to the trigger signal
+            value :attr:`update` from an instance of
+            :class:`~gui._checkupdate.QSubChkUpdate` class while checking
+            operations are finished.
 
-        Arg:
-            update (dict): A dictionary containing metadata of the latest
-                hosts file from the server.
+        :param update: Metadata of the latest hosts data file on the server.
+        :type update: dict
+
+        .. seealso:: :attr:`trigger` in
+            :class:`~gui._checkupdate.QSubChkUpdate` class.
         """
         self._update = update
         self.set_label_text(self.ui.labelLatestData, update["version"])
@@ -340,18 +373,23 @@ class QDialogDaemon(QDialogUI):
             self.set_update_finish_btns()
 
     def finish_fetch(self, refresh=1, error=0):
-        """Operations after downloading data file - Public Method
+        """
+        Start operations after downloading data file.
 
-        The slot response to the finish_trigger signal ({refresh}, {error})
-        from an instance of QSubFetchUpdate class while downloading is
-        finished.
+        .. note:: This method is the slot responses to the finish_trigger
+            signal :attr:`refresh`, :attr:`error` from an instance of
+            :class:`~gui._update.QSubFetchUpdate` class while downloading is
+            finished.
 
-        Args:
-            refresh (int): A flag integer indicating whether a refresh for
-                function list is needed or not. 1: refresh, 0: no refresh.
-                Default by 1.
-            error (int): A flag integer indicating errors have occurred while
-                downloading new data file. 1: error, 0:success. Default by 0.
+        :param refresh: An flag indicating whether the downloading progress is
+            successfully finished or not. Default by 1.
+        :type refresh: int.
+        :param error: An flag indicating whether the downloading
+              progress is successfully finished or not. Default by 0.
+        :type error: int
+
+        .. seealso:: :attr:`finish_trigger` in
+            :class:`~gui._update.QSubFetchUpdate` class.
         """
         self._down_flag = 0
         if error:
@@ -378,15 +416,19 @@ class QDialogDaemon(QDialogUI):
         self.set_fetch_finish_btns(error)
 
     def new_version(self):
-        """Compare version of data file - Public Method
-
+        """
         Compare version of local data file to the version from the server.
 
-        Returns:
-            A flag integer indicating whether the local data file is
-            up-to-date or not.
-                1 -> The version of data file on server is newer.
-                0 -> The local data file is up-to-date.
+        :return: A flag indicating whether the local data file is up-to-date
+            or not.
+        :rtype: int
+
+                ======  ============================================
+                Return  File status
+                ======  ============================================
+                1       The version of data file on server is newer.
+                0       The local data file is up-to-date.
+                ======  ============================================
         """
         local_ver = self._cur_ver
         server_ver = self._update["version"]

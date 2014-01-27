@@ -22,6 +22,9 @@ from util_ui import _translate
 # __list_trans (list): A list containing names of function list items
 #       for translator to translate.
 __list_trans = [
+    _translate("Util", "customize", None),
+    _translate("Util", "google", None),
+    _translate("Util", "google-apis", None),
     _translate("Util", "google(cn)", None),
     _translate("Util", "google(hk)", None),
     _translate("Util", "google(us)", None),
@@ -34,6 +37,9 @@ __list_trans = [
     _translate("Util", "wikipedia", None),
     _translate("Util", "institutions", None),
     _translate("Util", "steam", None),
+    _translate("Util", "github", None),
+    _translate("Util", "dropbox", None),
+    _translate("Util", "wordpress", None),
     _translate("Util", "others", None),
     _translate("Util", "adblock-hostsx", None),
     _translate("Util", "adblock-mvps", None),

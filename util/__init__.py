@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  __init__.py:
+#  __init__.py: Declare modules to be called in util module.
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -11,6 +11,7 @@
 # =====================================================================
 
 from common import CommonUtil
+from makehosts import MakeHosts
 from retrievedata import RetrieveData
 
-__all__ = ["CommonUtil", "RetrieveData"]
+__all__ = ["CommonUtil", "MakeHosts", "RetrieveData"]

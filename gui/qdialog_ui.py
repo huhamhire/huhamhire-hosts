@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  qdialog_ui.py :
+#  qdialog_ui.py : Draw the Graphical User Interface.
 #
 # Copyleft (C) 2014 - huhamhire hosts team <hosts@huhamhire.com>
 # =====================================================================
@@ -20,13 +20,13 @@ import os
 
 from PyQt4 import QtCore, QtGui
 
-from language import LangUtil
-from util_ui import Ui_Util, _translate, _fromUtf8
-
 import sys
 
 sys.path.append("..")
 from util import RetrieveData, CommonUtil
+from __version__ import __version__, __release__
+from language import LangUtil
+from util_ui import Ui_Util, _translate, _fromUtf8
 
 # Path to store language files
 LANG_DIR = "./gui/lang/"
@@ -34,21 +34,35 @@ LANG_DIR = "./gui/lang/"
 
 class QDialogUI(QtGui.QDialog, object):
     """
-    Attributes:
-        _cur_ver (str): A string indicating the current version of hosts data
-            file.
-        _trans (obj): A QtCore.QTranslator object indicating the current UI
-            language setting.
+    CursesUI class contains methods to draw the Graphical User Interface (GUI)
+    of Hosts Setup Utility. The methods to make GUI here are based on
+    `PyQT4 <http://pyqt.sourceforge.net/Docs/PyQt4/>`_.
 
-        mirrors (list): A dictionary containing tag, test url, and update url
-            of mirrors.
-        platform (str): A string indicating the platform of current operating
-            system. The value could be "Windows", "Linux", "Unix", "OS X", and
-            of course "Unkown".
-        plat_flag (bool): A boolean flag indicating whether the current os is
-            supported or not.
-        ui (str): A user interface object indicating the main dialog of this
-            program.
+    .. note:: This class is subclass of :class:`QtGui.QDialog` class
+        and :class:`object` class.
+
+    :ivar str _cur_ver: Current version of local hosts data file.
+    :ivar QtCore.QTranslator _trans: An instance of
+        :class:`QtCore.QTranslator` object indicating the current UI language
+        setting.
+
+    :ivar QtGui.QApplication app: An instance of :class:`QtGui.QApplication`
+        object to launch the Qt application.
+
+    :ivar list mirrors: Dictionaries containing `tag`, `test url`, and
+        `update url` of mirror servers.
+    :ivar str platform: Platform of current operating system. The value could
+        be `Windows`, `Linux`, `Unix`, `OS X`, and of course `Unknown`.
+    :ivar bool plat_flag: A flag indicating whether current operating system
+        is supported or not.
+
+    :ivar object ui: Form implementation declares layout of the main dialog
+        which is generated from a UI file designed by `Qt Designer`.
+    :ivar str custom: File name of User Customized Hosts File. Customized
+        hosts would be able to select if this file exists. The default file
+        name is ``custom.hosts``.
+
+        .. seealso:: :ref:`User Customized Hosts<intro-customize>`.
     """
     _cur_ver = ""
     _trans = None
@@ -59,10 +73,12 @@ class QDialogUI(QtGui.QDialog, object):
     plat_flag = True
     ui = None
 
-    def __init__(self):
-        """Initialize a new instance of this class - Private Method
+    custom = "custom.hosts"
 
-        Set the UI object and current translator of the main dialog.
+    def __init__(self):
+        """
+        Initialize a new instance of this class. Set the UI object and current
+        translator of the main dialog.
         """
         self.app = QtGui.QApplication(sys.argv)
         super(QDialogUI, self).__init__()
@@ -78,16 +94,16 @@ class QDialogUI(QtGui.QDialog, object):
         self.set_languages()
 
     def set_stylesheet(self):
-        """Set Stylesheet for main frame - Public Method
+        """
+        Set the style sheet of main dialog.
 
-        Define the style sheet of main dialog.
+        .. seealso:: :ref:`QT Stylesheet<qt-stylesheet>`.
         """
         with open("./gui/theme/default.qss", "r") as qss:
             self.app.setStyleSheet(qss.read())
 
     def set_style(self):
-        """Set window style - Public Method
-
+        """
         Set the main dialog with a window style depending on the os platform.
         """
         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
@@ -102,8 +118,7 @@ class QDialogUI(QtGui.QDialog, object):
             pass
 
     def set_languages(self):
-        """Set items in SelectLang widget - Public Method
-
+        """
         Set optional language selection items in the SelectLang widget.
         """
         self.ui.SelectLang.clear()
@@ -132,6 +147,9 @@ class QDialogUI(QtGui.QDialog, object):
         self.ui.SelectLang.setCurrentIndex(select)
 
     def set_mirrors(self):
+        """
+        Set optional server list.
+        """
         for i, mirror in enumerate(self.mirrors):
             self.ui.SelectMirror.addItem(_fromUtf8(""))
             self.ui.SelectMirror.setItemText(
@@ -139,16 +157,13 @@ class QDialogUI(QtGui.QDialog, object):
             self.set_platform_label()
 
     def set_label_color(self, label, color):
-        """Set the color of a label - Public Method
+        """
+        Set the :attr:`color` of a :attr:`label`.
 
-        Set a specified label ({label}) to show with specified color
-        ({color}).
-
-        Args:
-            label (obj): An instance of PyQt4.QtGui.QLabel class on the main
-                dialog.
-            color (str): A string indicating the color to be shown on the
-                lable.
+        :param label: Label on the main dialog.
+        :type: :class:`PyQt4.QtGui.QLabel`
+        :param color: Color to be set on the label.
+        :type color: str
         """
         if color == "GREEN":
             rgb = "#37b158"
@@ -161,21 +176,18 @@ class QDialogUI(QtGui.QDialog, object):
         label.setStyleSheet("QLabel {color: %s}" % rgb)
 
     def set_label_text(self, label, text):
-        """Set the text of a label - Public Method
+        """
+        Set the :attr:`text` of a :attr:`label`.
 
-        Set a specified label ({label}) to show specified text ({text}).
-
-        Args:
-            label (obj): An instance of PyQt4.QtGui.QLabel class on the main
-                dialog.
-            text (str): A string indicating the message to be shown on the
-                lable.
+        :param label: Label on the main dialog.
+        :type: :class:`PyQt4.QtGui.QLabel`
+        :param text: Message to be set on the label.
+        :type text: unicode
         """
         label.setText(_translate("Util", text, None))
 
     def set_conn_status(self, status):
-        """Set connection status info - Public Method
-
+        """
         Set the information of connection status to the current server
         selected.
         """
@@ -193,9 +205,12 @@ class QDialogUI(QtGui.QDialog, object):
             self.set_label_color(self.ui.labelConnStat, color)
             self.set_label_text(self.ui.labelConnStat, stat)
 
-    def set_info(self):
-        """Set data file info - Public Method
+    def set_version(self):
+        version = "".join(['v', __version__, ' ', __release__])
+        self.set_label_text(self.ui.VersionLabel, version)
 
+    def set_info(self):
+        """
         Set the information of the current local data file.
         """
         info = RetrieveData.get_info()
@@ -204,27 +219,24 @@ class QDialogUI(QtGui.QDialog, object):
         self.set_label_text(self.ui.labelVersionData, ver)
         build = info["Buildtime"]
         build = CommonUtil.timestamp_to_date(build)
-        self.set_label_text(self.ui.labelReleaseData, build)
+        self.set_label_text(self.ui.labelReleaseData, unicode(build))
 
-    def set_down_progress(self, prog, msg):
-        """Set progress bar - Public Method
-
-        Set the progress bar to a specified progress position ({prog}) with a
-        specified message ({msg}).
-
-        Args:
-            prog (int): An integer indicating the progress to be set on the
-                progress bar.
-            msg (str): A string indicating the message to be shown on the
-                progress bar.
+    def set_down_progress(self, progress, message):
         """
-        self.ui.Prog.setProperty("value", prog)
+        Set :attr:`progress` position of the progress bar with a
+        :attr:`message`.
+
+        :param progress: Progress position to be set on the progress bar.
+        :type progress: int
+        :param message: Message to be set on the progress bar.
+        :type message: str
+        """
+        self.ui.Prog.setProperty("value", progress)
         self.set_conn_status(1)
-        self.ui.Prog.setFormat(msg)
+        self.ui.Prog.setFormat(message)
 
     def set_platform_label(self):
-        """Set label of OS info - Public Method
-
+        """
         Set the information of the label indicating current operating system
         platform.
         """
@@ -233,15 +245,20 @@ class QDialogUI(QtGui.QDialog, object):
         self.set_label_text(self.ui.labelOSStat, "[%s]" % self.platform)
 
     def set_func_list(self, new=0):
-        """Set the function list - Public Method
-
+        """
         Draw the function list and decide whether to load the default
         selection configuration or not.
 
-        Arg:
-            new (int): A flag integer indicating whether to load the default
-                selection configuration or not. 0 -> user user config,
-                1 -> use default config. Default by 0.
+        :param new: A flag indicating whether to load the default selection
+            configuration or not. Default value is `0`.
+
+            ===  ===================
+            new  Operation
+            ===  ===================
+            0    Use user config.
+            1    Use default config.
+            ===  ===================
+        :type new: int
         """
         self.ui.Functionlist.clear()
         self.ui.FunctionsBox.setTitle(_translate(
@@ -249,6 +266,12 @@ class QDialogUI(QtGui.QDialog, object):
         if new:
             for ip in range(2):
                 choice, defaults, slices = RetrieveData.get_choice(ip)
+                if os.path.isfile(self.custom):
+                    choice.insert(0, [4, 1, 0, "customize"])
+                    defaults[0x04] = [1]
+                    for i in range(len(slices)):
+                        slices[i] += 1
+                    slices.insert(0, 0)
                 self.choice[ip] = choice
                 self.slices[ip] = slices
                 funcs = []
@@ -260,26 +283,23 @@ class QDialogUI(QtGui.QDialog, object):
                 self._funcs[ip] = funcs
 
     def set_list_item_unchecked(self, item_id):
-        """Set list item to be unchecked - Public Method
+        """
+        Set a specified item to become unchecked in the function list.
 
-        Set a specified item ({item_id}) to become unchecked in the function
-        list.
-
-        Arg:
-            item_id (int): An integer indicating the id number of a specified
-                item in the function list.
+        :param item_id: Index number of a specified item in the function list.
+        :type: int
         """
         self._funcs[self._ipv_id][item_id] = 0
         item = self.ui.Functionlist.item(item_id)
         item.setCheckState(QtCore.Qt.Unchecked)
 
     def refresh_func_list(self):
-        """Refresh the function list - Public Method
-
+        """
         Refresh the items in the function list by user settings.
         """
         ip_flag = self._ipv_id
         self.ui.Functionlist.clear()
+
         for f_id, func in enumerate(self.choice[self._ipv_id]):
             item = QtGui.QListWidgetItem()
             if self._funcs[ip_flag][f_id] == 1:
@@ -291,71 +311,78 @@ class QDialogUI(QtGui.QDialog, object):
             self.ui.Functionlist.addItem(item)
 
     def set_make_progress(self, mod_name, mod_num):
-        """Operations to show progress while making hosts file - Public Method
+        """
+        Start operations to show progress while making hosts file.
 
-        The slot response to the info_trigger signal ({mod_name}, {mod_num})
-        from an instance of QSubMakeHosts class while making operations are
-        proceeded.
+        .. note:: This method is the slot responses to the info_trigger signal
+            :attr:`mod_name`, :attr:`mod_num` from an instance of
+            :class:`~gui._make.QSubMakeHosts` class while making operations
+            are proceeding.
 
-        Args:
-            mod_name (str): A string indicating the name of a specified hosts
-                module in current progress.
-            mod_num (int): An integer indicating the number of current module
-                in the operation sequence.
+        :param mod_name: Tag of a specified hosts module in current progress.
+        :type mod_name: str
+        :param mod_num: Number of current module in the operation sequence.
+        :type mod_num: int
+
+        .. seealso:: :attr:`info_trigger` in
+            :class:`~gui._make.QSubMakeHosts` class.
         """
         total_mods_num = self._funcs[self._ipv_id].count(1) + 1
         prog = 100 * mod_num / total_mods_num
         self.ui.Prog.setProperty("value", prog)
+        module = unicode(_translate("Util", mod_name, None))
         message = unicode(_translate(
             "Util", "Applying module: %s(%s/%s)", None)
-        ) % (mod_name, mod_num, total_mods_num)
+        ) % (module, mod_num, total_mods_num)
         self.ui.Prog.setFormat(message)
         self.set_make_message(message)
 
-    def set_message(self, title, msg):
-        """Set a message box - Public Method
+    def set_message(self, title, message):
+        """
+        Show a message box with a :attr:`message` and a :attr:`title`.
 
-        Show a message box with a specified message ({msg}) with a specified
-        title ({title}).
-
-        Args:
-            title (str): A string indicating the title of the message box.
-            msg (str): A string indicating the message to be shown in the
-                message box.
+        :param title: Title of the message box to be displayed.
+        :type title: unicode
+        :param message: Message in the message box.
+        :type message: unicode
         """
         self.ui.FunctionsBox.setTitle(_translate("Util", title, None))
         self.ui.Functionlist.clear()
         item = QtGui.QListWidgetItem()
-        item.setText(msg)
+        item.setText(message)
         item.setFlags(QtCore.Qt.ItemIsEnabled)
         self.ui.Functionlist.addItem(item)
 
-    def set_make_message(self, msg, start=0):
-        """Operations to show making progress in function list - Public Method
-
+    def set_make_message(self, message, start=0):
+        """
         List message for the current operating progress while making the new
-        hosts file.
+        hosts file in function list.
 
-        Args:
-            msg (str): A string indicating the message to show in the function
-                list.
-            start (int): A flag integer indicating whether the message is the
-                first of the making progress or not. 1: first, 0: not the
-                first. Default by 0.
+        :param message: Message to be displayed in the function list.
+        :type message: unicode
+        :param start: A flag indicating whether the message is the first one
+            in the making progress or not. Default value is `0`.
+
+            =====  ==============
+            start  Status
+            =====  ==============
+            0      Not the first.
+            1      First.
+            =====  ==============
+        :type start: int
         """
         if start:
             self.ui.FunctionsBox.setTitle(_translate(
                 "Util", "Progress", None))
             self.ui.Functionlist.clear()
         item = QtGui.QListWidgetItem()
-        item.setText("- " + msg)
+        item.setText("- " + message)
         item.setFlags(QtCore.Qt.ItemIsEnabled)
         self.ui.Functionlist.addItem(item)
 
     def warning_permission(self):
-        """Show permission error warning - Public Method
-
-        Draw permission error warning message box.
+        """
+        Show permission error warning message box.
         """
         QtGui.QMessageBox.warning(
             self, _translate("Util", "Warning", None),
@@ -367,9 +394,8 @@ class QDialogUI(QtGui.QDialog, object):
                 , None))
 
     def warning_download(self):
-        """Show download error warning - Public Method
-
-        Draw download error warning message box.
+        """
+        Show download error warning message box.
         """
         QtGui.QMessageBox.warning(
             self, _translate("Util", "Warning", None),
@@ -378,43 +404,47 @@ class QDialogUI(QtGui.QDialog, object):
                        "Please try another server.", None))
 
     def warning_incorrect_datafile(self):
-        """Show incorrect data file warning - Public Method
-
-        Draw incorrect data file warning message box.
+        """
+        Show incorrect data file warning message box.
         """
         msg_title = "Warning"
         msg = unicode(_translate("Util",
                                  "Incorrect Data file!\n"
                                  "Please use the \"Download\" key to \n"
                                  "fetch a new data file.", None))
-        self.set_message(msg_title, msg)
+        self.set_message(unicode(msg_title), msg)
         self.ui.ButtonApply.setEnabled(False)
         self.ui.ButtonANSI.setEnabled(False)
         self.ui.ButtonUTF.setEnabled(False)
 
     def warning_no_datafile(self):
-        """Show no data file warning - Public Method
-
-        Draw no data file warning message box.
+        """
+        Show no data file warning message box.
         """
         msg_title = "Warning"
         msg = unicode(_translate("Util",
                                  "Data file not found!\n"
                                  "Please use the \"Download\" key to \n"
                                  "fetch a new data file.", None))
-        self.set_message(msg_title, msg)
+        self.set_message(unicode(msg_title), msg)
         self.ui.ButtonApply.setEnabled(False)
         self.ui.ButtonANSI.setEnabled(False)
         self.ui.ButtonUTF.setEnabled(False)
 
     def question_apply(self):
-        """Show confirm make question - Public Method
+        """
+        Show confirm question message box before applying hosts file.
 
-        Draw confirm make question message box.
+        :return: A flag indicating whether user has accepted to continue the
+            operations or not.
 
-        Returns:
-            A bool flag indicating whether user has accepted to continue the
-            operations or not. True: Continue, False: Cancel.
+            ======  =========
+            return  Operation
+            ======  =========
+            True    Continue
+            False   Cancel
+            ======  =========
+        :rtype: bool
         """
         msg_title = unicode(_translate("Util", "Notice", None))
         msg = unicode(_translate("Util",
@@ -423,17 +453,18 @@ class QDialogUI(QtGui.QDialog, object):
                                  "This operation could not be reverted if \n"
                                  "you have not made a backup of your \n"
                                  "current hosts file.", None))
-        choice = QtGui.QMessageBox.question(self, msg_title, msg,
-                                            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
-                                            QtGui.QMessageBox.No)
+        choice = QtGui.QMessageBox.question(
+            self, msg_title, msg,
+            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No,
+            QtGui.QMessageBox.No
+        )
         if choice == QtGui.QMessageBox.Yes:
             return True
         else:
             return False
 
     def info_uptodate(self):
-        """Show up-to-date message - Public Method
-
+        """
         Draw data file is up-to-date message box.
         """
         QtGui.QMessageBox.information(
@@ -441,8 +472,7 @@ class QDialogUI(QtGui.QDialog, object):
             _translate("Util", "Data file is up-to-date.", None))
 
     def info_complete(self):
-        """Show complete message - Public Method
-
+        """
         Draw operation complete message box.
         """
         QtGui.QMessageBox.information(
@@ -450,6 +480,9 @@ class QDialogUI(QtGui.QDialog, object):
             _translate("Util", "Operation completed", None))
 
     def set_make_start_btns(self):
+        """
+        Set button status while making hosts operations started.
+        """
         self.ui.Functionlist.setEnabled(False)
         self.ui.SelectIP.setEnabled(False)
         self.ui.ButtonCheck.setEnabled(False)
@@ -460,6 +493,9 @@ class QDialogUI(QtGui.QDialog, object):
         self.ui.ButtonExit.setEnabled(False)
 
     def set_make_finish_btns(self):
+        """
+        Set button status while making hosts operations finished.
+        """
         self.ui.Functionlist.setEnabled(True)
         self.ui.SelectIP.setEnabled(True)
         self.ui.ButtonCheck.setEnabled(True)
@@ -470,27 +506,45 @@ class QDialogUI(QtGui.QDialog, object):
         self.ui.ButtonExit.setEnabled(True)
 
     def set_update_click_btns(self):
+        """
+        Set button status while `CheckUpdate` button clicked.
+        """
         self.ui.ButtonApply.setEnabled(True)
         self.ui.ButtonANSI.setEnabled(True)
         self.ui.ButtonUTF.setEnabled(True)
 
     def set_update_start_btns(self):
+        """
+        Set button status while operations to check update of hosts data file
+        started.
+        """
         self.ui.SelectMirror.setEnabled(False)
         self.ui.ButtonCheck.setEnabled(False)
         self.ui.ButtonUpdate.setEnabled(False)
 
     def set_update_finish_btns(self):
+        """
+        Set button status while operations to check update of hosts data file
+        finished.
+        """
         self.ui.SelectMirror.setEnabled(True)
         self.ui.ButtonCheck.setEnabled(True)
         self.ui.ButtonUpdate.setEnabled(True)
 
     def set_fetch_click_btns(self):
+        """
+        Set button status while `FetchUpdate` button clicked.
+        """
         self.ui.Functionlist.setEnabled(False)
         self.ui.ButtonApply.setEnabled(False)
         self.ui.ButtonANSI.setEnabled(False)
         self.ui.ButtonUTF.setEnabled(False)
 
     def set_fetch_start_btns(self):
+        """
+        Set button status while operations to retrieve hosts data file
+        started.
+        """
         self.ui.SelectMirror.setEnabled(False)
         self.ui.ButtonCheck.setEnabled(False)
         self.ui.ButtonUpdate.setEnabled(False)
@@ -500,6 +554,14 @@ class QDialogUI(QtGui.QDialog, object):
         self.ui.ButtonExit.setEnabled(False)
 
     def set_fetch_finish_btns(self, error=0):
+        """
+        Set button status while operations to retrieve hosts data file
+        finished.
+
+        :param error: A flag indicating if error occurs while retrieving hosts
+            data file from the server.
+        :type error: int
+        """
         if error:
             self.ui.ButtonApply.setEnabled(False)
             self.ui.ButtonANSI.setEnabled(False)

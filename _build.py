@@ -20,7 +20,7 @@ import os
 import sys
 import shutil
 
-from hoststool import __version__
+from __version__ import __version__
 
 SCRIPT = "hoststool.py"
 
@@ -72,7 +72,7 @@ DATA_FILES = [
     ]),
     (".", [
         "LICENSE",
-        "README.md",
+        "README.rst",
         "network.conf",
     ]),
 ]
@@ -90,7 +90,7 @@ if sys.argv > 1:
             "gui/theme/*.qss",
             "*/*.py",
             "LICENSE",
-            "README.md",
+            "README.rst",
             "network.conf",
         ]
         excludes = [
@@ -101,7 +101,7 @@ if sys.argv > 1:
             ".gitignore",
         ]
         ex_files = []
-        prefix = "HostsUtl-x11-gpl-"
+        prefix = "HostsTool-x11-gpl-"
         tar_flag = 1
 
     elif sys.argv[1] == "py2source":
@@ -113,7 +113,7 @@ if sys.argv > 1:
             "hostslist.data",
         ]
         ex_files = []
-        prefix = "HostsUtl-source-gpl-"
+        prefix = "HostsTool-source-gpl-"
         tar_flag = 1
     else:
         prefix = "Error"
@@ -156,7 +156,7 @@ if system == "Windows":
 
     # Set working directories
     WORK_DIR = SCRIPT_DIR + "work/"
-    DIR_NAME = "HostsUtil"
+    DIR_NAME = "HostsTool"
     DIST_DIR = WORK_DIR + DIR_NAME + '/'
     WIN_OPTIONS = {
         "includes": ["sip"],
@@ -178,13 +178,15 @@ if system == "Windows":
         options={"py2exe": WIN_OPTIONS},
         console=[
             {"script": SCRIPT,
-             "dest_base": "command_line_tool",
+             "dest_base": "hoststool_tui",
+             "uac_info": "highestAvailable",
             },
         ],
         windows=[
             {"script": SCRIPT,
              "icon_resources": [(1, "res/img/icons/hosts_utl.ico")],
              "dest_base": EXE_NAME,
+             "uac_info": "highestAvailable",
             },
         ],
         description=DESCRIPTION,
@@ -192,7 +194,7 @@ if system == "Windows":
         author_email=AUTHOR_EMAIL,
         license=LICENSE,
         url=URL,
-        zipfile="lib/shared.zip",
+        zipfile="lib/shared.lib",
         data_files=DATA_FILES,
         classifiers=CLASSIFIERS,
     )
@@ -233,8 +235,8 @@ elif system == "OS X":
     from setuptools import setup
     # Set working directories
     WORK_DIR = SCRIPT_DIR + "work/"
-    RES_DIR = SCRIPT_DIR + "res/"
-    APP_NAME = "HostsUtl.app"
+    RES_DIR = SCRIPT_DIR + "res/mac/"
+    APP_NAME = "HostsTool.app"
     APP_PATH = WORK_DIR + APP_NAME
     DIST_DIR = APP_PATH + "/Contents/"
     # Set build configuration
@@ -264,7 +266,7 @@ elif system == "OS X":
         "plist": {
             "CFBundleAllowMixedLocalizations": True,
             "CFBundleSignature": "hamh",
-            "CFBundleIdentifier": "org.pythonmac.huhamhire.HostsUtl",
+            "CFBundleIdentifier": "org.pythonmac.huhamhire.HostsTool",
             "NSHumanReadableCopyright": "(C) 2014, huhamhire hosts Team"}
     }
     # Clean work space before build
@@ -294,7 +296,7 @@ elif system == "OS X":
     # Clean work directory after build
     os.remove(DIST_DIR + "Resources/applet.icns")
     shutil.copy2(
-        SCRIPT_DIR + "img/icons/hosts_utl.icns",
+        SCRIPT_DIR + "res/img/icons/hosts_utl.icns",
         DIST_DIR + "Resources/applet.icns")
     shutil.copy2(RES_DIR + "Info.plist", DIST_DIR + "Info.plist")
     shutil.rmtree(SCRIPT_DIR + "build/")
@@ -302,7 +304,7 @@ elif system == "OS X":
     VDMG_DIR = WORK_DIR + "package_vdmg/"
     DMG_TMP = WORK_DIR + "pack_tmp.dmg"
     DMG_RES_DIR = RES_DIR + "dmg/"
-    VOL_NAME = "HostsUtl"
+    VOL_NAME = "HostsTool"
     DMG_NAME = VOL_NAME + "-mac-gpl-" + VERSION + ".dmg"
     DMG_PATH = WORK_DIR + DMG_NAME
     # Clean work space before pack up
