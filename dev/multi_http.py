@@ -7,7 +7,7 @@ import threading
 import time
 import sys
 
-from progress import Progress
+from progress import Progress, Counter
 from source_data import SourceData
 
 
@@ -21,7 +21,7 @@ class HTTPTest(threading.Thread):
         403: "Forbidden",
         404: "Not Found",
         408: "Timed Out",
-        500: "Server Error",
+        500: "Server Err",
         502: "Bad Gateway",
         503: "Unavailable",
         600: "Unknown",
@@ -32,13 +32,14 @@ class HTTPTest(threading.Thread):
     http_stat = {}
     _response_log = {}
 
-    def __init__(self, ip, domain, comb_id, results, semaphore,
+    def __init__(self, ip, domain, comb_id, results, counter, semaphore,
                  req_count=4, timeout=5):
         threading.Thread.__init__(self)
         self._ip = ip
         self._domain = domain
         self._comb_id = comb_id
         self.results = results
+        self.counter = counter
         self.sem = semaphore
         self.req_count = req_count
         self.timeout = timeout
@@ -94,8 +95,10 @@ class HTTPTest(threading.Thread):
                     if status not in status_log:
                         status_log.append(status)
                     delay_log.append(delay)
+                    time.sleep(1)
                 response[method] = {"status": status_log,
                                     "delay": delay_log}
+                self.counter.inc()
                 self.show_state(status_log)
             self._response_log = response
         finally:
@@ -154,20 +157,24 @@ class HTTPTest(threading.Thread):
 
 class MultiHTTPTest(object):
     # Limit the number of concurrent sessions
-    sem = threading.Semaphore(0x200)
+    sem = threading.Semaphore(0x100)
 
-    def __init__(self, combinations):
-        self.combs = combinations
+    def __init__(self, combs, ext_combs):
+        self.combs = combs
+        self.ext_combs = ext_combs
         self._responses = {}
+        self._counter = Counter()
+        self.results = {}
 
     def http_test(self):
-        Progress.set_total(len(self.combs))
-        Progress.set_counter(self._responses)
+        self._counter.set_total(len(self.combs) * 2)
+        Progress.set_counter(self._counter)
         threads = []
         for comb in self.combs:
             self.sem.acquire()
             http_test_item = HTTPTest(comb["ip"], comb["domain"], comb["id"],
-                                      self._responses, self.sem)
+                                      self._responses, self._counter,
+                                      self.sem)
             http_test_item.start()
             threads.append(http_test_item)
 
@@ -175,13 +182,21 @@ class MultiHTTPTest(object):
             http_test_item.join()
 
         Progress.progress_bar()
-        return self._responses
+
+    def expand_results(self):
+        for comb in self.combs:
+            for ext_comb in self.ext_combs:
+                if ext_comb["ip"] == comb["ip"]:
+                    self.results[ext_comb["id"]] = self._responses[comb["id"]]
+        return self.results
 
 if __name__ == '__main__':
     SourceData.connect_db()
     combs = SourceData.get_http_test_comb()
+    ext_combs = SourceData.get_http_test_extend_comb()
 
-    http_tests = MultiHTTPTest(combs)
-    results = http_tests.http_test()
+    http_tests = MultiHTTPTest(combs, ext_combs)
+    http_tests.http_test()
+    results = http_tests.expand_results()
 
     SourceData.set_multi_http_test_dict(results)

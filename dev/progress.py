@@ -4,18 +4,30 @@
 import sys
 
 
+class Counter(object):
+    count = 0
+    total = 0
+
+    def set_total(self, total):
+        self.total = total
+
+    def set_count(self, count):
+        self.count = count
+
+    def inc(self):
+        self.count += 1
+
+    def dec(self):
+        self.count -= 1
+
+
 class Progress(object):
     __line_width = 78
-    _total = 0
-    _counter_set = {}
+    _counter = None
 
     @classmethod
-    def set_total(cls, total):
-        cls._total = total
-
-    @classmethod
-    def set_counter(cls, counter_set):
-        cls._counter_set = counter_set
+    def set_counter(cls, counter):
+        cls._counter = counter
 
     @classmethod
     def show_status(cls, message, status, error=0):
@@ -56,12 +68,13 @@ class Progress(object):
 
     @classmethod
     def progress_bar(cls):
-        finish_count = len(cls._counter_set)
         prog_len = cls.__line_width - 20
-        prog = 1.0 * prog_len * finish_count / cls._total
+        count = cls._counter.count
+        total = cls._counter.total
+        prog = 1.0 * prog_len * count / total
         bar = ''.join(['=' * int(prog), '-' * int(2 * prog % 2)])
         bar = bar.ljust(prog_len)
-        count = str(finish_count).rjust(7)
-        total = str(cls._total).rjust(7)
+        count = str(count).rjust(7)
+        total = str(total).rjust(7)
         progress_bar = "[%s] %s | %s" % (bar, count, total)
         sys.stdout.write("\r" + progress_bar)

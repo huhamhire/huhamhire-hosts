@@ -87,8 +87,8 @@ class SourceData(object):
             upd_sql = "UPDATE t_domain SET stat=:stat " \
                       "WHERE id=:id AND stat>:stat"
             data = {"stat": status,
-                    "id": domain_id
-            }
+                    "id": domain_id,
+                    }
             try:
                 cls._cur.execute(upd_sql, data)
             except sqlite3.IntegrityError, e:
@@ -96,7 +96,7 @@ class SourceData(object):
 
             for ip in response["hosts"]:
                 ip_id = cls.__calc_id(ip)
-                ins_sql = "INSERT OR IGNORE INTO t_ip VALUES (:ip_id, :ip)"
+                ins_sql = "INSERT OR IGNORE INTO t_ip VALUES (:ip_id, :ip);"
                 try:
                     cls._cur.execute(ins_sql, (ip_id, ip))
                 except sqlite3.IntegrityError, e:
@@ -141,7 +141,7 @@ class SourceData(object):
                 ssl_flag = methods.index(method)
                 ins_sql = "REPLACE INTO t_httpTest VALUES (" \
                           ":http_id, :ssl_flag, :min_delay, :max_delay," \
-                          ":avg_delay, :ratio, :status, :test_count)"
+                          ":avg_delay, :ratio, :status, :test_count);"
                 data = (http_id, ssl_flag, stat["delay"]["min"],
                         stat["delay"]["max"], stat["delay"]["avg"],
                         stat["delay"]["ratio"], stat["status"], count)
@@ -164,7 +164,7 @@ class SourceData(object):
     @classmethod
     def __set_ping_test(cls, ip_id, response):
         ins_sql = "REPLACE INTO t_pingTest VALUES (" \
-                  ":ip_id, :min, :max, :avg, :ratio, :count)"
+                  ":ip_id, :min, :max, :avg, :ratio, :count);"
         data = (ip_id, response["min"], response["max"], response["avg"],
                 response["ratio"], response["ping_count"])
         try:
@@ -189,31 +189,62 @@ class SourceData(object):
 
     @classmethod
     def get_domain_list(cls):
-        sql = "SELECT name FROM t_domain"
+        sql = "SELECT name FROM t_domain;"
         cls._cur.execute(sql)
         domains = []
-        sql_results = cls._cur.fetchmany(100)
+        sql_results = cls._cur.fetchmany(1000)
         while sql_results:
             for result in sql_results:
                 domains.append(result[0].encode("ascii"))
-            sql_results = cls._cur.fetchmany(100)
+            sql_results = cls._cur.fetchmany(1000)
         return domains
 
     @classmethod
     def get_http_test_comb(cls):
-        sql = "SELECT name AS domain, ip, combination_id AS id " \
-              "FROM t_domain LEFT JOIN t_domain_ip " \
-              "ON t_domain.id = t_domain_ip.domain_id "\
-              "LEFT JOIN t_ip ON t_domain_ip.ip_id = t_ip.id " \
-              "WHERE ip IS NOT NULL;"
+        sql = "SELECT DISTINCT " \
+              "  name AS domain, ip, combination_id AS id " \
+              "FROM " \
+              "  t_domain " \
+              "  LEFT JOIN t_domain_ip " \
+              "    ON t_domain.id = t_domain_ip.domain_id " \
+              "  LEFT JOIN t_ip " \
+              "    ON t_domain_ip.ip_id = t_ip.id " \
+              "WHERE " \
+              "  ip IS NOT NULL " \
+              "GROUP BY " \
+              "  ip " \
+              "ORDER BY" \
+              "  id;"
         cls._cur.execute(sql)
         tests = []
-        sql_results = cls._cur.fetchmany(100)
+        sql_results = cls._cur.fetchmany(1000)
         while sql_results:
             for result in sql_results:
                 item = dict(zip(["domain", "ip", "id"], list(result)))
                 tests.append(item)
-            sql_results = cls._cur.fetchmany(100)
+            sql_results = cls._cur.fetchmany(1000)
+        return tests
+
+    @classmethod
+    def get_http_test_extend_comb(cls):
+        sql = "SELECT " \
+              "  name AS domain, ip, combination_id AS id " \
+              "FROM " \
+              "  t_domain " \
+              "  LEFT JOIN t_domain_ip " \
+              "    ON t_domain.id = t_domain_ip.domain_id " \
+              "  LEFT JOIN t_ip " \
+              "    ON t_domain_ip.ip_id = t_ip.id " \
+              "WHERE " \
+              "  ip IS NOT NULL;"
+        cls._cur.execute(sql)
+        tests = []
+        sql_results = cls._cur.fetchmany(1000)
+        while sql_results:
+            for result in sql_results:
+                item = dict(zip(["domain", "ip", "id"], list(result)))
+                tests.append(item)
+            sql_results = cls._cur.fetchmany(1000)
         return tests
 
     @classmethod
@@ -221,12 +252,12 @@ class SourceData(object):
         sql = "SELECT ip, id FROM t_ip"
         cls._cur.execute(sql)
         tests = []
-        sql_results = cls._cur.fetchmany(100)
+        sql_results = cls._cur.fetchmany(1000)
         while sql_results:
             for result in sql_results:
                 item = dict(zip(["ip", "ip_id"], list(result)))
                 tests.append(item)
-            sql_results = cls._cur.fetchmany(100)
+            sql_results = cls._cur.fetchmany(1000)
         return tests
 
     @classmethod
@@ -242,8 +273,9 @@ class SourceData(object):
               "FROM t_domain_ip" \
               "  LEFT JOIN t_ip ON t_domain_ip.ip_id = t_ip.id" \
               "  LEFT JOIN t_pingTest ON " \
-              "    t_domain_ip.ip_id = t_pingTest.ip_id" \
-              "  WHERE t_domain_ip.domain_id=:domain_id;"
+              "    t_domain_ip.ip_id = t_pingTest.ip_id " \
+              "WHERE " \
+              "  t_domain_ip.domain_id=:domain_id;"
         data = (domain_id, )
         cls._cur.execute(sql, data)
         results = []
@@ -271,8 +303,8 @@ class SourceData(object):
               "FROM t_domain_ip" \
               "  LEFT JOIN t_ip ON t_domain_ip.ip_id = t_ip.id" \
               "  LEFT JOIN t_httpTest ON " \
-              "    t_domain_ip.combination_id = t_httpTest.http_id" \
-              "  WHERE t_domain_ip.domain_id=:domain_id;"
+              "    t_domain_ip.combination_id = t_httpTest.http_id " \
+              "WHERE t_domain_ip.domain_id=:domain_id;"
         data = (domain_id, )
         cls._cur.execute(sql, data)
         results = []
