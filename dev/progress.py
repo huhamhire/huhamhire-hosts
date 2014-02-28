@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*
 
 import sys
+import time
 
 
 class Counter(object):
@@ -21,17 +22,54 @@ class Counter(object):
         self.count -= 1
 
 
+class Timer(object):
+    start_time = None
+
+    def __init__(self, start_time):
+        self.start_time = start_time
+
+    def timer(self):
+        return time.time() - self.start_time
+
+    @staticmethod
+    def format(t):
+        secs = int(t)
+        minutes = secs // 60
+        seconds = secs % 60
+        return "%02d:%02d" % (minutes, seconds)
+
+    @staticmethod
+    def format_utc(t):
+        return time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime(t))
+
+    def eta(self, done, total):
+        if done < 2:
+            return 100 * 60 - 1
+        else:
+            eta = self.timer() * (total - done) / done
+            if eta > 100 * 60 - 1:
+                return 100 * 60 - 1
+            else:
+                return eta
+
+
 class Progress(object):
-    __line_width = 78
+    __line_width = 79
     _counter = None
+    _timer = None
 
     @classmethod
     def set_counter(cls, counter):
         cls._counter = counter
 
     @classmethod
+    def set_timer(cls, timer):
+        cls._timer = timer
+
+    @classmethod
     def show_status(cls, message, status, error=0):
         msg_len = cls.__line_width - 20
+        status = status.center(11)
         msgs = []
         if len(message) >= msg_len:
             messages = message.split(" - ", 1)
@@ -68,13 +106,22 @@ class Progress(object):
 
     @classmethod
     def progress_bar(cls):
-        prog_len = cls.__line_width - 20
+        prog_len = cls.__line_width - 25
         count = cls._counter.count
         total = cls._counter.total
         prog = 1.0 * prog_len * count / total
         bar = ''.join(['=' * int(prog), '-' * int(2 * prog % 2)])
         bar = bar.ljust(prog_len)
-        count = str(count).rjust(7)
-        total = str(total).rjust(7)
-        progress_bar = "[%s] %s | %s" % (bar, count, total)
+
+        # Get ETA
+        timer = cls._timer
+        eta = "ETA " + timer.format(timer.eta(count, total))
+
+        count = str(count).rjust(5)
+        total = str(total).rjust(5)
+        progress_bar = "%s/%s: [%s] %s" % (count, total, bar, eta)
         sys.stdout.write("\r" + progress_bar)
+
+    @classmethod
+    def show_message(cls, message):
+        print(message)

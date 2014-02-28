@@ -7,7 +7,7 @@ import threading
 import time
 import sys
 
-from progress import Progress, Counter
+from progress import Progress, Counter, Timer
 from source_data import SourceData
 
 
@@ -33,7 +33,7 @@ class HTTPTest(threading.Thread):
     _response_log = {}
 
     def __init__(self, ip, domain, comb_id, results, counter, semaphore,
-                 req_count=4, timeout=5):
+                 mutex, req_count=4, timeout=5):
         threading.Thread.__init__(self)
         self._ip = ip
         self._domain = domain
@@ -41,6 +41,7 @@ class HTTPTest(threading.Thread):
         self.results = results
         self.counter = counter
         self.sem = semaphore
+        self.mutex = mutex
         self.req_count = req_count
         self.timeout = timeout
 
@@ -137,6 +138,7 @@ class HTTPTest(threading.Thread):
 
     def show_state(self, status_log):
         msg = "HTTP: %s - %s" % (self.url, self._ip)
+        self.mutex.acquire()
         if status_log:
             status_flag = min(status_log)
             if status_flag == 200:
@@ -148,6 +150,7 @@ class HTTPTest(threading.Thread):
         else:
             Progress.show_status(msg, "NO STATUS", 1)
         Progress.progress_bar()
+        self.mutex.release()
 
     def run(self):
         self.session()
@@ -158,23 +161,28 @@ class HTTPTest(threading.Thread):
 class MultiHTTPTest(object):
     # Limit the number of concurrent sessions
     sem = threading.Semaphore(0x100)
+    mutex = threading.Lock()
 
     def __init__(self, combs, ext_combs):
         self.combs = combs
         self.ext_combs = ext_combs
         self._responses = {}
         self._counter = Counter()
+        self._timer = Timer(time.time())
         self.results = {}
 
     def http_test(self):
         self._counter.set_total(len(self.combs) * 2)
         Progress.set_counter(self._counter)
+        Progress.set_timer(self._timer)
+        utc_time = self._timer.format_utc(self._timer.start_time)
+        Progress.show_message("HTTP tests started at " + utc_time)
         threads = []
         for comb in self.combs:
             self.sem.acquire()
             http_test_item = HTTPTest(comb["ip"], comb["domain"], comb["id"],
                                       self._responses, self._counter,
-                                      self.sem)
+                                      self.sem, self.mutex)
             http_test_item.start()
             threads.append(http_test_item)
 
