@@ -32,8 +32,8 @@ class HTTPTest(threading.Thread):
     http_stat = {}
     _response_log = {}
 
-    def __init__(self, ip, domain, comb_id, results, counter, semaphore,
-                 mutex, req_count=4, timeout=5):
+    def __init__(self, ip, domain, comb_id, results,
+                 counter, semaphore, mutex, req_count=4, timeout=5):
         threading.Thread.__init__(self)
         self._ip = ip
         self._domain = domain
@@ -167,21 +167,25 @@ class MultiHTTPTest(object):
         self.combs = combs
         self.ext_combs = ext_combs
         self._responses = {}
-        self._counter = Counter()
-        self._timer = Timer(time.time())
         self.results = {}
 
     def http_test(self):
-        self._counter.set_total(len(self.combs) * 2)
-        Progress.set_counter(self._counter)
-        Progress.set_timer(self._timer)
-        utc_time = self._timer.format_utc(self._timer.start_time)
+        counter = Counter()
+        counter.set_total(len(self.combs) * 2)
+        timer = Timer(time.time())
+
+        Progress.set_counter(counter)
+        Progress.set_timer(timer)
+
+        utc_time = timer.format_utc(timer.start_time)
         Progress.show_message("HTTP tests started at " + utc_time)
+        Progress.dash()
+
         threads = []
         for comb in self.combs:
             self.sem.acquire()
             http_test_item = HTTPTest(comb["ip"], comb["domain"], comb["id"],
-                                      self._responses, self._counter,
+                                      self._responses, counter,
                                       self.sem, self.mutex)
             http_test_item.start()
             threads.append(http_test_item)
@@ -189,18 +193,37 @@ class MultiHTTPTest(object):
         for http_test_item in threads:
             http_test_item.join()
 
-        Progress.progress_bar()
+        Progress.dash()
+        total_time = timer.format(timer.timer())
+        Progress.show_message("A total of %d HTTP tests were operated in %s" %
+                              (counter.total, total_time))
 
     def expand_results(self):
-        for comb in self.combs:
+        counter = Counter()
+        counter.set_total(len(self.combs))
+        timer = Timer(time.time())
+        Progress.set_counter(counter)
+        Progress.set_timer(timer)
+
+        utc_time = timer.format_utc(timer.start_time)
+        Progress.show_message("Start expanding tests results at " + utc_time)
+
+        for i, comb in enumerate(self.combs):
             for ext_comb in self.ext_combs:
                 if ext_comb["ip"] == comb["ip"]:
                     self.results[ext_comb["id"]] = self._responses[comb["id"]]
+            counter.inc()
+            Progress.progress_bar()
+
+        total_time = timer.format(timer.timer())
+        Progress.show_message("%d results expanding operations finished in "
+                              "%s" % (counter.total, total_time))
+
         return self.results
 
 if __name__ == '__main__':
     SourceData.connect_db()
-    combs = SourceData.get_http_test_comb()
+    combs = SourceData.get_http_test_comb()[:10]
     ext_combs = SourceData.get_http_test_extend_comb()
 
     http_tests = MultiHTTPTest(combs, ext_combs)

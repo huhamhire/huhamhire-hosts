@@ -140,8 +140,8 @@ class SourceData(object):
                 stat = response[method]
                 ssl_flag = methods.index(method)
                 ins_sql = "REPLACE INTO t_httpTest VALUES (" \
-                          ":http_id, :ssl_flag, :min_delay, :max_delay," \
-                          ":avg_delay, :ratio, :status, :test_count);"
+                          "  :http_id, :ssl_flag, :min_delay, :max_delay, " \
+                          "  :avg_delay, :ratio, :status, :test_count);"
                 data = (http_id, ssl_flag, stat["delay"]["min"],
                         stat["delay"]["max"], stat["delay"]["avg"],
                         stat["delay"]["ratio"], stat["status"], count)

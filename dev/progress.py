@@ -106,9 +106,14 @@ class Progress(object):
 
     @classmethod
     def progress_bar(cls):
-        prog_len = cls.__line_width - 25
         count = cls._counter.count
         total = cls._counter.total
+
+        count_len = len(str(total))
+        eta_len = 9
+
+        prog_len = cls.__line_width - 2 * count_len - eta_len - 6
+
         prog = 1.0 * prog_len * count / total
         bar = ''.join(['=' * int(prog), '-' * int(2 * prog % 2)])
         bar = bar.ljust(prog_len)
@@ -117,11 +122,17 @@ class Progress(object):
         timer = cls._timer
         eta = "ETA " + timer.format(timer.eta(count, total))
 
-        count = str(count).rjust(5)
-        total = str(total).rjust(5)
+        count = str(count).rjust(count_len)
+        total = str(total).rjust(count_len)
         progress_bar = "%s/%s: [%s] %s" % (count, total, bar, eta)
         sys.stdout.write("\r" + progress_bar)
 
     @classmethod
     def show_message(cls, message):
-        print(message)
+        sys.stdout.write("\r" + " " * cls.__line_width +
+                         "\r> " + message + "\n")
+
+    @classmethod
+    def dash(cls):
+        sys.stdout.write("\r" + " " * cls.__line_width +
+                         "\r" + "-" * cls.__line_width + "\n")
