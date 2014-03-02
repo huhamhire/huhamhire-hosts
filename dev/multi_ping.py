@@ -9,7 +9,7 @@ import threading
 import time
 import select
 
-from progress import Progress
+from progress import Progress, Counter, Timer
 from source_data import SourceData
 
 
@@ -22,7 +22,7 @@ class PingHost(threading.Thread):
         10049: 'ERROR: "%s" is not available from the local computer',
     }
 
-    def __init__(self, ip, ip_id, results, semaphore,
+    def __init__(self, ip, ip_id, results, counter, semaphore, mutex,
                  ping_count=4, timeout=5, v6_flag=False):
         threading.Thread.__init__(self)
         self.__data = struct.pack('d', time.time())
@@ -33,7 +33,9 @@ class PingHost(threading.Thread):
         self._ip_id = ip_id
         self._ping_count = ping_count
         self.results = results
+        self.counter = counter
         self.sem = semaphore
+        self.mutex = mutex
         self._timeout = timeout
         self._v6_flag = v6_flag
 
@@ -117,7 +119,7 @@ class PingHost(threading.Thread):
                 self.send()
                 delay = self.response()
                 time_log.append(delay)
-                time.sleep(0.1)
+                time.sleep(1)
             self._sock.close()
             self.time_log = time_log
         except socket.error, (error_no, msg):
@@ -147,21 +149,24 @@ class PingHost(threading.Thread):
             self.delay_stat = {"min": None, "max": None,
                                "avg": None, "ratio": 0}
         self.delay_stat["ping_count"] = self._ping_count
+        self.counter.inc()
 
     def set_results(self):
         self.results[self._ip_id] = self.delay_stat
 
     def show_state(self):
         msg = "PING: %s" % self._ip
+        self.mutex.acquire()
         if self.delay_stat["ratio"] == 1:
             Progress.show_status(msg, "OK")
         else:
             if self.delay_stat["ratio"] > 0:
-                status = "Lose Pack"
+                status = "Packet Loss"
             else:
                 status = "Failed"
             Progress.show_status(msg, status, 1)
         Progress.progress_bar()
+        self.mutex.release()
 
     def run(self):
         self.session()
@@ -172,27 +177,41 @@ class PingHost(threading.Thread):
 
 class MultiPing(object):
     # Limit the number of concurrent sessions
-    sem = threading.Semaphore(0x40)
+    sem = threading.Semaphore(0x100)
+    mutex = threading.Lock()
 
     def __init__(self, combinations):
         self.combs = combinations
         self._responses = {}
 
     def ping_test(self):
-        Progress.set_total(len(self.combs))
-        Progress.set_counter(self._responses)
+        counter = Counter()
+        counter.set_total(len(self.combs))
+        timer = Timer(time.time())
+
+        Progress.set_counter(counter)
+        Progress.set_timer(timer)
+
+        utc_time = timer.format_utc(timer.start_time)
+        Progress.show_message("Ping tests started at " + utc_time)
+        Progress.dash()
+
         threads = []
         for comb in self.combs:
             self.sem.acquire()
-            ping_host = PingHost(comb["ip"], comb["ip_id"],
-                                 self._responses, self.sem)
+            ping_host = PingHost(comb["ip"], comb["ip_id"], self._responses,
+                                 counter, self.sem, self.mutex)
             ping_host.start()
             threads.append(ping_host)
 
         for ping_host in threads:
             ping_host.join()
 
-        Progress.progress_bar()
+        Progress.dash()
+        total_time = timer.format(timer.timer())
+        Progress.show_message("A total of %d Ping tests were operated in %s" %
+                              (counter.total, total_time))
+
         return self._responses
 
 

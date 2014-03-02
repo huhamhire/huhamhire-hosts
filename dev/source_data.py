@@ -140,7 +140,7 @@ class SourceData(object):
                 stat = response[method]
                 ssl_flag = methods.index(method)
                 ins_sql = "REPLACE INTO t_httpTest VALUES (" \
-                          "  :http_id, :ssl_flag, :min_delay, :max_delay, " \
+                          "  :ip_id, :ssl_flag, :min_delay, :max_delay, " \
                           "  :avg_delay, :ratio, :status, :test_count);"
                 data = (http_id, ssl_flag, stat["delay"]["min"],
                         stat["delay"]["max"], stat["delay"]["avg"],
@@ -249,7 +249,7 @@ class SourceData(object):
 
     @classmethod
     def get_ping_test_comb(cls):
-        sql = "SELECT ip, id FROM t_ip"
+        sql = "SELECT ip, id FROM t_ip ORDER BY id;"
         cls._cur.execute(sql)
         tests = []
         sql_results = cls._cur.fetchmany(1000)

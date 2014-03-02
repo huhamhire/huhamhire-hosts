@@ -197,29 +197,8 @@ class MultiHTTPTest(object):
         total_time = timer.format(timer.timer())
         Progress.show_message("A total of %d HTTP tests were operated in %s" %
                               (counter.total, total_time))
+        return self._responses
 
-    def expand_results(self):
-        counter = Counter()
-        counter.set_total(len(self.combs))
-        timer = Timer(time.time())
-        Progress.set_counter(counter)
-        Progress.set_timer(timer)
-
-        utc_time = timer.format_utc(timer.start_time)
-        Progress.show_message("Start expanding tests results at " + utc_time)
-
-        for i, comb in enumerate(self.combs):
-            for ext_comb in self.ext_combs:
-                if ext_comb["ip"] == comb["ip"]:
-                    self.results[ext_comb["id"]] = self._responses[comb["id"]]
-            counter.inc()
-            Progress.progress_bar()
-
-        total_time = timer.format(timer.timer())
-        Progress.show_message("%d results expanding operations finished in "
-                              "%s" % (counter.total, total_time))
-
-        return self.results
 
 if __name__ == '__main__':
     SourceData.connect_db()
@@ -227,7 +206,6 @@ if __name__ == '__main__':
     ext_combs = SourceData.get_http_test_extend_comb()
 
     http_tests = MultiHTTPTest(combs, ext_combs)
-    http_tests.http_test()
-    results = http_tests.expand_results()
+    results = http_tests.http_test()
 
     SourceData.set_multi_http_test_dict(results)

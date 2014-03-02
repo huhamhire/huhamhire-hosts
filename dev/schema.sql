@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS t_pingTest (
 );
 
 CREATE TABLE IF NOT EXISTS t_httpTest (
-  http_id UNSIGNED INTEGER
+  ip_id UNSIGNED INTEGER
     NOT NULL,
   ssl_flag UNSIGNED TINYINT
     NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS t_httpTest (
   ratio FLOAT,
   status VARCHAR(40),
   test_count UNSIGNED TINYINT,
-  FOREIGN KEY (http_id) REFERENCES t_domain_ip(combination_id),
-  PRIMARY KEY (http_id, ssl_flag)
+  FOREIGN KEY (ip_id) REFERENCES t_ip(id),
+  PRIMARY KEY (ip_id, ssl_flag)
     ON CONFLICT IGNORE
 );
