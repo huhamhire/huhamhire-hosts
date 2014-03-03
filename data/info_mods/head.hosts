@@ -4,19 +4,22 @@
 #        __       |  |                              __
 #       /  \______|  |   ________    ________    __|  |__    ________
 #       |   ______   |  /   __   \  /   _____|  |__    __|  /   _____|
-#       |  |      \__/  |  /  \  |  |  |_____      |  |     |  |_____ 
+#       |  |      \__/  |  /  \  |  |  |_____      |  |     |  |_____
 #       |  |       __   |  |  |  |  \_____   \     |  |     \_____   \
 #       |  |      /  \  |  \__/  |   _____|  |     |  |__    _____|  |
 #       \__/      \__/  \________/  |________/     \_____|  |________/
-#       
-#   
-# Copyright (c) 2011-2013 Huhamhire Hosts Team.
 #
-# This is a HOSTS file packed by Huhamhire Hosts Team for users of Windows, 
-# Linux, Unix etc. to break through the Great Firewall of China.
+#
+# Copyright (c) 2011-2014 huhamhire-hosts team.
+#
+# Since the governments of some countries are using technical methods blocking
+# internet access to some websites and web service providers which includes
+# some world famous sites like Google, YouTube, twitter, Facebook, and
+# Wikipedia etc., we designed this tiny utility in order to help people
+# getting through the Internet blockade.
 #
 # This file contains the mappings of IP addresses to host names. Each entry
-# should be kept on an individual line. The IP address should be placed in 
+# should be kept on an individual line. The IP address should be placed in
 # the first column followed by the corresponding host name.
 # The IP address and the host name should be separated by at least one space.
 #
@@ -31,5 +34,5 @@
 #	127.0.0.1       localhost
 #	::1             localhost
 #
-# Special thanks to: smarthosts, hostsx, ipv6-hosts, mwsl, yoyo, 
-#                    mvps, ATGFW and hpHosts
+# Special thanks to: smarthosts, hostsx, ipv6-hosts, mwsl, mvps, ATGFW and
+# hpHosts.

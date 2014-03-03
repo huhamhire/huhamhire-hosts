@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyleft (C) 2013 - Huhamhire-hosts Team -->
-<hostslist version="1.4.4">
+<!-- Copyleft (C) 2014 - Huhamhire-hosts Team -->
+<hostslist version="1.4.5">
     <part id="0x10" default="0x0FBF">
         <table>hosts_ipv4</table>
         <path>ipv4_mods/</path>
@@ -40,14 +40,14 @@
             <mod cate="0x0001" mutex="0x0000">adblock-hostsx</mod>
             <mod cate="0x0002" mutex="0x0000">adblock-mvps</mod>
             <mod cate="0x0004" mutex="0x0000">adblock-mwsl</mod>
-            <mod cate="0x0008" mutex="0x0000">adblock-yoyo</mod>
         </modules>
     </part>
-    <part id="0x08" default="0x0000">
+    <part id="0x08" default="0x0002">
         <table>hosts_share</table>
         <path>share_mods/</path>
         <modules>
             <mod cate="0x0001" mutex="0x0000">activation-helper</mod>
+            <mod cate="0x0002" mutex="0x0000">huhamhire-hosts</mod>
         </modules>
     </part>
     <part id="0x02" default="0x0000">

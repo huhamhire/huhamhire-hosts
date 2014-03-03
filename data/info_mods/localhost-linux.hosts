@@ -1,7 +1,8 @@
 # Linux
+127.0.0.1   localhost
 127.0.0.1   #Replace Your Device Name Here!
 127.0.1.1   #Replace Your Device Name Here!
-::1 localhost ip6-localhost ip6-loopback
+::1 localhost localhost6 ip6-localhost ip6-loopback
 fe00::0 ip6-localnet
 ff00::0 ip6-mcastprefix
 ff02::1 ip6-allnodes
