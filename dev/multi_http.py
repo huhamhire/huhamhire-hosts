@@ -202,7 +202,7 @@ class MultiHTTPTest(object):
 
 if __name__ == '__main__':
     SourceData.connect_db()
-    combs = SourceData.get_http_test_comb()[:10]
+    combs = SourceData.get_http_test_comb()
     ext_combs = SourceData.get_http_test_extend_comb()
 
     http_tests = MultiHTTPTest(combs, ext_combs)

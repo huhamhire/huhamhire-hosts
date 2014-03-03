@@ -52,7 +52,7 @@ class MakeDomainHost(object):
         hosts_list = []
         sorted_scores = sorted(
             self._scores.iteritems(),
-            key=lambda scores: scores[1])
+            key=lambda scores: scores[1], reverse=True)
         results_len = len(sorted_scores)
         m = 3 if results_len < 10 else 5
         for score in sorted_scores:

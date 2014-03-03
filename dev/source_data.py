@@ -132,7 +132,7 @@ class SourceData(object):
         cls._conn.commit()
 
     @classmethod
-    def __set_http_test(cls, http_id, response):
+    def __set_http_test(cls, ip_id, response):
         methods = ["http", "https"]
         count = response["req_count"]
         for method in methods:
@@ -142,7 +142,7 @@ class SourceData(object):
                 ins_sql = "REPLACE INTO t_httpTest VALUES (" \
                           "  :ip_id, :ssl_flag, :min_delay, :max_delay, " \
                           "  :avg_delay, :ratio, :status, :test_count);"
-                data = (http_id, ssl_flag, stat["delay"]["min"],
+                data = (ip_id, ssl_flag, stat["delay"]["min"],
                         stat["delay"]["max"], stat["delay"]["avg"],
                         stat["delay"]["ratio"], stat["status"], count)
                 try:
@@ -152,13 +152,13 @@ class SourceData(object):
 
     @classmethod
     def set_multi_http_test_dict(cls, http_responses):
-        for http_id, response in http_responses.iteritems():
-            cls.__set_http_test(http_id, response)
+        for ip_id, response in http_responses.iteritems():
+            cls.__set_http_test(ip_id, response)
         cls._conn.commit()
 
     @classmethod
-    def set_single_http_test(cls, http_id, response):
-        cls.__set_ns_response(http_id, response)
+    def set_single_http_test(cls, ip_id, response):
+        cls.__set_ns_response(ip_id, response)
         cls._conn.commit()
 
     @classmethod
@@ -202,7 +202,7 @@ class SourceData(object):
     @classmethod
     def get_http_test_comb(cls):
         sql = "SELECT DISTINCT " \
-              "  name AS domain, ip, combination_id AS id " \
+              "  name AS domain, ip, ip_id AS id " \
               "FROM " \
               "  t_domain " \
               "  LEFT JOIN t_domain_ip " \
@@ -303,7 +303,7 @@ class SourceData(object):
               "FROM t_domain_ip" \
               "  LEFT JOIN t_ip ON t_domain_ip.ip_id = t_ip.id" \
               "  LEFT JOIN t_httpTest ON " \
-              "    t_domain_ip.combination_id = t_httpTest.http_id " \
+              "    t_domain_ip.ip_id = t_httpTest.ip_id " \
               "WHERE t_domain_ip.domain_id=:domain_id;"
         data = (domain_id, )
         cls._cur.execute(sql, data)
