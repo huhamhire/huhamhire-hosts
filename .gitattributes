@@ -1,0 +1,8 @@
+# Set default behaviour, in case users don't have core.autocrlf set.
+* text=LF
+
+*.zip       binary
+*.tar.gz    binary
+*.dmg       binary
+*.pdf       binary
+*.data      binary
