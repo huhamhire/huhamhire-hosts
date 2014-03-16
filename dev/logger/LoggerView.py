@@ -1,22 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
-
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-
-class LoggerColors(QObject):
-    def __init__(self, parent=None):
-        super(LoggerColors, self).__init__(parent)
-
-    EditorBackground = QColor("#272822")
-    SelectionBackground = QColor("#49483E")
-    SelectionText = QColor("#FFFFFF")
-    ErrorText = QColor("#FFB3B3")
-    OkayText = QColor("#6AE96A")
-    NormalText = QColor("#E4E4FF")
+from LoggerColors import LoggerColors
 
 
 class LoggerView(QTextEdit):
@@ -72,38 +60,3 @@ class LoggerView(QTextEdit):
         extras = self.extraSelections()
         extras.append(highlight)
         self.setExtraSelections(extras)
-
-
-class LoggerWidget(QWidget):
-    def __init__(self, *args):
-        super(LoggerWidget, self).__init__(*args)
-
-        self.resize(800, 640)
-
-        self.logger_view = LoggerView(self)
-
-        layout = QVBoxLayout(self)
-        layout.setMargin(5)
-        layout.addWidget(self.logger_view)
-        self.setLayout(layout)
-
-
-def main():
-    app = QApplication(sys.argv)
-    w = LoggerWidget()
-    test_text(w)
-    w.show()
-    sys.exit(app.exec_())
-
-
-def test_text(logger_widget):
-    logger_view = logger_widget.logger_view
-    logger_view.append_error_message("error")
-    logger_view.append_okay_message("ok")
-    logger_view.append_normal_message("normal")
-    for i in range(1000):
-        logger_view.append_okay_message("=" * 80)
-
-
-if __name__ == "__main__":
-    main()
