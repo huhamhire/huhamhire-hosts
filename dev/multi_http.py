@@ -7,8 +7,11 @@ import threading
 import time
 import sys
 
-from progress import Progress, Counter, Timer
+from progress import Progress
 from source_data import SourceData
+
+from util.Counter import Counter
+from util.Timer import Timer
 
 
 class HTTPTest(threading.Thread):

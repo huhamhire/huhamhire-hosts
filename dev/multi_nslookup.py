@@ -10,8 +10,11 @@ import sys
 
 from set_domain import SetDomain
 
-from progress import Progress, Counter, Timer
+from progress import Progress
 from source_data import SourceData
+
+from util.Counter import Counter
+from util.Timer import Timer
 
 
 class NSTools(object):
