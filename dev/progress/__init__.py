@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#  __init__.py : Declare modules to be called in logger module.
+#  __init__.py : Declare modules to be called in progress module.
 #
 # Copyleft (C) 2014 - huhamhire <me@huhamhire.com>
 # =====================================================================
@@ -10,7 +10,7 @@
 # this program. If not, see <http://www.gnu.org/licenses/>.
 # =====================================================================
 
-from LoggerWidget import LoggerWidget
 from LoggerView import LoggerView
+from ProgressWidget import ProgressWidget
 
-__all__ = ["LoggerView", "LoggerWidget"]
+__all__ = ["LoggerView", "ProgressWidget"]

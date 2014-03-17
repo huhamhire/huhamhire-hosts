@@ -7,7 +7,7 @@ import threading
 import time
 import sys
 
-from progress import Progress
+from progresshandler import ProgressHandler
 from source_data import SourceData
 
 from util.Counter import Counter
@@ -145,14 +145,15 @@ class HTTPTest(threading.Thread):
         if status_log:
             status_flag = min(status_log)
             if status_flag == 200:
-                Progress.show_status(msg, self.STATUS_DESC[status_flag])
+                ProgressHandler.show_status(msg, self.STATUS_DESC[status_flag])
             elif status_flag in self.STATUS_DESC.keys():
-                Progress.show_status(msg, self.STATUS_DESC[status_flag], 1)
+                ProgressHandler.show_status(
+                    msg, self.STATUS_DESC[status_flag], 1)
             else:
-                Progress.show_status(msg, str(status_flag), 1)
+                ProgressHandler.show_status(msg, str(status_flag), 1)
         else:
-            Progress.show_status(msg, "NO STATUS", 1)
-        Progress.progress_bar()
+            ProgressHandler.show_status(msg, "NO STATUS", 1)
+        ProgressHandler.progress_bar()
         self.mutex.release()
 
     def run(self):
@@ -177,12 +178,12 @@ class MultiHTTPTest(object):
         counter.set_total(len(self.combs) * 2)
         timer = Timer(time.time())
 
-        Progress.set_counter(counter)
-        Progress.set_timer(timer)
+        ProgressHandler.set_counter(counter)
+        ProgressHandler.set_timer(timer)
 
         utc_time = timer.format_utc(timer.start_time)
-        Progress.show_message("HTTP tests started at " + utc_time)
-        Progress.dash()
+        ProgressHandler.show_message("HTTP tests started at " + utc_time)
+        ProgressHandler.dash()
 
         threads = []
         for comb in self.combs:
@@ -196,10 +197,11 @@ class MultiHTTPTest(object):
         for http_test_item in threads:
             http_test_item.join()
 
-        Progress.dash()
+        ProgressHandler.dash()
         total_time = timer.format(timer.timer())
-        Progress.show_message("A total of %d HTTP tests were operated in %s" %
-                              (counter.total, total_time))
+        ProgressHandler.show_message(
+            "A total of %d HTTP tests were operated in %s" %
+            (counter.total, total_time))
         return self._responses
 
 

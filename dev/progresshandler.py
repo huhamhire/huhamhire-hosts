@@ -3,10 +3,10 @@
 
 import sys
 
-from util import ProgressModel
+from util import ProgressHandler
 
 
-class Progress(ProgressModel):
+class ProgressHandler(ProgressHandler):
 
     @classmethod
     def show_status(cls, message, status, error=0):
@@ -30,7 +30,7 @@ class Progress(ProgressModel):
 
         prog_len = cls._line_width - 2 * count_len - eta_len - 6
 
-        prog = cls._get_progress()
+        prog = 1.0 * prog_len * count / total
         bar = ''.join(['=' * int(prog), '-' * int(2 * prog % 2)])
         bar = bar.ljust(prog_len)
 

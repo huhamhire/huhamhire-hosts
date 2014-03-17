@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import threading
+
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
@@ -8,6 +10,7 @@ from LoggerColors import LoggerColors
 
 
 class LoggerView(QTextEdit):
+    mutex = threading.Lock()
 
     def __init__(self, parent=None):
         super(LoggerView, self).__init__(parent)
@@ -31,22 +34,28 @@ class LoggerView(QTextEdit):
         # Set default font
         self.setCurrentFont(QFont("Consolas", 11))
 
-    @pyqtSlot(QString)
-    def append_okay_message(self, message):
+    @pyqtSlot(list)
+    def append_okay_lines(self, lines):
         self.setTextColor(LoggerColors.OkayText)
-        self.append(message)
+        self._append_lines(lines)
         self.setTextColor(LoggerColors.NormalText)
 
-    @pyqtSlot(QString)
-    def append_error_message(self, message):
+    @pyqtSlot(list)
+    def append_error_lines(self, lines):
         self.setTextColor(LoggerColors.ErrorText)
-        self.append(message)
+        self._append_lines(lines)
         self.setTextColor(LoggerColors.NormalText)
 
-    @pyqtSlot(QString)
-    def append_normal_message(self, message):
+    @pyqtSlot(list)
+    def append_normal_lines(self, lines):
         self.setTextColor(LoggerColors.NormalText)
-        self.append(message)
+        self._append_lines(lines)
+
+    def _append_lines(self, lines):
+        self.mutex.acquire()
+        for line in lines:
+            self.append(line)
+        self.mutex.release()
 
     @pyqtSlot()
     def highlight_selected_line(self):

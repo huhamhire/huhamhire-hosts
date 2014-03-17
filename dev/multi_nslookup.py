@@ -10,7 +10,7 @@ import sys
 
 from set_domain import SetDomain
 
-from progress import Progress
+from progresshandler import ProgressHandler
 from source_data import SourceData
 
 from util.Counter import Counter
@@ -114,10 +114,10 @@ class NSLookup(threading.Thread):
         msg = "NSLK: " + self.host_name + " - " + server_tag
         self.mutex.acquire()
         if stat == "OK":
-            Progress.show_status(msg, stat)
+            ProgressHandler.show_status(msg, stat)
         else:
-            Progress.show_status(msg, stat, 1)
-        Progress.progress_bar()
+            ProgressHandler.show_status(msg, stat, 1)
+        ProgressHandler.progress_bar()
         self.mutex.release()
 
     def run(self):
@@ -147,12 +147,13 @@ class MultiNSLookup(object):
         counter.set_total(len(self.host_names) * len(self.ns_servers))
         timer = Timer(time.time())
 
-        Progress.set_counter(counter)
-        Progress.set_timer(timer)
+        ProgressHandler.set_counter(counter)
+        ProgressHandler.set_timer(timer)
 
         utc_time = timer.format_utc(timer.start_time)
-        Progress.show_message("Looking for NS records started at " + utc_time)
-        Progress.dash()
+        ProgressHandler.show_message(
+            "Looking for NS records started at " + utc_time)
+        ProgressHandler.dash()
 
         threads = []
         for domain in self.host_names:
@@ -166,10 +167,11 @@ class MultiNSLookup(object):
         for lookup_host in threads:
             lookup_host.join()
 
-        Progress.dash()
+        ProgressHandler.dash()
         total_time = timer.format(timer.timer())
-        Progress.show_message("A total of %d domains were searched in %s" %
-                              (counter.total, total_time))
+        ProgressHandler.show_message(
+            "A total of %d domains were searched in %s" %
+            (counter.total, total_time))
 
         return self._responses
 

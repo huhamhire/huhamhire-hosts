@@ -392,7 +392,7 @@ class CursesUI(object):
         normal = curses.A_NORMAL
         line_width = 76
         prog_len = line_width - 20
-        # Progress Bar
+        # ProgressHandler Bar
         if mode:
             done *= block
             prog = 1.0 * prog_len * done / total
@@ -403,7 +403,7 @@ class CursesUI(object):
         else:
             progress = ' ' * prog_len
             done = total = 'N/A'.center(7)
-        # Show Progress
+        # Show ProgressHandler
         prog_bar = "[%s] %s | %s" % (progress, done, total)
         screen.addstr(1, 2, prog_bar, normal)
         screen.refresh()

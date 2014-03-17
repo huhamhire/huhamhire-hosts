@@ -9,7 +9,7 @@ import threading
 import time
 import select
 
-from progress import Progress
+from progresshandler import ProgressHandler
 from source_data import SourceData
 
 from util.Counter import Counter
@@ -161,14 +161,14 @@ class PingHost(threading.Thread):
         msg = "PING: %s" % self._ip
         self.mutex.acquire()
         if self.delay_stat["ratio"] == 1:
-            Progress.show_status(msg, "OK")
+            ProgressHandler.show_status(msg, "OK")
         else:
             if self.delay_stat["ratio"] > 0:
                 status = "Packet Loss"
             else:
                 status = "Failed"
-            Progress.show_status(msg, status, 1)
-        Progress.progress_bar()
+            ProgressHandler.show_status(msg, status, 1)
+        ProgressHandler.progress_bar()
         self.mutex.release()
 
     def run(self):
@@ -192,12 +192,12 @@ class MultiPing(object):
         counter.set_total(len(self.combs))
         timer = Timer(time.time())
 
-        Progress.set_counter(counter)
-        Progress.set_timer(timer)
+        ProgressHandler.set_counter(counter)
+        ProgressHandler.set_timer(timer)
 
         utc_time = timer.format_utc(timer.start_time)
-        Progress.show_message("Ping tests started at " + utc_time)
-        Progress.dash()
+        ProgressHandler.show_message("Ping tests started at " + utc_time)
+        ProgressHandler.dash()
 
         threads = []
         for comb in self.combs:
@@ -210,10 +210,11 @@ class MultiPing(object):
         for ping_host in threads:
             ping_host.join()
 
-        Progress.dash()
+        ProgressHandler.dash()
         total_time = timer.format(timer.timer())
-        Progress.show_message("A total of %d Ping tests were operated in %s" %
-                              (counter.total, total_time))
+        ProgressHandler.show_message(
+            "A total of %d Ping tests were operated in %s" %
+            (counter.total, total_time))
 
         return self._responses
 

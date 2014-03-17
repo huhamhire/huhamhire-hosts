@@ -4,6 +4,6 @@
 from Counter import Counter
 from Timer import Timer
 
-from ProgressModel import ProgressModel
+from ProgressHandler import ProgressHandler
 
-__all__ = ["Counter", "Timer", "ProgressModel"]
+__all__ = ["Counter", "Timer", "ProgressHandler"]

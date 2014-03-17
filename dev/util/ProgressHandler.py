@@ -2,27 +2,27 @@
 # -*- coding: utf-8 -*
 
 
-class ProgressModel(object):
+class ProgressHandler(object):
     _line_width = 79
     _status_width = 11
-    _counter = None
-    _timer = None
 
-    @classmethod
-    def set_counter(cls, counter):
-        cls._counter = counter
+    def __init__(self, counter, timer, logger):
+        self._counter = counter
+        self._timer = timer
+        self._logger = logger
 
-    @classmethod
-    def set_timer(cls, timer):
-        cls._timer = timer
+    def update_status(self, message, status, error=0):
+        msgs = self._split_message(message)
+        msg_lines = self._set_message_lines(msgs, status)
+        if error:
+            for line in msg_lines:
+                self._logger.log_err(line)
+        else:
+            for line in msg_lines:
+                self._logger.log_ok(line)
 
-    @classmethod
-    def show_status(cls, message, status, error=0):
-        pass
-
-    @classmethod
-    def _split_message(cls, message):
-        msg_len = cls._line_width - 20
+    def _split_message(self, message):
+        msg_len = self._line_width - 20
         msgs = []
         if len(message) >= msg_len:
             messages = message.split(" - ", 1)
@@ -42,10 +42,9 @@ class ProgressModel(object):
             msgs.append(message)
         return msgs
 
-    @classmethod
-    def _set_message_lines(cls, msgs, status):
-        status = status.center(cls._status_width)
-        msg_len = cls._line_width - 20
+    def _set_message_lines(self, msgs, status):
+        status = status.center(self._status_width)
+        msg_len = self._line_width - 20
         msg_lines = []
 
         for i, msg in enumerate(msgs):
@@ -53,31 +52,24 @@ class ProgressModel(object):
                 msg_lines.append(msg)
             elif len(msg) > msg_len:
                 msg_lines.append(msg.ljust(msg_len+10+2))
-                msg_lines.append(("[%s]" % status).rjust(cls._line_width))
+                msg_lines.append(("[%s]" % status).rjust(self._line_width))
             else:
                 msg_lines.append(msg.ljust(msg_len) +
                                  ("[%s]" % status).rjust(20))
         return msg_lines
 
-    @classmethod
-    def progress_bar(cls):
-        pass
+    def update_progress(self):
+        counter = self._counter
+        eta = self._get_eta()
+        self._logger.set_progress(counter, eta)
 
-    @classmethod
-    def _get_progress(cls):
-        counter = cls._counter
-        return 1.0 * counter.count / counter.total
-
-    @classmethod
-    def _get_eta(cls):
-        timer = cls._timer
-        counter = cls._counter
+    def _get_eta(self):
+        timer = self._timer
+        counter = self._counter
         return "ETA " + timer.format(timer.eta(counter.count, counter.total))
 
-    @classmethod
-    def show_message(cls, message):
-        pass
+    def update_message(self, message):
+        self._logger.log_normal([message])
 
-    @classmethod
-    def dash(cls):
-        pass
+    def update_dash(self):
+        self._logger.log_normal(["-" * self._line_width])
