@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
+
 import threading
 import time
 
 
-from dev.util.Counter import Counter
-from dev.util.Timer import Timer
-from dev.util.ProgressHandler import ProgressHandler
+from ...util import Counter, Timer, ProgressHandler
 
-from NSLookup import NSLookup
+from .NSLookup import NSLookup
 
 
 class MultiNSLookup(object):

@@ -57,14 +57,13 @@ class ProgressHandler(object):
         return msg_lines
 
     def update_progress(self):
-        counter = self._counter
         eta = self._get_eta()
-        self._logger.set_progress(counter, eta)
+        self._logger.set_progress(self._counter.count, self._counter.total, eta)
 
     def _get_eta(self):
         timer = self._timer
         counter = self._counter
-        return "ETA " + timer.format(timer.eta(counter.count, counter.total))
+        return timer.format(timer.eta(counter.count, counter.total))
 
     def update_message(self, message):
         self._logger.log_normal(["> " + message])

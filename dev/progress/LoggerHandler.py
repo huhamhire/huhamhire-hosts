@@ -8,7 +8,7 @@ class LoggerHandler(QObject):
     normal_message = pyqtSignal(list)
     okay_message = pyqtSignal(list)
     error_message = pyqtSignal(list)
-    update_progress = pyqtSignal(object, str)
+    update_progress = pyqtSignal(int, int, str)
 
     def __init__(self, parent=None):
         super(LoggerHandler, self).__init__(parent)
@@ -22,5 +22,5 @@ class LoggerHandler(QObject):
     def log_err(self, message):
         self.error_message.emit(message)
 
-    def set_progress(self, counter, eta):
-        self.update_progress.emit(counter, eta)
+    def set_progress(self, count, total, eta):
+        self.update_progress.emit(count, total, eta)
