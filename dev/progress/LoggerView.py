@@ -6,7 +6,7 @@ import threading
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-from LoggerColors import LoggerColors
+from LoggerUIColors import LoggerUIColors
 
 
 class LoggerView(QTextEdit):
@@ -18,17 +18,17 @@ class LoggerView(QTextEdit):
         self.document().setMaximumBlockCount(3000)
         self.setCursorWidth(2)
         self.setReadOnly(True)
-        self.setTextColor(LoggerColors.NormalText)
+        self.setTextColor(LoggerUIColors.NormalText)
         self.viewport().setCursor(Qt.ArrowCursor)
         self.cursorPositionChanged.connect(self.highlight_selected_line)
 
         # Set background color and selection color
         palette = self.palette()
-        palette.setColor(QPalette().Base, LoggerColors.EditorBackground)
+        palette.setColor(QPalette().Base, LoggerUIColors.EditorBackground)
         palette.setColor(
-            QPalette().Highlight, LoggerColors.SelectionBackground)
+            QPalette().Highlight, LoggerUIColors.SelectionBackground)
         palette.setColor(
-            QPalette().HighlightedText, LoggerColors.SelectionText)
+            QPalette().HighlightedText, LoggerUIColors.SelectionText)
         self.setPalette(palette)
 
         # Set default font
@@ -36,19 +36,19 @@ class LoggerView(QTextEdit):
 
     @pyqtSlot(list)
     def append_okay_lines(self, lines):
-        self.setTextColor(LoggerColors.OkayText)
+        self.setTextColor(LoggerUIColors.OkayText)
         self._append_lines(lines)
-        self.setTextColor(LoggerColors.NormalText)
+        self.setTextColor(LoggerUIColors.NormalText)
 
     @pyqtSlot(list)
     def append_error_lines(self, lines):
-        self.setTextColor(LoggerColors.ErrorText)
+        self.setTextColor(LoggerUIColors.ErrorText)
         self._append_lines(lines)
-        self.setTextColor(LoggerColors.NormalText)
+        self.setTextColor(LoggerUIColors.NormalText)
 
     @pyqtSlot(list)
     def append_normal_lines(self, lines):
-        self.setTextColor(LoggerColors.NormalText)
+        self.setTextColor(LoggerUIColors.NormalText)
         self._append_lines(lines)
 
     def _append_lines(self, lines):
@@ -64,7 +64,7 @@ class LoggerView(QTextEdit):
         highlight = QTextEdit.ExtraSelection()
         highlight.cursor = self.textCursor()
         highlight.format.setProperty(QTextFormat().FullWidthSelection, True)
-        highlight.format.setBackground(LoggerColors.SelectionBackground)
+        highlight.format.setBackground(LoggerUIColors.SelectionBackground)
 
         extras = self.extraSelections()
         extras.append(highlight)

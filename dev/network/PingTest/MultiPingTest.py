@@ -4,11 +4,9 @@
 import threading
 import time
 
-from dev.util.Counter import Counter
-from dev.util.Timer import Timer
-from dev.util.ProgressHandler import ProgressHandler
+from ...util import Counter, Timer, ProgressHandler
 
-from PingTest import PingTest
+from .PingTest import PingTest
 
 
 class MultiPingTest(object):

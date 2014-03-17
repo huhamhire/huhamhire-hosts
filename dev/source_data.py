@@ -33,10 +33,10 @@ class SourceData(object):
         return int(identity, 16)
 
     @classmethod
-    def connect_db(cls, db="test.s3db"):
-        cls._conn = sqlite3.connect(db)
+    def connect_db(cls, database="test.s3db"):
+        cls._conn = sqlite3.connect(database)
         cls._cur = cls._conn.cursor()
-        cls._db = db
+        cls._db = database
         cls.is_connected = True
 
     @classmethod

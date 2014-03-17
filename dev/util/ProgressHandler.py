@@ -15,11 +15,9 @@ class ProgressHandler(object):
         msgs = self._split_message(message)
         msg_lines = self._set_message_lines(msgs, status)
         if error:
-            for line in msg_lines:
-                self._logger.log_err(line)
+            self._logger.log_err(msg_lines)
         else:
-            for line in msg_lines:
-                self._logger.log_ok(line)
+            self._logger.log_ok(msg_lines)
 
     def _split_message(self, message):
         msg_len = self._line_width - 20
@@ -69,7 +67,7 @@ class ProgressHandler(object):
         return "ETA " + timer.format(timer.eta(counter.count, counter.total))
 
     def update_message(self, message):
-        self._logger.log_normal([message])
+        self._logger.log_normal(["> " + message])
 
     def update_dash(self):
         self._logger.log_normal(["-" * self._line_width])

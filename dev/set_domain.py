@@ -1,18 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+from os import path
 from xml.etree.ElementTree import ElementTree
 
 from source_data import SourceData
 
 
 class SetDomain(object):
-    def __init__(self, cfg_file):
+    def __init__(self, cfg_path, cfg_file, database="test.s3db"):
+        self._cfg_path = cfg_path
         self._cfg_file = cfg_file
         self._name_pool = []
         self._modules = {}
 
         if not SourceData.is_connected:
-            SourceData.connect_db()
+            SourceData.connect_db(database)
 
     def __get_domains_in_mod(self, mod_file):
         domains = []
@@ -27,7 +30,8 @@ class SetDomain(object):
 
     def get_config(self):
         tree = ElementTree()
-        xmlfile = tree.parse(self._cfg_file)
+        cfg_file = path.join(self._cfg_path, self._cfg_file)
+        xmlfile = tree.parse(cfg_file)
         for module in xmlfile.iter(tag="module"):
             module_name = module.get("name")
             mod_names = []
@@ -40,6 +44,7 @@ class SetDomain(object):
         for module, mod_names in self._modules.iteritems():
             for mod in mod_names:
                 mod_file = module + "_mods/" + mod + ".hosts"
+                mod_file = path.join(self._cfg_path, mod_file)
                 domains = self.__get_domains_in_mod(mod_file)
                 SourceData.set_multi_domain_list(domains, module + "-" + mod)
 
