@@ -29,8 +29,8 @@ class HttpTest(threading.Thread):
     http_stat = {}
     _response_log = {}
 
-    def __init__(self, ip, domain, comb_id, results,
-                 counter, semaphore, mutex, req_count=4, timeout=5):
+    def __init__(self, ip, domain, comb_id, results, counter, semaphore, mutex,
+                 progress_handler, req_count=4, timeout=5):
         threading.Thread.__init__(self)
         self._ip = ip
         self._domain = domain
@@ -39,6 +39,7 @@ class HttpTest(threading.Thread):
         self.counter = counter
         self.sem = semaphore
         self.mutex = mutex
+        self.p_handler = progress_handler
         self.req_count = req_count
         self.timeout = timeout
 
@@ -115,7 +116,8 @@ class HttpTest(threading.Thread):
             return {"min": None, "max": None,
                     "avg": None, "ratio": 0}
 
-    def _stat_status(self, status_log):
+    @staticmethod
+    def _stat_status(status_log):
         return "|".join([str(status) for status in sorted(status_log)])
 
     def stat(self):
@@ -139,15 +141,15 @@ class HttpTest(threading.Thread):
         if status_log:
             status_flag = min(status_log)
             if status_flag == 200:
-                ProgressHandler.show_status(msg, self.STATUS_DESC[status_flag])
+                self.p_handler.update_status(msg, self.STATUS_DESC[status_flag])
             elif status_flag in self.STATUS_DESC.keys():
-                ProgressHandler.show_status(
+                self.p_handler.update_status(
                     msg, self.STATUS_DESC[status_flag], 1)
             else:
-                ProgressHandler.show_status(msg, str(status_flag), 1)
+                self.p_handler.update_status(msg, str(status_flag), 1)
         else:
-            ProgressHandler.show_status(msg, "NO STATUS", 1)
-        ProgressHandler.progress_bar()
+            self.p_handler.update_status(msg, "NO STATUS", 1)
+        self.p_handler.update_progress()
         self.mutex.release()
 
     def run(self):

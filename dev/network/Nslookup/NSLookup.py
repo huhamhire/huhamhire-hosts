@@ -21,7 +21,8 @@ class NSLookup(threading.Thread):
     }
 
     def __init__(self, servers, host_name, results, counter, semaphore, mutex,
-                 ipv6=False, timeout=2, sock_type="TCP", port=53):
+                 progress_handler, ipv6=False, timeout=2, sock_type="TCP",
+                 port=53):
         threading.Thread.__init__(self)
         self.servers = servers
         self.port = port
@@ -30,6 +31,7 @@ class NSLookup(threading.Thread):
         self.counter = counter
         self.sem = semaphore
         self.mutex = mutex
+        self.p_handler = progress_handler
         self.timeout = timeout
 
         self._response = {}
@@ -87,10 +89,10 @@ class NSLookup(threading.Thread):
         msg = "NSLK: " + self.host_name + " - " + server_tag
         self.mutex.acquire()
         if stat == "OK":
-            ProgressHandler.show_status(msg, stat)
+            self.p_handler.update_status(msg, stat)
         else:
-            ProgressHandler.show_status(msg, stat, 1)
-        ProgressHandler.progress_bar()
+            self.p_handler.update_status(msg, stat, 1)
+        self.p_handler.update_progress()
         self.mutex.release()
 
     def run(self):

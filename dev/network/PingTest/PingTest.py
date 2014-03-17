@@ -20,7 +20,7 @@ class PingTest(threading.Thread):
     }
 
     def __init__(self, ip, ip_id, results, counter, semaphore, mutex,
-                 ping_count=4, timeout=5, v6_flag=False):
+                 progress_handler, ping_count=4, timeout=5, v6_flag=False):
         threading.Thread.__init__(self)
         self.__data = struct.pack('d', time.time())
         self._pid = 0
@@ -33,6 +33,7 @@ class PingTest(threading.Thread):
         self.counter = counter
         self.sem = semaphore
         self.mutex = mutex
+        self.p_handler = progress_handler
         self._timeout = timeout
         self._v6_flag = v6_flag
 
@@ -157,14 +158,14 @@ class PingTest(threading.Thread):
         msg = "PING: %s" % self._ip
         self.mutex.acquire()
         if self.delay_stat["ratio"] == 1:
-            ProgressHandler.show_status(msg, "OK")
+            self.p_handler.update_status(msg, "OK")
         else:
             if self.delay_stat["ratio"] > 0:
                 status = "Packet Loss"
             else:
                 status = "Failed"
-            ProgressHandler.show_status(msg, status, 1)
-        ProgressHandler.progress_bar()
+            self.p_handler.update_status(msg, status, 1)
+        self.p_handler.update_progress()
         self.mutex.release()
 
     def run(self):

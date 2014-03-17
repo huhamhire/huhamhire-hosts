@@ -4,9 +4,10 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-class LoggerColors(QObject):
+
+class LoggerUIColors(QObject):
     def __init__(self, parent=None):
-        super(LoggerColors, self).__init__(parent)
+        super(LoggerUIColors, self).__init__(parent)
 
     EditorBackground = QColor("#272822")
     SelectionBackground = QColor("#49483E")
