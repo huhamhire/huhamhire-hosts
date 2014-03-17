@@ -3,20 +3,14 @@
 
 import array
 import random
+import select
 import socket
 import struct
 import threading
 import time
-import select
-
-from progresshandler import ProgressHandler
-from source_data import SourceData
-
-from util.Counter import Counter
-from util.Timer import Timer
 
 
-class PingHost(threading.Thread):
+class PingTest(threading.Thread):
     ERROR_DESCR = {
         1: 'ERROR: ICMP messages can only be sent from processes running as '
            'root.',
@@ -45,6 +39,7 @@ class PingHost(threading.Thread):
         self.time_log = []
         self.delay_stat = {}
 
+        self.time_sent = None
         self._sock = self.__sock
 
     @property
@@ -79,16 +74,17 @@ class PingHost(threading.Thread):
             header = struct.pack('BbHHh', 128, 0, checksum, self._pid, 0)
         return header + self.__data
 
-    def __checksum(self, pack):
+    @staticmethod
+    def __checksum(pack):
         if len(pack) & 1:
             pack += '\0'
         words = array.array('h', pack)
-        sum = 0
+        checksum = 0
         for word in words:
-            sum += (word & 0xffff)
-        sum = (sum >> 16) + (sum & 0xffff)
-        sum += (sum >> 16)
-        return (~sum) & 0xffff
+            checksum += (word & 0xffff)
+        checksum = (checksum >> 16) + (checksum & 0xffff)
+        checksum += (checksum >> 16)
+        return (~checksum) & 0xffff
 
     def send(self):
         pack = self._pack
@@ -176,54 +172,3 @@ class PingHost(threading.Thread):
         self.stat()
         self.set_results()
         self.show_state()
-
-
-class MultiPing(object):
-    # Limit the number of concurrent sessions
-    sem = threading.Semaphore(0x100)
-    mutex = threading.Lock()
-
-    def __init__(self, combinations):
-        self.combs = combinations
-        self._responses = {}
-
-    def ping_test(self):
-        counter = Counter()
-        counter.set_total(len(self.combs))
-        timer = Timer(time.time())
-
-        ProgressHandler.set_counter(counter)
-        ProgressHandler.set_timer(timer)
-
-        utc_time = timer.format_utc(timer.start_time)
-        ProgressHandler.show_message("Ping tests started at " + utc_time)
-        ProgressHandler.dash()
-
-        threads = []
-        for comb in self.combs:
-            self.sem.acquire()
-            ping_host = PingHost(comb["ip"], comb["ip_id"], self._responses,
-                                 counter, self.sem, self.mutex)
-            ping_host.start()
-            threads.append(ping_host)
-
-        for ping_host in threads:
-            ping_host.join()
-
-        ProgressHandler.dash()
-        total_time = timer.format(timer.timer())
-        ProgressHandler.show_message(
-            "A total of %d Ping tests were operated in %s" %
-            (counter.total, total_time))
-
-        return self._responses
-
-
-if __name__ == '__main__':
-    SourceData.connect_db()
-    combs = SourceData.get_ping_test_comb()
-
-    ping_tests = MultiPing(combs)
-    results = ping_tests.ping_test()
-
-    SourceData.set_multi_ping_test_dict(results)
