@@ -113,9 +113,8 @@ class CursesUI(object):
         .. seealso:: :attr:`filename` and :attr:`infofile` in
             :class:`~gui.hostsutil.HostsUtil` class.
 
-    :ivar str custom: File name of User Customized Hosts File. Customized
-        hosts would be able to select if this file exists. The default file
-        name is ``custom.hosts``.
+    :ivar str custom: File path of User Customized Hosts File. Customized
+        hosts would be able to select if this file exists.
 
         .. seealso:: :ref:`User Customized Hosts<intro-customize>`.
     """
@@ -154,13 +153,14 @@ class CursesUI(object):
 
     filename = "hostslist.data"
     infofile = "hostsinfo.json"
-    custom = "custom.hosts"
+    custom = ""
 
     def __init__(self):
         """
         Initialize a new TUI window in terminal.
         """
         locale.setlocale(locale.LC_ALL, '')
+        self.custom = CommonUtil.set_custom_hosts_path()
         self._stdscr = curses.initscr()
         curses.start_color()
         curses.noecho()

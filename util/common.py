@@ -177,6 +177,25 @@ class CommonUtil(object):
         return mirrors
 
     @classmethod
+    def set_custom_hosts_path(cls):
+        """
+        Set path of user customized hosts module.
+
+        .. note:: This is a `classmethod`.
+
+        :return: Path to the user customized hosts module.
+        :rtype: str
+
+        .. seealso:: :ref:`User Customized Hosts<intro-customize>`.
+        """
+        custom_paths = ["~/.custom.hosts", "~/custom.hosts", "custom.hosts"]
+        for path in custom_paths:
+            file_path = os.path.expanduser(path)
+            if os.path.isfile(file_path):
+                return file_path
+        return ""
+
+    @classmethod
     def timestamp_to_date(cls, timestamp):
         """
         Transform unix :attr:`timestamp` to a data string in ISO format.

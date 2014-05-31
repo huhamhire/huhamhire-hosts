@@ -144,15 +144,21 @@ User Customized Hosts
 ---------------------
 
 Users are allowed to add customized hosts list as an independent module to
-make a hosts file. All you need to do is create a simple text file named
-``custom.hosts`` in the working directory, and put your own hosts entries
-into this file. Then you would find a `Customized Hosts` option in the
-function list.
+make a hosts file. All you need to do is create a simple text file, and put your
+own hosts entries into this file. Then you would find a `Customized Hosts`
+option in the function list.
+
+The user customized file could be ``custom.hosts`` in the working directory,
+or could be ``custom.hosts`` / ``.custom.hosts`` in the home directory of
+current user.
+
+The priority order of user customized hosts files should be: ``~/.custom.hosts``
+> ``~/custom.hosts`` > ``./custom.hosts``.
 
 .. warning:: Non-ASCII characters are not recommended to be put into the
     customized hosts file.
 
-.. versionadded:: 1.9.8
+.. versionchanged:: 1.9.9
 
 
 .. note:: Specific user manual is not included in this documentation. For
