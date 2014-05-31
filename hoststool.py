@@ -104,6 +104,16 @@ class UtilLauncher(object):
         return parser.parse_args()
 
     @classmethod
+    def get_custom_conf_path(cls):
+        if not CommonUtil.check_platform()[0] == "Windows":
+            path = os.path.expanduser('~/.custom.hosts')
+            if not os.path.isfile(path):
+                path = os.path.expanduser('~/custom.hosts')
+            if os.path.isfile(path):
+                return path
+        return None
+
+    @classmethod
     def launch_gui(cls):
         """
         Start a Graphical User Interface (GUI) session of
@@ -112,6 +122,7 @@ class UtilLauncher(object):
         .. note:: This is a `classmethod`.
         """
         main = gui.HostsUtil()
+        main.custom = UtilLauncher.get_custom_conf_path()
         main.start()
 
     @classmethod
@@ -133,6 +144,7 @@ class UtilLauncher(object):
             os.popen("chcp 437")
 
         main = tui.HostsUtil()
+        main.custom = UtilLauncher.get_custom_conf_path()
         main.start()
 
         # Restore the default code page for Windows
