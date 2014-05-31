@@ -105,7 +105,11 @@ class MakeHosts(object):
         .. seealso:: :attr:`make_cfg` in :class:`~tui.curses_d.CursesDaemon`
             class.
         """
-        for part_id in sorted(make_cfg.keys()):
+        parts = sorted(make_cfg.keys())
+        if 0x04 in parts:
+            self.write_customized()
+            parts.remove(0x04)
+        for part_id in parts:
             mod_cfg = make_cfg[part_id]
             if not RetrieveData.chk_mutex(part_id, mod_cfg):
                 return
@@ -115,8 +119,6 @@ class MakeHosts(object):
                 hosts, mod_name = RetrieveData.get_host(part_id, mod_id)
                 if part_id == 0x02:
                     self.write_localhost_mod(hosts)
-                elif part_id == 0x04:
-                    self.write_customized()
                 else:
                     self.write_common_mod(hosts, mod_name)
 
@@ -174,7 +176,7 @@ class MakeHosts(object):
                 "%s# Section Start: Customized%s" % (self.eol, self.eol))
             for line in lines:
                 line = line.strip("\n")
-                entry =  line.split(" ", 1)
+                entry = line.split(" ", 1)
                 if line.startswith("#"):
                     self.hosts_file.write(line + self.eol)
                 elif len(entry) > 1:
