@@ -12,6 +12,8 @@ from dev.progress import ProgressWidget
 
 def main():
     app = QApplication(sys.argv)
+    with open("../../theme/dracula.qss", "r") as qss:
+        app.setStyleSheet(qss.read())
     w = ProgressWidget()
     w.show()
 

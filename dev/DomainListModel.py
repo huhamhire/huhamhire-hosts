@@ -133,7 +133,7 @@ class DomainListWidget(QWidget):
         self.setTabOrder(self._list_filter, self._list_view)
 
         layout = QVBoxLayout(self)
-        layout.setMargin(5)
+        layout.setMargin(2)
         layout.addWidget(self._list_filter)
         layout.addWidget(self._list_view)
         self.setLayout(layout)

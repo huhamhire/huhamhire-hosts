@@ -315,7 +315,7 @@ class DomainTestTableWidget(QWidget):
         )
 
         layout = QVBoxLayout(self)
-        layout.setMargin(5)
+        layout.setContentsMargins(0, 3, 0, 0)
         layout.addWidget(self._table_view)
         self.setLayout(layout)
 
@@ -372,7 +372,7 @@ class DomainTestTabWidget(QWidget):
             self.test_tab.addTab(self.test_tables[tab], tab)
 
         layout = QVBoxLayout(self)
-        layout.setMargin(5)
+        layout.setMargin(2)
         layout.addWidget(self.test_tab)
 
     @pyqtSlot(long)

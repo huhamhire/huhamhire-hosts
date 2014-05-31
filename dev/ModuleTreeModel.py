@@ -258,7 +258,7 @@ class ModuleTreeWidget(QWidget):
         self.setTabOrder(self._tree_filter, self._tree_view)
 
         layout = QVBoxLayout(self)
-        layout.setMargin(5)
+        layout.setMargin(2)
         layout.addWidget(self._tree_filter)
         layout.addWidget(self._tree_view)
 

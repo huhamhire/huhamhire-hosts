@@ -57,7 +57,7 @@ if __name__ == '__main__':
     SourceData.create_tables()
     SourceData.disconnect_db()
 
-    test = SetDomain("mods.xml")
+    test = SetDomain("./", "mods.xml")
     test.get_config()
     test.get_domains_in_mods()
     domains = SourceData.get_domain_list()

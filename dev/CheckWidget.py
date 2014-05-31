@@ -3,6 +3,7 @@
 
 import sys
 
+from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
 from source_data import SourceData
@@ -50,6 +51,7 @@ class CheckWidget(QWidget):
         self.setTabOrder(domain_list, test_tab)
 
         layout = QHBoxLayout(self)
+        layout.setMargin(10)
         layout.addWidget(splitter)
 
         self.setLayout(layout)
@@ -62,7 +64,10 @@ class CheckWidget(QWidget):
 
 def main():
     app = QApplication(sys.argv)
+    with open("./theme/dracula.qss", "r") as qss:
+        app.setStyleSheet(qss.read())
     w = CheckWidget()
+    # w.setWindowFlags(Qt.FramelessWindowHint)
     w.show()
     sys.exit(app.exec_())
 
