@@ -17,6 +17,7 @@
 __author__ = "huhamhire <me@huhamhire.com>"
 
 import ConfigParser
+import hashlib
 import math
 import os
 import sys
@@ -273,3 +274,20 @@ class CommonUtil(object):
             msgs.append(line)
         msgs.append(msg)
         return msgs
+
+    @classmethod
+    def calculate_md5(cls, filepath):
+        """Calculate MD5 checksum of a specified file (:attr:`filepath`).
+
+        .. note:: This is a `classmethod`.
+
+        :param filepath: Path of the target file.
+        :type filepath: str
+        :return: MD5 checksum.
+        :rtype: str
+        """
+        with open(filepath, 'rb') as f:
+            md5obj = hashlib.md5()
+            md5obj.update(f.read())
+            hash_md5 = md5obj.hexdigest()
+            return hash_md5

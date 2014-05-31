@@ -16,6 +16,10 @@ import os
 import socket
 import urllib
 
+import sys
+sys.path.append("..")
+from util import CommonUtil
+
 
 class FetchUpdate(object):
     """
@@ -45,6 +49,7 @@ class FetchUpdate(object):
         self.path = "./" + parent.filename
         self.tmp_path = self.path + ".download"
         self.file_size = parent._update["size"]
+        self.file_md5 = parent._update["md5"]
         self.parent = parent
 
     def get_file(self):
@@ -55,6 +60,7 @@ class FetchUpdate(object):
         try:
             urllib.urlretrieve(self.url, self.tmp_path,
                                self.parent.process_bar)
+            self.check_file()
             self.replace_old()
         except Exception, e:
             raise e
@@ -66,3 +72,11 @@ class FetchUpdate(object):
         if os.path.isfile(self.path):
             os.remove(self.path)
         os.rename(self.tmp_path, self.path)
+
+    def check_file(self):
+        """
+        Check MD5 hash of downloaded file.
+        """
+        tmp_md5 = CommonUtil.calculate_md5(self.tmp_path)
+        if self.file_md5 != tmp_md5:
+            raise IOError

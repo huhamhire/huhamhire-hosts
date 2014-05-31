@@ -98,7 +98,8 @@ class QSubFetchUpdate(QtCore.QThread):
             parent.filename
         self.path = "./" + parent.filename
         self.tmp_path = self.path + ".download"
-        self.filesize = parent._update["size"]
+        self.file_size = parent._update["size"]
+        self.file_md5 = parent._update["md5"]
 
     def run(self):
         """
@@ -115,6 +116,7 @@ class QSubFetchUpdate(QtCore.QThread):
         socket.setdefaulttimeout(10)
         try:
             urllib.urlretrieve(self.url, self.tmp_path, self.set_progress)
+            self.check_file()
             self.replace_old()
             self.finish_trigger.emit(1, 0)
         except:
@@ -131,15 +133,15 @@ class QSubFetchUpdate(QtCore.QThread):
         :param total: Total size of the hosts data file.
         :type total: int
         """
-        done = done * block
+        done *= block
         if total <= 0:
-            total = self.filesize
-        prog = 100 * done / total
+            total = self.file_size
+        progress = 100 * done / total
         done = CommonUtil.convert_size(done)
         total = CommonUtil.convert_size(total)
         text = unicode(_translate(
             "Util", "Downloading: %s / %s", None)) % (done, total)
-        self.prog_trigger.emit(prog, text)
+        self.prog_trigger.emit(progress, text)
 
     def replace_old(self):
         """
@@ -148,3 +150,11 @@ class QSubFetchUpdate(QtCore.QThread):
         if os.path.isfile(self.path):
             os.remove(self.path)
         os.rename(self.tmp_path, self.path)
+
+    def check_file(self):
+        """
+        Check MD5 hash of downloaded file.
+        """
+        tmp_md5 = CommonUtil.calculate_md5(self.tmp_path)
+        if self.file_md5 != tmp_md5:
+            raise IOError
