@@ -140,7 +140,7 @@ class HttpTest(threading.Thread):
         self.mutex.acquire()
         if status_log:
             status_flag = min(status_log)
-            if status_flag == 200:
+            if status_flag <= 404:
                 self.p_handler.update_status(msg, self.STATUS_DESC[status_flag])
             elif status_flag in self.STATUS_DESC.keys():
                 self.p_handler.update_status(

@@ -39,7 +39,6 @@
         <modules>
             <mod cate="0x0001" mutex="0x0000">adblock-hostsx</mod>
             <mod cate="0x0002" mutex="0x0000">adblock-mvps</mod>
-            <mod cate="0x0004" mutex="0x0000">adblock-mwsl</mod>
         </modules>
     </part>
     <part id="0x08" default="0x0002">

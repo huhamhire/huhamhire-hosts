@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from MultiHttpTest import MultiHttpTest
+from MultiHTTPTest import MultiHttpTest
 
 __all__ = ["MultiHttpTest"]

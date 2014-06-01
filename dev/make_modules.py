@@ -119,7 +119,7 @@ class MakeModuleFile(object):
 
     def set_hosts_in_mod(self, module, mod):
         hosts = []
-        mod_file = module + "_mods/" + mod + ".hosts"
+        mod_file = "modules/" + module + "/" + mod + ".hosts"
         mod_tag = module + "-" + mod
         make_mod = MakeDomainModule(mod_tag)
         make_mod.make()
@@ -154,6 +154,6 @@ class MakeModuleFile(object):
 
 
 if __name__ == "__main__":
-    mk = MakeModuleFile("mods.xml")
+    mk = MakeModuleFile("./modules/modules.xml")
     mk.get_config()
     mk.make_modules_from_mods()

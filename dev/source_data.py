@@ -189,13 +189,18 @@ class SourceData(object):
 
     @classmethod
     def get_domain_list(cls):
-        sql = "SELECT name FROM t_domain;"
+        sql = "SELECT name, mod FROM t_domain;"
         cls._cur.execute(sql)
-        domains = []
+        domains = {}
         sql_results = cls._cur.fetchmany(1000)
         while sql_results:
             for result in sql_results:
-                domains.append(result[0].encode("ascii"))
+                mod_name = result[1].encode("ascii")
+                domain = result[0].encode("ascii")
+                if mod_name in domains:
+                    domains[mod_name].append(domain)
+                else:
+                    domains[mod_name] = [domain]
             sql_results = cls._cur.fetchmany(1000)
         return domains
 

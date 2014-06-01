@@ -11,7 +11,7 @@ from .PingTest import PingTest
 
 class MultiPingTest(object):
     # Limit the number of concurrent sessions
-    sem = threading.Semaphore(0x100)
+    sem = threading.Semaphore(0x200)
     mutex = threading.Lock()
 
     def __init__(self, combinations, logger):
@@ -37,6 +37,7 @@ class MultiPingTest(object):
                 self.mutex, progress_handler)
             ping_host.start()
             threads.append(ping_host)
+            time.sleep(0.05)
         for ping_host in threads:
             ping_host.join()
 

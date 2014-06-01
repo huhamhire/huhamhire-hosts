@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyleft (C) 2014 - Huhamhire-hosts Team -->
+<domains>
+    <module name="ipv4">
+        <mod ns="ALL">google</mod>
+        <mod ns="ALL">google-apis</mod>
+        <mod ns="!,cn-t,cn-u">facebook</mod>
+        <mod ns="!,cn-t,cn-u">twitter</mod>
+        <mod ns="!,cn-t,cn-u">youtube</mod>
+        <mod ns="ALL">wikipedia</mod>
+        <mod ns="ALL">steam</mod>
+        <mod ns="ALL">flickr</mod>
+        <mod ns="ALL">github</mod>
+        <mod ns="ALL">dropbox</mod>
+        <mod ns="ALL">wordpress</mod>
+        <mod ns="ALL">others</mod>
+    </module>
+    <module name="share">
+        <mod ns="cn-t,cn-u">apple</mod>
+    </module>
+</domains>

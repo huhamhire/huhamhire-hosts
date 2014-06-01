@@ -9,6 +9,7 @@ hosts
 
 .idea/
 data/ipv4_mods/*.hosts
+data/share_mods/apple.hosts
 doc/build/
 
 dev/*.s3db

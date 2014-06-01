@@ -6,12 +6,12 @@ import time
 
 from ...util import Counter, Timer, ProgressHandler
 
-from .HttpTest import HttpTest
+from .HTTPTest import HttpTest
 
 
 class MultiHttpTest(object):
     # Limit the number of concurrent sessions
-    sem = threading.Semaphore(0x100)
+    sem = threading.Semaphore(0x200)
     mutex = threading.Lock()
 
     def __init__(self, combinations, ext_combinations, logger):
@@ -39,6 +39,7 @@ class MultiHttpTest(object):
                 counter, self.sem, self.mutex, progress_handler)
             http_test_item.start()
             threads.append(http_test_item)
+            time.sleep(0.05)
         for http_test_item in threads:
             http_test_item.join()
 

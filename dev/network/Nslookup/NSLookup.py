@@ -21,7 +21,7 @@ class NSLookup(threading.Thread):
     }
 
     def __init__(self, servers, host_name, results, counter, semaphore, mutex,
-                 progress_handler, ipv6=False, timeout=2, sock_type="TCP",
+                 progress_handler, ipv6=False, timeout=10, sock_type="TCP",
                  port=53):
         threading.Thread.__init__(self)
         self.servers = servers

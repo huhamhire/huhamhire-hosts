@@ -13,6 +13,7 @@ class SetDomain(object):
         self._cfg_file = cfg_file
         self._name_pool = []
         self._modules = {}
+        self._ns_filter = {}
 
         if not SourceData.is_connected:
             SourceData.connect_db(database)
@@ -38,15 +39,20 @@ class SetDomain(object):
             mods = module.iter(tag="mod")
             for mod in mods:
                 mod_names.append(mod.text)
+                full_mod_name = module_name+"-"+mod.text
+                self._ns_filter[full_mod_name] = mod.get("ns").split(",")
             self._modules[module_name] = mod_names
 
     def get_domains_in_mods(self):
         for module, mod_names in self._modules.iteritems():
             for mod in mod_names:
-                mod_file = module + "_mods/" + mod + ".hosts"
+                mod_file = module + "/" + mod + ".hosts"
                 mod_file = path.join(self._cfg_path, mod_file)
                 domains = self.__get_domains_in_mod(mod_file)
                 SourceData.set_multi_domain_list(domains, module + "-" + mod)
+
+    def get_ns_filters(self):
+        return self._ns_filter
 
 
 if __name__ == '__main__':
@@ -57,7 +63,7 @@ if __name__ == '__main__':
     SourceData.create_tables()
     SourceData.disconnect_db()
 
-    test = SetDomain("./", "mods.xml")
+    test = SetDomain("./modules/", "modules.xml")
     test.get_config()
     test.get_domains_in_mods()
     domains = SourceData.get_domain_list()
