@@ -69,11 +69,11 @@ class QDialogUI(QtGui.QDialog, object):
 
     app = None
     mirrors = []
-    platform = ''
+    platform = ""
     plat_flag = True
     ui = None
 
-    custom = "custom.hosts"
+    custom = ""
 
     def __init__(self):
         """
@@ -81,6 +81,7 @@ class QDialogUI(QtGui.QDialog, object):
         translator of the main dialog.
         """
         self.app = QtGui.QApplication(sys.argv)
+        self.custom = CommonUtil.set_custom_hosts_path()
         super(QDialogUI, self).__init__()
         self.ui = Ui_Util()
         self.ui.setupUi(self)

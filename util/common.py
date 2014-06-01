@@ -17,6 +17,7 @@
 __author__ = "huhamhire <me@huhamhire.com>"
 
 import ConfigParser
+import hashlib
 import math
 import os
 import sys
@@ -177,6 +178,25 @@ class CommonUtil(object):
         return mirrors
 
     @classmethod
+    def set_custom_hosts_path(cls):
+        """
+        Set path of user customized hosts module.
+
+        .. note:: This is a `classmethod`.
+
+        :return: Path to the user customized hosts module.
+        :rtype: str
+
+        .. seealso:: :ref:`User Customized Hosts<intro-customize>`.
+        """
+        custom_paths = ["~/.custom.hosts", "~/custom.hosts", "custom.hosts"]
+        for path in custom_paths:
+            file_path = os.path.expanduser(path)
+            if os.path.isfile(file_path):
+                return file_path
+        return ""
+
+    @classmethod
     def timestamp_to_date(cls, timestamp):
         """
         Transform unix :attr:`timestamp` to a data string in ISO format.
@@ -254,3 +274,20 @@ class CommonUtil(object):
             msgs.append(line)
         msgs.append(msg)
         return msgs
+
+    @classmethod
+    def calculate_md5(cls, filepath):
+        """Calculate MD5 checksum of a specified file (:attr:`filepath`).
+
+        .. note:: This is a `classmethod`.
+
+        :param filepath: Path of the target file.
+        :type filepath: str
+        :return: MD5 checksum.
+        :rtype: str
+        """
+        with open(filepath, 'rb') as f:
+            md5obj = hashlib.md5()
+            md5obj.update(f.read())
+            hash_md5 = md5obj.hexdigest()
+            return hash_md5

@@ -10,3 +10,5 @@ hosts
 .idea/
 data/ipv4_mods/*.hosts
 doc/build/
+
+dev/*.s3db

@@ -118,7 +118,11 @@ class QSubMakeHosts(QtCore.QThread, MakeHosts):
         .. seealso:: :attr:`make_cfg` in :class:`~tui.curses_d.CursesDaemon`
             class.
         """
-        for part_id in sorted(make_cfg.keys()):
+        parts = sorted(make_cfg.keys())
+        if 0x04 in parts:
+            self.write_customized()
+            parts.remove(0x04)
+        for part_id in parts:
             mod_cfg = make_cfg[part_id]
             if not RetrieveData.chk_mutex(part_id, mod_cfg):
                 return
@@ -129,7 +133,5 @@ class QSubMakeHosts(QtCore.QThread, MakeHosts):
                 self.info_trigger.emit(mod_name, self.mod_num)
                 if part_id == 0x02:
                     self.write_localhost_mod(hosts)
-                elif part_id == 0x04:
-                    self.write_customized()
                 else:
                     self.write_common_mod(hosts, mod_name)

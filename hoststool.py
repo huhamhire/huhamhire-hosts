@@ -20,7 +20,11 @@ import os
 
 from optparse import OptionParser
 
-import gui
+GUI_FLAG = True
+try:
+    import gui
+except ImportError, e:
+    GUI_FLAG = False
 import tui
 
 from __version__ import __version__
@@ -54,14 +58,17 @@ class UtilLauncher(object):
     """
 
     @classmethod
-    def launch(cls):
+    def launch(cls, gui_flag):
         """
         Launch `Hosts Setup Utility`.
 
         .. note:: This is a `classmethod`.
+
+        :param gui_flag: A boolean flag indicating if gui module is accessible.
+        :type gui_flag: bool
         """
         options, args = cls.set_commands()
-        if options.tui:
+        if options.tui or not gui_flag:
             cls.launch_tui()
         elif options.gui:
             cls.launch_gui()
@@ -140,4 +147,4 @@ class UtilLauncher(object):
             os.popen("chcp " + cp)
 
 if __name__ == "__main__":
-    UtilLauncher.launch()
+    UtilLauncher.launch(GUI_FLAG)
