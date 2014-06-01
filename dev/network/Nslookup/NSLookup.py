@@ -21,8 +21,8 @@ class NSLookup(threading.Thread):
     }
 
     def __init__(self, servers, host_name, results, counter, semaphore, mutex,
-                 progress_handler, ipv6=False, timeout=10, sock_type="TCP",
-                 port=53):
+                 progress_handler, v6_query = False, v6_socket=False,
+                 timeout=10, sock_type="TCP", port=53):
         threading.Thread.__init__(self)
         self.servers = servers
         self.port = port
@@ -36,12 +36,19 @@ class NSLookup(threading.Thread):
 
         self._response = {}
 
+        # Set IP query
+        if v6_query:
+            self.encode = NSUtils.encode_v6
+            self.decode = NSUtils.decode_v6
+        else:
+            self.encode = NSUtils.encode_v4
+            self.decode = NSUtils.decode_v4
         # Set IP family
-        if ipv6:
+        if v6_socket:
             self.ip_family = socket.AF_INET6
         else:
             self.ip_family = socket.AF_INET
-            # Set socket type
+        # Set socket type
         if "TCP" == sock_type.upper():
             self.sock_type = socket.SOCK_STREAM
         else:
@@ -63,8 +70,8 @@ class NSLookup(threading.Thread):
         sock = self.__sock
         try:
             sock.connect((server_ip, self.port))
-            sock.sendall(NSUtils.encode(self.host_name))
-            hosts = NSUtils.decode(sock)
+            sock.sendall(self.encode(self.host_name))
+            hosts = self.decode(sock)
             self._response["hosts"] = hosts
             if hosts:
                 # Set status OK

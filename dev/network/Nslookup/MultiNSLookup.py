@@ -15,11 +15,14 @@ class MultiNSLookup(object):
     sem = threading.Semaphore(0x100)
     mutex = threading.Lock()
 
-    def __init__(self, ns_servers, ns_filters, host_names, logger):
+    def __init__(self, ns_servers, ns_filters, host_names, logger,
+                 v6_query = False, v6_socket=False):
         self.ns_servers = ns_servers
         self.ns_filters = ns_filters
         self.host_names = host_names
         self.logger = logger
+        self.v6_query = v6_query
+        self.v6_socket = v6_socket
         self._responses = {}
 
     def nslookup(self):
@@ -44,7 +47,7 @@ class MultiNSLookup(object):
                 self.sem.acquire()
                 lookup_host = NSLookup(
                     mod_ns[mod], domain, self._responses, counter, self.sem,
-                    self.mutex, progress_handler)
+                    self.mutex, progress_handler, self.v6_query, self.v6_socket)
                 lookup_host.start()
                 threads.append(lookup_host)
                 time.sleep(0.05)
@@ -59,16 +62,16 @@ class MultiNSLookup(object):
         return self._responses
 
     def filter_ns(self, mod_name):
-        ns_filter = self.ns_filters[mod_name]
+        ns_filters = self.ns_filters[mod_name]
         ns_results = {}
-        if ns_filter == ["ALL"]:
+        if ns_filters == ["ALL"]:
             return self.ns_servers
-        elif ns_filter[0] == "!":
-            for tag, ip in self.ns_servers.iteritems():
-                if tag not in ns_filter:
-                    ns_results[tag] = ip
         else:
             for tag, ip in self.ns_servers.iteritems():
-                if tag in ns_filter:
-                    ns_results[tag] = ip
+                if ns_filters[0] == "!":
+                    if tag not in ns_filters:
+                        ns_results[tag] = ip
+                else:
+                    if tag in ns_filters:
+                        ns_results[tag] = ip
         return ns_results

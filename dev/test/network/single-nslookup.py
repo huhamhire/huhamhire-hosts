@@ -6,8 +6,6 @@ import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
-from dev.set_domain import SetDomain
-from dev.source_data import SourceData
 from dev.network.Nslookup import MultiNSLookup
 from dev.progress import ProgressWidget
 
@@ -49,19 +47,15 @@ class TestNSLookup(QThread):
             "kr": "164.124.101.46",
             "in": "58.68.121.230",
         }
-        cfg_path = "../../modules/"
-        cfg_file = "modules.xml"
-        database = "../../test.s3db"
-        set_domain = SetDomain(cfg_path, cfg_file, database)
-        set_domain.get_config()
-        set_domain.get_domains_in_mods()
-        filters = set_domain.get_ns_filters()
-        domains = SourceData.get_domain_list()
 
-        lookups = MultiNSLookup(ns_servers, filters, domains, self.logger)
+        filters = {"share-apple": ["cn-t"]}
+        domains = {"share-apple": ["blog.huhamhire.com"]}
+        v6 = True
+
+        lookups = MultiNSLookup(ns_servers, filters, domains, self.logger, v6)
         responses = lookups.nslookup()
 
-        SourceData.set_multi_ns_response(responses)
+        print(responses)
 
 
 if __name__ == '__main__':
