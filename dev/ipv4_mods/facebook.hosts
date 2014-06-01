@@ -10,6 +10,8 @@ b.static.ak.facebook.com
 graph.facebook.com
 ssl.facebook.com
 api.facebook.com
+api-read.facebook.com
+b-api.facebook.com
 secure-profile.facebook.com
 secure.facebook.com
 zh-cn.facebook.com
@@ -21,6 +23,7 @@ touch.facebook.com
 facebook.com
 www.facebook.com
 apps.facebook.com
+orcart.facebook.com
 profile.ak.fbcdn.net
 vpn.tfbnw.net
 vthumb.ak.fbcdn.net
@@ -38,8 +41,10 @@ b.static.ak.fbcdn.net
 static.ak.fbcdn.net
 upload.facebook.com
 developers.facebook.com
+bigzipfiles.facebook.com
 fbstatic-a.akamaihd.net
 fbcdn-creative-a.akamaihd.net
+fbcdn-profile-a.akamaihd.net
 pixel.facebook.com
 
 act.channel.facebook.com
