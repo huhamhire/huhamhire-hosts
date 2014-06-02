@@ -12,7 +12,7 @@ from .NSLookup import NSLookup
 
 class MultiNSLookup(object):
     # Limit the number of concurrent sessions
-    sem = threading.Semaphore(0x100)
+    sem = threading.Semaphore(0x80)
     mutex = threading.Lock()
 
     def __init__(self, ns_servers, ns_filters, host_names, logger,

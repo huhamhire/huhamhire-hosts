@@ -189,7 +189,7 @@ class SourceData(object):
 
     @classmethod
     def get_domain_list(cls):
-        sql = "SELECT name, mod FROM t_domain;"
+        sql = "SELECT name, mod FROM t_domain ORDER BY id;"
         cls._cur.execute(sql)
         domains = {}
         sql_results = cls._cur.fetchmany(1000)

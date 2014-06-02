@@ -58,12 +58,10 @@ class NSUtils(object):
         calling ":".join(hextets) will produce the compressed version of
         the IPv6 address.
 
-        Args:
-            hextets: A list of strings, the hextets to compress.
-
-        Returns:
-            A list of strings.
-
+        :param hextets: The hextets to compress.
+        :type hextets: list
+        :return: A list of strings.
+        :rtype: list
         """
         best_doublecolon_start = -1
         best_doublecolon_len = 0

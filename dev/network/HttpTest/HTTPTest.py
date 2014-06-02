@@ -16,6 +16,7 @@ class HttpTest(threading.Thread):
         302: "Redirect",
         303: "See Other",
         400: "Bad Request",
+        401: "Refused",
         403: "Forbidden",
         404: "Not Found",
         408: "Timed Out",

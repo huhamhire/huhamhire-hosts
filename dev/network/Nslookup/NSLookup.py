@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
+import random
 import socket
 import struct
 import sys
@@ -104,7 +105,10 @@ class NSLookup(threading.Thread):
 
     def run(self):
         responses = {}
-        for tag, ip in self.servers.iteritems():
+        server_tags = self.servers.keys()
+        random.shuffle(server_tags)
+        for tag in server_tags:
+            ip = self.servers[tag]
             self._response = {"hosts": [], "stat": 1}
             self.lookup(ip)
             responses[tag] = self._response
