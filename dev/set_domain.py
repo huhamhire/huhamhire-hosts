@@ -14,6 +14,7 @@ class SetDomain(object):
         self._name_pool = []
         self._modules = {}
         self._ns_filter = {}
+        self._predefined_nodes = {}
 
         if not SourceData.is_connected:
             SourceData.connect_db(database)
@@ -38,9 +39,15 @@ class SetDomain(object):
             mod_names = []
             mods = module.iter(tag="mod")
             for mod in mods:
-                mod_names.append(mod.text)
-                full_mod_name = module_name+"-"+mod.text
+                mod_name = mod.get("func")
+                mod_names.append(mod_name)
+                full_mod_name = module_name + "-" + mod_name
                 self._ns_filter[full_mod_name] = mod.get("ns").split(",")
+                nodes = mod.iter(tag="node")
+                node_records = []
+                for node in nodes:
+                    node_records.append(node.text)
+                self._predefined_nodes[full_mod_name] = node_records
             self._modules[module_name] = mod_names
 
     def get_domains_in_mods(self):
@@ -49,7 +56,13 @@ class SetDomain(object):
                 mod_file = module + "/" + mod + ".hosts"
                 mod_file = path.join(self._cfg_path, mod_file)
                 domains = self.__get_domains_in_mod(mod_file)
-                SourceData.set_multi_domain_list(domains, module + "-" + mod)
+                full_mod_name = module + "-" + mod
+                SourceData.set_multi_domain_list(domains, full_mod_name)
+                predefined_nodes = self._predefined_nodes.get(full_mod_name)
+                if predefined_nodes:
+                    for node in predefined_nodes:
+                        SourceData.set_multi_predefined_domain_ip(domains, node)
+
 
     def get_ns_filters(self):
         return self._ns_filter

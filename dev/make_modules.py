@@ -114,7 +114,7 @@ class MakeModuleFile(object):
             mod_names = []
             mods = module.iter(tag="mod")
             for mod in mods:
-                mod_names.append(mod.text)
+                mod_names.append(mod.get("func"))
             self._modules[module_name] = mod_names
 
     def set_hosts_in_mod(self, module, mod):

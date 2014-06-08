@@ -68,6 +68,32 @@ class SourceData(object):
             sys.stderr.write(str(e) + "\n")
 
     @classmethod
+    def __set_predefined_domain_ip(cls, domain, ip):
+        domain_id = cls.__calc_id(domain)
+        ip_id = cls.__calc_id(ip)
+        comb_id = cls.__calc_id(domain + ip)
+        ip_ins_sql = "INSERT OR IGNORE INTO t_ip VALUES (:ip_id, :ip);"
+        domain_ip_ins_sql = "INSERT OR IGNORE INTO t_domain_ip VALUES (" \
+                          ":domain_id, :ip_id, :comb_id, '');"
+        data = {
+            "domain_id": domain_id,
+            "ip_id": ip_id,
+            "comb_id": comb_id,
+            "ip": ip,
+            }
+        try:
+            cls._cur.execute(ip_ins_sql, data)
+            cls._cur.execute(domain_ip_ins_sql, data)
+        except sqlite3.IntegrityError, e:
+            sys.stderr.write(str(e) + "\n")
+
+    @classmethod
+    def set_multi_predefined_domain_ip(cls, domains, ip):
+        for domain in domains:
+            cls.__set_predefined_domain_ip(domain, ip)
+        cls._conn.commit()
+
+    @classmethod
     def set_multi_domain_list(cls, domains, module):
         for domain in domains:
             cls.__set_domain(domain, module)
