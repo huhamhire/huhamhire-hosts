@@ -47,11 +47,13 @@ class TestNSLookup(QThread):
             "kr": "168.126.63.1",
             "in": "58.68.121.230",
 
+            "sa": "194.183.88.40",
+
             "test": "208.67.222.222",
         }
 
-        filters = {"share-apple": ["test"]}
-        domains = {"share-apple": ["www.google.com.tw"]}
+        filters = {"share-apple": ["sa"]}
+        domains = {"share-apple": ["www.google.com"]}
         v6 = False
 
         lookups = MultiNSLookup(ns_servers, filters, domains, self.logger, v6)

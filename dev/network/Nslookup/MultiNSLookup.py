@@ -66,6 +66,8 @@ class MultiNSLookup(object):
         ns_results = {}
         if ns_filters == ["ALL"]:
             return self.ns_servers
+        elif ns_filters == ["!", "ALL"]:
+            return {}
         else:
             for tag, ip in self.ns_servers.iteritems():
                 if ns_filters[0] == "!":

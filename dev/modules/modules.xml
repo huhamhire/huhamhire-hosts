@@ -2,19 +2,19 @@
 <!-- Copyleft (C) 2014 - Huhamhire-hosts Team -->
 <domains>
     <module name="ipv4">
-        <mod func="google" ns="ALL">
-            <node>210.61.221.187</node>
-            <node>61.219.131.84</node>
+        <mod func="google" ns="!,ALL">
+            <node>74.125.203.40</node>
+            <node>74.125.204.74</node>
         </mod>
-        <mod func="google_apis" ns="ALL">
-            <node>210.61.221.187</node>
-            <node>61.219.131.84</node>
+        <mod func="google_apis" ns="!,ALL">
+            <node>74.125.203.40</node>
+            <node>74.125.204.74</node>
         </mod>
         <mod func="facebook" ns="!,cn-t,cn-u"></mod>
         <mod func="twitter" ns="!,cn-t,cn-u"></mod>
-        <mod func="youtube" ns="!,cn-t,cn-u">
-            <node>210.61.221.187</node>
-            <node>61.219.131.84</node>
+        <mod func="youtube" ns="!,ALL">
+            <node>74.125.203.40</node>
+            <node>74.125.204.74</node>
         </mod>
         <mod func="wikipedia" ns="ALL"></mod>
         <mod func="steam" ns="ALL"></mod>

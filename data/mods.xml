@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyleft (C) 2014 - Huhamhire-hosts Team -->
-<hostslist version="1.4.6">
+<hostslist version="1.4.8">
     <part id="0x10" default="0x0FB7">
         <table>hosts_ipv4</table>
         <path>ipv4_mods/</path>
@@ -47,6 +47,7 @@
         <modules>
             <mod cate="0x0001" mutex="0x0000">activation-helper</mod>
             <mod cate="0x0002" mutex="0x0000">huhamhire-hosts</mod>
+            <mod cate="0x0004" mutex="0x0000">apple</mod>
         </modules>
     </part>
     <part id="0x02" default="0x0000">
