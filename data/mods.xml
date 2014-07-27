@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyleft (C) 2014 - Huhamhire-hosts Team -->
-<hostslist version="1.4.8">
-    <part id="0x10" default="0x0FB7">
+<hostslist version="1.4.9">
+    <part id="0x10" default="0x1FB7">
         <table>hosts_ipv4</table>
         <path>ipv4_mods/</path>
         <modules>
@@ -15,8 +15,9 @@
             <mod cate="0x0080" mutex="0x0000">flickr</mod>
             <mod cate="0x0100" mutex="0x0000">github</mod>
             <mod cate="0x0200" mutex="0x0000">dropbox</mod>
-            <mod cate="0x0400" mutex="0x0000">wordpress</mod>
-            <mod cate="0x0800" mutex="0x0000">others</mod>
+            <mod cate="0x0400" mutex="0x0000">onedrive</mod>
+            <mod cate="0x0800" mutex="0x0000">wordpress</mod>
+            <mod cate="0x1000" mutex="0x0000">others</mod>
         </modules>
     </part>
     <part id="0x20" default="0x00FD">
