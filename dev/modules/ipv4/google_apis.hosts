@@ -99,6 +99,7 @@ themes.googleusercontent.com
 translate.googleusercontent.com
 u807isd5egseeabjccgcns005p2miucq-a-oz-opensocial.googleusercontent.com
 upt14k1i2veesusrda9nfotcrbp9d7p5-a-oz-opensocial.googleusercontent.com
+uds.googleusercontent.com
 webcache.googleusercontent.com
 www.googleusercontent.com
 www-calendar-opensocial.googleusercontent.com
@@ -131,6 +132,10 @@ t1.gstatic.com
 t2.gstatic.com
 t3.gstatic.com
 www.gstatic.com
+encrypted-tbn0.gstatic.com
+encrypted-tbn1.gstatic.com
+encrypted-tbn2.gstatic.com
+encrypted-tbn3.gstatic.com
 
 accounts.google.com
 accounts.l.google.com
@@ -144,6 +149,9 @@ mt0.googleapis.com
 mt1.googleapis.com
 mt2.googleapis.com
 mt3.googleapis.com
+mts.googleapis.com
+mts1.googleapis.com
+mts2.googleapis.com
 redirector-bigcache.googleapis.com
 translate.googleapis.com
 www.googleapis.com
@@ -152,6 +160,9 @@ blogger.l.google.com
 googlehosted.l.google.com
 talkx.l.google.com
 talk.l.google.com
+tbn1.google.com
+tbn2.google.com
+tbn3.google.com
 tbn4.google.com
 tbn5.google.com
 tbn6.google.com

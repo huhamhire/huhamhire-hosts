@@ -39,7 +39,9 @@ creative.ak.fbcdn.net
 external.ak.fbcdn.net
 b.static.ak.fbcdn.net
 static.ak.fbcdn.net
+scontent.xx.fbcdn.net
 scontent-a.xx.fbcdn.net
+scontent-b.xx.fbcdn.net
 upload.facebook.com
 developers.facebook.com
 bigzipfiles.facebook.com
@@ -57,6 +59,8 @@ act.channel.facebook.com
 5-act.channel.facebook.com
 6-act.channel.facebook.com
 
+0-channel-proxy-07-ash2.facebook.com
+3-channel-proxy-06-frc1.facebook.com
 4-channel-proxy-13-prn1.facebook.com
 
 beta-chat-01-05-ash3.facebook.com

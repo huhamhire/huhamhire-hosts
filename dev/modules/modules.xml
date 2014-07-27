@@ -3,24 +3,28 @@
 <domains>
     <module name="ipv4">
         <mod func="google" ns="!,ALL">
-            <node>74.125.203.40</node>
-            <node>74.125.204.74</node>
+            <node>198.58.115.149</node>
+            <node>74.125.205.147</node>
+            <node>74.125.205.95</node>
         </mod>
         <mod func="google_apis" ns="!,ALL">
-            <node>74.125.203.40</node>
-            <node>74.125.204.74</node>
+            <node>198.58.115.149</node>
+            <node>74.125.205.147</node>
+            <node>74.125.205.95</node>
         </mod>
         <mod func="facebook" ns="!,cn-t,cn-u"></mod>
         <mod func="twitter" ns="!,cn-t,cn-u"></mod>
         <mod func="youtube" ns="!,ALL">
-            <node>74.125.203.40</node>
-            <node>74.125.204.74</node>
+            <node>198.58.115.149</node>
+            <node>74.125.205.147</node>
+            <node>74.125.205.95</node>
         </mod>
         <mod func="wikipedia" ns="ALL"></mod>
         <mod func="steam" ns="ALL"></mod>
         <mod func="flickr" ns="ALL"></mod>
         <mod func="github" ns="ALL"></mod>
         <mod func="dropbox" ns="ALL"></mod>
+        <mod func="onedrive" ns="!,cn-t,cn-u"></mod>
         <mod func="wordpress" ns="ALL"></mod>
         <mod func="others" ns="ALL"></mod>
     </module>
