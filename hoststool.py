@@ -122,7 +122,9 @@ class UtilLauncher(object):
         .. note:: This is a `classmethod`.
         """
         main = gui.HostsUtil()
-        main.custom = UtilLauncher.get_custom_conf_path()
+        path = UtilLauncher.get_custom_conf_path()
+        if path is not None:
+            main.custom = path
         main.start()
 
     @classmethod
