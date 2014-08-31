@@ -106,10 +106,10 @@ class SourceData(object):
 
     @classmethod
     def __set_ns_response(cls, domain, multi_responses):
+        domain_id = cls.__calc_id(domain)
         for server_tag, response in multi_responses.iteritems():
             # Update status info
             status = response["stat"]
-            domain_id = cls.__calc_id(domain)
             upd_sql = "UPDATE t_domain SET stat=:stat " \
                       "WHERE id=:id AND stat>:stat"
             data = {"stat": status,
@@ -121,30 +121,36 @@ class SourceData(object):
                 sys.stderr.write(str(e) + "\n")
 
             for ip in response["hosts"]:
-                ip_id = cls.__calc_id(ip)
-                ins_sql = "INSERT OR IGNORE INTO t_ip VALUES (:ip_id, :ip);"
-                try:
-                    cls._cur.execute(ins_sql, (ip_id, ip))
-                except sqlite3.IntegrityError, e:
-                    sys.stderr.write(str(e) + "\n")
+                cls.set_domain_ip(ip, domain, domain_id, server_tag)
 
-                comb_id = cls.__calc_id(domain + ip)
+    @classmethod
+    def set_domain_ip(cls, ip, domain, domain_id=None, server_tag=""):
+        ip_id = cls.__calc_id(ip)
+        if not domain_id:
+            domain_id = cls.__calc_id(domain)
+        ins_sql = "INSERT OR IGNORE INTO t_ip VALUES (:ip_id, :ip);"
+        try:
+            cls._cur.execute(ins_sql, (ip_id, ip))
+        except sqlite3.IntegrityError, e:
+            sys.stderr.write(str(e) + "\n")
 
-                ins_sql = "INSERT OR IGNORE INTO t_domain_ip VALUES (" \
-                          ":domain, :ip, :comb, '');"
-                upd_sql = "UPDATE t_domain_ip SET ns=ns||:ns " \
-                          "WHERE domain_id=:domain AND ip_id=:ip;"
-                data = {
-                    "domain": domain_id,
-                    "ip": ip_id,
-                    "comb": comb_id,
-                    "ns": server_tag + '|'
-                }
-                try:
-                    cls._cur.execute(ins_sql, data)
-                    cls._cur.execute(upd_sql, data)
-                except sqlite3.IntegrityError, e:
-                    sys.stderr.write(str(e) + "\n")
+        comb_id = cls.__calc_id(domain + ip)
+
+        ins_sql = "INSERT OR IGNORE INTO t_domain_ip VALUES (" \
+                  ":domain, :ip, :comb, '');"
+        upd_sql = "UPDATE t_domain_ip SET ns=ns||:ns " \
+                  "WHERE domain_id=:domain AND ip_id=:ip;"
+        data = {
+            "domain": domain_id,
+            "ip": ip_id,
+            "comb": comb_id,
+            "ns": server_tag + '|' if server_tag else server_tag
+        }
+        try:
+            cls._cur.execute(ins_sql, data)
+            cls._cur.execute(upd_sql, data)
+        except sqlite3.IntegrityError, e:
+            sys.stderr.write(str(e) + "\n")
 
     @classmethod
     def set_multi_ns_response(cls, ns_responses):
