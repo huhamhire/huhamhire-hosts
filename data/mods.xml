@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyleft (C) 2014 - Huhamhire-hosts Team -->
-<hostslist version="1.4.9">
-    <part id="0x10" default="0x1FB7">
+<hostslist version="1.5.0">
+    <part id="0x10" default="0x1FBF">
         <table>hosts_ipv4</table>
         <path>ipv4_mods/</path>
         <modules>
