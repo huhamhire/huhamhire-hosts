@@ -78,5 +78,6 @@ if __name__ == "__main__":
     SourceData.connect_db(database)
     SourceData.drop_tables()
     SourceData.create_tables()
+    SourceData.set_single_domain("www.google.com", "google")
     SourceData.set_single_ns_response("www.google.com", results)
     SourceData.disconnect_db()
