@@ -3,18 +3,18 @@
 <domains>
     <module name="ipv4">
         <mod func="google" ns="!,ALL">
-            <node>216.239.32.39</node>
-            <node>173.194.120.88</node>
+            <node>216.239.32.72</node>
+            <node>74.125.130.47</node>
         </mod>
         <mod func="google_apis" ns="!,ALL">
-            <node>216.239.32.39</node>
-            <node>173.194.120.88</node>
+            <node>216.239.32.72</node>
+            <node>74.125.130.47</node>
         </mod>
         <mod func="facebook" ns="!,cn-t,cn-u"></mod>
         <!--<mod func="twitter" ns="!,cn-t,cn-u"></mod>-->
         <mod func="youtube" ns="!,ALL">
-            <node>216.239.32.39</node>
-            <node>173.194.120.88</node>
+            <node>216.239.32.72</node>
+            <node>74.125.130.47</node>
         </mod>
         <mod func="wikipedia" ns="ALL"></mod>
         <mod func="steam" ns="ALL"></mod>
