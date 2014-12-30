@@ -60,7 +60,7 @@ listed here:
 
   - On some linux distributions, pre-built packages of PyQt4 can be
     found in software repositories. For example, you can install PyQt4 on
-    a debian distribution simplly using:
+    a debian distribution simply using:
 
     .. code-block:: bash
 
@@ -71,7 +71,7 @@ More requirements are needed for developers:
 
 * Python 2.6/2.7 with PyQt4 extension for developers.
 
-* py2exe or py2app would be required while making binary excutables for
+* py2exe or py2app would be required while making binary executables for
   specified platforms.
 
 
@@ -100,13 +100,13 @@ backup/restore hosts file are still not supported in TUI mode currently.
 
 Graphical User Interface (GUI) Mode
 -----------------------------------
-* Windows(x86/x64): Run hoststool.exe from the binary excutables package to
+* Windows(x86/x64): Run hoststool.exe from the binary executables package to
   get started.
 
       - "Run as Administrator" is needed for operations to change the
         hosts file on Windows Vista or newer.
 
-* Mac OS X: Run HostsUtl application from the binary excutables package to get
+* Mac OS X: Run HostsUtl application from the binary executables package to get
   started.
 
       - Because of the locale problem with py2app, the automatic language
@@ -123,7 +123,7 @@ Graphical User Interface (GUI) Mode
 
 Text-based User Interface (TUI) Mode
 -----------------------------------
-* Windows Excutable(x86/x64):
+* Windows Executable(x86/x64):
 
   #. Start a command line(could be `cmd` or `Power Shell`).
 
